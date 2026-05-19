@@ -4,24 +4,26 @@ Satellite + AI emissions verification for Turkish CBAM exporters. See `README.md
 
 ## 🎯 Resume here (on "continue")
 
-_Updated: 2026-05-19 — fresh init. No code yet. Folders + scope only._
+_Updated: 2026-05-19 (evening) — v0 spike shipped (E40). Plant signal 1.9–18.7× rural background NO₂ on 4 clean scenes via Sentinel-5P + MPC. Next: get from "satellite signal exists" to "draft CBAM declaration in EU format" + first sales call._
+
+**Done so far:**
+- ✅ Step 1 — Target picked: Akçansa Büyükçekmece (Sabancı, Mimarsinan coast).
+- ✅ Step 2 — Sentinel-5P NO₂ pipeline (see `notebooks/01_s5p_akcansa.py`, `reports/akcansa_s5p_v0.png`, [[E40-iz-s5p-akcansa-v0]]).
+- ✅ Step 5 — First-cut outreach list in `sales/targets.md` (cement + steel; aluminum/fertilizer stubbed).
 
 **Steps (next, in priority order):**
 
-1. **Pick one real Turkish cement plant as the v0 target.** Candidates in `sales/targets.md` — Akçansa Büyükçekmece is the obvious one (largest TR cement exporter, Sabancı-owned, EU-export-heavy, public emissions data exists). Confirm GPS + production capacity + recent EU shipment volumes.
-2. **Sentinel-5P spike.** Write `notebooks/01_s5p_akcansa.py` (or `.ipynb`):
-   - Pull last 90 days of Sentinel-5P **NO₂** Level-2 product over the plant footprint (S5P doesn't measure CO₂ — NO₂ is the standard industry activity proxy for cement/power, correlates with combustion intensity; CO₂ comes later via production-tonnes × emission factor).
-   - Optionally pull SO₂ + CO as secondary proxies.
-   - Spatial-mean column density over plant bbox; subtract a rural-Thrace background bbox as a baseline.
-   - Sanity-check trend vs. seasonal expectation + plant outage records (if findable).
-   - **Acceptance:** one chart showing satellite-inferred NO₂ trend over the plant vs. rural background, written to `reports/akcansa_s5p_v0.png` and `logs/01_s5p_akcansa.log`.
-3. **EU CBAM report schema.** Download the official EU CBAM XML schema + reporting template. Stub a Jinja2 template in `src/iz/reporting/cbam_template.xml` that takes `(plant_id, period, emissions_t_co2, verification_method)` and emits a syntactically valid CBAM declaration.
-4. **End-to-end fake demo.** Script `bin/demo.py` that wires (2) → (3): "given Akçansa, here's a draft CBAM report." Numbers don't need to be production-quality yet — it just needs to *render* in the EU's format. **Acceptance:** in 2 minutes a non-engineer can run `python bin/demo.py --plant akcansa` and get a CBAM XML they can open.
-5. **Outreach list.** Fill `sales/targets.md` with top-20 TR CBAM exporters (cement, steel, aluminum, fertilizer). Pull from public TR customs / TÜİK data. For each: company, plant, contact pattern, last public emissions number, est. annual EU shipment volume.
-6. **First 3 sales calls.** Pick 3 from the top-20. Cold-email the sustainability director. Goal isn't a sale — it's *listening* to what scares them about January 2026.
+3. **EU CBAM report schema.** Download the official EU CBAM XML schema + reporting template (Implementing Regulation 2023/1773 annex). Stub a Jinja2 template in `src/iz/reporting/cbam_template.xml` that takes `(plant_id, period, embedded_emissions_t_co2, verification_method, electricity_consumed_mwh, …)` and emits a syntactically valid CBAM declaration.
+4. **End-to-end fake demo.** Script `bin/demo.py` that wires v0 NO₂ → production-tonnes-derived CO₂ estimate → CBAM XML: "given Akçansa, here's a draft CBAM report." Numbers don't need to be production-quality yet — it just needs to *render* in the EU's format. **Acceptance:** `uv run python bin/demo.py --plant akcansa` produces a CBAM XML that opens in EU's validator without schema errors.
+6. **First 3 sales calls.** Pick 3 from `sales/targets.md`. Cold-email the sustainability director with the v0 chart attached. Goal isn't a sale — it's *listening* to what scares them about January 2026.
+
+**Parallel v1 hardening (not blocking sales, but worth scheduling):**
+- Plume fitting (S5P divergence method) to convert column density → kg NOx/s emission. Standard literature method.
+- All 221 scenes, not 6. Cloud-filtered daily cadence.
+- Cross-check NO₂ trend vs. Akçansa's published monthly cement production → calibrate the emission factor.
 
 **Acceptance for this Resume block:**
-- Step 4 produces a CBAM XML file for one real plant from real Sentinel-5P data.
+- Step 4 produces a CBAM XML file for Akçansa from real Sentinel-5P data + production estimates.
 - Step 6 produces 3 sent emails and at least 1 scheduled call.
 - One of those calls converts to a paid pilot (€20k for "we audit your plant by end of Q1") within 30 days.
 
