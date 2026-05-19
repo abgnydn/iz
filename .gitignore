@@ -12,9 +12,9 @@ data/*
 logs/*
 !logs/.gitkeep
 reports/*.pdf
-reports/*.png
 reports/*.xml
 !reports/.gitkeep
+# v0/spike charts ARE committed; bulk customer CBAM declarations are not.
 
 .ipynb_checkpoints/
 .DS_Store

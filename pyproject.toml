@@ -6,7 +6,17 @@ requires-python = ">=3.11"
 authors = [{ name = "Baris Gunaydin", email = "abgunaydin94@gmail.com" }]
 # Deps deliberately empty — add as the v0 spike actually needs them.
 # Likely first additions: pystac-client, xarray, rioxarray, numpy, pandas, jinja2, httpx
-dependencies = []
+dependencies = [
+    "h5netcdf>=1.8.1",
+    "h5py>=3.16.0",
+    "matplotlib>=3.10.9",
+    "netcdf4>=1.7.4",
+    "numpy>=2.4.6",
+    "pandas>=3.0.3",
+    "planetary-computer>=1.0.0",
+    "pystac-client>=0.9.0",
+    "xarray>=2026.4.0",
+]
 
 [build-system]
 requires = ["hatchling"]

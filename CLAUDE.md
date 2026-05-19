@@ -10,10 +10,11 @@ _Updated: 2026-05-19 — fresh init. No code yet. Folders + scope only._
 
 1. **Pick one real Turkish cement plant as the v0 target.** Candidates in `sales/targets.md` — Akçansa Büyükçekmece is the obvious one (largest TR cement exporter, Sabancı-owned, EU-export-heavy, public emissions data exists). Confirm GPS + production capacity + recent EU shipment volumes.
 2. **Sentinel-5P spike.** Write `notebooks/01_s5p_akcansa.py` (or `.ipynb`):
-   - Pull last 90 days of Sentinel-5P NO₂ + CO₂ + SO₂ Level-2 product over the plant footprint (Copernicus Open Access Hub or ESA Sentinel Hub; free).
-   - Average column densities. Subtract regional background.
-   - Sanity-check vs. self-reported emissions (the company publishes a sustainability report — pull last year's CO₂ number).
-   - **Acceptance:** one chart showing satellite-inferred relative emissions trend over 90 days for this one plant, written to `reports/akcansa_s5p_v0.png` and `logs/01_s5p_akcansa.log`.
+   - Pull last 90 days of Sentinel-5P **NO₂** Level-2 product over the plant footprint (S5P doesn't measure CO₂ — NO₂ is the standard industry activity proxy for cement/power, correlates with combustion intensity; CO₂ comes later via production-tonnes × emission factor).
+   - Optionally pull SO₂ + CO as secondary proxies.
+   - Spatial-mean column density over plant bbox; subtract a rural-Thrace background bbox as a baseline.
+   - Sanity-check trend vs. seasonal expectation + plant outage records (if findable).
+   - **Acceptance:** one chart showing satellite-inferred NO₂ trend over the plant vs. rural background, written to `reports/akcansa_s5p_v0.png` and `logs/01_s5p_akcansa.log`.
 3. **EU CBAM report schema.** Download the official EU CBAM XML schema + reporting template. Stub a Jinja2 template in `src/iz/reporting/cbam_template.xml` that takes `(plant_id, period, emissions_t_co2, verification_method)` and emits a syntactically valid CBAM declaration.
 4. **End-to-end fake demo.** Script `bin/demo.py` that wires (2) → (3): "given Akçansa, here's a draft CBAM report." Numbers don't need to be production-quality yet — it just needs to *render* in the EU's format. **Acceptance:** in 2 minutes a non-engineer can run `python bin/demo.py --plant akcansa` and get a CBAM XML they can open.
 5. **Outreach list.** Fill `sales/targets.md` with top-20 TR CBAM exporters (cement, steel, aluminum, fertilizer). Pull from public TR customs / TÜİK data. For each: company, plant, contact pattern, last public emissions number, est. annual EU shipment volume.
