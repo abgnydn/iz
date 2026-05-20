@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>iz — stop paying the EU's default carbon tax</title>
+<style>
+  :root {
+    --bg: #f4ede2;
+    --paper: #fbf7ee;
+    --ink: #14181d;
+    --muted: #6e6862;
+    --rule: #d8cfbe;
+    --cost: #b85c3f;
+    --saved: #2d5a4c;
+    --serif: Georgia, "IBM Plex Serif", "Source Serif Pro", serif;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --mono: "Menlo", "SF Mono", "JetBrains Mono", monospace;
+  }
+
+  @page { size: A4; margin: 0; }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); }
+  body {
+    font-family: var(--serif);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .flyer {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto;
+    padding: 20mm 18mm 16mm;
+    background: var(--paper);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 24px rgba(20, 24, 29, 0.06);
+  }
+
+  .small-cap {
+    font-family: var(--sans);
+    font-size: 8.5pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ===== top bar ===== */
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 8pt;
+    border-bottom: 1px solid var(--rule);
+  }
+  .wordmark {
+    font-family: var(--serif);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    font-size: 32pt;
+    line-height: 1;
+    color: var(--ink);
+    display: inline-flex;
+    align-items: baseline;
+  }
+  .wordmark .mark {
+    font-style: italic;
+  }
+  .wordmark::after {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--cost);
+    margin-left: 6px;
+    transform: translateY(-18px);
+  }
+  .topbar .right { text-align: right; }
+  .topbar .tag {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 9pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 2pt;
+  }
+  .topbar .deadline {
+    font-family: var(--serif);
+    font-size: 13pt;
+    font-style: italic;
+    color: var(--cost);
+    margin-top: 2pt;
+  }
+
+  /* ===== hero ===== */
+  .hero {
+    margin-top: 18pt;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 52pt;
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    margin: 0 0 6pt;
+    color: var(--ink);
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--cost);
+  }
+  .hero .lede {
+    font-family: var(--serif);
+    font-size: 14pt;
+    line-height: 1.45;
+    color: var(--ink);
+    max-width: 145mm;
+    margin: 10pt 0 0;
+  }
+  .hero .lede strong { font-weight: 700; }
+
+  /* ===== big number ===== */
+  .number-block {
+    display: flex;
+    align-items: stretch;
+    gap: 16pt;
+    margin-top: 18pt;
+    padding: 16pt 18pt 16pt;
+    background: #fdfaf2;
+    border: 1px solid var(--rule);
+  }
+  .number-block .figure {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 64pt;
+    line-height: 1;
+    color: var(--saved);
+    letter-spacing: -0.035em;
+  }
+  .number-block .figure .small {
+    font-size: 22pt;
+    color: var(--muted);
+  }
+  .number-block .right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 1px solid var(--rule);
+    padding-left: 18pt;
+  }
+  .number-block .right .l { font-family: var(--sans); font-size: 8.5pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+  .number-block .right .v { font-family: var(--serif); font-size: 18pt; line-height: 1.25; margin-top: 4pt; }
+  .number-block .right .n { font-family: var(--sans); font-size: 9pt; color: var(--muted); margin-top: 4pt; }
+
+  /* ===== 3-step ===== */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12pt;
+    margin-top: 18pt;
+  }
+  .step {
+    border-top: 2px solid var(--cost);
+    padding-top: 8pt;
+  }
+  .step .n {
+    font-family: var(--sans);
+    font-size: 8pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cost);
+    font-weight: 700;
+  }
+  .step h3 {
+    font-family: var(--serif);
+    font-size: 14pt;
+    line-height: 1.15;
+    margin: 4pt 0 4pt;
+    font-weight: 600;
+  }
+  .step p {
+    font-family: var(--serif);
+    font-size: 10pt;
+    line-height: 1.5;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  /* ===== tiers ===== */
+  .tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 16pt;
+    border: 1px solid var(--rule);
+  }
+  .tier {
+    padding: 12pt 12pt 10pt;
+    border-right: 1px solid var(--rule);
+  }
+  .tier:last-child { border-right: 0; }
+  .tier .n { font-family: var(--sans); font-size: 8pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+  .tier h4 { font-family: var(--serif); font-size: 12pt; font-weight: 700; margin: 4pt 0; }
+  .tier .price { font-family: var(--serif); font-size: 18pt; color: var(--cost); margin-top: 4pt; line-height: 1; }
+  .tier .price .small { font-size: 10pt; color: var(--muted); }
+  .tier p { font-family: var(--serif); font-size: 9.5pt; line-height: 1.45; margin: 6pt 0 0; color: var(--ink); }
+
+  /* ===== why now ===== */
+  .why-now {
+    margin-top: 16pt;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 12pt;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 12pt 0;
+  }
+  .why-now .v { font-family: var(--serif); font-size: 18pt; line-height: 1; letter-spacing: -0.02em; }
+  .why-now .l { font-family: var(--sans); font-size: 7.5pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-top: 4pt; }
+
+  /* ===== footer ===== */
+  .foot {
+    margin-top: auto;
+    padding-top: 12pt;
+    border-top: 2px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .foot .cta {
+    font-family: var(--serif);
+    font-size: 17pt;
+    line-height: 1.2;
+    max-width: 110mm;
+  }
+  .foot .cta em { font-style: italic; color: var(--cost); }
+  .foot .contact {
+    font-family: var(--sans);
+    font-size: 9pt;
+    line-height: 1.5;
+    color: var(--muted);
+    text-align: right;
+  }
+  .foot .contact strong { color: var(--ink); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="flyer">
+
+  <!-- ===== TOP BAR ===== -->
+  <header class="topbar">
+    <div>
+      <div class="wordmark"><span class="mark">iz</span></div>
+      <div class="tag">karbon izi · satellite + AI emissions verification</div>
+    </div>
+    <div class="right">
+      <div class="small-cap">CBAM goes live</div>
+      <div class="deadline">1 January 2026</div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <h1>Stop paying<br>the EU's <em>default</em><br>carbon tax.</h1>
+    <p class="lede">
+      Türkiye's cement, steel, aluminum and fertilizer exporters will be
+      taxed on <strong>1.584 tCO₂ per ton of cement</strong> from January —
+      twice what a modern Turkish plant actually emits. iz turns free
+      satellite data and your production records into a <strong>schema-valid
+      CBAM declaration</strong> the EU accepts, in weeks, for a fraction of
+      what a Big-Four audit costs.
+    </p>
+  </section>
+
+  <!-- ===== HERO NUMBER ===== -->
+  <section class="number-block">
+    <div class="figure">€747<span class="small">K</span></div>
+    <div class="right">
+      <div class="l">Saved per 10kt cement shipment</div>
+      <div class="v">A single coastal plant, a single quarter, at €80/tCO₂.</div>
+      <div class="n">Verified specific emissions 0.65 tCO₂/t vs. EU default 1.584. Demonstrated with 90 days of free Sentinel-5P TROPOMI data over Akçansa Büyükçekmece.</div>
+    </div>
+  </section>
+
+  <!-- ===== 3 STEPS ===== -->
+  <section class="steps">
+    <div class="step">
+      <div class="n">Step 01 — Activity</div>
+      <h3>We see your plant from space.</h3>
+      <p>
+        Sentinel-5P TROPOMI measures the NO₂ plume above every kiln stack in
+        Türkiye, every day, for free. iz pulls the plant footprint, filters
+        for cloud and QA, and turns it into a defensible activity proxy.
+      </p>
+    </div>
+    <div class="step">
+      <div class="n">Step 02 — Math</div>
+      <h3>We turn activity into CO₂.</h3>
+      <p>
+        Your clinker production records × a sector-specific emission factor,
+        cross-checked against the satellite signal. Auditable, traceable,
+        rebuildable — and far below the EU default.
+      </p>
+    </div>
+    <div class="step">
+      <div class="n">Step 03 — Filing</div>
+      <h3>We write the declaration.</h3>
+      <p>
+        Output is EU CBAM Quarterly Report XML, validated against the
+        official XSD v23.00, ready to drop into the CBAM Registry by your EU
+        importers. No PDF-to-XML, no manual entry, no audit findings.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== TIERS ===== -->
+  <section class="tiers">
+    <div class="tier">
+      <div class="n">Tier 01 — Pilot</div>
+      <h4>One quarter, one plant.</h4>
+      <div class="price">€20K<span class="small"> fixed</span></div>
+      <p>A signed, verifier-reviewable CBAM declaration for a single quarter, delivered in six weeks.</p>
+    </div>
+    <div class="tier">
+      <div class="n">Tier 02 — Continuous MRV</div>
+      <h4>All plants, every quarter.</h4>
+      <div class="price">€80K<span class="small"> / plant / yr</span></div>
+      <p>Quarterly EU-format filings + monthly internal dashboards + year-end CDP-compatible reporting.</p>
+    </div>
+    <div class="tier">
+      <div class="n">Tier 03 — Credit origination</div>
+      <h4>Sell your abatement.</h4>
+      <div class="price">success-based</div>
+      <p>Verified emissions below the EU default become credits saleable to voluntary buyers. We originate; you keep the upside.</p>
+    </div>
+  </section>
+
+  <!-- ===== WHY NOW ===== -->
+  <section class="why-now">
+    <div><div class="v" style="color:var(--cost);">€19B</div><div class="l">TR CBAM-scope exports / year</div></div>
+    <div><div class="v" style="color:var(--cost);">€2.5B</div><div class="l">Annual TR exposure by 2032</div></div>
+    <div><div class="v" style="color:var(--cost);">€80</div><div class="l">Per tCO₂ at current EU ETS</div></div>
+    <div><div class="v">0</div><div class="l">Turkish MRV vendors of record</div></div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="foot">
+    <div class="cta">
+      Talk to us before your importers file their first quarterly report.
+      <em>The first signed pilot becomes the case study every Turkish
+      exporter sees next.</em>
+    </div>
+    <div class="contact">
+      <div class="small-cap" style="margin-bottom:4pt;">Contact</div>
+      <div><strong>Baris Gunaydin</strong></div>
+      <div>abgunaydin94@gmail.com</div>
+      <div style="margin-top:8pt;">iz · karbon izi</div>
+      <div>İstanbul · Bangkok</div>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

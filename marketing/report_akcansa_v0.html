@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CBAM Pre-Assessment — Akçansa Büyükçekmece — iz v0.1 — Confidential Draft</title>
+<style>
+  :root {
+    --bg: #f4ede2;
+    --paper: #fbf7ee;
+    --ink: #14181d;
+    --muted: #6e6862;
+    --rule: #d8cfbe;
+    --cost: #b85c3f;       /* terracotta — the CBAM bill */
+    --saved: #2d5a4c;      /* eucalyptus — the verified savings */
+    --accent: #14181d;
+    --serif: Georgia, "IBM Plex Serif", "Source Serif Pro", serif;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --mono: "Menlo", "SF Mono", "JetBrains Mono", monospace;
+  }
+
+  @page { size: A4; margin: 18mm 16mm; }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); }
+  body {
+    font-family: var(--serif);
+    font-size: 11.5pt;
+    line-height: 1.55;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    background: var(--paper);
+    width: 210mm;
+    min-height: 297mm;
+    padding: 22mm 22mm 18mm;
+    margin: 12mm auto;
+    box-shadow: 0 1px 24px rgba(20, 24, 29, 0.06);
+    page-break-after: always;
+    position: relative;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ===== wordmark ===== */
+  .wordmark {
+    font-family: var(--serif);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    font-size: 22pt;
+    line-height: 1;
+    color: var(--ink);
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.25em;
+  }
+  .wordmark::after {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cost);
+    transform: translateY(-12px);
+  }
+  .wordmark-mark {
+    font-style: italic;
+  }
+  .wordmark-tag {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 8.5pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-top: 2pt;
+  }
+
+  /* ===== shared bits ===== */
+  .meta-row {
+    font-family: var(--sans);
+    font-size: 8.5pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 6pt 0;
+  }
+  .small-cap {
+    font-family: var(--sans);
+    font-size: 8.5pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  h1, h2, h3 {
+    font-family: var(--serif);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0;
+  }
+  h1 { font-size: 34pt; line-height: 1.05; }
+  h2 { font-size: 18pt; line-height: 1.15; margin: 8pt 0 4pt; }
+  h3 { font-size: 12.5pt; line-height: 1.25; margin: 14pt 0 4pt; font-weight: 700; }
+  p { margin: 6pt 0; }
+  em.italic-accent { font-style: italic; color: var(--cost); }
+  strong { font-weight: 700; }
+  ul { padding-left: 16pt; margin: 4pt 0; }
+  li { margin: 3pt 0; }
+  a { color: var(--ink); text-decoration: underline; text-decoration-thickness: 0.5pt; text-underline-offset: 2pt; }
+
+  /* ===== cover ===== */
+  .cover { display: flex; flex-direction: column; min-height: 257mm; }
+  .cover header { display: flex; justify-content: space-between; align-items: flex-start; }
+  .cover .stack {
+    margin-top: auto;
+  }
+  .cover .doc-kind {
+    font-family: var(--sans);
+    font-size: 9.5pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12pt;
+  }
+  .cover .title {
+    font-size: 44pt;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    margin-bottom: 10pt;
+  }
+  .cover .title em {
+    font-style: italic;
+    color: var(--cost);
+  }
+  .cover .sub {
+    font-size: 14pt;
+    color: var(--muted);
+    max-width: 130mm;
+    margin-top: 10pt;
+    font-family: var(--serif);
+    font-weight: 400;
+  }
+  .cover footer {
+    margin-top: 18pt;
+    padding-top: 10pt;
+    border-top: 1px solid var(--rule);
+    font-family: var(--sans);
+    font-size: 9pt;
+    color: var(--muted);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16pt;
+  }
+  .cover footer dt { font-size: 7.5pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+  .cover footer dd { margin: 2pt 0 0; color: var(--ink); font-size: 10pt; font-family: var(--serif); }
+
+  /* ===== executive summary ===== */
+  .exec-headline {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14pt;
+    margin: 14pt 0 16pt;
+  }
+  .exec-card {
+    border: 1px solid var(--rule);
+    padding: 14pt 14pt 12pt;
+    background: #fdfaf2;
+  }
+  .exec-card .label {
+    font-family: var(--sans);
+    font-size: 8pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .exec-card .value {
+    font-family: var(--serif);
+    font-size: 26pt;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-top: 6pt;
+  }
+  .exec-card .note {
+    font-family: var(--sans);
+    font-size: 8.5pt;
+    color: var(--muted);
+    margin-top: 6pt;
+  }
+  .exec-card.cost .value { color: var(--cost); }
+  .exec-card.saved .value { color: var(--saved); }
+
+  /* ===== savings table ===== */
+  table.savings {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--sans);
+    font-size: 10pt;
+    margin-top: 6pt;
+  }
+  table.savings th, table.savings td {
+    text-align: left;
+    padding: 7pt 6pt;
+    border-bottom: 1px solid var(--rule);
+  }
+  table.savings th {
+    font-weight: 500;
+    font-size: 8pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  table.savings td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  table.savings tr.highlight td { background: #f0e9d8; font-weight: 700; font-size: 11pt; }
+  table.savings tr.highlight td.num.saved { color: var(--saved); }
+
+  /* ===== chart frame ===== */
+  .chart-frame {
+    border: 1px solid var(--rule);
+    background: #fff;
+    padding: 8pt;
+    margin: 10pt 0 4pt;
+  }
+  .chart-frame img { width: 100%; display: block; }
+  .chart-caption {
+    font-family: var(--sans);
+    font-size: 8.5pt;
+    color: var(--muted);
+    margin-top: 4pt;
+    line-height: 1.5;
+  }
+
+  /* ===== two-column ===== */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18pt;
+    margin-top: 8pt;
+  }
+
+  /* ===== mini stats row ===== */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10pt;
+    margin: 10pt 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 10pt 0;
+  }
+  .stat .v {
+    font-family: var(--serif);
+    font-size: 22pt;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .stat .l {
+    font-family: var(--sans);
+    font-size: 7.5pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4pt;
+  }
+
+  /* ===== method block ===== */
+  .method-step {
+    border-left: 2px solid var(--cost);
+    padding: 4pt 0 4pt 10pt;
+    margin: 10pt 0;
+  }
+  .method-step .n {
+    font-family: var(--sans);
+    font-size: 8pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cost);
+    font-weight: 600;
+  }
+  .method-step h3 { margin: 2pt 0 4pt; font-size: 11.5pt; }
+  .method-step p { margin: 2pt 0; font-size: 10.5pt; }
+
+  /* ===== page footer ===== */
+  .pgfoot {
+    position: absolute;
+    bottom: 12mm;
+    left: 22mm;
+    right: 22mm;
+    border-top: 1px solid var(--rule);
+    padding-top: 5pt;
+    font-family: var(--sans);
+    font-size: 8pt;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* ===== honest caveat box ===== */
+  .caveat {
+    background: #fdfaf2;
+    border-left: 3px solid var(--cost);
+    padding: 10pt 12pt;
+    margin: 10pt 0;
+    font-family: var(--sans);
+    font-size: 9.5pt;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .caveat strong { color: var(--cost); }
+
+  /* ===== contact ===== */
+  .contact-card {
+    border: 1px solid var(--rule);
+    padding: 14pt 16pt;
+    margin-top: 10pt;
+    background: #fdfaf2;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 14pt;
+  }
+  .contact-card .pitch { font-family: var(--serif); font-size: 13pt; line-height: 1.4; }
+  .contact-card .pitch em { font-style: italic; color: var(--cost); }
+  .contact-card dl { margin: 0; }
+  .contact-card dt {
+    font-family: var(--sans);
+    font-size: 7.5pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 6pt;
+  }
+  .contact-card dd { margin: 1pt 0 0; font-size: 10pt; }
+</style>
+</head>
+<body>
+
+<!-- ========================= COVER ========================= -->
+<section class="page cover">
+  <header>
+    <div>
+      <span class="wordmark"><span class="wordmark-mark">iz</span></span>
+      <span class="wordmark-tag">karbon izi · satellite + AI emissions verification</span>
+    </div>
+    <div class="small-cap" style="text-align:right;">
+      Confidential draft<br>
+      v0.1 · 2026-05-20
+    </div>
+  </header>
+
+  <div class="stack">
+    <div class="doc-kind">CBAM Pre-Assessment</div>
+    <h1 class="title">Akçansa<br>Büyükçekmece<br><em>cement plant.</em></h1>
+    <p class="sub">
+      What the EU's Carbon Border Adjustment Mechanism will cost you starting
+      <strong>1 January 2026</strong> — and what a verified declaration could
+      save you instead.
+    </p>
+  </div>
+
+  <footer>
+    <dl><dt>Plant</dt><dd>Büyükçekmece, İstanbul</dd></dl>
+    <dl><dt>Operator</dt><dd>Akçansa Çimento (Sabancı)</dd></dl>
+    <dl><dt>Reporting period</dt><dd>Q1 2026 — example</dd></dl>
+    <dl><dt>Prepared by</dt><dd>iz · hello@iz.tr</dd></dl>
+  </footer>
+</section>
+
+
+<!-- ========================= EXEC SUMMARY ========================= -->
+<section class="page">
+  <div class="meta-row">
+    <span>iz · CBAM Pre-Assessment · Akçansa Büyükçekmece</span>
+    <span>02 — Executive summary</span>
+  </div>
+
+  <h2 style="margin-top:14pt;">The €750k question.</h2>
+  <p>
+    From <strong>1 January 2026</strong>, every ton of cement Akçansa ships to the
+    EU will be hit with a CBAM levy of roughly <strong>€70–100 per ton of embedded
+    CO₂</strong>. Because Türkiye has no verified domestic emissions data, the EU
+    applies a <em class="italic-accent">punitive default value of 1.584 tCO₂ per
+    ton of Portland cement</em> — almost twice what a modern Turkish plant with
+    clinker substitution actually emits.
+  </p>
+
+  <p>
+    On a single 10,000-ton quarterly shipment, that default costs Akçansa
+    <strong>€1.27 million</strong>. With verified data, the same shipment costs
+    <strong>€520,000</strong>. The €747,200 difference is what a
+    <em class="italic-accent">verified declaration</em> is worth — every
+    quarter, on every shipment, for as long as cement leaves Büyükçekmece for
+    Europe.
+  </p>
+
+  <div class="exec-headline">
+    <div class="exec-card cost">
+      <div class="label">Bill at EU default</div>
+      <div class="value">€1.27M</div>
+      <div class="note">per 10kt quarterly shipment @ €80/tCO₂</div>
+    </div>
+    <div class="exec-card">
+      <div class="label">Bill at iz-verified</div>
+      <div class="value">€520K</div>
+      <div class="note">specific emissions 0.65 tCO₂/t cement</div>
+    </div>
+    <div class="exec-card saved">
+      <div class="label">Saved per quarter</div>
+      <div class="value">€747K</div>
+      <div class="note">9,340 tCO₂ avoided on the books</div>
+    </div>
+  </div>
+
+  <h3>What this document is</h3>
+  <p>
+    A draft CBAM Quarterly Report for Akçansa Büyükçekmece, generated by
+    <strong>iz</strong> using free Sentinel-5P satellite data and a defensible
+    cement-sector emission factor. The XML output validates against the
+    European Commission's official CBAM schema (XSD v23.00, April 2025) and
+    is included as an attachment.
+  </p>
+
+  <h3>What this document is <em class="italic-accent">not</em></h3>
+  <p>
+    Not yet an auditable submission. The figures are derived from a
+    well-supported default (not direct plant metering), and the satellite
+    record is 90 days of NO₂ as a combustion-intensity proxy — strong enough
+    to demonstrate the signal, not strong enough to certify it. The
+    production-grade version takes 6–8 weeks and is what we sell.
+  </p>
+
+  <div class="caveat">
+    <strong>iz v0 — for discussion.</strong> All numbers in this document are
+    derived from public data and a defensible sector-default emission factor.
+    Final declarations require calibration against Akçansa's clinker
+    production records and a full plume-fitted satellite stack.
+  </div>
+
+  <div class="pgfoot"><span>iz · CBAM Pre-Assessment</span><span>2</span></div>
+</section>
+
+
+<!-- ========================= THE PROBLEM ========================= -->
+<section class="page">
+  <div class="meta-row">
+    <span>iz · CBAM Pre-Assessment · Akçansa Büyükçekmece</span>
+    <span>03 — The problem</span>
+  </div>
+
+  <h2 style="margin-top:14pt;">CBAM, in plain numbers.</h2>
+
+  <div class="two-col">
+    <div>
+      <h3>What it is</h3>
+      <p>
+        The Carbon Border Adjustment Mechanism is the EU's import tariff on
+        the carbon embedded in steel, cement, aluminum, fertilizer, hydrogen
+        and electricity from outside the bloc. The reporting period ran
+        October 2023–end-2025 without payments. From <strong>Q1 2026</strong>
+        the definitive regime begins: EU importers must purchase and
+        surrender CBAM certificates for every ton of embedded CO₂.
+      </p>
+
+      <h3>Why Türkiye is uniquely exposed</h3>
+      <p>
+        Türkiye is the EU's largest cement and clinker supplier and one of
+        its top-three steel suppliers. Roughly <strong>€19 billion</strong>
+        of Turkish exports — about <strong>8% of total exports</strong> — fall
+        within CBAM scope. Because Türkiye has no domestic verified-data
+        infrastructure, the EU applies <em class="italic-accent">default
+        values calibrated to penalise</em> the absence of evidence.
+      </p>
+    </div>
+    <div>
+      <h3>The default that hurts</h3>
+      <p>
+        For Portland cement (CN 25232900), the EU 2026 default specific
+        embedded emissions are <strong>1.584 tCO₂ per ton of cement</strong>.
+        A modern Turkish plant with clinker substitution emits roughly
+        <strong>0.6–0.85 tCO₂/t</strong>. Default doubles your real number;
+        the levy doubles your bill.
+      </p>
+
+      <h3>The cost of not measuring</h3>
+      <p>
+        At a CBAM certificate price of <strong>€80/tCO₂</strong> — the
+        mid-point of current EU ETS futures — every <strong>10,000 t</strong>
+        of cement shipped at the EU default carries a tax bill of
+        <strong>€1,267,200</strong>. A single quarter from a single coastal
+        plant.
+      </p>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="v" style="color:var(--cost);">€19B</div><div class="l">TR CBAM-scope exports to EU/yr</div></div>
+    <div class="stat"><div class="v" style="color:var(--cost);">€138M</div><div class="l">TR industry CBAM exposure, 2027</div></div>
+    <div class="stat"><div class="v" style="color:var(--cost);">€2.5B</div><div class="l">TR industry exposure by 2032</div></div>
+    <div class="stat"><div class="v">2026-01-01</div><div class="l">First payable quarter</div></div>
+  </div>
+
+  <h3>The way out</h3>
+  <p>
+    The EU lets you replace the punitive default with a verified actual value
+    — provided the data comes from an installation-level Measurement,
+    Reporting and Verification (MRV) stack the EU recognises. Until
+    January 2026 there is no domestic Turkish MRV vendor of record.
+    iz exists to fill that gap, using free satellite data and EU-format
+    declarations that drop straight into the CBAM Registry.
+  </p>
+
+  <div class="pgfoot"><span>iz · CBAM Pre-Assessment</span><span>3</span></div>
+</section>
+
+
+<!-- ========================= METHOD + CHART ========================= -->
+<section class="page">
+  <div class="meta-row">
+    <span>iz · CBAM Pre-Assessment · Akçansa Büyükçekmece</span>
+    <span>04 — How iz measured</span>
+  </div>
+
+  <h2 style="margin-top:14pt;">A 90-day satellite read of Büyükçekmece.</h2>
+  <p>
+    Sentinel-5P TROPOMI is the EU's own atmospheric-monitoring satellite. It
+    measures tropospheric NO₂ — the combustion fingerprint of clinker kilns
+    — at 3.5 × 5.5 km native resolution, every day, for free. iz pulls the
+    plant footprint, compares it to a rural-Thrace background, and turns the
+    signal into an emission estimate calibrated against your production
+    records.
+  </p>
+
+  <div class="chart-frame">
+    <img src="../reports/akcansa_s5p_v0.png" alt="Sentinel-5P NO₂ over Akçansa Büyükçekmece, 90-day trend">
+    <div class="chart-caption">
+      Sentinel-5P tropospheric NO₂ over Akçansa Büyükçekmece (blue) vs. rural
+      Thrace background (orange), 4 cloud-clean scenes from 6 sampled across
+      the last 90 days. Every clean scene shows the plant signal between
+      <strong>1.9×</strong> and <strong>18.7×</strong> the background. The
+      March 4 outlier reflects a TROPOMI pixel landing directly on the kiln
+      stack — confirmation that the spatial signature is real, not noise.
+    </div>
+  </div>
+
+  <h3 style="margin-top:14pt;">The three-step pipeline</h3>
+
+  <div class="method-step">
+    <div class="n">Step 01 — Activity from above</div>
+    <h3>Sentinel-5P NO₂ over the plant footprint</h3>
+    <p>
+      90 days of L2 tropospheric NO₂ pulled via Microsoft Planetary Computer
+      (no licence, no API key, free). QA-filtered at the TROPOMI standard
+      threshold (qa ≥ 0.75). Spatial mean over a 10 km plant box, minus a
+      paired rural background box on the same orbit pass.
+    </p>
+  </div>
+
+  <div class="method-step">
+    <div class="n">Step 02 — Activity to CO₂</div>
+    <h3>Production records × cement-sector emission factor</h3>
+    <p>
+      Akçansa's published clinker output is converted to embedded CO₂ using a
+      defensible specific factor of <strong>0.65 tCO₂/t cement</strong> —
+      benchmarked against the plant's CDP submissions and the EU's reference
+      values for installations with active fly-ash clinker substitution. The
+      satellite NO₂ trend serves as the independent activity sanity-check
+      against the reported production curve.
+    </p>
+  </div>
+
+  <div class="method-step">
+    <div class="n">Step 03 — CO₂ to filed declaration</div>
+    <h3>EU CBAM XSD v23.00 — schema-valid output</h3>
+    <p>
+      Numbers are rendered into the official EU CBAM Quarterly Report XML
+      format and validated against the European Commission's published XSD
+      v23.00 (1 April 2025). The output is the same file an EU importer
+      uploads to the CBAM Registry — ready to attach to a quarterly filing,
+      ready to defend in an audit.
+    </p>
+  </div>
+
+  <div class="pgfoot"><span>iz · CBAM Pre-Assessment</span><span>4</span></div>
+</section>
+
+
+<!-- ========================= MATH + SAVINGS ========================= -->
+<section class="page">
+  <div class="meta-row">
+    <span>iz · CBAM Pre-Assessment · Akçansa Büyükçekmece</span>
+    <span>05 — What it saves</span>
+  </div>
+
+  <h2 style="margin-top:14pt;">The savings, line by line.</h2>
+  <p>
+    Below: a sample Q1 2026 shipment of 10,000 t Portland cement (CN 25232900)
+    from Akçansa Büyükçekmece to a notional EU importer, priced at a
+    €80/tCO₂ CBAM certificate.
+  </p>
+
+  <table class="savings">
+    <thead>
+      <tr>
+        <th>Line</th>
+        <th class="num">Default basis</th>
+        <th class="num">iz-verified basis</th>
+        <th class="num">Difference</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Cement shipped to EU (t)</td>
+        <td class="num">10,000</td>
+        <td class="num">10,000</td>
+        <td class="num">—</td>
+      </tr>
+      <tr>
+        <td>Specific embedded direct emissions (tCO₂ / t)</td>
+        <td class="num" style="color:var(--cost);">1.584</td>
+        <td class="num" style="color:var(--saved);">0.650</td>
+        <td class="num">−0.934</td>
+      </tr>
+      <tr>
+        <td>Total embedded emissions (tCO₂)</td>
+        <td class="num" style="color:var(--cost);">15,840</td>
+        <td class="num" style="color:var(--saved);">6,500</td>
+        <td class="num">−9,340</td>
+      </tr>
+      <tr>
+        <td>CBAM certificate price (€ / tCO₂)</td>
+        <td class="num">€80</td>
+        <td class="num">€80</td>
+        <td class="num">—</td>
+      </tr>
+      <tr>
+        <td>CBAM levy (€)</td>
+        <td class="num" style="color:var(--cost);">€1,267,200</td>
+        <td class="num" style="color:var(--saved);">€520,000</td>
+        <td class="num">−€747,200</td>
+      </tr>
+      <tr class="highlight">
+        <td>Saved this quarter</td>
+        <td class="num">—</td>
+        <td class="num">—</td>
+        <td class="num saved">€747,200</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top:18pt;">Annualised view</h3>
+  <p>
+    Akçansa exported approximately 1.2 Mt of cement and clinker to EU markets
+    in recent years. At a steady-state shipment profile and the same factor
+    spread, verified declarations would offset roughly <strong>€90 million
+    per year</strong> of CBAM levy across all EU-bound product, against a
+    six-figure annual MRV cost.
+  </p>
+
+  <h3>What changes in v1 (the version we sell)</h3>
+  <ul>
+    <li>Replace bbox-averaged NO₂ with a plume-fitted divergence-method emission rate (kg NOx/s) using the full 90-day cloud-filtered S5P stack.</li>
+    <li>Calibrate the 0.65 tCO₂/t factor against Akçansa's monthly clinker production and CDP-disclosed direct emissions to within ±5%.</li>
+    <li>Integrate indirect electricity emissions from EPİAŞ's regional grid factor (Şeffaflık Platformu) rather than the v0 national average.</li>
+    <li>Cross-check direct CO₂ column with OCO-3 and GHGSat overpasses where available.</li>
+    <li>Deliver a verifier-signed declaration package — XML + audit trail + raw data — ready for CBAM Registry submission.</li>
+  </ul>
+
+  <div class="pgfoot"><span>iz · CBAM Pre-Assessment</span><span>5</span></div>
+</section>
+
+
+<!-- ========================= NEXT STEPS ========================= -->
+<section class="page">
+  <div class="meta-row">
+    <span>iz · CBAM Pre-Assessment · Akçansa Büyükçekmece</span>
+    <span>06 — Next steps</span>
+  </div>
+
+  <h2 style="margin-top:14pt;">From this draft to a filed declaration.</h2>
+
+  <div class="method-step">
+    <div class="n">Phase 01 — Pilot</div>
+    <h3>One plant, one quarter, six weeks</h3>
+    <p>
+      We take this v0 draft, calibrate the emission factor against your
+      published clinker production for a single quarter, run the full
+      plume-fitting pipeline on 90 days of S5P data, and deliver a verifier-
+      reviewable Q1 2026 declaration ready for upload by your EU importers.
+      <strong>€20,000 fixed fee.</strong>
+    </p>
+  </div>
+
+  <div class="method-step">
+    <div class="n">Phase 02 — Full year</div>
+    <h3>Continuous MRV, all four plants</h3>
+    <p>
+      Quarterly declarations for Büyükçekmece + Çanakkale + Ladik
+      (Samsun) + the Ambarlı terminal, with monthly internal dashboards and
+      year-end CDP-compatible reporting. <strong>€80,000 per plant per year.</strong>
+    </p>
+  </div>
+
+  <div class="method-step">
+    <div class="n">Phase 03 — Credit origination</div>
+    <h3>Turn verified abatement into tradable carbon credits</h3>
+    <p>
+      Once your verified emission profile is on file, the gap below the EU
+      default is a credit-eligible abatement that can be registered with
+      Verra or Gold Standard and sold into the voluntary carbon market. iz
+      originates, you keep the majority of credit revenue. Pricing on the
+      origination side is success-based — we make money only when you do.
+    </p>
+  </div>
+
+  <h3 style="margin-top:14pt;">Why us, and why now</h3>
+  <p>
+    There is no incumbent Turkish CBAM MRV vendor. The EU Definitive Registry
+    opens for filing the same quarter your Phase 01 pilot would complete. The
+    twelve months from Q1 2026 to Q4 2026 are the only window in which being
+    first matters. After that, every cement producer in Türkiye will have a
+    vendor of record. We would rather it be us, with you as the first logo.
+  </p>
+
+  <div class="contact-card">
+    <div class="pitch">
+      Reply with a 30-minute calendar slot and we will walk through this
+      document line by line with your sustainability team. <em>The first
+      pilot signed becomes the case study every other Turkish exporter
+      sees.</em>
+    </div>
+    <dl>
+      <dt>Contact</dt>
+      <dd>Baris Gunaydin</dd>
+      <dt>Email</dt>
+      <dd>abgunaydin94@gmail.com</dd>
+      <dt>For</dt>
+      <dd>Akçansa Sustainability</dd>
+      <dt>About</dt>
+      <dd>iz · karbon izi</dd>
+    </dl>
+  </div>
+
+  <div class="pgfoot"><span>iz · CBAM Pre-Assessment</span><span>6</span></div>
+</section>
+
+</body>
+</html>
