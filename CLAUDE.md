@@ -9,13 +9,15 @@ _Updated: 2026-05-19 (evening) — v0 spike shipped (E40). Plant signal 1.9–18
 **Done so far:**
 - ✅ Step 1 — Target picked: Akçansa Büyükçekmece (Sabancı, Mimarsinan coast).
 - ✅ Step 2 — Sentinel-5P NO₂ pipeline (see `notebooks/01_s5p_akcansa.py`, `reports/akcansa_s5p_v0.png`, [[E40-iz-s5p-akcansa-v0]]).
+- ✅ Step 3 — Official EU XSD v23.00 downloaded (`data/cbam_schema/`), Jinja2 template at `src/iz/reporting/cbam_template.xml`.
+- ✅ Step 4 — `bin/demo.py` renders Akçansa Q1 2026 declaration and **validates against the official EU XSD**. Output: `reports/cbam_akcansa_2026_Q1_v0.xml`. Headline: 10 kt shipment → €747k saved/quarter vs. EU default.
 - ✅ Step 5 — First-cut outreach list in `sales/targets.md` (cement + steel; aluminum/fertilizer stubbed).
 
 **Steps (next, in priority order):**
 
-3. **EU CBAM report schema.** Download the official EU CBAM XML schema + reporting template (Implementing Regulation 2023/1773 annex). Stub a Jinja2 template in `src/iz/reporting/cbam_template.xml` that takes `(plant_id, period, embedded_emissions_t_co2, verification_method, electricity_consumed_mwh, …)` and emits a syntactically valid CBAM declaration.
-4. **End-to-end fake demo.** Script `bin/demo.py` that wires v0 NO₂ → production-tonnes-derived CO₂ estimate → CBAM XML: "given Akçansa, here's a draft CBAM report." Numbers don't need to be production-quality yet — it just needs to *render* in the EU's format. **Acceptance:** `uv run python bin/demo.py --plant akcansa` produces a CBAM XML that opens in EU's validator without schema errors.
-6. **First 3 sales calls.** Pick 3 from `sales/targets.md`. Cold-email the sustainability director with the v0 chart attached. Goal isn't a sale — it's *listening* to what scares them about January 2026.
+6. **First 3 sales calls.** Cold-email Akçansa + Tosyalı + Erdemir sustainability directors with the v0 chart + sample CBAM XML attached. Pitch line: "We just validated a CBAM declaration for your plant from free satellite data. Want to see it?" Goal: 1 reply, 1 call scheduled.
+7. **Production-data calibration.** Pull Akçansa's published quarterly clinker output (CDP/sustainability report). Correlate against the satellite NO₂ trend. This is what makes the 0.65 tCO₂/t number defensible to an EU auditor instead of "iz's best guess."
+8. **Plume fitting v1.** Replace the bbox-mean with a proper S5P divergence-method emission estimate. Standard literature; converts the 4-pixel bbox into a kg NOx/s number with uncertainty bounds.
 
 **Parallel v1 hardening (not blocking sales, but worth scheduling):**
 - Plume fitting (S5P divergence method) to convert column density → kg NOx/s emission. Standard literature method.

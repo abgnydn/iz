@@ -9,6 +9,8 @@ authors = [{ name = "Baris Gunaydin", email = "abgunaydin94@gmail.com" }]
 dependencies = [
     "h5netcdf>=1.8.1",
     "h5py>=3.16.0",
+    "jinja2>=3.1.6",
+    "lxml>=6.1.1",
     "matplotlib>=3.10.9",
     "netcdf4>=1.7.4",
     "numpy>=2.4.6",

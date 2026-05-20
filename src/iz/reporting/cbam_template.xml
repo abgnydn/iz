@@ -1,0 +1,151 @@
+{#-
+  CBAM Quarterly Report — Jinja2 template against EU XSD v23.00 (April 2025).
+  Schema namespace: http://xmlns.ec.eu/BusinessObjects/CBAM/Types/V1
+
+  Required spine (per QReport_ver23.00.xsd):
+    QReport → ReportingPeriod, Year, Declarant, Signatures, ImportedGood+
+    ImportedGood → OriginCountry, ImportedQuantity+, MeasureImported, GoodsEmissions+
+    GoodsEmissions → ProducedMeasure, DirectEmissions
+
+  This template covers the minimum-viable production-side declaration: one good,
+  one shipment, one set of emissions. Extend the loops for multi-good reports.
+-#}
+<?xml version="1.0" encoding="UTF-8"?>
+<QReport xmlns="http://xmlns.ec.eu/BusinessObjects/CBAM/Types/V1">
+    <SubmissionDate>{{ submission_date }}</SubmissionDate>
+    <ReportId>{{ report_id }}</ReportId>
+    <ReportingPeriod>{{ reporting_period }}</ReportingPeriod>
+    <Year>{{ year }}</Year>
+
+    <Declarant>
+        <IdentificationNumber>{{ declarant.eori }}</IdentificationNumber>
+        <Name>{{ declarant.name }}</Name>
+        <Role>{{ declarant.role }}</Role>
+        <ActorAddress>
+            <City>{{ declarant.city }}</City>
+            {% if declarant.street %}<Street>{{ declarant.street }}</Street>{% endif %}
+            {% if declarant.postcode %}<Postcode>{{ declarant.postcode }}</Postcode>{% endif %}
+        </ActorAddress>
+    </Declarant>
+
+    <Signatures>
+        <ReportConfirmation>
+            <GlobalDataConfirmation>{{ "true" if signatures.global_data_confirmed else "false" }}</GlobalDataConfirmation>
+            <UseOfDataConfirmation>{{ "true" if signatures.use_of_data_confirmed else "false" }}</UseOfDataConfirmation>
+            <SignaturePlace>{{ signatures.place }}</SignaturePlace>
+            <Signature>{{ signatures.signer }}</Signature>
+            <PositionOfPersonSending>{{ signatures.position }}</PositionOfPersonSending>
+        </ReportConfirmation>
+    </Signatures>
+
+    {% if remarks %}
+    <Remarks>
+        <AdditionalInformation>{{ remarks }}</AdditionalInformation>
+    </Remarks>
+    {% endif %}
+
+    {% for good in imported_goods %}
+    <ImportedGood>
+        <ItemNumber>{{ good.item_number }}</ItemNumber>
+        <CommodityCode>
+            <HsCode>{{ good.hs_code }}</HsCode>
+            <CnCode>{{ good.cn_code }}</CnCode>
+            <CommodityDetails>
+                <Description>{{ good.description }}</Description>
+            </CommodityDetails>
+        </CommodityCode>
+        <OriginCountry>
+            <Country>{{ good.origin_country }}</Country>
+        </OriginCountry>
+
+        {% for q in good.imported_quantities %}
+        <ImportedQuantity>
+            <SequenceNumber>{{ q.sequence }}</SequenceNumber>
+            <Procedure>
+                <RequestedProc>{{ q.requested_proc }}</RequestedProc>
+            </Procedure>
+            <ImportArea>
+                <ImportArea>{{ q.import_area }}</ImportArea>
+            </ImportArea>
+            <MeasureProcedureImported>
+                <Indicator>{{ q.indicator }}</Indicator>
+                <NetMass>{{ q.net_mass }}</NetMass>
+                <MeasurementUnit>{{ q.unit }}</MeasurementUnit>
+            </MeasureProcedureImported>
+        </ImportedQuantity>
+        {% endfor %}
+
+        <MeasureImported>
+            <NetMass>{{ good.measure.net_mass }}</NetMass>
+            <MeasurementUnit>{{ good.measure.unit }}</MeasurementUnit>
+        </MeasureImported>
+
+        {% for em in good.emissions %}
+        <GoodsEmissions>
+            <SequenceNumber>{{ em.sequence }}</SequenceNumber>
+            <ProductionCountry>{{ em.production_country }}</ProductionCountry>
+
+            <InstallationOperator>
+                <OperatorId>{{ em.operator.id }}</OperatorId>
+                <OperatorName>{{ em.operator.name }}</OperatorName>
+                <OperatorAddress>
+                    <Country>{{ em.operator.country }}</Country>
+                    <City>{{ em.operator.city }}</City>
+                    {% if em.operator.street %}<Street>{{ em.operator.street }}</Street>{% endif %}
+                    {% if em.operator.postcode %}<Postcode>{{ em.operator.postcode }}</Postcode>{% endif %}
+                </OperatorAddress>
+                <ContactDetails>
+                    <Name>{{ em.operator.contact_name }}</Name>
+                    <Phone>{{ em.operator.contact_phone }}</Phone>
+                    <Email>{{ em.operator.contact_email }}</Email>
+                </ContactDetails>
+            </InstallationOperator>
+
+            <Installation>
+                <InstallationId>{{ em.installation.id }}</InstallationId>
+                <InstallationName>{{ em.installation.name }}</InstallationName>
+                {% if em.installation.economic_activity %}<EconomicActivity>{{ em.installation.economic_activity }}</EconomicActivity>{% endif %}
+                <Address>
+                    <EstablishmentCountry>{{ em.installation.country }}</EstablishmentCountry>
+                    <City>{{ em.installation.city }}</City>
+                    {% if em.installation.street %}<Street>{{ em.installation.street }}</Street>{% endif %}
+                    {% if em.installation.latitude %}<Latitude>{{ em.installation.latitude }}</Latitude>{% endif %}
+                    {% if em.installation.longitude %}<Longitude>{{ em.installation.longitude }}</Longitude>{% endif %}
+                </Address>
+            </Installation>
+
+            <ProducedMeasure>
+                <NetMass>{{ em.produced_measure.net_mass }}</NetMass>
+                <MeasurementUnit>{{ em.produced_measure.unit }}</MeasurementUnit>
+            </ProducedMeasure>
+
+            <DirectEmissions>
+                {% if em.direct.determination_type %}<DeterminationType>{{ em.direct.determination_type }}</DeterminationType>{% endif %}
+                <ApplicableReportingTypeMethodology>{{ em.direct.methodology_type }}</ApplicableReportingTypeMethodology>
+                {% if em.direct.methodology_desc %}<ApplicableReportingMethodology>{{ em.direct.methodology_desc }}</ApplicableReportingMethodology>{% endif %}
+                <SpecificEmbeddedEmissions>{{ em.direct.specific_embedded_emissions }}</SpecificEmbeddedEmissions>
+                <MeasurementUnit>{{ em.direct.unit }}</MeasurementUnit>
+                {% if em.direct.source_value %}<EmissionFactorSourceValue>{{ em.direct.source_value }}</EmissionFactorSourceValue>{% endif %}
+            </DirectEmissions>
+
+            {% if em.indirect %}
+            <IndirectEmissions>
+                <DeterminationType>{{ em.indirect.determination_type }}</DeterminationType>
+                <SpecificEmbeddedEmissions>{{ em.indirect.specific_embedded_emissions }}</SpecificEmbeddedEmissions>
+                <MeasurementUnit>{{ em.indirect.unit }}</MeasurementUnit>
+                <ElectricityConsumed>{{ em.indirect.electricity_consumed }}</ElectricityConsumed>
+                <ElectricitySource>{{ em.indirect.electricity_source }}</ElectricitySource>
+            </IndirectEmissions>
+            {% endif %}
+
+            {% for r in em.remarks %}
+            <RemarksEmissions>
+                <SequenceNumber>{{ r.sequence }}</SequenceNumber>
+                <AdditionalInformation>{{ r.text }}</AdditionalInformation>
+            </RemarksEmissions>
+            {% endfor %}
+        </GoodsEmissions>
+        {% endfor %}
+    </ImportedGood>
+    {% endfor %}
+</QReport>
