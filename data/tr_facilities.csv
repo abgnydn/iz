@@ -1,0 +1,58 @@
+id,company,group,plant_name,cbam_scope,city,province,lat,lon,annual_capacity_t,cn_codes,public_disclosure_url,notes
+akcansa-buyukcekmece,Akçansa,Sabancı,Büyükçekmece Cement Plant,cement,Büyükçekmece,İstanbul,41.0397,28.5587,4500000,25232100;25232900;25231000,https://www.akcansa.com.tr/en/sustainability/,CSC Gold certified; fly-ash clinker substitution; v0 demo target
+akcansa-canakkale,Akçansa,Sabancı,Çanakkale Cement Plant,cement,Lapseki,Çanakkale,40.3450,26.6800,4500000,25232100;25232900;25231000,https://www.akcansa.com.tr/en/sustainability/,Coastal EU-shipping; CDP disclosure
+akcansa-ladik,Akçansa,Sabancı,Ladik Cement Plant,cement,Ladik,Samsun,40.9200,36.0700,1500000,25232900,https://www.akcansa.com.tr/en/sustainability/,Inland
+cimsa-mersin,Çimsa,Sabancı,Mersin Cement Plant,cement,Mersin,Mersin,36.8300,34.6600,2400000,25232100;25232900,https://www.cimsa.com.tr/en/sustainability,Largest white cement plant in Europe; coastal EU-export
+cimsa-eskisehir,Çimsa,Sabancı,Eskişehir Cement Plant,cement,Eskişehir,Eskişehir,39.7800,30.5200,1500000,25232900,https://www.cimsa.com.tr/en/sustainability,
+cimsa-kayseri,Çimsa,Sabancı,Kayseri Cement Plant,cement,Kayseri,Kayseri,38.7400,35.4900,1700000,25232900,https://www.cimsa.com.tr/en/sustainability,
+cimsa-nigde,Çimsa,Sabancı,Niğde Cement Plant,cement,Niğde,Niğde,37.9600,34.6800,1400000,25232900,https://www.cimsa.com.tr/en/sustainability,
+oyak-bolu,OYAK Çimento,OYAK,Bolu Cement Plant,cement,Bolu,Bolu,40.7400,31.6100,3500000,25232100;25232900,https://www.oyakcimento.com/en/sustainability,
+oyak-unye,OYAK Çimento,OYAK,Ünye Cement Plant,cement,Ünye,Ordu,41.1300,37.3000,3200000,25232900,https://www.oyakcimento.com/en/sustainability,Coastal Black Sea
+oyak-mardin,OYAK Çimento,OYAK,Mardin Cement Plant,cement,Mardin,Mardin,37.3100,40.7400,3000000,25232900,https://www.oyakcimento.com/en/sustainability,
+oyak-adana,OYAK Çimento,OYAK,Adana Cement Plant,cement,Adana,Adana,36.9900,35.3200,3500000,25232900,https://www.oyakcimento.com/en/sustainability,
+oyak-aslan,OYAK Çimento,OYAK,Aslan Cement Plant,cement,Bolu,Bolu,40.7400,31.1000,2000000,25232900,https://www.oyakcimento.com/en/sustainability,
+limak-ankara,Limak Çimento,Limak,Ankara Cement Plant,cement,Pursaklar,Ankara,39.9600,32.8500,2500000,25232900,https://www.limakcimento.com,
+limak-sanliurfa,Limak Çimento,Limak,Şanlıurfa Cement Plant,cement,Şanlıurfa,Şanlıurfa,37.1600,38.7900,2500000,25232900,https://www.limakcimento.com,
+limak-kurtalan,Limak Çimento,Limak,Kurtalan Cement Plant,cement,Kurtalan,Siirt,37.9200,41.6900,1500000,25232900,https://www.limakcimento.com,
+limak-trakya,Limak Çimento,Limak,Trakya Cement Plant,cement,Tekirdağ,Tekirdağ,40.9800,27.5100,2500000,25232900,https://www.limakcimento.com,Coastal EU-export advantage
+limak-ergani,Limak Çimento,Limak,Ergani Cement Plant,cement,Ergani,Diyarbakır,38.2700,39.7600,1200000,25232900,https://www.limakcimento.com,
+limak-derik,Limak Çimento,Limak,Derik Cement Plant,cement,Derik,Mardin,37.3600,40.2700,1000000,25232900,https://www.limakcimento.com,
+limak-bitlis,Limak Çimento,Limak,Bitlis Cement Plant,cement,Bitlis,Bitlis,38.4000,42.1000,800000,25232900,https://www.limakcimento.com,
+nuh-hereke,Nuh Çimento,Nuh,Hereke Cement Plant,cement,Hereke,Kocaeli,40.7800,29.6500,6000000,25232100;25232900;25231000,https://www.nuhcimento.com.tr/en/sustainability,Largest TR cement plant; Marmara coast
+cimentas-izmir,Çimentaş,Cementir Holding,İzmir Cement Plant,cement,Bornova,İzmir,38.4300,27.2100,2500000,25232900,https://www.cimentas.com.tr,Italian-owned (Cementir)
+cimentas-edirne,Çimentaş,Cementir Holding,Edirne Cement Plant,cement,Edirne,Edirne,41.6700,26.5600,1500000,25232900,https://www.cimentas.com.tr,EU border proximity
+cimentas-elazig,Çimentaş,Cementir Holding,Elazığ Cement Plant,cement,Elazığ,Elazığ,38.6700,39.2200,1000000,25232900,https://www.cimentas.com.tr,
+konya-cimento,Konya Çimento,Konya Şeker,Konya Cement Plant,cement,Konya,Konya,37.8600,32.5100,3500000,25232900,https://www.konyacimento.com,
+bursa-cimento,Bursa Çimento,—,Bursa Cement Plant,cement,Bursa,Bursa,40.2100,28.9900,2000000,25232900,https://www.bursacimento.com.tr,
+adana-cimento,Adana Çimento,OYAK,Adana T.A.Ş.,cement,Adana,Adana,36.9700,35.3400,3500000,25232900,https://www.adanacimento.com.tr,
+askale-erzurum,Aşkale Çimento,Sönmez,Erzurum Cement Plant,cement,Aşkale,Erzurum,39.9200,41.0600,1500000,25232900,https://www.askalecimento.com,
+baticim-izmir,Batıçim,Batıçim,İzmir Cement Plant,cement,Aliağa,İzmir,38.5500,27.0500,2000000,25232900,https://www.baticim.com.tr,Coastal Aegean
+cimko-adiyaman,Çimko,Eren Holding,Adıyaman Cement Plant,cement,Adıyaman,Adıyaman,37.7600,38.2800,2000000,25232900,https://www.cimko.com.tr,
+denizli-cimento,Denizli Çimento,—,Denizli Cement Plant,cement,Denizli,Denizli,37.7800,29.0900,2500000,25232900,https://www.denizlicimento.com.tr,
+bolu-cimento,Bolu Çimento,OYAK,Bolu Cement Plant 2,cement,Bolu,Bolu,40.7300,31.5900,2500000,25232900,https://www.bolucimento.com.tr,
+goltas-isparta,Göltaş Çimento,—,Isparta Cement Plant,cement,Isparta,Isparta,37.7600,30.5500,2000000,25232900,https://www.goltas.com.tr,
+erdemir-eregli,Erdemir,OYAK,Karadeniz Ereğli Integrated Works,steel,Karadeniz Ereğli,Zonguldak,41.2800,31.4000,6000000,7208;7210;7225,https://www.erdemir.com.tr/en/sustainability,BF/BOF integrated; biggest TR steel exporter
+isdemir-iskenderun,İsdemir,OYAK,İskenderun Integrated Works,steel,İskenderun,Hatay,36.7800,36.1800,5500000,7208;7210;7227;7228,https://www.isdemir.com.tr,BF/BOF; Erdemir group
+tosyali-osmaniye,Tosyalı,Tosyalı Holding,Osmaniye DRI-EAF,steel,Osmaniye,Osmaniye,37.0700,36.2700,3500000,7207;7213;7214;7228,https://www.tosyali.com.tr/sustainability,DRI-EAF route; low-carbon story
+tosyali-iskenderun,Tosyalı,Tosyalı Holding,İskenderun EAF Mill,steel,Sarıseki,Hatay,36.6100,36.1600,3000000,7213;7214;7228,https://www.tosyali.com.tr/sustainability,EAF
+tosyali-sivas,Tosyalı,Tosyalı Holding,Sivas Mill,steel,Sivas,Sivas,39.7500,36.9500,1500000,7213;7214,https://www.tosyali.com.tr/sustainability,
+icdas-biga,İçdaş,İçdaş,Biga Çamlıca Plant,steel,Biga,Çanakkale,40.4000,27.2000,3500000,7213;7214;7228,https://www.icdas.com.tr,EAF; EU-export heavy
+colakoglu-gebze,Çolakoğlu,Çolakoğlu Metalurji,Gebze Dilovası Plant,steel,Dilovası,Kocaeli,40.7900,29.4900,3000000,7208;7210,https://www.colakoglu.com.tr,EAF flat
+ekinciler-iskenderun,Ekinciler,Ekinciler Holding,İskenderun Plant,steel,İskenderun,Hatay,36.6500,36.1600,2000000,7213;7214,https://www.ekincilerholding.com.tr,EAF long products
+borcelik-gemlik,Borçelik,Borusan,Gemlik Flat Steel Plant,steel,Gemlik,Bursa,40.4200,29.1800,1000000,7210;7212,https://www.borusan.com/en/sustainability,Flat steel coating
+habas-aliaga,Habaş,Habaş,Aliağa Plant,steel,Aliağa,İzmir,38.7900,26.9700,5000000,7213;7214;7228,https://www.habas.com.tr,EAF
+kardemir-karabuk,Kardemir,Kardemir,Karabük Integrated Works,steel,Karabük,Karabük,41.2000,32.6200,3500000,7207;7213;7214;7228,https://www.kardemir.com/en/sustainability,BF/BOF; only inland integrated mill
+diler-aliaga,Diler,Diler Holding,Aliağa Plant,steel,Aliağa,İzmir,38.8100,26.9700,2000000,7213;7214,https://www.dilerholding.com,
+kroman-gebze,Kroman Çelik,—,Gebze Plant,steel,Gebze,Kocaeli,40.7900,29.4900,1000000,7213;7214,https://www.kromanchelik.com,
+izdemir-aliaga,İzdemir,—,Aliağa Plant,steel,Aliağa,İzmir,38.7900,26.9500,1500000,7213;7214,https://www.izdemir.com.tr,
+asilcelik-izmit,Asilçelik,Yıldız Holding,İzmit Plant,steel,İzmit,Kocaeli,40.7200,29.9400,1000000,7228,https://www.asilcelik.com.tr,Special steels
+yazici-iskenderun,Yazıcı Demir Çelik,Yazıcı Holding,Payas Plant,steel,Payas,Hatay,36.7100,36.2100,1000000,7213;7214,https://www.yazicidemircelik.com.tr,
+eti-aluminyum-seydisehir,Eti Alüminyum,Cengiz Holding,Seydişehir Plant,aluminum,Seydişehir,Konya,37.4200,31.8500,80000,7601,https://www.etialuminyum.com,Only primary aluminum smelter in TR
+assan-tuzla,Assan Alüminyum,Kibar Holding,Tuzla Plant,aluminum,Tuzla,İstanbul,40.8500,29.3000,300000,7606;7607,https://www.assan.com.tr/en/sustainability,Rolling + foil (downstream)
+asas-akyazi,Asaş Alüminyum,—,Akyazı Plant,aluminum,Akyazı,Sakarya,40.7100,30.5900,250000,7604;7608,https://www.asastr.com,Extrusion + rolling
+toros-mersin,Toros Tarım,Tekfen Holding,Mersin Fertilizer Plant,fertilizer,Mersin,Mersin,36.7800,34.6100,1500000,3102;3105,https://www.torostarim.com.tr,NH3 + urea + compound NPK
+toros-samsun,Toros Tarım,Tekfen Holding,Samsun Fertilizer Plant,fertilizer,Samsun,Samsun,41.3000,36.3200,1000000,3105,https://www.torostarim.com.tr,
+toros-ceyhan,Toros Tarım,Tekfen Holding,Ceyhan Fertilizer Plant,fertilizer,Ceyhan,Adana,36.8400,35.8300,800000,3102;3105,https://www.torostarim.com.tr,
+gubretas-izmit,Gübretaş,Gübretaş,Yarımca Plant,fertilizer,Körfez,Kocaeli,40.7700,29.7800,1500000,3102;3105,https://www.gubretas.com.tr/en/sustainability,
+bagfas-bandirma,BAGFAŞ,BAGFAŞ,Bandırma Plant,fertilizer,Bandırma,Balıkesir,40.3600,27.9400,1200000,3102;3103;3105,https://www.bagfas.com.tr,Sulfuric acid + DAP/MAP
+gemlik-gubre,Gemlik Gübre,—,Gemlik Plant,fertilizer,Gemlik,Bursa,40.4200,29.1600,500000,3102;3105,https://www.gemlikgubre.com.tr,

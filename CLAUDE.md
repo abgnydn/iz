@@ -12,12 +12,23 @@ _Updated: 2026-05-19 (evening) — v0 spike shipped (E40). Plant signal 1.9–18
 - ✅ Step 3 — Official EU XSD v23.00 downloaded (`data/cbam_schema/`), Jinja2 template at `src/iz/reporting/cbam_template.xml`.
 - ✅ Step 4 — `bin/demo.py` renders Akçansa Q1 2026 declaration and **validates against the official EU XSD**. Output: `reports/cbam_akcansa_2026_Q1_v0.xml`. Headline: 10 kt shipment → €747k saved/quarter vs. EU default.
 - ✅ Step 5 — First-cut outreach list in `sales/targets.md` (cement + steel; aluminum/fertilizer stubbed).
+- ✅ **Day 1 of iz-1 plan (2026-05-21)** — Strategic reframe shipped to brain ([[iz]] + [[E41-iz-stack-audit]]). Three open questions closed (shader-gen templates per-arch / gradfree ES is real / GPU Adam dispatched). TR-MRV-Bench seed list at `data/tr_facilities.csv` — **57 facilities** (32 cement, 16 steel, 3 aluminum, 6 fertilizer) with lat/lon, capacity, CN codes, public disclosure URLs.
 
-**Steps (next, in priority order):**
+**Steps (next, in priority order — iz-1 paper-first track, sales deferred):**
 
-6. **First 3 sales calls.** Cold-email Akçansa + Tosyalı + Erdemir sustainability directors with the v0 chart + sample CBAM XML attached. Pitch line: "We just validated a CBAM declaration for your plant from free satellite data. Want to see it?" Goal: 1 reply, 1 call scheduled.
-7. **Production-data calibration.** Pull Akçansa's published quarterly clinker output (CDP/sustainability report). Correlate against the satellite NO₂ trend. This is what makes the 0.65 tCO₂/t number defensible to an EU auditor instead of "iz's best guess."
-8. **Plume fitting v1.** Replace the bbox-mean with a proper S5P divergence-method emission estimate. Standard literature; converts the 4-pixel bbox into a kg NOx/s number with uncertainty bounds.
+6. **CDP / sustainability disclosure scrape.** For each facility in `data/tr_facilities.csv`, pull last 5-7 years of public emissions from the URL in column `public_disclosure_url`. Targets: Scope 1 tCO₂, cement/steel tonnes produced, clinker tonnes, fuel mix, specific emission factor. Output: `data/tr_facility_disclosures.parquet` keyed on `(id, year)`. Mostly text scraping, low bandwidth.
+7. **Climate TRACE label join.** Pull `https://api.climatetrace.org/v6/...` per-facility emissions for the same 57 facilities. These are weak supervision labels (±50%) vs. CDP's strong labels (±10%). Output: `data/climate_trace_labels.parquet`.
+8. **Sentinel-5P streaming bbox extractor.** Rewrite the v0 spike to (a) extract only ~5 km bbox around each facility instead of full orbits, (b) cover all 57 facilities, (c) span 2-3 years not 90 days. Output: `data/s5p_bbox_extracts.parquet`. Target: total local disk < 15 GB.
+9. **TR-MRV-Bench train/val/test split + schema.** Define the benchmark contract: input features per facility per time bin, target = (CO₂_rate, σ). Train/val/test split by facility (not by time, to test out-of-distribution generalization).
+10. **Pass 1 — Prithvi-EO-2.0-100M-TL fine-tune.** Load from `ibm-nasa-geospatial/Prithvi-EO-2.0-100M-TL`, add regression heads + cross-modal adapters, train on TR-MRV-Bench. Acceptance: ≥30% better per-plant MAE than the EU default value.
+
+**Then:**
+
+11. **Pass 2 — Ternary QAT** via DLYuanGod/ViT-1.58b BitLinear fork, knowledge distillation from Pass-1 teacher.
+12. **Pass 3 — Browser deployment.** Transformers.js base ViT + custom WGSL `.flora` LoRA adapters (port from [[fused-lora]]). Federated demo with one synthetic operator + one ES round (from [[fusedx]]'s `gpt-gradfree-engine.ts`).
+13. **Paper + open release.** arXiv preprint, GitHub release, HuggingFace Hub weights + dataset, blog post, 20 coalition emails.
+
+**Sales work (deferred to after paper):** cold-email Akçansa + Tosyalı + Erdemir with the paper attached and a "want to be the first operator to formally collaborate?" framing. Hard pivot from cold-pitch SaaS to inbound-from-paper.
 
 **Parallel v1 hardening (not blocking sales, but worth scheduling):**
 - Plume fitting (S5P divergence method) to convert column density → kg NOx/s emission. Standard literature method.
