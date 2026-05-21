@@ -37,7 +37,7 @@ PC_STAC = "https://planetarycomputer.microsoft.com/api/stac/v1"
 COLLECTION = "sentinel-5p-l2-netcdf"
 
 
-def bbox_around(lat: float, lon: float, half_deg: float = 0.04) -> tuple[float, float, float, float]:
+def bbox_around(lat: float, lon: float, half_deg: float = 0.08) -> tuple[float, float, float, float]:
     """~0.04° = ~4.4 km in lat, ~3.5 km in lon at 41°N. Roughly one S5P pixel.
     We use 2× to make sure we catch the kiln stack even if coords are off."""
     return (lon - half_deg, lat - half_deg, lon + half_deg, lat + half_deg)
@@ -73,7 +73,7 @@ def find_nc_asset(item):
     return list(item.assets.values())[0].href
 
 
-def extract_bbox_no2(nc_path_or_url: str, lat: float, lon: float, half_deg: float = 0.04) -> dict:
+def extract_bbox_no2(nc_path_or_url: str, lat: float, lon: float, half_deg: float = 0.08) -> dict:
     """Open NetCDF (local path or signed HTTPS) and compute bbox-mean NO2."""
     try:
         ds = xr.open_dataset(nc_path_or_url, group="PRODUCT", engine="h5netcdf")
