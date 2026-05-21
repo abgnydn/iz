@@ -11,6 +11,8 @@ data/*
 !data/.gitkeep
 !data/tr_facilities.csv
 !data/cbam_schema/
+!data/known_disclosure_pdfs.csv
+!data/tr_facility_known_emissions.csv
 logs/*
 !logs/.gitkeep
 reports/*.pdf

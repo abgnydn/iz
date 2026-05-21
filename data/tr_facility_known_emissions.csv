@@ -1,0 +1,7 @@
+id,company,year,metric,value,unit,confidence,source,notes
+erdemir-eregli,Erdemir,2023,co2_scope12_total_t,6929202,tCO2e,high,Tracenable / Erdemir 2023 IAR,Total Scope 1+2 operational emissions; -7.36% vs 2022
+erdemir-eregli,Erdemir,2022,co2_scope12_total_t,7479590,tCO2e,medium,derived,Back-computed from 2023 value × 1/(1-0.0736)
+cimsa-mersin,Çimsa,2023,co2_scope1_t,5400000,tCO2e,high,Çimsa 2023 Sustainability Report,Scope 1 (combined Çimsa group: Mersin+Eskişehir+Kayseri+Niğde)
+cimsa-mersin,Çimsa,2023,co2_scope3_t,3010000,tCO2e,high,Çimsa 2023 Sustainability Report,Scope 3 (group total)
+tosyali-osmaniye,Tosyalı,2023,co2_reduction_pct,30,%,medium,Tosyalı sustainability comms,30% carbon reduction milestone announced; baseline year not yet confirmed
+tr-cement-industry,TR Cement Industry,2023,co2_specific_t_per_t,0.643,tCO2/t,high,TÜRKÇİMENTO 2023 Sürdürülebilirlik Raporu,Sector average specific CO₂ per tonne of cement (TR-wide)
