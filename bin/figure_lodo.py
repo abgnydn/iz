@@ -37,13 +37,13 @@ def main() -> None:
     rows = sorted(rows, key=lambda r: r["truth"])
     n = len(rows)
 
-    # Layout
-    w = 1100
+    # Layout — auto-scale width for larger n
+    w = max(1100, 60 + 60 * n)
     h = 560
     pad_l = 230
     pad_r = 60
     pad_t = 90
-    pad_b = 90
+    pad_b = 110
     plot_w = w - pad_l - pad_r
     plot_h = h - pad_t - pad_b
 
@@ -69,7 +69,7 @@ def main() -> None:
     # title
     svg.append(f'<text x="{pad_l}" y="36" fill="{INK}" font-size="22pt" font-weight="600" letter-spacing="-0.02em">iz-1 per-plant CO₂ vs the EU CBAM default</text>')
     n_seeds = rows[0].get("n_runs", 0) * 3 if rows and "n_runs" in rows[0] else 3
-    svg.append(f'<text x="{pad_l}" y="62" fill="{MUTED}" font-size="11pt" font-style="italic">Leave-one-disclosure-out · 7 audit-grade Turkish facilities · {n_seeds} seeds per plant · log-MAE reduction {reduction:.1f}% vs EU default</text>')
+    svg.append(f'<text x="{pad_l}" y="62" fill="{MUTED}" font-size="11pt" font-style="italic">Leave-one-disclosure-out · {n} audit-grade Turkish facilities · all 4 CBAM scopes · {n_seeds} seeds per plant · log-MAE reduction {reduction:.1f}% vs EU default</text>')
 
     # gridlines + labels
     for k in range(y_min, y_max + 1):
@@ -97,10 +97,8 @@ def main() -> None:
         # truth — black tick
         tt = y(r["truth"])
         svg.append(f'<line x1="{cx - bar_w/2 - 6}" x2="{cx + bar_w/2 + 6}" y1="{tt}" y2="{tt}" stroke="{INK}" stroke-width="2"/>')
-        # facility label below
-        fid = r["facility_id"].replace("-", "-\n")
-        label = r["facility_id"]
-        # rotate
+        # facility label below — shortened for legibility
+        label = r["facility_id"].replace("-", " · ")
         svg.append(f'<text x="{cx}" y="{h - pad_b + 18}" text-anchor="end" font-size="8.5pt" fill="{INK}" transform="rotate(-32 {cx} {h-pad_b+18})">{label}</text>')
         # ratio annotation
         ratio = r["pred_median"] / r["truth"]

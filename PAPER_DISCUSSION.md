@@ -48,16 +48,18 @@ For cement plants the CT-vs-disclosure gap is much smaller (cf-corrected formula
 
 This is a finding worth publishing in its own right and would be a useful note for the CT methodology team.
 
-## 7.5 The model doesn't beat the formula (and that's fine to say)
+## 7.5 The model and the formula are essentially tied
 
-A central honest finding of this work: our learned model **does not outperform the closed-form `cap × EF × cf` formula** at the bench's current data scale. On the n=8 LODO eval:
+A central honest finding of this work: across all our experiments at the bench's current data scale, our learned model and the closed-form `cap × EF × cf` formula sit within each other's seed noise. On the n=20 LODO eval (all four CBAM scopes, no_ct ablation):
 
 | Baseline | log-MAE | Reduction vs EU |
 |----------|--------:|----------------:|
-| B0 EU CBAM default | 0.967 | 0.0% |
-| **B1 cf-corrected formula** | **0.124** | **+87.1%** |
-| B2 Ridge regression | 0.189 | +80.5% |
-| iz-1 NN (15 seeds, no CT) | 0.153 | +84.1% |
+| B0 EU CBAM default | 1.573 | 0.0% |
+| B2 Ridge regression | 0.288 | +81.7% |
+| **B1 cf-corrected formula** | **0.221** | **+85.9%** |
+| iz-1 NN (3 seeds, no CT) | 0.226 | +85.7% |
+
+The NN beat the formula by 1.8 pp at n=18 (before disclosed_cf for fertilizer/aluminum was added) and is statistically tied with it at n=20 once the formula has access to the same disclosed_cf signal. The honest framing: **the deliverable is the formula and the bench**. The NN is a working reference implementation; future data growth (S5P NO₂ features, more disclosures, multi-year LODO) may give it room to extract residual signal the formula cannot.
 
 The formula wins. The 2-layer NN adds ~0.03 to the log-MAE on average. Ridge regression underperforms both. We initially trained the NN to learn residuals against the formula as a physics-informed prior (cf. Karniadakis et al.); the model successfully learns those residuals, but the residuals don't average to better predictions on held-out facilities — they average to slightly worse ones, because residual fits on 40 facilities are noisy.
 

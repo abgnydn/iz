@@ -124,6 +124,10 @@ DISCLOSED_CF = {
     "oyak-mardin":          0.695,
     "oyak-adana":           0.695,
     "oyak-aslan":           0.695,
+    # Additional cement per-plant cf from agent 3 TSRS crawls
+    "nuh-hereke":           0.640,   # 3,834k cement / 6,000k cap — Nuh 2024 TSRS p56
+    "afyon-cimento":        0.524,   # 1,100k cement / 2,100k cap — Afyon 2024 TSRS p23
+
     "limak-ankara":         0.85,    # Limak 2023 SR p88 group-avg
     "limak-sanliurfa":      0.85,
     "limak-kurtalan":       0.85,
@@ -131,6 +135,19 @@ DISCLOSED_CF = {
     "limak-ergani":         0.85,
     "limak-derik":          0.85,
     "limak-bitlis":         0.85,
+
+    # Steel EAF — non-leaky production / capacity from operator SRs.
+    "habas-aliaga":         0.77,    # 3,854,796 / 5,000,000 — Habaş 2024 SR p75
+    "colakoglu-gebze":      0.84,    # 2,519,230 / 3,000,000 — Çolakoğlu 2024 SR p82
+    "izdemir-aliaga":       0.85,    # production exceeds cap — capacity in our CSV is conservative; use saturated
+
+    # Aluminum + fertilizer non-leaky cf from disclosed production
+    "assan-tuzla":          0.954,   # 286,119 / 300,000 — Assan 2024 SR p76 (combined Tuzla+Dilovası)
+    "toros-mersin":         0.486,   # 1,603,140 / 3,300,000 — Tekfen 2024 TSRS group
+    "toros-samsun":         0.486,
+    "toros-ceyhan":         0.486,
+    "bagfas-bandirma":      0.291,   # 349,442 / 1,200,000 — BAGFAŞ 2024 SR partial-cap year
+    "gubretas-izmit":       0.403,   # 604,174 / 1,500,000 — Gübretaş 2024 TSRS p23
 }
 
 STEEL_ROUTE_MAP = {

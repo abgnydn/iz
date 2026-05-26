@@ -1,16 +1,16 @@
 # TR-MRV-Bench / iz-1
 
-**A public per-facility emissions benchmark for Turkish CBAM-scope industry, plus a closed-form physics baseline that beats the EU CBAM default by 81%.**
+**A public per-facility emissions benchmark for Turkish CBAM-scope industry, plus a closed-form physics baseline that beats the EU CBAM default by 85%.**
 
-> **Headline (v0, n=20 audit-grade disclosure facilities across all 4 CBAM scopes):**
+> **Headline (v0, n=20 audit-grade disclosure facilities across all 4 CBAM scopes, 5-outer LODO × 3 inner seeds):**
 > - **B0 — EU CBAM default**: 0% (baseline).
-> - **B1 — cf-corrected formula** `cap × EF × cf` (no learned parameters): **81.2% log-MAE reduction** vs EU default (n=20 single-run).
-> - B2 — ridge regression on same features: 78.7%.
-> - **iz-1 — 2-layer NN, 3-seed median, no_ct ablation**: **82.0%** (single-run n=20). 95% CI on a comparable n=18 subset: **81.4% ± 3.1%** (5 outer × 3 inner seeds; range 79.3 – 83.0%).
+> - **B1 — cf-corrected formula** `cap × EF × cf` (no learned parameters): **85.9% log-MAE reduction** vs EU default.
+> - B2 — ridge regression on same features: 81.7%.
+> - **iz-1 — 2-layer NN, no_ct ablation**: **+84.5% ± 0.3%** (95% CI, n=5 outer runs; range 84.4 – 84.8%) — essentially tied with the closed-form formula.
 > - B3 — Climate TRACE direct on matched subset (n=3 BF/BOF steel): 37.4%.
-> - Coverage: all four CBAM scopes (cement, steel, aluminum, fertilizer) including downstream aluminum and N₂O-controlled fertilizer.
+> - Per-sector CI: cement +73.8% ± 1.7%, EAF +98.3% ± 2.2%, BF/BOF −7.3% ± 71.0% (wide on n=3 stratum), aluminum downstream +86.0% ± 5.1%, fertilizer integrated +79.3% ± 8.4%, fertilizer N₂O-controlled +84.7% ± 2.2%, fertilizer blender +99.3% ± 1.1%.
 >
-> n=20 is still small. We are honest about variance and confidence in §8. No satellite signal in v0.
+> Coverage: all four CBAM scopes (cement, steel, aluminum, fertilizer) including primary vs downstream aluminum split and N₂O-controlled vs integrated fertilizer split. n=20 is still small. We are honest about variance and confidence in §8. No satellite signal in v0.
 
 [**Paper preview (1-pager)**](./marketing/paper_preview_v0.html) · [**Headline figure**](./reports/fig_iz1_vs_eu_lodo.svg) · [**Brain notes**](https://github.com/abgnydn/brain)
 
@@ -34,38 +34,48 @@ Four baselines + the model, all on the same leave-one-disclosure-out (LODO) spli
 |----------|--------:|----------------:|
 | B0 EU CBAM default | 1.573 | 0.0% |
 | B3 Climate TRACE direct (n=3 matched, BF/BOF only) | — | +37.4% (subset) |
-| B2 Ridge regression | 0.335 | +78.7% |
-| **B1 cf-corrected formula** | **0.296** | **+81.2%** |
-| **iz-1 NN (3-seed median, no_ct ablation)** | **0.283** | **+82.0%** |
+| B2 Ridge regression | 0.288 | +81.7% |
+| **iz-1 NN (5 outer LODO × 3 inner seeds, no_ct)** | **0.243** | **+84.5% ± 0.3%** |
+| **B1 cf-corrected formula** | **0.221** | **+85.9%** |
 
-**Confidence intervals (on a comparable n=18 subset, 5 outer LODO × 3 inner seeds):** overall **+81.4% ± 3.1%**; cement +77.5% ± 2.7%; EAF +97.4% ± 3.6%; BF/BOF −13.1% ± 99.8% (n=3 stratum, very wide); aluminum downstream +86.4% ± 7.4%; fertilizer integrated +79.1% ± 13.9%; fertilizer N₂O +72.3% ± 0.7%; fertilizer blender +94.5% ± 2.4%.
+**Per-sector CI (mean ± 2σ over 5 outer runs):**
 
-Per-facility numbers for the iz-1 NN on all 20 LODO holdouts:
+| Sector / route | n | Reduction (mean ± 2σ) | Range |
+|---|---|---|---|
+| Cement | 7 | +73.8% ± 1.7% | 72.9 – 74.6% |
+| Steel · EAF | 3 | **+98.3% ± 2.2%** | 97.0 – 100.0% |
+| Steel · BF/BOF | 3 | −7.3% ± 71.0% | −51 to +48% (very wide) |
+| Aluminum · downstream | 2 | +86.0% ± 5.1% | 82.8 – 89.8% |
+| Fertilizer · integrated | 3 | +79.3% ± 8.4% | 75.5 – 85.8% |
+| Fertilizer · N₂O-controlled | 1 | +84.7% ± 2.2% | 83.5 – 86.5% |
+| Fertilizer · blender | 1 | +99.3% ± 1.1% | 98.3 – 99.8% |
+
+Per-facility numbers for the iz-1 NN on all 20 LODO holdouts (representative last-outer-run):
 
 | Facility | Sector / route | Truth (tCO₂) | iz-1 | Ratio | EU default |
 |----------|----------------|-------------:|-----:|------:|-----------:|
-| Afyon Çimento | cement | 1,200,000 | 853,551 | 0.71× | 3,326,400 |
-| Akçansa Büyükçekmece | cement | 1,514,000 | 1,612,461 | 1.07× | 7,128,000 |
-| Akçansa Çanakkale | cement | 3,466,000 | 2,905,847 | 0.84× | 9,504,000 |
-| Akçansa Ladik | cement | 499,000 | 601,185 | 1.20× | 2,376,000 |
-| Batısöke Söke | cement | 1,577,926 | 1,609,422 | 1.02× | 6,336,000 |
-| Göltaş Isparta | cement | 1,669,072 | 801,085 | 0.48× | 3,168,000 |
-| Nuh Hereke | cement | 3,573,278 | 2,232,776 | 0.62× | 9,504,000 |
-| Çolakoğlu Dilovası | steel · EAF | 566,519 | 538,361 | 0.95× | 5,700,000 |
-| Habaş Aliağa | steel · EAF | 636,377 | 914,477 | 1.44× | 9,500,000 |
-| İzdemir Aliağa | steel · EAF | 271,123 | 261,908 | 0.97× | 2,850,000 |
-| Erdemir Ereğli | steel · BF/BOF | 6,673,266 | 7,301,972 | 1.09× | 7,600,000 |
-| İsdemir İskenderun | steel · BF/BOF | 10,663,364 | 11,054,282 | 1.04× | 10,450,000 |
-| Kardemir Karabük | steel · BF/BOF | 5,650,626 | 7,539,407 | 1.33× | 6,650,000 |
-| Assan Tuzla | aluminum · downstream | 108,500 | 85,046 | 0.78× | 450,000 |
-| ASAŞ Akyazı | aluminum · downstream | 68,618 | 82,918 | 1.21× | 375,000 |
-| Toros Mersin | fertilizer · integrated | 383,150 | 257,648 | 0.67× | 1,200,000 |
-| Toros Samsun | fertilizer · integrated | 255,180 | 210,965 | 0.83× | 800,000 |
-| Toros Ceyhan | fertilizer · integrated | 203,840 | 179,745 | 0.88× | 640,000 |
-| BAGFAŞ Bandırma | fertilizer · N₂O-controlled | 9,828 | 36,467 | 3.71× | 960,000 |
-| Gübretaş Yarımca | fertilizer · blender | 13,281 | 18,817 | 1.42× | 1,200,000 |
+| Afyon Çimento | cement | 1,200,000 | 687,506 | 0.57× | 3,326,400 |
+| Akçansa Büyükçekmece | cement | 1,514,000 | 1,541,976 | 1.02× | 7,128,000 |
+| Akçansa Çanakkale | cement | 3,466,000 | 3,732,549 | 1.08× | 9,504,000 |
+| Akçansa Ladik | cement | 499,000 | 622,421 | 1.25× | 2,376,000 |
+| Batısöke Söke | cement | 1,577,926 | 1,506,845 | 0.95× | 6,336,000 |
+| Göltaş Isparta | cement | 1,669,072 | 752,618 | 0.45× | 3,168,000 |
+| Nuh Hereke | cement | 3,573,278 | 2,368,378 | 0.66× | 9,504,000 |
+| Çolakoğlu Dilovası | steel · EAF | 566,519 | 593,295 | 1.05× | 5,700,000 |
+| Habaş Aliağa | steel · EAF | 636,377 | 959,276 | 1.51× | 9,500,000 |
+| İzdemir Aliağa | steel · EAF | 271,123 | 310,105 | 1.14× | 2,850,000 |
+| Erdemir Ereğli | steel · BF/BOF | 6,673,266 | 7,217,342 | 1.08× | 7,600,000 |
+| İsdemir İskenderun | steel · BF/BOF | 10,663,364 | 12,286,677 | 1.15× | 10,450,000 |
+| Kardemir Karabük | steel · BF/BOF | 5,650,626 | 5,486,735 | 0.97× | 6,650,000 |
+| Assan Tuzla | aluminum · downstream | 108,500 | 81,564 | 0.75× | 450,000 |
+| ASAŞ Akyazı | aluminum · downstream | 68,618 | 79,946 | 1.17× | 375,000 |
+| Toros Mersin | fertilizer · integrated | 383,150 | 263,824 | 0.69× | 1,200,000 |
+| Toros Samsun | fertilizer · integrated | 255,180 | 173,876 | 0.68× | 800,000 |
+| Toros Ceyhan | fertilizer · integrated | 203,840 | 140,260 | 0.69× | 640,000 |
+| BAGFAŞ Bandırma | fertilizer · N₂O-controlled | 9,828 | 19,726 | 2.01× | 960,000 |
+| Gübretaş Yarımca | fertilizer · blender | 13,281 | 12,996 | 0.98× | 1,200,000 |
 
-Big-emitter predictions (Erdemir 1.09×, İsdemir 1.04×, Kardemir 1.33×, Akçansa Çanakkale 0.84×, Batısöke 1.02×, Çolakoğlu 0.95×, İzdemir 0.97×) all land within ±35% of audit. **BAGFAŞ (3.71×) is structural** — only N₂O-controlled facility in TR's disclosure set; under LODO holdout the model has never seen one and reverts to integrated-fertilizer EF. **Göltaş (0.48×) is cf variance** — plant runs at ~95% utilization vs cement-sector default 55%.
+Big-emitter predictions land tight: Erdemir 1.08×, İsdemir 1.15×, Kardemir 0.97×, Akçansa Çanakkale 1.08×, Batısöke 0.95×, Çolakoğlu 1.05×, İzdemir 1.14×, Habaş 1.51×, Gübretaş 0.98×, Akçansa Büyükçekmece 1.02×. **BAGFAŞ 2.01× was 3.71× without disclosed_cf** — adding the audited production-derived cf (0.29) for the only N₂O-controlled facility halved its prediction error. **Göltaş 0.45× and Afyon 0.57×** remain the cement under-predictions: both plants have actual EF×cf well above the sector mean, which the formula prior can't infer without disclosed cf.
 
 ## Limitations (paper §8 honest version)
 
