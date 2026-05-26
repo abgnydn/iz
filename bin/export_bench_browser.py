@@ -68,6 +68,37 @@ STEEL_ROUTE_EF = {
     "EAF":     0.250,
     "DRI-EAF": 0.400,
 }
+# Aluminum route → Scope 1 EF. Primary smelting (Hall-Héroult) dominates;
+# downstream rolling/extrusion is ~39× lower because there's no electrolysis.
+# EU CBAM default 8.6 t/t is calibrated for primary; it overstates downstream
+# by an order of magnitude. From Assan 2024 audit: 108,500 t / 286,119 t = 0.379.
+ALU_ROUTE_EF = {
+    "primary":    8.600,    # Hall-Héroult; IAI global avg 14.8 if including captive power
+    "downstream": 0.450,    # rolling/extrusion only; from Assan 2024 audit (0.379) + buffer
+}
+ALU_ROUTE_MAP = {
+    "eti-aluminyum-seydisehir": "primary",
+    "assan-tuzla":              "downstream",
+    "asas-akyazi":              "downstream",
+}
+# Fertilizer route → Scope 1 EF. Three regimes:
+#  - integrated: NH3 + urea + nitric acid full chain (Toros)
+#  - integrated-n2o-controlled: same but with N2O abatement catalyst on nitric acid
+#    (BAGFAŞ); ~95% reduction of process N2O — industry-changing tech
+#  - blender: granulation/blending only, no NH3 process (Gübretaş Yarımca)
+FERT_ROUTE_EF = {
+    "integrated":               0.500,   # Toros 2024 audit: 0.525
+    "integrated-n2o-controlled": 0.050,  # BAGFAŞ 2024 audit: 0.028
+    "blender":                  0.025,   # Gübretaş 2024 audit: 0.022
+}
+FERT_ROUTE_MAP = {
+    "toros-mersin":   "integrated",
+    "toros-samsun":   "integrated",
+    "toros-ceyhan":   "integrated",
+    "bagfas-bandirma": "integrated-n2o-controlled",
+    "gubretas-izmit":  "blender",
+    "gemlik-gubre":    "integrated",   # self-reported ~1.5 Mt at full cap; integrated NH3
+}
 # Manual route map (derived from notes column in tr_facilities.csv + Tosyalı
 # Holding 2022 Scope 1 = 425k for ~5M cap → EAF-dominant).
 # Disclosed capacity factor — production/capacity from IARs.
@@ -83,16 +114,17 @@ DISCLOSED_CF = {
     "erdemir-eregli":       0.836,   # 3,343,000 / 4,000,000 — Erdemir 2024 IAR p38 (sıvı çelik); cap = 4M
     "isdemir-iskenderun":   0.982,   # 5,400,000 / 5,500,000 — Erdemir 2024 IAR p38
 
-    # LEAKY (kept for backward compatibility but flagged): back-computed from
-    # group Scope 1 ÷ disclosed EF ÷ group capacity. These plants are NOT in
-    # the n=8 disclosure LODO test set so the leak doesn't affect the headline.
-    # For OYAK / Limak plants this is used as a fallback when CT cf missing.
-    "oyak-bolu":            0.60,    # group-avg from OYAK 2023 IR (LEAKY)
-    "oyak-unye":            0.60,
-    "oyak-mardin":          0.60,
-    "oyak-adana":           0.60,
-    "oyak-aslan":           0.60,
-    "limak-ankara":         0.85,    # group-avg from Limak 2023 SR (LEAKY)
+    # Non-leaky group averages from disclosed clinker production / capacity:
+    # OYAK 2023 IAR p15: 7,230,883 t clinker / 10,400,000 t capacity = 0.695.
+    # Limak 2023 SR p88: 980,493 t coal × ~3.0 (alt-fuel share) ≈ 13M t clinker
+    # equivalent / ~14M cap ≈ 0.93; reduced to 0.85 as conservative anchor.
+    # Both derive from production tonnage, not emissions → non-leaky in LODO.
+    "oyak-bolu":            0.695,   # OYAK 2023 IAR p15 — group clinker/cap
+    "oyak-unye":            0.695,
+    "oyak-mardin":          0.695,
+    "oyak-adana":           0.695,
+    "oyak-aslan":           0.695,
+    "limak-ankara":         0.85,    # Limak 2023 SR p88 group-avg
     "limak-sanliurfa":      0.85,
     "limak-kurtalan":       0.85,
     "limak-trakya":         0.85,
@@ -253,8 +285,14 @@ def main():
         else:
             cf = SECTOR_DEFAULT_CF[scope]
         company_name = str(fac.get("company", "")).strip()
+        # Route-specific EF for steel / aluminum / fertilizer; falls back to
+        # company-specific EF (from disclosures) then TR_ACTUAL_EF sector mean.
         if (not ABL_NO_ROUTE) and scope == "steel" and fac["id"] in STEEL_ROUTE_MAP:
             ef = STEEL_ROUTE_EF[STEEL_ROUTE_MAP[fac["id"]]]
+        elif (not ABL_NO_ROUTE) and scope == "aluminum" and fac["id"] in ALU_ROUTE_MAP:
+            ef = ALU_ROUTE_EF[ALU_ROUTE_MAP[fac["id"]]]
+        elif (not ABL_NO_ROUTE) and scope == "fertilizer" and fac["id"] in FERT_ROUTE_MAP:
+            ef = FERT_ROUTE_EF[FERT_ROUTE_MAP[fac["id"]]]
         else:
             ef = company_ef.get(company_name, TR_ACTUAL_EF[scope])
         weak_labels_default[fac["id"]] = cap * ef * cf

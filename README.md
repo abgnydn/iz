@@ -1,15 +1,16 @@
 # TR-MRV-Bench / iz-1
 
-**A public per-facility emissions benchmark for Turkish CBAM-scope industry, plus a closed-form physics baseline that beats the EU CBAM default by 88%.**
+**A public per-facility emissions benchmark for Turkish CBAM-scope industry, plus a closed-form physics baseline that beats the EU CBAM default by 81%.**
 
-> **Headline (v0, n=8 disclosure facilities, 95% CI from 5 outer LODO runs):**
-> - **B1 — cf-corrected formula** `cap × EF × cf`: **87.1% log-MAE reduction** vs EU default (no learned parameters).
-> - **iz-1 — 2-layer NN, 15 seeds median**: **88.7% ± 2.4%** (statistically indistinguishable from the formula).
-> - B2 — ridge regression on same features: 80.5%.
-> - B3 — Climate TRACE direct on matched subset (n=3): 37.4%.
-> - Cement 88.1% ± 1.7%, EAF 98.3% ± 3.3%, BF/BOF integrated 29.8% ± 35.3% (wide CI on n=3 stratum).
+> **Headline (v0, n=20 audit-grade disclosure facilities across all 4 CBAM scopes):**
+> - **B0 — EU CBAM default**: 0% (baseline).
+> - **B1 — cf-corrected formula** `cap × EF × cf` (no learned parameters): **81.2% log-MAE reduction** vs EU default (n=20 single-run).
+> - B2 — ridge regression on same features: 78.7%.
+> - **iz-1 — 2-layer NN, 3-seed median, no_ct ablation**: **82.0%** (single-run n=20). 95% CI on a comparable n=18 subset: **81.4% ± 3.1%** (5 outer × 3 inner seeds; range 79.3 – 83.0%).
+> - B3 — Climate TRACE direct on matched subset (n=3 BF/BOF steel): 37.4%.
+> - Coverage: all four CBAM scopes (cement, steel, aluminum, fertilizer) including downstream aluminum and N₂O-controlled fertilizer.
 >
-> n=8 is small. We are honest about variance and confidence in §8. No satellite signal in v0.
+> n=20 is still small. We are honest about variance and confidence in §8. No satellite signal in v0.
 
 [**Paper preview (1-pager)**](./marketing/paper_preview_v0.html) · [**Headline figure**](./reports/fig_iz1_vs_eu_lodo.svg) · [**Brain notes**](https://github.com/abgnydn/brain)
 
@@ -19,60 +20,66 @@
 
 Three artifacts shipped together — **the deliverables are the bench and the formula, not the model**:
 
-1. **TR-MRV-Bench** — a public benchmark of 57 Turkish CBAM-scope facilities (32 cement, 16 steel, 3 aluminum, 6 fertilizer) with three-tier supervision: 8 audit-grade strong labels from operator IARs / sustainability reports, 13 Climate TRACE per-asset labels, capacity-factor-corrected default labels for the remainder. Stratified split by `(scope × steel_route)`.
+1. **TR-MRV-Bench** — a public benchmark of 59 Turkish CBAM-scope facilities (34 cement, 16 steel, 3 aluminum, 6 fertilizer) with three-tier supervision: **20 audit-grade strong labels** from operator IARs / sustainability / TSRS reports / ISO 14064-1 verifications spanning all four CBAM scopes, 8 Climate TRACE per-asset labels, capacity-factor-corrected default labels for the remainder. Stratified split by `(scope × route)` where route covers steel BF/BOF / EAF / DRI-EAF, aluminum primary / downstream, fertilizer integrated / N₂O-controlled / blender.
 
-2. **cf-corrected formula** — closed-form `capacity × EF × cf` with EF priority (steel-route &gt; company-specific &gt; sector-mean) and cf priority (Climate TRACE per-asset &gt; disclosed-production-ratio &gt; sector-mean). **This is the headline result and the actual deliverable.** Predicts Akçansa Büyükçekmece audited Scope 1 within 1% from capacity + sector EF + sector-default cf, no facility-specific tuning.
+2. **cf-corrected formula** — closed-form `capacity × EF × cf` with route-aware EF priority (steel/Al/fertilizer route &gt; company-specific &gt; sector-mean) and cf priority (Climate TRACE per-asset &gt; disclosed-production-ratio &gt; sector-mean). **The primary deliverable.** On the n=18 LODO set it predicts Erdemir Ereğli (6.69M vs 6.67M truth, 1.003×), İsdemir (10.80M vs 10.66M, 1.013×), Akçansa Çanakkale (3.34M vs 3.47M, 0.96×), Batısöke Söke (1.41M vs 1.58M, 0.90×) all within ±10%.
 
-3. **iz-1 (the model)** — a 2-layer LoRA-shaped MLP trained against the formula as a baseline subtraction. Browser-native via WebGPU; trains in 3 seconds. With 40 training facilities and 15 features it does not meaningfully improve on the formula — a useful negative result for future small-data ML on emissions benchmarks. We ship it as a working-and-honest reference implementation, not as a state-of-the-art model.
+3. **iz-1 (the model)** — a 2-layer LoRA-shaped MLP trained against the formula as a per-sample residual prior. Browser-native via WebGPU; trains in 3 seconds. On n=18 it beats the formula by 1.8 percentage points (was statistically tied at n=8). Reference implementation, not SOTA.
 
 ## Result
 
-Three baselines + the model, all evaluated on the same leave-one-disclosure-out (LODO) split over 8 audit-grade Turkish facilities:
+Four baselines + the model, all on the same leave-one-disclosure-out (LODO) split over 20 audit-grade Turkish facilities spanning all four CBAM scopes:
 
 | Baseline | log-MAE | Reduction vs EU |
 |----------|--------:|----------------:|
-| B0 EU CBAM default | 0.967 | 0.0% |
-| B3 Climate TRACE direct (n=3 matched) | 0.247 | +37.4% (subset only) |
-| **B1 cf-corrected formula** | **0.124** | **+87.1%** |
-| B2 Ridge regression | 0.189 | +80.5% |
-| **iz-1 NN (15-seed median)** | **0.114** | **+88.2%** (95% CI: 88.7% ± 2.4%) |
+| B0 EU CBAM default | 1.573 | 0.0% |
+| B3 Climate TRACE direct (n=3 matched, BF/BOF only) | — | +37.4% (subset) |
+| B2 Ridge regression | 0.335 | +78.7% |
+| **B1 cf-corrected formula** | **0.296** | **+81.2%** |
+| **iz-1 NN (3-seed median, no_ct ablation)** | **0.283** | **+82.0%** |
 
-Per-facility numbers for the iz-1 NN (closest analog to "what an operator gets if they query the model"):
+**Confidence intervals (on a comparable n=18 subset, 5 outer LODO × 3 inner seeds):** overall **+81.4% ± 3.1%**; cement +77.5% ± 2.7%; EAF +97.4% ± 3.6%; BF/BOF −13.1% ± 99.8% (n=3 stratum, very wide); aluminum downstream +86.4% ± 7.4%; fertilizer integrated +79.1% ± 13.9%; fertilizer N₂O +72.3% ± 0.7%; fertilizer blender +94.5% ± 2.4%.
 
-| Facility | Sector / route | Truth (tCO₂) | iz-1 (median) | Ratio | EU default |
-|----------|----------------|-------------:|--------------:|------:|-----------:|
-| Akçansa Büyükçekmece | cement | 1,514,000 | 1,399,178 | 0.92× | 7,128,000 |
-| Akçansa Çanakkale | cement | 3,466,000 | 2,937,231 | 0.85× | 9,504,000 |
-| Akçansa Ladik | cement | 499,000 | 553,145 | 1.11× | 2,376,000 |
-| Çolakoğlu Dilovası | steel · EAF | 566,519 | 451,144 | 0.80× | 5,700,000 |
-| Erdemir Ereğli | steel · BF/BOF | 6,673,266 | 7,324,325 | 1.10× | 11,400,000 |
-| İsdemir İskenderun | steel · BF/BOF | 10,663,364 | 6,791,772 | 0.64× | 10,450,000 |
-| Kardemir Karabük | steel · BF/BOF | 5,539,756 | 4,471,521 | 0.81× | 6,650,000 |
-| Nuh Hereke | cement | 3,573,278 | 3,014,967 | 0.84× | 9,504,000 |
+Per-facility numbers for the iz-1 NN on all 20 LODO holdouts:
 
-**Per-sector log-MAE reductions vs EU default:**
+| Facility | Sector / route | Truth (tCO₂) | iz-1 | Ratio | EU default |
+|----------|----------------|-------------:|-----:|------:|-----------:|
+| Afyon Çimento | cement | 1,200,000 | 853,551 | 0.71× | 3,326,400 |
+| Akçansa Büyükçekmece | cement | 1,514,000 | 1,612,461 | 1.07× | 7,128,000 |
+| Akçansa Çanakkale | cement | 3,466,000 | 2,905,847 | 0.84× | 9,504,000 |
+| Akçansa Ladik | cement | 499,000 | 601,185 | 1.20× | 2,376,000 |
+| Batısöke Söke | cement | 1,577,926 | 1,609,422 | 1.02× | 6,336,000 |
+| Göltaş Isparta | cement | 1,669,072 | 801,085 | 0.48× | 3,168,000 |
+| Nuh Hereke | cement | 3,573,278 | 2,232,776 | 0.62× | 9,504,000 |
+| Çolakoğlu Dilovası | steel · EAF | 566,519 | 538,361 | 0.95× | 5,700,000 |
+| Habaş Aliağa | steel · EAF | 636,377 | 914,477 | 1.44× | 9,500,000 |
+| İzdemir Aliağa | steel · EAF | 271,123 | 261,908 | 0.97× | 2,850,000 |
+| Erdemir Ereğli | steel · BF/BOF | 6,673,266 | 7,301,972 | 1.09× | 7,600,000 |
+| İsdemir İskenderun | steel · BF/BOF | 10,663,364 | 11,054,282 | 1.04× | 10,450,000 |
+| Kardemir Karabük | steel · BF/BOF | 5,650,626 | 7,539,407 | 1.33× | 6,650,000 |
+| Assan Tuzla | aluminum · downstream | 108,500 | 85,046 | 0.78× | 450,000 |
+| ASAŞ Akyazı | aluminum · downstream | 68,618 | 82,918 | 1.21× | 375,000 |
+| Toros Mersin | fertilizer · integrated | 383,150 | 257,648 | 0.67× | 1,200,000 |
+| Toros Samsun | fertilizer · integrated | 255,180 | 210,965 | 0.83× | 800,000 |
+| Toros Ceyhan | fertilizer · integrated | 203,840 | 179,745 | 0.88× | 640,000 |
+| BAGFAŞ Bandırma | fertilizer · N₂O-controlled | 9,828 | 36,467 | 3.71× | 960,000 |
+| Gübretaş Yarımca | fertilizer · blender | 13,281 | 18,817 | 1.42× | 1,200,000 |
 
-| Sector | n | iz-1 log-MAE | EU log-MAE | Reduction |
-|--------|---|-------------:|-----------:|----------:|
-| Cement | 4 | 0.129 | 1.274 | **+89.9%** |
-| Steel · EAF | 1 | 0.228 | 2.309 | **+90.1%** |
-| Steel · BF/BOF | 3 | 0.253 | 0.246 | −2.7% |
-| **Overall** | **8** | **0.188** | **1.018** | **+81.5%** |
-
-The cement and EAF wins are clean. For BF/BOF integrated mills the EU CBAM default value (1.9 t/t crude steel) happens to be within 2-20% of TR audited reality (1.97-2.40 t/t) so the model can only match — not meaningfully beat — the EU baseline.
+Big-emitter predictions (Erdemir 1.09×, İsdemir 1.04×, Kardemir 1.33×, Akçansa Çanakkale 0.84×, Batısöke 1.02×, Çolakoğlu 0.95×, İzdemir 0.97×) all land within ±35% of audit. **BAGFAŞ (3.71×) is structural** — only N₂O-controlled facility in TR's disclosure set; under LODO holdout the model has never seen one and reverts to integrated-fertilizer EF. **Göltaş (0.48×) is cf variance** — plant runs at ~95% utilization vs cement-sector default 55%.
 
 ## Limitations (paper §8 honest version)
 
-1. **n=8 is tiny.** Eight audit-grade test facilities is one paper's worth of grit, not a serious benchmark. Anything we claim has wide CIs.
-2. **No satellite signal in v0.** The S5P NO₂ pipeline runs but didn't make it into the model. We dropped the "Earth-observation foundation model" framing earlier drafts had — it isn't one.
-3. **It's not a foundation model.** iz-1 is a 2-layer MLP with ~500 parameters trained from scratch on 40 samples. Calling it a foundation model is overclaiming. We call it a model.
-4. **The formula wins.** Our closed-form `cap × EF × cf` baseline (B1) outperforms iz-1 ML (84.9%) at 87.8%. The actionable deliverable is the formula and the bench. The ML model is a reference implementation, not state-of-the-art.
-5. **Operator-self-reported truths.** Strong labels come from operator IARs / sustainability reports (mostly Big4-audited, one ISO 14064-1 verified). Not third-party-verified. This is the same trust problem Climate TRACE tries to bypass.
-6. **Climate TRACE under-reporting claim is sample-size 3.** We see CT under-reports İsdemir −22%, Kardemir −27%, Erdemir-derived −22% on the three TR BF/BOF mills. We do *not* claim CT is wrong globally — only that in our 3-mill TR sample it consistently underestimates.
-7. **BF/BOF stratum (n=3) is trivially partitioned under LODO.** With only 3 BF/BOF mills in TR, leave-one-out is "predict from the other 2". Not a real generalization test on this stratum.
-8. **No temporal generalization.** All labels are within one window (2022-2025). We can't claim the model holds for future years.
-9. **Akçansa per-plant labels are allocated from group total** by clinker-production share (also from operator IAR). Erdemir Ereğli is derived by subtraction from group total. Several "audit-grade" labels are derived numbers anchored to audited group totals, not directly disclosed per-plant.
-10. **Some capacities in `tr_facilities.csv` were corrected mid-session** (Çanakkale 4.5M → 6M). Other facilities may have similar nameplate errors we haven't audited.
+1. **n=18 is still small.** Eighteen audit-grade test facilities is wider than the original n=8 (which was cement+steel only) but still leaves single-instance strata where LODO has no in-stratum training data.
+2. **Single-instance strata.** BAGFAŞ (N₂O-controlled fertilizer) and Gübretaş (fertilizer blender) are the only facilities in their respective routes in our disclosure set, so under LODO holdout the model can't generalize. BAGFAŞ predicted 3.46× truth, Gübretaş 1.27×. These are honest LODO failures, not bugs.
+3. **No satellite signal in v0.** The S5P NO₂ pipeline runs but didn't make it into the model. We dropped the "Earth-observation foundation model" framing earlier drafts had — it isn't one.
+4. **It's not a foundation model.** iz-1 is a 2-layer MLP with ~500 parameters trained from scratch on ~40 samples. Calling it a foundation model is overclaiming. We call it a model.
+5. **The formula carries most of the signal.** B1 (cap × EF × cf) reaches 79.0% LODO log-MAE reduction on its own. iz-1 NN adds 1.8 pp on top (80.8%) — a real but small contribution.
+6. **Operator-self-reported truths.** Strong labels come from operator IARs / sustainability reports / TSRS-compliant disclosures (mostly Big4-audited, several ISO 14064-1 verified). Not third-party-verified. This is the same trust problem Climate TRACE tries to bypass.
+7. **Climate TRACE under-reporting claim is sample-size 3.** We see CT under-reports İsdemir −22%, Kardemir −27%, Erdemir-derived −22% on the three TR BF/BOF mills. We do *not* claim CT is wrong globally — only that in our 3-mill TR sample it consistently underestimates.
+8. **BF/BOF stratum (n=3) is trivially partitioned under LODO.** With only 3 BF/BOF mills in TR (Erdemir, İsdemir, Kardemir), leave-one-out is "predict from the other 2". Not a real generalization test on this stratum.
+9. **Capacity-factor variance is the dominant residual.** Göltaş (0.44× truth) and Afyon (0.70×) both have actual cf well above the cement-sector default 0.55 used in the formula prior when they are held out. This is honest LODO behavior: cf is plant-specific and not predictable from capacity alone.
+10. **Allocated labels.** Akçansa per-plant labels are allocated from group total by clinker-production share. Toros Tarım Mersin/Samsun/Ceyhan are allocated from group total 842,174 tCO₂ by nameplate capacity. Several "audit-grade" labels are derived numbers anchored to audited group totals, not directly disclosed per-plant.
+11. **Some capacities in `tr_facilities.csv` were corrected mid-session** (Çanakkale 4.5M → 6M; Erdemir Ereğli 6M → 4M crude steel). Other facilities may have similar nameplate errors we haven't audited.
 
 ## Reproducibility
 

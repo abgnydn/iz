@@ -25,16 +25,20 @@ N_OUTER = int(sys.argv[1]) if len(sys.argv) > 1 else 8
 
 
 def main() -> None:
+    sectors = {
+        "cement":          ["akcansa-buyukcekmece","akcansa-canakkale","akcansa-ladik",
+                            "nuh-hereke","afyon-cimento","batisoke-soke","goltas-isparta"],
+        "BF/BOF":          ["erdemir-eregli","isdemir-iskenderun","kardemir-karabuk"],
+        "EAF":             ["colakoglu-gebze"],
+        "fertilizer-int":  ["toros-mersin","toros-ceyhan","toros-samsun"],
+        "fertilizer-n2o":  ["bagfas-bandirma"],
+        "fertilizer-blnd": ["gubretas-izmit"],
+        "aluminum-dnstm":  ["assan-tuzla","asas-akyazi"],
+    }
     per_run_reductions = []
-    per_run_per_sector = {"cement": [], "BF/BOF": [], "EAF": []}
+    per_run_per_sector = {s: [] for s in sectors}
 
     env = {**os.environ, "IZ_NO_CT": "1"}
-
-    sectors = {
-        "cement": ["akcansa-buyukcekmece","akcansa-canakkale","akcansa-ladik","nuh-hereke"],
-        "BF/BOF": ["erdemir-eregli","isdemir-iskenderun","kardemir-karabuk"],
-        "EAF": ["colakoglu-gebze"],
-    }
 
     for i in range(N_OUTER):
         print(f"\n=== outer run {i+1}/{N_OUTER} ===")

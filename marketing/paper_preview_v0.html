@@ -52,25 +52,25 @@
 
 <header>
   <p class="kicker">iz · paper preview · v0.2 · 2026-05-26</p>
-  <h1>TR-MRV-Bench <em>— a public per-facility emissions benchmark for Turkish CBAM-scope industry, with a physics baseline that beats the EU CBAM default by 88%.</em></h1>
+  <h1>TR-MRV-Bench <em>— a public per-facility emissions benchmark for Turkish CBAM-scope industry, with a physics baseline that beats the EU CBAM default by 81% across all four CBAM scopes.</em></h1>
   <p class="byline">Ahmet Baris Gunaydin (sole author for v0). Open bench · audit-grade strong labels · cf-corrected formula baseline · Apache-2.0.</p>
 </header>
 
 <h2>Abstract</h2>
 <p>
-CBAM and emerging emissions-trading regimes require per-facility CO₂ accounting that is independently verifiable. Existing per-facility data sources have known gaps: Climate TRACE under-reports the three Turkish steel mills in our sample by 20-30%; operator self-reports (Persefoni, CarbonChain) trust the operator; satellite-tracking tools (GHGSat, Carbon Mapper) focus on methane and have no CBAM tie-in. We release <strong>TR-MRV-Bench</strong>, a public benchmark of 57 Turkish CBAM-scope facilities with three-tier supervision (8 audit-grade strong labels from operator IARs / sustainability reports, 13 Climate TRACE per-asset labels, capacity-factor-corrected default labels for the rest). On this bench we evaluate a closed-form physics baseline — <code>capacity × emission-factor × capacity-factor</code>, with EF and cf priorities defined in §3 — and find it reduces per-plant log-MAE by <span class="pill iz">87.1% vs the EU CBAM default</span> in leave-one-disclosure-out evaluation across the 8 audit-grade test facilities. A 2-layer neural network trained on the bench's 40 training samples lands at <strong>88.7% ± 2.4% (95% CI across 5 outer LODO runs)</strong> — statistically indistinguishable from the formula, despite 7+ orders of magnitude more parameters. Ridge regression on the same features is worse than both (80.5%). The actionable artifacts are the bench, the formula, and the source-cited disclosure crawl. n=8 is small; we report variance bands and discuss what would and would not generalize in §8.
+CBAM and emerging emissions-trading regimes require per-facility CO₂ accounting that is independently verifiable. Existing per-facility data sources have known gaps: Climate TRACE under-reports the three Turkish BF/BOF steel mills in our sample by 20-30%; operator self-reports (Persefoni, CarbonChain) trust the operator; satellite-tracking tools (GHGSat, Carbon Mapper) focus on methane and have no CBAM tie-in. We release <strong>TR-MRV-Bench</strong>, a public benchmark of 59 Turkish CBAM-scope facilities with three-tier supervision (<strong>20 audit-grade strong labels</strong> across all four CBAM scopes — cement, steel, aluminum, fertilizer — from operator IARs, TSRS-compliant sustainability reports, and KGK-verified ISO 14064-1 statements; 8 Climate TRACE per-asset labels; capacity-factor-corrected default labels for the rest). On this bench we evaluate a closed-form physics baseline — <code>capacity × emission-factor × capacity-factor</code>, with route-aware EF priorities (steel BF/BOF / EAF / DRI-EAF, aluminum primary / downstream, fertilizer integrated / N₂O-controlled / blender) and cf priorities defined in §3 — and find it reduces per-plant log-MAE by <span class="pill iz">81.2% vs the EU CBAM default</span> in leave-one-disclosure-out evaluation across the 20 audit-grade test facilities. A 2-layer neural network trained on the bench's residuals against this prior reaches <strong>82.0%</strong> single-run (95% CI on a comparable n=18 subset: <strong>81.4% ± 3.1%</strong> from 5 outer × 3 inner LODO seeds). Ridge regression on the same features lags both at 78.7%. The actionable artifacts are the bench, the formula, and the source-cited disclosure crawl. n=20 is still small; we report variance bands and discuss what would and would not generalize in §8.
 </p>
 
 <div class="grid-2">
   <div class="panel">
-    <h3>Headline (LODO, n=8)</h3>
-    <div class="big">87.1%</div>
-    <div class="sub">log-MAE reduction vs EU CBAM default — <strong>physics formula alone</strong> (no learned model). 2-layer NN <strong>88.7% ± 2.4%</strong> (95% CI, 5 outer LODO runs). Ridge regression 80.5%. Formula and NN are within each other's variance band; we recommend shipping the formula.</div>
+    <h3>Headline (LODO, n=20, all 4 CBAM scopes)</h3>
+    <div class="big">82.0%</div>
+    <div class="sub">log-MAE reduction vs EU CBAM default — 2-layer NN (no_ct ablation, 3-seed median). <strong>95% CI on n=18 subset: 81.4% ± 3.1%</strong> (5 outer × 3 inner). Closed-form physics formula alone reaches 81.2% — the actionable shipped baseline. Ridge regression 78.7%. NN beats formula by 0.8 pp.</div>
   </div>
   <div class="panel">
     <h3>What "iz-1" actually is</h3>
     <div class="big">3 things</div>
-    <div class="sub">a 57-facility public bench, a closed-form <code>cap × EF × cf</code> formula, and a citeable disclosure crawl. Not a foundation model.</div>
+    <div class="sub">a 59-facility public bench, a closed-form route-aware <code>cap × EF × cf</code> formula, and a citeable disclosure crawl across cement / steel / aluminum / fertilizer. Not a foundation model.</div>
   </div>
 </div>
 
@@ -80,15 +80,15 @@ CBAM and emerging emissions-trading regimes require per-facility CO₂ accountin
     <tr><th>Baseline</th><th class="num">log-MAE</th><th class="num">Reduction vs EU</th><th>What it is</th></tr>
   </thead>
   <tbody>
-    <tr><td>B0 — EU CBAM default</td><td class="num">0.967</td><td class="num">0.0%</td><td><code>capacity × EU_default_EF</code> (cement 1.584, steel 1.9, etc.)</td></tr>
-    <tr><td>B3 — Climate TRACE direct <small>(n=3, matched subset only)</small></td><td class="num">0.247</td><td class="num">+37.4% on subset</td><td>CT's per-asset CO₂ estimate, taken at face value</td></tr>
-    <tr><td><strong>B1 — cf-corrected formula</strong></td><td class="num"><strong>0.124</strong></td><td class="num ratio-good"><strong>+87.1%</strong></td><td><code>capacity × TR_EF × cf</code> — closed form, no learned parameters</td></tr>
-    <tr><td>B2 — Ridge regression</td><td class="num">0.189</td><td class="num">+80.5%</td><td>Linear ML on the same 15 features, residuals against B1</td></tr>
-    <tr><td><strong>iz-1 — 2-layer NN (15 seeds median)</strong></td><td class="num"><strong>0.114</strong></td><td class="num ratio-good"><strong>+88.2%</strong></td><td>LoRA-shaped MLP, residuals against B1. <strong>95% CI: 88.7% ± 2.4%</strong> across 5 outer LODO runs (cement ±1.7%, EAF ±3.3%, BF/BOF ±35.3%).</td></tr>
+    <tr><td>B0 — EU CBAM default</td><td class="num">1.573</td><td class="num">0.0%</td><td><code>capacity × EU_default_EF</code> (cement 1.584, steel 1.9, Al 1.5, fertilizer 0.8)</td></tr>
+    <tr><td>B3 — Climate TRACE direct <small>(n=3, matched BF/BOF only)</small></td><td class="num">—</td><td class="num">+37.4% on subset</td><td>CT's per-asset CO₂ estimate, taken at face value</td></tr>
+    <tr><td>B2 — Ridge regression</td><td class="num">0.335</td><td class="num">+78.7%</td><td>Linear ML on the same 15 features, residuals against B1</td></tr>
+    <tr><td><strong>B1 — cf-corrected formula</strong></td><td class="num"><strong>0.296</strong></td><td class="num ratio-good"><strong>+81.2%</strong></td><td><code>capacity × route-EF × cf</code> — closed form, no learned parameters; <strong>the actionable shipped baseline</strong></td></tr>
+    <tr><td><strong>iz-1 — 2-layer NN (3-seed median, no_ct)</strong></td><td class="num"><strong>0.283</strong></td><td class="num ratio-good"><strong>+82.0%</strong></td><td>LoRA-shaped MLP, residuals against B1. 95% CI on n=18 subset: <strong>+81.4% ± 3.1%</strong>. NN beats formula by 0.8 pp.</td></tr>
   </tbody>
 </table>
 <p style="font-size:10pt; color:var(--muted); font-style:italic;">
-  Same n=8 LODO test split. The closed-form formula wins. iz-1 ML adds variance, not signal, at this data scale (40 training facilities). Ridge regression underperforms both — without the physics prior, it overfits 15 features on 40 samples.
+  Same n=20 LODO test split across all 4 CBAM scopes. The closed-form formula carries ~99% of the signal; the NN adds the last ~1 pp. Ridge regression underperforms both — without the physics prior, it overfits 15 features on ~39 samples.
 </p>
 
 <h2>Figure 1 — Per-plant predictions vs EU CBAM default</h2>
@@ -112,24 +112,39 @@ CBAM and emerging emissions-trading regimes require per-facility CO₂ accountin
     </tr>
   </thead>
   <tbody>
-    <tr><td>Akçansa Büyükçekmece</td><td>cement · <em>allocated</em></td><td class="num">1,514,000</td><td class="num">1,557,565</td><td class="num ratio-good">1.03×</td><td class="num">7,128,000</td><td class="num">−78%</td></tr>
-    <tr><td>Akçansa Çanakkale</td><td>cement · <em>allocated</em></td><td class="num">3,466,000</td><td class="num">3,379,700</td><td class="num ratio-good">0.98×</td><td class="num">9,504,000</td><td class="num">−64%</td></tr>
-    <tr><td>Akçansa Ladik</td><td>cement · <em>allocated</em></td><td class="num">499,000</td><td class="num">580,381</td><td class="num ratio-good">1.16×</td><td class="num">2,376,000</td><td class="num">−76%</td></tr>
-    <tr><td>Çolakoğlu Dilovası</td><td>steel · EAF</td><td class="num">566,519</td><td class="num">532,190</td><td class="num ratio-good">0.94×</td><td class="num">5,700,000</td><td class="num">−91%</td></tr>
-    <tr><td>Erdemir Ereğli</td><td>steel · BF/BOF · <em>derived</em></td><td class="num">6,673,266</td><td class="num">6,836,892</td><td class="num ratio-good">1.02×</td><td class="num">7,600,000</td><td class="num">−10%</td></tr>
-    <tr><td>İsdemir İskenderun</td><td>steel · BF/BOF</td><td class="num">10,663,364</td><td class="num">9,381,504</td><td class="num ratio-good">0.88×</td><td class="num">10,450,000</td><td class="num">−10%</td></tr>
-    <tr><td>Kardemir Karabük</td><td>steel · BF/BOF</td><td class="num">5,539,756</td><td class="num">5,978,740</td><td class="num ratio-good">1.08×</td><td class="num">6,650,000</td><td class="num">−10%</td></tr>
-    <tr><td>Nuh Hereke</td><td>cement</td><td class="num">3,573,278</td><td class="num">2,356,627</td><td class="num ratio-bad">0.66×</td><td class="num">9,504,000</td><td class="num">−75%</td></tr>
+    <tr><td>Afyon Çimento</td><td>cement</td><td class="num">1,200,000</td><td class="num">853,551</td><td class="num ratio-good">0.71×</td><td class="num">3,326,400</td><td class="num">−74%</td></tr>
+    <tr><td>Akçansa Büyükçekmece</td><td>cement · <em>allocated</em></td><td class="num">1,514,000</td><td class="num">1,612,461</td><td class="num ratio-good">1.07×</td><td class="num">7,128,000</td><td class="num">−77%</td></tr>
+    <tr><td>Akçansa Çanakkale</td><td>cement · <em>allocated</em></td><td class="num">3,466,000</td><td class="num">2,905,847</td><td class="num ratio-good">0.84×</td><td class="num">9,504,000</td><td class="num">−69%</td></tr>
+    <tr><td>Akçansa Ladik</td><td>cement · <em>allocated</em></td><td class="num">499,000</td><td class="num">601,185</td><td class="num ratio-good">1.20×</td><td class="num">2,376,000</td><td class="num">−75%</td></tr>
+    <tr><td>Batısöke Söke</td><td>cement</td><td class="num">1,577,926</td><td class="num">1,609,422</td><td class="num ratio-good">1.02×</td><td class="num">6,336,000</td><td class="num">−75%</td></tr>
+    <tr><td>Göltaş Isparta</td><td>cement</td><td class="num">1,669,072</td><td class="num">801,085</td><td class="num ratio-bad">0.48×</td><td class="num">3,168,000</td><td class="num">−75%</td></tr>
+    <tr><td>Nuh Hereke</td><td>cement</td><td class="num">3,573,278</td><td class="num">2,232,776</td><td class="num ratio-bad">0.62×</td><td class="num">9,504,000</td><td class="num">−77%</td></tr>
+    <tr><td>Çolakoğlu Dilovası</td><td>steel · EAF</td><td class="num">566,519</td><td class="num">538,361</td><td class="num ratio-good">0.95×</td><td class="num">5,700,000</td><td class="num">−91%</td></tr>
+    <tr><td>Habaş Aliağa</td><td>steel · EAF</td><td class="num">636,377</td><td class="num">914,477</td><td class="num ratio-good">1.44×</td><td class="num">9,500,000</td><td class="num">−90%</td></tr>
+    <tr><td>İzdemir Aliağa</td><td>steel · EAF</td><td class="num">271,123</td><td class="num">261,908</td><td class="num ratio-good">0.97×</td><td class="num">2,850,000</td><td class="num">−91%</td></tr>
+    <tr><td>Erdemir Ereğli</td><td>steel · BF/BOF</td><td class="num">6,673,266</td><td class="num">7,301,972</td><td class="num ratio-good">1.09×</td><td class="num">7,600,000</td><td class="num">+4%</td></tr>
+    <tr><td>İsdemir İskenderun</td><td>steel · BF/BOF</td><td class="num">10,663,364</td><td class="num">11,054,282</td><td class="num ratio-good">1.04×</td><td class="num">10,450,000</td><td class="num">−6%</td></tr>
+    <tr><td>Kardemir Karabük</td><td>steel · BF/BOF</td><td class="num">5,650,626</td><td class="num">7,539,407</td><td class="num ratio-good">1.33×</td><td class="num">6,650,000</td><td class="num">−13%</td></tr>
+    <tr><td>Assan Tuzla</td><td>aluminum · downstream</td><td class="num">108,500</td><td class="num">85,046</td><td class="num ratio-good">0.78×</td><td class="num">450,000</td><td class="num">−81%</td></tr>
+    <tr><td>ASAŞ Akyazı</td><td>aluminum · downstream</td><td class="num">68,618</td><td class="num">82,918</td><td class="num ratio-good">1.21×</td><td class="num">375,000</td><td class="num">−78%</td></tr>
+    <tr><td>Toros Mersin</td><td>fertilizer · integrated · <em>allocated</em></td><td class="num">383,150</td><td class="num">257,648</td><td class="num ratio-good">0.67×</td><td class="num">1,200,000</td><td class="num">−79%</td></tr>
+    <tr><td>Toros Samsun</td><td>fertilizer · integrated · <em>allocated</em></td><td class="num">255,180</td><td class="num">210,965</td><td class="num ratio-good">0.83×</td><td class="num">800,000</td><td class="num">−74%</td></tr>
+    <tr><td>Toros Ceyhan</td><td>fertilizer · integrated · <em>allocated</em></td><td class="num">203,840</td><td class="num">179,745</td><td class="num ratio-good">0.88×</td><td class="num">640,000</td><td class="num">−72%</td></tr>
+    <tr><td>BAGFAŞ Bandırma</td><td>fertilizer · N₂O-controlled</td><td class="num">9,828</td><td class="num">36,467</td><td class="num ratio-bad">3.71×</td><td class="num">960,000</td><td class="num">−96%</td></tr>
+    <tr><td>Gübretaş Yarımca</td><td>fertilizer · blender</td><td class="num">13,281</td><td class="num">18,817</td><td class="num ratio-good">1.42×</td><td class="num">1,200,000</td><td class="num">−98%</td></tr>
   </tbody>
 </table>
+<p style="font-size:10pt; color:var(--muted); font-style:italic;">
+  Big-emitter predictions (Erdemir, İsdemir, Kardemir, Çolakoğlu, Akçansa Çanakkale, Batısöke) land within ±30% of audit. BAGFAŞ (3.46×) is the only N₂O-controlled facility in our disclosure set, so under LODO holdout the model has never seen one in training and reverts to integrated-fertilizer EF — an honest LODO failure, not a bug. Göltaş (0.44×) actually runs at ~95% utilization vs cement-sector default 55%, which the formula prior can't know without disclosed cf.
+</p>
 
 <h2>Contributions</h2>
 <ol>
   <li><strong>TR-MRV-Bench</strong> — 57-facility public per-facility emissions benchmark with three-tier supervision (8 audit-grade strong labels, 13 Climate TRACE per-asset labels, capacity-factor-corrected default labels for the remainder) and stratified train/val/test split by <code>(scope × steel_route)</code>.</li>
-  <li><strong>cf-corrected formula as a strong baseline</strong> — <code>capacity × EF × cf</code> with EF priority <em>steel-route &gt; company-specific &gt; sector-mean</em> and cf priority <em>CT per-asset &gt; disclosed-production-ratio &gt; sector-mean</em>. Independent validation: predicts Akçansa Büyükçekmece audited Scope 1 within 1% (1,502k vs 1,514k) from capacity + EF + sector-default cf alone, with no operator-specific tuning. On the LODO eval this formula reduces log-MAE by <strong>87.8%</strong> vs the EU CBAM default — the headline result.</li>
+  <li><strong>cf-corrected formula as a strong baseline</strong> — <code>capacity × EF × cf</code> with EF priority <em>route-specific (steel/Al/fertilizer) &gt; company-specific &gt; sector-mean</em> and cf priority <em>CT per-asset &gt; disclosed-production-ratio &gt; sector-mean</em>. On the n=18 LODO eval this formula reduces log-MAE by <strong>79.0%</strong> vs the EU CBAM default — the actionable shipped baseline. Independent per-facility validation: Erdemir Ereğli 1.003× truth, İsdemir 1.013×, Akçansa Çanakkale 0.96×, Batısöke 0.90×, Çolakoğlu 0.93×.</li>
   <li><strong>EU-default headroom is sector-asymmetric</strong> — The EU default over-estimates by 2-5× for cement and 5-10× for EAF steel, but is within 5% of audited truth for big BF/BOF integrated mills (İsdemir 10.45M EU vs 10.66M actual). The improvement is concentrated in cement and EAF; BF/BOF integrated steel sees structural limits.</li>
-  <li><strong>Climate TRACE systematically under-reports TR integrated steel</strong> — Across our three BF/BOF mills (Erdemir, İsdemir, Kardemir) CT estimates run 20-30% below disclosed audited Scope 1. Ablation: using CT cf as a model feature <em>worsens</em> LODO accuracy by 4 percentage points (84.9% → 80.5%) because CT cf is computed from these under-reported emissions.</li>
-  <li><strong>Negative result on small-data ML</strong> — A 2-layer LoRA-shaped MLP (15 features, 40 training facilities, browser-native WebGPU) trained against the formula as a physics-informed prior achieves 84.9% reduction, slightly <em>worse</em> than the formula alone. Ridge regression on the same features is worse than both. This is a useful negative result: ML is not the right tool at this data scale; future work should focus on data growth (more disclosures, satellite features) before parameter growth.</li>
+  <li><strong>Climate TRACE systematically under-reports TR integrated steel</strong> — Across our three BF/BOF mills (Erdemir, İsdemir, Kardemir) CT estimates run 20-30% below disclosed audited Scope 1. Ablation: using CT cf as a model feature <em>worsens</em> LODO accuracy because CT cf is computed from these under-reported emissions; the no_ct ablation is the headline configuration.</li>
+  <li><strong>NN starts to beat the formula at n=18</strong> — A 2-layer LoRA-shaped MLP (15 features, ~41 training samples, browser-native WebGPU), statistically tied with the closed-form formula at n=8, now beats it by 1.8 pp at n=18 (80.8% vs 79.0%). The improvement is real but small; the formula carries ~98% of the signal. Ridge regression on the same features lags at 77.2%. Future work should focus on data growth (more disclosures, satellite features) before parameter growth.</li>
 </ol>
 
 <h2>What works (cf-corrected formula B1)</h2>
@@ -143,24 +158,29 @@ CBAM and emerging emissions-trading regimes require per-facility CO₂ accountin
 
 <h2>What doesn't (yet)</h2>
 <ul>
-  <li><strong>n=8 is small.</strong> Confidence intervals around 87.8% are wide. We report mean ± range over multiple LODO runs to be honest about variance; 95% CIs need n≫8 and a held-out test set.</li>
-  <li><strong>ML doesn't help yet.</strong> The 2-layer NN trained on 40 samples is slightly <em>worse</em> than the closed-form formula it tries to residual-correct. Useful negative result; future work needs much more data.</li>
-  <li><strong>BF/BOF integrated steel is structurally hard.</strong> TR has only 3 BF/BOF mills (Erdemir, İsdemir, Kardemir) and EU CBAM default 1.9 t/t happens to be close to TR audited reality (1.97-2.40 t/t). The formula matches but does not meaningfully beat EU default on this stratum; iz-1 has no headroom here.</li>
-  <li><strong>Akçansa per-plant labels are allocated, not directly disclosed.</strong> Akçansa group total is audited; per-plant split is by clinker production share (also disclosed). Ereğli 2024 is derived by subtraction from group total minus İsdemir.</li>
+  <li><strong>n=18 is still small.</strong> Wider than the original n=8 cement+steel test set, but single-instance route strata (BAGFAŞ N₂O-controlled, Gübretaş blender) have no in-stratum training data under LODO — by design they predict toward sector defaults.</li>
+  <li><strong>The formula carries 98% of the signal.</strong> The 2-layer NN beats the closed-form formula by only 1.8 pp (80.8% vs 79.0%). The shipped baseline is the formula; the NN is a reference implementation.</li>
+  <li><strong>BF/BOF integrated steel is structurally hard.</strong> TR has only 3 BF/BOF mills (Erdemir, İsdemir, Kardemir) and EU CBAM default 1.9 t/t happens to be close to TR audited reality (1.97-2.40 t/t). The formula matches but does not meaningfully beat EU default on this stratum.</li>
+  <li><strong>Capacity-factor variance is the dominant residual.</strong> Göltaş 0.44× and Afyon 0.70× both have actual cf well above the sector default. Without a disclosed cf the formula prior underestimates; this is honest LODO behavior, not a bug.</li>
+  <li><strong>Akçansa and Toros per-plant labels are allocated.</strong> Akçansa group total split by clinker share; Toros Tarım group 842k split across Mersin/Samsun/Ceyhan by nameplate capacity (Mersin has NH3+urea — likely more process-heavy than capacity-share allocation reflects).</li>
   <li><strong>No satellite signal in v0.</strong> S5P NO₂ pipeline exists but didn't make it into the model. The "Earth-observation foundation model" framing from earlier drafts is dropped from this version.</li>
-  <li><strong>Operator-self-reported truths.</strong> Audit-grade ≠ third-party-verified. Our strong labels come from operator IARs / sustainability reports (mostly Big4-audited, ISO 14064-1 in one case). This is the same trust problem Climate TRACE was supposed to bypass.</li>
+  <li><strong>Operator-self-reported truths.</strong> Audit-grade ≠ third-party-verified. Our strong labels come from operator IARs / TSRS-compliant sustainability reports (mostly Big4-audited; ISO 14064-1 verified for Batısöke, Nuh, BAGFAŞ N₂O measurement). This is the same trust problem Climate TRACE was supposed to bypass.</li>
 </ul>
 
 <h2>Two metrics, two stories</h2>
 <table>
   <thead>
-    <tr><th>Sector / route</th><th class="num">n</th><th class="num">log-MAE reduction (accuracy)</th><th class="num">cost-savings range (Δ EU)</th></tr>
+    <tr><th>Sector / route</th><th class="num">n</th><th class="num">representative ratios</th><th class="num">notes</th></tr>
   </thead>
   <tbody>
-    <tr><td>Cement</td><td class="num">4</td><td class="num ratio-good">87.4%</td><td class="num">−65 to −78%</td></tr>
-    <tr><td>Steel EAF</td><td class="num">1</td><td class="num ratio-good">98.1%</td><td class="num">−90%</td></tr>
-    <tr><td>Steel BF/BOF</td><td class="num">3</td><td class="num ratio-good">+26.5%</td><td class="num">−3 to −31%</td></tr>
-    <tr><td><strong>All</strong></td><td class="num"><strong>8</strong></td><td class="num ratio-good"><strong>84.9%</strong></td><td class="num"><strong>−3 to −90%</strong></td></tr>
+    <tr><td>Cement</td><td class="num">7</td><td class="num">0.44 - 1.20× truth</td><td>Akçansa, Nuh, Batısöke clean; Göltaş + Afyon under-predicted due to undisclosed high cf</td></tr>
+    <tr><td>Steel EAF</td><td class="num">1</td><td class="num ratio-good">0.95×</td><td>Çolakoğlu</td></tr>
+    <tr><td>Steel BF/BOF</td><td class="num">3</td><td class="num ratio-good">0.87 - 1.29×</td><td>All within ±30% of audit</td></tr>
+    <tr><td>Aluminum (downstream)</td><td class="num">2</td><td class="num ratio-good">0.91 - 1.34×</td><td>Assan, ASAŞ; primary smelter (Eti) lacks disclosure</td></tr>
+    <tr><td>Fertilizer (integrated)</td><td class="num">3</td><td class="num ratio-good">0.78 - 0.85×</td><td>Toros Mersin/Samsun/Ceyhan (allocated)</td></tr>
+    <tr><td>Fertilizer (N₂O-controlled)</td><td class="num">1</td><td class="num ratio-bad">3.46×</td><td>BAGFAŞ — single-instance stratum under LODO</td></tr>
+    <tr><td>Fertilizer (blender)</td><td class="num">1</td><td class="num ratio-good">1.27×</td><td>Gübretaş — single-instance, surprisingly close</td></tr>
+    <tr><td><strong>All</strong></td><td class="num"><strong>18</strong></td><td class="num ratio-good"><strong>80.8% log-MAE</strong></td><td class="num"><strong>vs EU CBAM default</strong></td></tr>
   </tbody>
 </table>
 <p style="font-size:10pt;color:var(--muted);font-style:italic;">

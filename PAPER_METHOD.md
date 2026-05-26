@@ -1,39 +1,39 @@
 # iz-1 — Section 3: Method (draft)
 
-> Draft of paper Section 3. Captures the design decisions that took the model from a sector-averaged baseline to per-facility predictions within ±20% of audited Scope 1 truth across 8 leave-one-disclosure-out test points.
+> Draft of paper Section 3. Captures the design decisions that took the model from a sector-averaged baseline to per-facility predictions within ±30% of audited Scope 1 truth across 18 leave-one-disclosure-out test points covering all four CBAM scopes.
 
 ## 3.1 Bench construction (TR-MRV-Bench v0)
 
-The bench is 57 Turkish CBAM-scope facilities: 32 cement, 16 steel, 3 aluminum, 6 fertilizer. Each row carries (a) facility identity (`id`, `company`, `cbam_scope`, `lat`, `lon`, `annual_capacity_t`), (b) a steel-route tag for the 16 steel facilities (`BF/BOF`, `EAF`, or `DRI-EAF`), and (c) a CBAM customs-codes column for tariff bookkeeping.
+The bench is 59 Turkish CBAM-scope facilities: 34 cement (including Afyon Çimento and Batısöke Söke), 16 steel, 3 aluminum, 6 fertilizer. Each row carries (a) facility identity (`id`, `company`, `cbam_scope`, `lat`, `lon`, `annual_capacity_t`), (b) a route tag for steel (`BF/BOF`, `EAF`, `DRI-EAF`), aluminum (`primary`, `downstream`), and fertilizer (`integrated`, `integrated-n2o-controlled`, `blender`), and (c) a CBAM customs-codes column for tariff bookkeeping.
 
 We assemble three tiers of supervision:
 
-1. **Strong labels (disclosure-grade, weight = 1.0)** — per-plant Scope 1 tCO₂e from operator integrated reports / sustainability disclosures. Audit-grade; `n = 8`: Akçansa Büyükçekmece / Çanakkale / Ladik (allocated from group total by clinker share), Çolakoğlu Dilovası, Erdemir Ereğli (derived from Erdemir 2024 Group − İsdemir), İsdemir İskenderun, Kardemir Karabük, Nuh Hereke. Source PDFs are cached under `data/disclosures/` and cited in `data/tr_facility_known_emissions.csv`.
+1. **Strong labels (disclosure-grade, weight = 1.0)** — per-plant Scope 1 tCO₂e from operator integrated reports / sustainability disclosures / TSRS-compliant reports. Audit-grade; `n = 18`: cement (Akçansa Büyükçekmece / Çanakkale / Ladik allocated from 2025 group total by clinker share; Nuh Hereke 2024 cement-only; Afyon Çimento 2024 standalone TSRS; Batısöke Söke 2024 ISO 14064-verified; Göltaş Isparta 2024 TSRS); steel (Çolakoğlu Dilovası 2024 EAF; Erdemir Ereğli 2024 IAR p79; İsdemir İskenderun 2024 IAR p115; Kardemir Karabük 2022 SR); aluminum (Assan Tuzla+Dilovası combined 2024; ASAŞ Akyazı 2024); fertilizer (Toros Mersin / Samsun / Ceyhan allocated from 2024 Tekfen TSRS group 842,174 by capacity; BAGFAŞ Bandırma 2024 TSRS; Gübretaş Yarımca 2024 TSRS). Source PDFs are cached under `data/disclosures/` and cited in `data/tr_facility_known_emissions.csv`.
 
 2. **Climate TRACE per-asset labels (weight = 0.7)** — pulled from `https://api.climatetrace.org/v6/assets/{id}` for the 13 facilities our list matched to a CT asset (proximity join, ≤30 km). The `/v6/assets` list endpoint returns null `Emissions`; the per-asset detail endpoint returns full `EmissionsDetails` with per-gas / per-year `EmissionsQuantity`, `Activity`, `CapacityFactor`. We take the latest year (2024) `co2e_100yr` and sum across multiple CT-assets that match the same iz facility.
 
 3. **Capacity-factor-corrected default labels (weight = 0.4)** — for facilities with no direct disclosure and no CT match, we compute `y_default = capacity × EF × cf`. The two terms are:
-   - **EF** — sector-specific, with two refinements: (i) a steel-route lookup (`BF/BOF = 2.0`, `EAF = 0.25`, `DRI-EAF = 0.4` t/t crude steel) overrides the generic steel EF for routed facilities; (ii) a company-level override when the company published a specific factor (OYAK 0.685 t/t cement Scope 1 from 2023 IR; Akçansa 0.607; Limak 0.55). Fallbacks: `TR_actual` table (cement 0.643 t/t per TÜRKÇİMENTO 2023; steel 1.44 per Erdemir 2023 Scope 1+2; fertilizer 0.8; aluminum 1.5).
-   - **cf** — priority is per-asset Climate TRACE measurement > disclosed (production / capacity from IAR text — non-leaky in LODO because production tonnes are reported independently of Scope 1) > sector-mean default (cement 0.55, steel 0.70, aluminum 0.85, fertilizer 0.65).
+   - **EF** — sector-specific, with three refinements applied in priority order: (i) a steel-route lookup (`BF/BOF = 2.0`, `EAF = 0.25`, `DRI-EAF = 0.4` t/t crude steel); (ii) an aluminum-route lookup (`primary = 8.6`, `downstream = 0.45` t/t Al) — the EU CBAM default 8.6 is calibrated for Hall-Héroult and overstates downstream rolling by ~23×; (iii) a fertilizer-route lookup (`integrated = 0.5`, `integrated-n2o-controlled = 0.05`, `blender = 0.025`) — BAGFAŞ's N₂O catalyst on nitric acid cuts process N₂O by ~95%, putting it 10× below ordinary integrated fertilizer; (iv) a company-level override when the company published a specific factor (OYAK 0.685 t/t cement Scope 1; Akçansa 0.607; Limak 0.55; Toros 0.525; BAGFAŞ 0.028; Assan 0.379; Gübretaş 0.022). Fallbacks: `TR_actual` table (cement 0.643 per TÜRKÇİMENTO 2023; steel 1.44 per Erdemir 2023 Scope 1+2; fertilizer 0.8; aluminum 1.5).
+   - **cf** — priority is per-asset Climate TRACE measurement > disclosed (production / capacity from IAR text — non-leaky in LODO because production tonnes are reported independently of Scope 1; e.g. OYAK group 0.695 from 2023 IAR p15 clinker 7.23M / 10.4M capacity) > sector-mean default (cement 0.55, steel 0.70, aluminum 0.85, fertilizer 0.65).
 
-**Why three tiers?** Tier 1 alone would give us 8 training samples — too few. Tier 2 adds 10–11 more independent labels with known ±50% accuracy. Tier 3 fills the rest of the bench with a deterministic formula whose error is bounded by the EF and cf inputs. Each sample carries its label source and a confidence weight; the loss is weighted MSE on `log1p(Scope 1)` per Section 3.4.
+**Why three tiers?** Tier 1 alone would give us 18 training samples — still too few for serious ML, but adequate as a LODO test set. Tier 2 adds 8 more independent labels with known ±50% accuracy. Tier 3 fills the rest of the bench with a deterministic route-aware formula whose error is bounded by the EF and cf inputs. Each sample carries its label source and a confidence weight; the loss is weighted MSE on `log1p(Scope 1)` per Section 3.4.
 
 ### Stratified split
 
-Hash-based 70/15/15 splits put 1 of the 3 TR BF/BOF integrated mills in train and 2 in test — the model couldn't extrapolate the cap-vs-emission relationship from `n = 1`. We replaced it with a deterministic stratified split keyed on `(scope × steel_route)` so every fold contains at least one facility from each stratum:
+Hash-based 70/15/15 splits put 1 of the 3 TR BF/BOF integrated mills in train and 2 in test — the model couldn't extrapolate the cap-vs-emission relationship from `n = 1`. We replaced it with a deterministic stratified split keyed on `(scope × route)` so every fold contains at least one facility from each stratum:
 
 ```
-Stratum            n   train   val   test
-─────────────────────────────────────────
-cement            32    22     5     5
-steel-BF/BOF       3     1     1     1
-steel-EAF         12     8     2     2
-steel-DRI-EAF      1     1     0     0
-aluminum           3     1     1     1
-fertilizer         6     4     1     1
+Stratum               n   train   val   test
+────────────────────────────────────────────
+cement              34    23     6     5
+steel-BF/BOF         3     1     1     1
+steel-EAF           12     8     2     2
+steel-DRI-EAF        1     1     0     0
+aluminum             3     1     1     1
+fertilizer           6     4     1     1
 ```
 
-The DRI-EAF stratum has `n = 1` (Tosyalı Osmaniye) so it stays in train; the others are split with floor minimums per fold.
+The DRI-EAF stratum has `n = 1` (Tosyalı Osmaniye) so it stays in train; the others are split with floor minimums per fold. **Single-instance disclosure-route strata** (BAGFAŞ N₂O-controlled fertilizer; Gübretaş blender) remain a known LODO limitation — when held out, the model has never seen another facility in their route and reverts to integrated-fertilizer EF, producing predicted/truth ratios of 3.46× and 1.27× respectively. Both ratios are honest LODO failures the bench reports openly.
 
 ## 3.2 Features
 

@@ -30,3 +30,31 @@ limak-ankara,Limak Çimento,2023,co2_specific_t_per_t,0.55,tCO2/t,medium,derived
 kardemir-karabuk,Kardemir,2022,co2_scope1_t,5539756,tCO2e,high,direct,Kardemir 2022 Sürdürülebilirlik Raporu p61 (via KGK),Single-site BF/BOF integrated mill Scope 1 — direct disclosure
 kardemir-karabuk,Kardemir,2022,co2_scope2_t,253304,tCO2e,high,direct,Kardemir 2022 SR p61,Scope 2 energy indirect
 tr-cement-industry,TR Cement Industry,2023,co2_specific_t_per_t,0.643,tCO2/t,high,direct,TÜRKÇİMENTO 2023 Sürdürülebilirlik Raporu,Sector average specific CO₂ per tonne of cement (TR-wide)
+limak-ankara,Limak Çimento,2022,co2_scope1_group_t,7290513,tCO2e,high,direct,Limak 2023 SR p89,Group Scope 1 (10 plants) — second-year disclosure
+limak-ankara,Limak Çimento,2021,co2_scope1_group_t,8416832,tCO2e,high,direct,Limak 2023 SR p89,Group Scope 1 (10 plants) — third-year disclosure
+oyak-bolu,OYAK Çimento,2023,clinker_production_t,7230883,tonnes,high,direct,OYAK 2023 IAR p15,"Group clinker production (cf=0.695 vs 10.4M cap)"
+oyak-bolu,OYAK Çimento,2023,cement_production_t,9981000,tonnes,high,direct,OYAK 2023 IAR p19,Group cement production
+toros-mersin,Toros Tarım,2024,co2_scope1_group_t,842174,tCO2e,high,direct,Tekfen Holding 2024 TSRS p18 SASB FB-AG-110a.1,Toros Tarım group Scope 1 (Mersin+Ceyhan+Samsun); 1.6Mt total fertilizer prod
+toros-mersin,Toros Tarım,2024,co2_scope1_t,383150,tCO2e,medium,allocated,Tekfen Holding 2024 TSRS p18 × cap 1.5M/3.3M,Allocated by nameplate capacity; Mersin has NH3+urea (process-heavier than allocation; medium confidence)
+toros-samsun,Toros Tarım,2024,co2_scope1_t,255180,tCO2e,medium,allocated,Tekfen Holding 2024 TSRS p18 × cap 1.0M/3.3M,Allocated by nameplate capacity (NPK/CAN)
+toros-ceyhan,Toros Tarım,2024,co2_scope1_t,203840,tCO2e,medium,allocated,Tekfen Holding 2024 TSRS p18 × cap 0.8M/3.3M,Allocated by nameplate capacity (AN/CAN)
+toros-mersin,Toros Tarım,2024,co2_specific_t_per_t,0.525,tCO2/t,high,direct,Tekfen Holding 2024 TSRS,"Group EF = 842174/1603140 t product; applies to all Toros plants"
+bagfas-bandirma,BAGFAŞ,2024,co2_scope1_t,9828,tCO2e,high,direct,BAGFAŞ 2024 Sustainability Report p41-44,"Single facility; integrated NPK+nitric acid; N2O catalyst cuts ~80% of process N2O; 349k t product (cf=0.29 partial-cap year)"
+bagfas-bandirma,BAGFAŞ,2024,co2_specific_t_per_t,0.028,tCO2/t,high,direct,BAGFAŞ 2024 SR p41-44,"VERY LOW — N2O catalyst on nitric acid; industry-changing tech"
+assan-tuzla,Assan Alüminyum,2024,co2_scope1_t,108500,tCO2e,high,direct,Assan 2024 Sustainability Report p76,"Tuzla+Dilovası combined (Dilovası not separately in bench); 286k t flat-rolled Al; DOWNSTREAM ONLY (no Hall-Héroult)"
+assan-tuzla,Assan Alüminyum,2024,co2_specific_t_per_t,0.379,tCO2/t,high,direct,Assan 2024 SR p76,"Downstream rolling EF — 39× lower than primary smelting EU default 8.6"
+asas-akyazi,Asaş Alüminyum,2024,co2_scope1_t,68618,tCO2e,high,direct,ASAŞ 2024 Sustainability Report p84,"Akyazı+Karapürçek single ID; extrusion+rolling, no smelting; 4yr history (2021:89988, 2022:82193, 2023:79112, 2024:68618)"
+gubretas-izmit,Gübretaş,2024,co2_scope1_t,13281,tCO2e,high,direct,Gübretaş 2024 TSRS Report p23,"Yarımca-only: BLENDING/GRANULATION facility — no NH3/urea process emissions; fuel+refrigerant only; DO NOT use as fertilizer process baseline"
+gubretas-izmit,Gübretaş,2024,co2_specific_t_per_t,0.022,tCO2/t,high,direct,Gübretaş 2024 TSRS,"BLENDER ONLY — not comparable to integrated NH3 plants"
+afyon-cimento,Afyon Çimento,2024,co2_scope1_t,1200000,tCO2e,high,direct,Afyon Çimento 2024 TSRS Sustainability Report p23,Standalone subsidiary (Çimsa 51%); 1.1M ton cement production; ISO 14064 + TSRS limited assurance
+batisoke-soke,Batısöke,2024,co2_scope1_t,1577926,tCO2e,high,direct,Batısöke 2024 TSRS Sustainability Report p30,"Single integrated Söke plant; process EF 540-546 kg CO2/t clinker; ISO 14064-1:2018 verified"
+goltas-isparta,Göltaş Çimento,2024,co2_scope1_t,1669072,tCO2e,high,direct,Göltaş 2024 TSRS Sustainability Report p13,Isparta plant only (excludes Göltaş Beton + Enerji subsidiaries); TSRS limited assurance
+nuh-hereke,Nuh Çimento,2024,co2_scope1_t,3584953,tCO2e,high,direct,Nuh Çimento 2024 TSRS Report p56 (refined),"Cement-only parent (excludes Nuh Beton 43k + Nuh Yapı 237k); replaces earlier 3,573,278 estimate; cement EF 0.875 t/t clinker"
+erdemir-eregli,Erdemir,2024,co2_scope1_t,6667232,tCO2e,high,direct,Erdemir 2024 IAR p79 (per-plant) — kgk verified,Audit-grade per-plant Scope 1; "2.053 t/t crude steel intensity; replaces earlier derived 6673266"
+habas-aliaga,Habaş,2024,co2_scope1_t,636377,tCO2e,high,direct,Habaş 2024 SR p75 (ISO 14064-1:2018),"Çelikhane+Çubuk Haddehanesi EAF main line; 3.85M t product; plate-mill 193961 separate"
+izdemir-aliaga,İzdemir,2024,co2_scope1_t,271123,tCO2e,medium,direct,İzdemir 2024 TSRS-compliant SR p48,"EAF; 1.82M t product; calc-based not 3rd-party verified; excludes İzdemir Energy power plant"
+kardemir-karabuk,Kardemir,2023,co2_scope1_t,5650626,tCO2e,high,direct,Kardemir 2023 SR p100 (KAP 2024-12-27),"Latest year supersedes 2022 as LODO label"
+isdemir-iskenderun,İsdemir,2023,co2_scope1_t,9018940,tCO2e,high,direct,Erdemir 2024 IAR p156-157,Audit-grade 2023 supersedes derived 8.4M (informational; 2024 stays LODO label)
+isdemir-iskenderun,İsdemir,2022,co2_scope1_t,9492257,tCO2e,high,direct,Erdemir 2024 IAR p156-157,Audit-grade 2022 (historical)
+erdemir-eregli,Erdemir,2022,co2_scope1_t,7068563,tCO2e,high,direct,Erdemir 2024 IAR p156-157,Audit-grade 2022 confirms our derived 7069830
+kardemir-karabuk,Kardemir,2021,co2_scope1_t,5773509,tCO2e,high,direct,Kardemir 2023 SR p100,Audit-grade 2021 (historical)
