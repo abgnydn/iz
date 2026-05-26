@@ -1,7 +1,32 @@
-id,company,year,metric,value,unit,confidence,source,notes
-erdemir-eregli,Erdemir,2023,co2_scope12_total_t,6929202,tCO2e,high,Tracenable / Erdemir 2023 IAR,Total Scope 1+2 operational emissions; -7.36% vs 2022
-erdemir-eregli,Erdemir,2022,co2_scope12_total_t,7479590,tCO2e,medium,derived,Back-computed from 2023 value × 1/(1-0.0736)
-cimsa-mersin,Çimsa,2023,co2_scope1_t,5400000,tCO2e,high,Çimsa 2023 Sustainability Report,Scope 1 (combined Çimsa group: Mersin+Eskişehir+Kayseri+Niğde)
-cimsa-mersin,Çimsa,2023,co2_scope3_t,3010000,tCO2e,high,Çimsa 2023 Sustainability Report,Scope 3 (group total)
-tosyali-osmaniye,Tosyalı,2023,co2_reduction_pct,30,%,medium,Tosyalı sustainability comms,30% carbon reduction milestone announced; baseline year not yet confirmed
-tr-cement-industry,TR Cement Industry,2023,co2_specific_t_per_t,0.643,tCO2/t,high,TÜRKÇİMENTO 2023 Sürdürülebilirlik Raporu,Sector average specific CO₂ per tonne of cement (TR-wide)
+id,company,year,metric,value,unit,confidence,provenance,source,notes
+erdemir-eregli,Erdemir,2023,co2_scope1_t,6559030,tCO2e,high,direct,Erdemir 2023 Integrated Report via Tracenable,Erdemir parent entity Scope 1 (Ereğli mill + corporate; not consolidated İsdemir)
+erdemir-eregli,Erdemir,2022,co2_scope1_t,7069830,tCO2e,medium,derived,back-computed from 2023 × 1/(1-0.0721),YoY-derived
+erdemir-eregli,Erdemir,2023,co2_scope12_total_t,6929202,tCO2e,high,direct,Erdemir 2023 IAR via Tracenable,Scope 1+2 = 6559030 + 370172 (parent entity)
+erdemir-eregli,Erdemir,2024,co2_scope1_group_t,17336630,tCO2e,high,direct,Erdemir 2024 IAR p103 / Tracenable,Consolidated group Scope 1 (Ereğli + İsdemir + subs)
+isdemir-iskenderun,İsdemir,2024,co2_scope1_t,10663364,tCO2e,high,direct,Erdemir 2024 Entegre Faaliyet Raporu p115 (KGK),Audit-grade per-asset İsdemir Scope 1 (line item: "Kapsam 1 (ton COeq) 10.663.364")
+isdemir-iskenderun,İsdemir,2024,co2_scope12_total_t,11135121,tCO2e,high,direct,Erdemir 2024 IAR p115,Scope 1+2 per İsdemir entity
+erdemir-eregli,Erdemir,2024,co2_scope1_t,6673266,tCO2e,medium,derived,Erdemir 2024 IAR (group 17.34M − İsdemir 10.66M from p115),Subtraction: Ereğli ≈ Group − İsdemir; assumes no other major subsidiary
+isdemir-iskenderun,İsdemir,2023,co2_scope1_t,8400000,tCO2e,medium,derived,Group 17.3M / 1.158 (YoY 2024) − Ereğli 2023 6.56M,YoY-extrapolated
+cimsa-mersin,Çimsa,2023,co2_scope1_group_t,4760000,tCO2e,high,direct,Çimsa 2023 sustainability via DitchCarbon,Group total: 5 kiln lines (Mersin+Eskişehir+Kayseri+Niğde+Afyonkarahisar)
+cimsa-mersin,Çimsa,2023,co2_scope2_t,112800,tCO2e,high,direct,Çimsa 2023 sustainability via DitchCarbon,Group Scope 2
+oyak-bolu,OYAK Çimento,2023,co2_scope1_group_t,7712391,tCO2e,high,direct,OYAK 2023 Integrated Report p30,Group Scope 1 (5 of OYAK's plants in our bench ≈ 81% of group cement capacity)
+oyak-bolu,OYAK Çimento,2023,co2_specific_t_per_t,0.685,tCO2/t,high,direct,OYAK 2023 Integrated Report p30,Group Scope 1 specific (cement-weighted)
+oyak-bolu,OYAK Çimento,2023,co2_specific_clinker_t_per_t,0.852,tCO2/t,high,direct,OYAK 2023 Integrated Report p30,Group Scope 1 specific (clinker-weighted)
+oyak-bolu,OYAK Çimento,2023,co2_scope12_group_t,8162307,tCO2e,high,direct,OYAK 2023 Integrated Report p30,Group Scope 1+2 total
+tosyali-osmaniye,Tosyalı Holding,2022,co2_scope1_holding_t,424901,tCO2e,low,disputed,Tosyalı Holding 2022 via DitchCarbon,DISPUTED — implausibly low for ~3M t/yr EAF holding; may be non-process combustion only or limited scope
+tosyali-osmaniye,Tosyalı Holding,2021,co2_scope1_holding_t,2273683,tCO2e,low,disputed,Tosyalı Holding 2021 via DitchCarbon,Higher than 2022 — definitions inconsistent across years; not used as supervision
+tosyali-osmaniye,Tosyalı,2023,co2_reduction_pct,30,%,low,direct,Tosyalı sustainability comms,30% reduction milestone; baseline year not stated
+akcansa-buyukcekmece,Akçansa,2025,co2_scope1_t,1514000,tCO2e,high,allocated,"Akçansa 2025 IAR p46 (group Scope 1 gross 5,484,015) × Büyükçekmece clinker share p167 (1,943/7,037 = 27.6%)",Per-plant allocated from group total by disclosed clinker production share
+akcansa-canakkale,Akçansa,2025,co2_scope1_t,3466000,tCO2e,high,allocated,"Akçansa 2025 IAR p46 × Çanakkale clinker share p167 (4,450/7,037 = 63.2%)",Per-plant allocated from group total by disclosed clinker production share
+akcansa-ladik,Akçansa,2025,co2_scope1_t,499000,tCO2e,high,allocated,"Akçansa 2025 IAR p46 × Ladik clinker share p167 (644/7,037 = 9.1%)",Per-plant allocated from group total by disclosed clinker production share
+akcansa-group,Akçansa,2025,co2_specific_t_per_t,0.607,tCO2/t,high,direct,Akçansa 2025 IAR (group 5.484M Scope 1 / 9.041M t cement),Group gross specific Scope 1 emissions
+colakoglu-gebze,Çolakoğlu,2024,co2_scope1_t,566519,tCO2e,high,direct,Çolakoğlu 2024 SR p82,Single-site EAF plant — direct disclosure
+colakoglu-gebze,Çolakoğlu,2023,co2_scope1_t,495035,tCO2e,high,direct,Çolakoğlu 2024 SR p82,Single-site EAF plant — direct disclosure
+colakoglu-gebze,Çolakoğlu,2022,co2_scope1_t,493054,tCO2e,high,direct,Çolakoğlu 2024 SR p82,Single-site EAF plant — direct disclosure
+colakoglu-gebze,Çolakoğlu,2021,co2_scope1_t,517306,tCO2e,high,direct,Çolakoğlu 2024 SR p82,Single-site EAF plant — direct disclosure
+nuh-hereke,Nuh Çimento,2024,co2_scope1_t,3573278,tCO2e,high,direct,Nuh 2024 IAR p59 (ISO 14064-1:2018 verified),Single-site (Nuh has only Hereke) — third-party verified Scope 1
+limak-ankara,Limak Çimento,2023,co2_scope1_group_t,7138623,tCO2e,high,direct,Limak 2023 SR p89,Group Scope 1 (10 plants); cement-weighted EF derived below
+limak-ankara,Limak Çimento,2023,co2_specific_t_per_t,0.55,tCO2/t,medium,derived,Limak 2023 SR p89 / ~13M t group cement output,Group cement-weighted Scope 1 specific (denominator estimated)
+kardemir-karabuk,Kardemir,2022,co2_scope1_t,5539756,tCO2e,high,direct,Kardemir 2022 Sürdürülebilirlik Raporu p61 (via KGK),Single-site BF/BOF integrated mill Scope 1 — direct disclosure
+kardemir-karabuk,Kardemir,2022,co2_scope2_t,253304,tCO2e,high,direct,Kardemir 2022 SR p61,Scope 2 energy indirect
+tr-cement-industry,TR Cement Industry,2023,co2_specific_t_per_t,0.643,tCO2/t,high,direct,TÜRKÇİMENTO 2023 Sürdürülebilirlik Raporu,Sector average specific CO₂ per tonne of cement (TR-wide)

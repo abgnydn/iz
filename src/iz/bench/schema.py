@@ -71,6 +71,62 @@ def split_facilities(facility_ids: list[str], seed: str = "iz-1-2026") -> BenchS
     return BenchSplit(train=sorted(train), val=sorted(val), test=sorted(test))
 
 
+def split_facilities_stratified_loo(
+    facility_ids: list[str],
+    strata: dict[str, str],
+    holdout_id: str,
+    seed: str = "iz-1-2026",
+) -> BenchSplit:
+    """Leave-one-out variant: force `holdout_id` into test, then stratify the rest."""
+    others = [f for f in facility_ids if f != holdout_id]
+    base = split_facilities_stratified(others, strata, seed)
+    return BenchSplit(train=sorted(base.train + base.val[:0]), val=sorted(base.val), test=sorted(base.test + [holdout_id]))
+
+
+def split_facilities_stratified(
+    facility_ids: list[str],
+    strata: dict[str, str],
+    seed: str = "iz-1-2026",
+) -> BenchSplit:
+    """Deterministic stratified split.
+
+    Within each stratum (keyed by `strata[fid]`), facilities are deterministically
+    sorted by hash and round-robin-assigned to train/val/test in a 70/15/15
+    fashion that respects fold minimums. Strata with <3 members all go to train
+    (preserves rare-class learning signal; the rare-class facility wouldn't be
+    a meaningful test point anyway). Strata with exactly 3 go 1/1/1.
+    """
+    by_stratum: dict[str, list[str]] = {}
+    for fid in facility_ids:
+        by_stratum.setdefault(strata.get(fid, "_unknown"), []).append(fid)
+
+    train, val, test = [], [], []
+    for stratum, fids in sorted(by_stratum.items()):
+        # Deterministic per-stratum order via hash
+        ordered = sorted(fids, key=lambda f: hashlib.sha256(f"{seed}-{stratum}-{f}".encode()).hexdigest())
+        n = len(ordered)
+        if n == 0:
+            continue
+        if n == 1:
+            train.extend(ordered)
+            continue
+        if n == 2:
+            train.append(ordered[0])
+            test.append(ordered[1])
+            continue
+        if n == 3:
+            train.append(ordered[0]); val.append(ordered[1]); test.append(ordered[2])
+            continue
+        # n >= 4: 70/15/15 by index, with explicit floor-then-fill
+        n_test = max(1, round(n * 0.15))
+        n_val = max(1, round(n * 0.15))
+        n_train = n - n_test - n_val
+        train.extend(ordered[:n_train])
+        val.extend(ordered[n_train:n_train + n_val])
+        test.extend(ordered[n_train + n_val:])
+    return BenchSplit(train=sorted(train), val=sorted(val), test=sorted(test))
+
+
 def schema_row(facility: dict, *, month: str, features: dict, labels: dict, split: str) -> dict:
     """Canonical row factory. Keeps the contract centralized."""
     return {

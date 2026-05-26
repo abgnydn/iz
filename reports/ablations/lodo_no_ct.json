@@ -1,0 +1,106 @@
+[
+  {
+    "facility_id": "akcansa-buyukcekmece",
+    "truth": 1514000.0,
+    "pred_median": 1563542.0,
+    "eu_default": 7128000.0,
+    "n_runs": 3,
+    "preds_all": [
+      1529538.0,
+      1599668.0,
+      1563542.0
+    ],
+    "ratio_median": 1.0327225891677676
+  },
+  {
+    "facility_id": "akcansa-canakkale",
+    "truth": 3466000.0,
+    "pred_median": 3504265.0,
+    "eu_default": 9504000.0,
+    "n_runs": 3,
+    "preds_all": [
+      3733232.0,
+      3504265.0,
+      3456787.0
+    ],
+    "ratio_median": 1.011040103866128
+  },
+  {
+    "facility_id": "akcansa-ladik",
+    "truth": 499000.0,
+    "pred_median": 594598.0,
+    "eu_default": 2376000.0,
+    "n_runs": 3,
+    "preds_all": [
+      604257.0,
+      594598.0,
+      590692.0
+    ],
+    "ratio_median": 1.1915791583166333
+  },
+  {
+    "facility_id": "colakoglu-gebze",
+    "truth": 566519.0,
+    "pred_median": 536672.0,
+    "eu_default": 5700000.0,
+    "n_runs": 3,
+    "preds_all": [
+      547115.0,
+      529711.0,
+      536672.0
+    ],
+    "ratio_median": 0.9473150944628512
+  },
+  {
+    "facility_id": "erdemir-eregli",
+    "truth": 6673266.0,
+    "pred_median": 8299102.0,
+    "eu_default": 11400000.0,
+    "n_runs": 3,
+    "preds_all": [
+      8299102.0,
+      7610108.0,
+      9744176.0
+    ],
+    "ratio_median": 1.2436342264792082
+  },
+  {
+    "facility_id": "isdemir-iskenderun",
+    "truth": 10663364.0,
+    "pred_median": 7964895.0,
+    "eu_default": 10450000.0,
+    "n_runs": 3,
+    "preds_all": [
+      8121989.0,
+      7964895.0,
+      7225610.0
+    ],
+    "ratio_median": 0.7469401776024902
+  },
+  {
+    "facility_id": "kardemir-karabuk",
+    "truth": 5539756.0,
+    "pred_median": 5867397.0,
+    "eu_default": 6650000.0,
+    "n_runs": 3,
+    "preds_all": [
+      6637279.0,
+      5427117.0,
+      5867397.0
+    ],
+    "ratio_median": 1.0591435796089215
+  },
+  {
+    "facility_id": "nuh-hereke",
+    "truth": 3573278.0,
+    "pred_median": 2379754.0,
+    "eu_default": 9504000.0,
+    "n_runs": 3,
+    "preds_all": [
+      2379754.0,
+      2198093.0,
+      2389360.0
+    ],
+    "ratio_median": 0.6659862456825357
+  }
+]

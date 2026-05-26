@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 476" style="font-family:Georgia,serif;background:#fbf7ee">
+<rect x="0" y="0" width="1000" height="476" fill="#fbf7ee"/>
+<text x="240" y="36" font-size="20pt" font-weight="600" letter-spacing="-0.02em" fill="#14181d">iz-1 component ablations</text>
+<text x="240" y="58" font-size="11pt" fill="#6e6862" font-style="italic">Per-plant log-MAE reduction vs EU CBAM default (LODO, n=8, 9 seeds per facility)</text>
+<rect x="240" y="78" width="393.79920550082596" height="24" fill="#2d5a4c" opacity="0.5"/>
+<text x="224" y="95" text-anchor="end" font-size="11pt" fill="#14181d">full</text>
+<text x="641.799205500826" y="95" font-size="10pt" fill="#14181d" font-weight="600">+80.3%</text>
+<rect x="700" y="80" width="80" height="20" fill="#2d5a4c" opacity="0.16" stroke="#2d5a4c" stroke-width="0.7"/>
+<text x="740" y="94" text-anchor="middle" font-size="9pt" fill="#14181d">cement +90%</text>
+<rect x="790" y="80" width="80" height="20" fill="#b85c3f" opacity="0.16" stroke="#b85c3f" stroke-width="0.7"/>
+<text x="830" y="94" text-anchor="middle" font-size="9pt" fill="#14181d">BF/BOF -14%</text>
+<rect x="880" y="80" width="80" height="20" fill="#2d5a4c" opacity="0.16" stroke="#2d5a4c" stroke-width="0.7"/>
+<text x="920" y="94" text-anchor="middle" font-size="9pt" fill="#14181d">EAF +90%</text>
+<rect x="240" y="134" width="356.3634182915529" height="24" fill="#2d5a4c" opacity="0.5"/>
+<text x="224" y="151" text-anchor="end" font-size="11pt" fill="#14181d">no_prior</text>
+<text x="604.3634182915529" y="151" font-size="10pt" fill="#14181d" font-weight="600">+72.6%</text>
+<rect x="700" y="136" width="80" height="20" fill="#2d5a4c" opacity="0.16" stroke="#2d5a4c" stroke-width="0.7"/>
+<text x="740" y="150" text-anchor="middle" font-size="9pt" fill="#14181d">cement +81%</text>
+<rect x="790" y="136" width="80" height="20" fill="#b85c3f" opacity="0.16" stroke="#b85c3f" stroke-width="0.7"/>
+<text x="830" y="150" text-anchor="middle" font-size="9pt" fill="#14181d">BF/BOF -47%</text>
+<rect x="880" y="136" width="80" height="20" fill="#2d5a4c" opacity="0.16" stroke="#2d5a4c" stroke-width="0.7"/>
+<text x="920" y="150" text-anchor="middle" font-size="9pt" fill="#14181d">EAF +92%</text>
+<rect x="240" y="190" width="365.84408930651705" height="24" fill="#2d5a4c" opacity="0.5"/>
+<text x="224" y="207" text-anchor="end" font-size="11pt" fill="#14181d">no_disc</text>
+<text x="613.844089306517" y="207" font-size="10pt" fill="#14181d" font-weight="600">+74.6%</text>
+<rect x="700" y="192" width="80" height="20" fill="#2d5a4c" opacity="0.16" stroke="#2d5a4c" stroke-width="0.7"/>
+<text x="740" y="206" text-anchor="middle" font-size="9pt" fill="#14181d">cement +82%</text>
+<rect x="790" y="192" width="80" height="20" fill="#b85c3f" opacity="0.16" stroke="#b85c3f" stroke-width="0.7"/>
+<text x="830" y="206" text-anchor="middle" font-size="9pt" fill="#14181d">BF/BOF -34%</text>
+<rect x="880" y="192" width="80" height="20" fill="#2d5a4c" opacity="0.16" stroke="#2d5a4c" stroke-width="0.7"/>
+<text x="920" y="206" text-anchor="middle" font-size="9pt" fill="#14181d">EAF +92%</text>
+<rect x="240" y="246" width="317.1788505116428" height="24" fill="#2d5a4c" opacity="0.5"/>
+<text x="224" y="263" text-anchor="end" font-size="11pt" fill="#14181d">no_route</text>
+<text x="565.1788505116428" y="263" font-size="10pt" fill="#14181d" font-weight="600">+64.7%</text>
+<rect x="700" y="248" width="80" height="20" fill="#2d5a4c" opacity="0.16" stroke="#2d5a4c" stroke-width="0.7"/>
+<text x="740" y="262" text-anchor="middle" font-size="9pt" fill="#14181d">cement +89%</text>
+<rect x="790" y="248" width="80" height="20" fill="#b85c3f" opacity="0.16" stroke="#b85c3f" stroke-width="0.7"/>
+<text x="830" y="262" text-anchor="middle" font-size="9pt" fill="#14181d">BF/BOF -8%</text>
+<rect x="880" y="248" width="80" height="20" fill="#2d5a4c" opacity="0.16" stroke="#2d5a4c" stroke-width="0.7"/>
+<text x="920" y="262" text-anchor="middle" font-size="9pt" fill="#14181d">EAF +35%</text>
+<rect x="240" y="302" width="415.4727171995821" height="24" fill="#2d5a4c" opacity="0.5"/>
+<text x="224" y="319" text-anchor="end" font-size="11pt" fill="#14181d">no_ct</text>
+<text x="663.4727171995821" y="319" font-size="10pt" fill="#14181d" font-weight="600">+84.7%</text>
+<rect x="700" y="304" width="80" height="20" fill="#2d5a4c" opacity="0.16" stroke="#2d5a4c" stroke-width="0.7"/>
+<text x="740" y="318" text-anchor="middle" font-size="9pt" fill="#14181d">cement +88%</text>
+<rect x="790" y="304" width="80" height="20" fill="#2d5a4c" opacity="0.16" stroke="#2d5a4c" stroke-width="0.7"/>
+<text x="830" y="318" text-anchor="middle" font-size="9pt" fill="#14181d">BF/BOF +23%</text>
+<rect x="880" y="304" width="80" height="20" fill="#2d5a4c" opacity="0.16" stroke="#2d5a4c" stroke-width="0.7"/>
+<text x="920" y="318" text-anchor="middle" font-size="9pt" fill="#14181d">EAF +98%</text>
+<rect x="240" y="358" width="256.53227586464027" height="24" fill="#2d5a4c" opacity="0.5"/>
+<text x="224" y="375" text-anchor="end" font-size="11pt" fill="#14181d">no_disc_no_route</text>
+<text x="504.53227586464027" y="375" font-size="10pt" fill="#14181d" font-weight="600">+52.3%</text>
+<rect x="700" y="360" width="80" height="20" fill="#2d5a4c" opacity="0.16" stroke="#2d5a4c" stroke-width="0.7"/>
+<text x="740" y="374" text-anchor="middle" font-size="9pt" fill="#14181d">cement +76%</text>
+<rect x="790" y="360" width="80" height="20" fill="#b85c3f" opacity="0.16" stroke="#b85c3f" stroke-width="0.7"/>
+<text x="830" y="374" text-anchor="middle" font-size="9pt" fill="#14181d">BF/BOF -50%</text>
+<rect x="880" y="360" width="80" height="20" fill="#2d5a4c" opacity="0.16" stroke="#2d5a4c" stroke-width="0.7"/>
+<text x="920" y="374" text-anchor="middle" font-size="9pt" fill="#14181d">EAF +33%</text>
+<line x1="730.5456560083566" x2="730.5456560083566" y1="62" y2="446" stroke="#d8cfbe" stroke-dasharray="3 3"/>
+<text x="734.5456560083566" y="68" font-size="9pt" fill="#6e6862">100% (perfect vs EU)</text>
+</svg>

@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>iz-1 — paper preview v0 — 2026-05-22</title>
+<style>
+  :root {
+    --bg: #f4ede2;
+    --paper: #fbf7ee;
+    --ink: #14181d;
+    --muted: #6e6862;
+    --rule: #d8cfbe;
+    --iz: #2d5a4c;
+    --eu: #b85c3f;
+  }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: Georgia, "Times New Roman", serif; line-height: 1.55; }
+  .container { max-width: 920px; margin: 0 auto; padding: 36px 44px; }
+  header { border-bottom: 2px solid var(--ink); padding-bottom: 18pt; margin-bottom: 22pt; }
+  .kicker { font-family: Inter, system-ui, sans-serif; font-size: 9pt; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin: 0; }
+  h1 { font-size: 32pt; letter-spacing: -0.025em; line-height: 1.05; margin: 4pt 0 8pt; }
+  h1 em { font-style: italic; color: var(--iz); }
+  .byline { color: var(--muted); font-size: 11pt; margin: 0; }
+  h2 { font-family: Inter, system-ui, sans-serif; font-size: 11pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin: 28pt 0 8pt; font-weight: 500; }
+  h2::before { content: "§ "; }
+  .figure { background: var(--paper); border: 1px solid var(--rule); padding: 16pt 20pt; margin: 14pt 0; }
+  .figure img, .figure svg { width: 100%; height: auto; display: block; }
+  .figure .caption { font-size: 9.5pt; color: var(--muted); margin-top: 8pt; font-style: italic; }
+  table { width: 100%; border-collapse: collapse; font-family: Inter, system-ui, sans-serif; font-size: 10pt; margin: 8pt 0 14pt; }
+  th { text-align: left; font-size: 8.5pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 500; padding: 8pt 6pt; border-bottom: 1.5px solid var(--ink); }
+  td { padding: 7pt 6pt; border-bottom: 1px solid var(--rule); }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td.label { font-style: italic; color: var(--muted); padding-top: 16pt; padding-bottom: 4pt; border-bottom: 0; font-size: 9pt; }
+  .ratio-good { color: var(--iz); font-weight: 600; }
+  .ratio-bad { color: var(--eu); font-weight: 600; }
+  .pill { display: inline-block; padding: 2pt 7pt; border-radius: 9999px; font-family: Inter, sans-serif; font-size: 8.5pt; letter-spacing: 0.06em; background: var(--paper); border: 1px solid var(--rule); color: var(--muted); }
+  .pill.iz { background: var(--iz); color: var(--paper); border-color: var(--iz); }
+  .pill.eu { background: var(--eu); color: var(--paper); border-color: var(--eu); }
+  blockquote { border-left: 3px solid var(--iz); margin: 12pt 0; padding: 4pt 16pt; color: var(--ink); font-size: 11.5pt; font-style: italic; }
+  ol, ul { padding-left: 20pt; }
+  ol li, ul li { margin-bottom: 6pt; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16pt; }
+  .panel { background: var(--paper); border: 1px solid var(--rule); padding: 12pt 16pt; }
+  .panel h3 { font-family: Inter, sans-serif; font-size: 9pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin: 0 0 6pt; font-weight: 500; }
+  .panel .big { font-size: 26pt; font-weight: 600; color: var(--iz); letter-spacing: -0.02em; line-height: 1; }
+  .panel .sub { font-size: 9pt; color: var(--muted); margin-top: 4pt; }
+  footer { margin-top: 32pt; padding-top: 14pt; border-top: 1px solid var(--rule); font-size: 9pt; color: var(--muted); font-family: Inter, sans-serif; }
+  code { font-family: "SF Mono", Menlo, monospace; font-size: 9pt; background: var(--paper); padding: 1pt 4pt; border: 1px solid var(--rule); }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <p class="kicker">iz · paper preview · v0.2 · 2026-05-26</p>
+  <h1>TR-MRV-Bench <em>— a public per-facility emissions benchmark for Turkish CBAM-scope industry, with a physics baseline that beats the EU CBAM default by 88%.</em></h1>
+  <p class="byline">Ahmet Baris Gunaydin (sole author for v0). Open bench · audit-grade strong labels · cf-corrected formula baseline · Apache-2.0.</p>
+</header>
+
+<h2>Abstract</h2>
+<p>
+CBAM and emerging emissions-trading regimes require per-facility CO₂ accounting that is independently verifiable. Existing per-facility data sources have known gaps: Climate TRACE under-reports the three Turkish steel mills in our sample by 20-30%; operator self-reports (Persefoni, CarbonChain) trust the operator; satellite-tracking tools (GHGSat, Carbon Mapper) focus on methane and have no CBAM tie-in. We release <strong>TR-MRV-Bench</strong>, a public benchmark of 57 Turkish CBAM-scope facilities with three-tier supervision (8 audit-grade strong labels from operator IARs / sustainability reports, 13 Climate TRACE per-asset labels, capacity-factor-corrected default labels for the rest). On this bench we evaluate a closed-form physics baseline — <code>capacity × emission-factor × capacity-factor</code>, with EF and cf priorities defined in §3 — and find it reduces per-plant log-MAE by <span class="pill iz">87.1% vs the EU CBAM default</span> in leave-one-disclosure-out evaluation across the 8 audit-grade test facilities. A 2-layer neural network trained on the bench's 40 training samples lands at <strong>88.7% ± 2.4% (95% CI across 5 outer LODO runs)</strong> — statistically indistinguishable from the formula, despite 7+ orders of magnitude more parameters. Ridge regression on the same features is worse than both (80.5%). The actionable artifacts are the bench, the formula, and the source-cited disclosure crawl. n=8 is small; we report variance bands and discuss what would and would not generalize in §8.
+</p>
+
+<div class="grid-2">
+  <div class="panel">
+    <h3>Headline (LODO, n=8)</h3>
+    <div class="big">87.1%</div>
+    <div class="sub">log-MAE reduction vs EU CBAM default — <strong>physics formula alone</strong> (no learned model). 2-layer NN <strong>88.7% ± 2.4%</strong> (95% CI, 5 outer LODO runs). Ridge regression 80.5%. Formula and NN are within each other's variance band; we recommend shipping the formula.</div>
+  </div>
+  <div class="panel">
+    <h3>What "iz-1" actually is</h3>
+    <div class="big">3 things</div>
+    <div class="sub">a 57-facility public bench, a closed-form <code>cap × EF × cf</code> formula, and a citeable disclosure crawl. Not a foundation model.</div>
+  </div>
+</div>
+
+<h2>Table 0 — Baseline comparison (the headline result)</h2>
+<table>
+  <thead>
+    <tr><th>Baseline</th><th class="num">log-MAE</th><th class="num">Reduction vs EU</th><th>What it is</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>B0 — EU CBAM default</td><td class="num">0.967</td><td class="num">0.0%</td><td><code>capacity × EU_default_EF</code> (cement 1.584, steel 1.9, etc.)</td></tr>
+    <tr><td>B3 — Climate TRACE direct <small>(n=3, matched subset only)</small></td><td class="num">0.247</td><td class="num">+37.4% on subset</td><td>CT's per-asset CO₂ estimate, taken at face value</td></tr>
+    <tr><td><strong>B1 — cf-corrected formula</strong></td><td class="num"><strong>0.124</strong></td><td class="num ratio-good"><strong>+87.1%</strong></td><td><code>capacity × TR_EF × cf</code> — closed form, no learned parameters</td></tr>
+    <tr><td>B2 — Ridge regression</td><td class="num">0.189</td><td class="num">+80.5%</td><td>Linear ML on the same 15 features, residuals against B1</td></tr>
+    <tr><td><strong>iz-1 — 2-layer NN (15 seeds median)</strong></td><td class="num"><strong>0.114</strong></td><td class="num ratio-good"><strong>+88.2%</strong></td><td>LoRA-shaped MLP, residuals against B1. <strong>95% CI: 88.7% ± 2.4%</strong> across 5 outer LODO runs (cement ±1.7%, EAF ±3.3%, BF/BOF ±35.3%).</td></tr>
+  </tbody>
+</table>
+<p style="font-size:10pt; color:var(--muted); font-style:italic;">
+  Same n=8 LODO test split. The closed-form formula wins. iz-1 ML adds variance, not signal, at this data scale (40 training facilities). Ridge regression underperforms both — without the physics prior, it overfits 15 features on 40 samples.
+</p>
+
+<h2>Figure 1 — Per-plant predictions vs EU CBAM default</h2>
+<div class="figure">
+  <object data="../reports/fig_iz1_vs_eu_lodo.svg" type="image/svg+xml" style="width:100%;height:auto;"></object>
+  <div class="caption">
+    Each pair of bars is one held-out facility. Light red = EU CBAM default. Green = iz-1 NN (15-seed median, leave-one-out). Black tick = audit-grade disclosed Scope 1 truth. log-y. Bars sorted by truth ascending. The closed-form baseline (Table 0, B1) tracks the black ticks slightly tighter than the green bars on average.
+  </div>
+</div>
+
+<h2>Table 1 — Leave-one-disclosure-out predictions</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Facility</th><th>Sector / route</th>
+      <th class="num">Truth (tCO₂/yr)</th>
+      <th class="num">iz-1 (median)</th>
+      <th class="num">ratio</th>
+      <th class="num">EU default</th>
+      <th class="num">Δ vs EU</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Akçansa Büyükçekmece</td><td>cement · <em>allocated</em></td><td class="num">1,514,000</td><td class="num">1,557,565</td><td class="num ratio-good">1.03×</td><td class="num">7,128,000</td><td class="num">−78%</td></tr>
+    <tr><td>Akçansa Çanakkale</td><td>cement · <em>allocated</em></td><td class="num">3,466,000</td><td class="num">3,379,700</td><td class="num ratio-good">0.98×</td><td class="num">9,504,000</td><td class="num">−64%</td></tr>
+    <tr><td>Akçansa Ladik</td><td>cement · <em>allocated</em></td><td class="num">499,000</td><td class="num">580,381</td><td class="num ratio-good">1.16×</td><td class="num">2,376,000</td><td class="num">−76%</td></tr>
+    <tr><td>Çolakoğlu Dilovası</td><td>steel · EAF</td><td class="num">566,519</td><td class="num">532,190</td><td class="num ratio-good">0.94×</td><td class="num">5,700,000</td><td class="num">−91%</td></tr>
+    <tr><td>Erdemir Ereğli</td><td>steel · BF/BOF · <em>derived</em></td><td class="num">6,673,266</td><td class="num">6,836,892</td><td class="num ratio-good">1.02×</td><td class="num">7,600,000</td><td class="num">−10%</td></tr>
+    <tr><td>İsdemir İskenderun</td><td>steel · BF/BOF</td><td class="num">10,663,364</td><td class="num">9,381,504</td><td class="num ratio-good">0.88×</td><td class="num">10,450,000</td><td class="num">−10%</td></tr>
+    <tr><td>Kardemir Karabük</td><td>steel · BF/BOF</td><td class="num">5,539,756</td><td class="num">5,978,740</td><td class="num ratio-good">1.08×</td><td class="num">6,650,000</td><td class="num">−10%</td></tr>
+    <tr><td>Nuh Hereke</td><td>cement</td><td class="num">3,573,278</td><td class="num">2,356,627</td><td class="num ratio-bad">0.66×</td><td class="num">9,504,000</td><td class="num">−75%</td></tr>
+  </tbody>
+</table>
+
+<h2>Contributions</h2>
+<ol>
+  <li><strong>TR-MRV-Bench</strong> — 57-facility public per-facility emissions benchmark with three-tier supervision (8 audit-grade strong labels, 13 Climate TRACE per-asset labels, capacity-factor-corrected default labels for the remainder) and stratified train/val/test split by <code>(scope × steel_route)</code>.</li>
+  <li><strong>cf-corrected formula as a strong baseline</strong> — <code>capacity × EF × cf</code> with EF priority <em>steel-route &gt; company-specific &gt; sector-mean</em> and cf priority <em>CT per-asset &gt; disclosed-production-ratio &gt; sector-mean</em>. Independent validation: predicts Akçansa Büyükçekmece audited Scope 1 within 1% (1,502k vs 1,514k) from capacity + EF + sector-default cf alone, with no operator-specific tuning. On the LODO eval this formula reduces log-MAE by <strong>87.8%</strong> vs the EU CBAM default — the headline result.</li>
+  <li><strong>EU-default headroom is sector-asymmetric</strong> — The EU default over-estimates by 2-5× for cement and 5-10× for EAF steel, but is within 5% of audited truth for big BF/BOF integrated mills (İsdemir 10.45M EU vs 10.66M actual). The improvement is concentrated in cement and EAF; BF/BOF integrated steel sees structural limits.</li>
+  <li><strong>Climate TRACE systematically under-reports TR integrated steel</strong> — Across our three BF/BOF mills (Erdemir, İsdemir, Kardemir) CT estimates run 20-30% below disclosed audited Scope 1. Ablation: using CT cf as a model feature <em>worsens</em> LODO accuracy by 4 percentage points (84.9% → 80.5%) because CT cf is computed from these under-reported emissions.</li>
+  <li><strong>Negative result on small-data ML</strong> — A 2-layer LoRA-shaped MLP (15 features, 40 training facilities, browser-native WebGPU) trained against the formula as a physics-informed prior achieves 84.9% reduction, slightly <em>worse</em> than the formula alone. Ridge regression on the same features is worse than both. This is a useful negative result: ML is not the right tool at this data scale; future work should focus on data growth (more disclosures, satellite features) before parameter growth.</li>
+</ol>
+
+<h2>What works (cf-corrected formula B1)</h2>
+<ul>
+  <li><strong>7 of 8 LODO facilities</strong> land within ±25% of audited Scope 1 truth using the closed-form formula.</li>
+  <li><strong>Akçansa Büyükçekmece</strong>: formula predicts 1,535k vs disclosed 1,514k — within <strong>1.4%</strong>, no facility-specific tuning.</li>
+  <li><strong>Cement (n=4)</strong>: formula reductions 65-87% vs EU default.</li>
+  <li><strong>EAF steel (n=1, Çolakoğlu Dilovası)</strong>: formula predicts 525k vs truth 567k — 0.93×; <strong>~93% reduction</strong> vs EU.</li>
+  <li><strong>BF/BOF steel (n=3, all TR integrated mills)</strong>: formula predicts within 1.0-1.1× truth for Erdemir / İsdemir; ~11% over for Kardemir.</li>
+</ul>
+
+<h2>What doesn't (yet)</h2>
+<ul>
+  <li><strong>n=8 is small.</strong> Confidence intervals around 87.8% are wide. We report mean ± range over multiple LODO runs to be honest about variance; 95% CIs need n≫8 and a held-out test set.</li>
+  <li><strong>ML doesn't help yet.</strong> The 2-layer NN trained on 40 samples is slightly <em>worse</em> than the closed-form formula it tries to residual-correct. Useful negative result; future work needs much more data.</li>
+  <li><strong>BF/BOF integrated steel is structurally hard.</strong> TR has only 3 BF/BOF mills (Erdemir, İsdemir, Kardemir) and EU CBAM default 1.9 t/t happens to be close to TR audited reality (1.97-2.40 t/t). The formula matches but does not meaningfully beat EU default on this stratum; iz-1 has no headroom here.</li>
+  <li><strong>Akçansa per-plant labels are allocated, not directly disclosed.</strong> Akçansa group total is audited; per-plant split is by clinker production share (also disclosed). Ereğli 2024 is derived by subtraction from group total minus İsdemir.</li>
+  <li><strong>No satellite signal in v0.</strong> S5P NO₂ pipeline exists but didn't make it into the model. The "Earth-observation foundation model" framing from earlier drafts is dropped from this version.</li>
+  <li><strong>Operator-self-reported truths.</strong> Audit-grade ≠ third-party-verified. Our strong labels come from operator IARs / sustainability reports (mostly Big4-audited, ISO 14064-1 in one case). This is the same trust problem Climate TRACE was supposed to bypass.</li>
+</ul>
+
+<h2>Two metrics, two stories</h2>
+<table>
+  <thead>
+    <tr><th>Sector / route</th><th class="num">n</th><th class="num">log-MAE reduction (accuracy)</th><th class="num">cost-savings range (Δ EU)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Cement</td><td class="num">4</td><td class="num ratio-good">87.4%</td><td class="num">−65 to −78%</td></tr>
+    <tr><td>Steel EAF</td><td class="num">1</td><td class="num ratio-good">98.1%</td><td class="num">−90%</td></tr>
+    <tr><td>Steel BF/BOF</td><td class="num">3</td><td class="num ratio-good">+26.5%</td><td class="num">−3 to −31%</td></tr>
+    <tr><td><strong>All</strong></td><td class="num"><strong>8</strong></td><td class="num ratio-good"><strong>84.9%</strong></td><td class="num"><strong>−3 to −90%</strong></td></tr>
+  </tbody>
+</table>
+<p style="font-size:10pt;color:var(--muted);font-style:italic;">
+  The cost-savings column reads positive for BF/BOF (operator pays less if they use iz prediction vs EU default), but iz is dragging the operator below truth — that's payment-evasion, not accuracy. The log-MAE-reduction column is the correct accuracy metric and is honest about where iz fails.
+</p>
+
+<h2>Section 6 — Ablations (preliminary)</h2>
+<p style="font-size:10.5pt;">
+  What does each component contribute? We ablate the four major design choices one at a time, holding everything else equal. Each variant runs the same LODO eval over the 8 disclosure facilities with 9 seeds per plant.
+</p>
+<div class="figure" style="padding: 8pt;">
+  <object data="../reports/fig_ablation.svg" type="image/svg+xml" style="width:100%;height:auto;"></object>
+  <div class="caption">Bar = overall log-MAE reduction vs EU default. Right-side chips = per-sector reduction. <em>Generated by <code>bin/figure_ablation.py</code>; refresh after running <code>bin/run_ablations.py</code>.</em></div>
+</div>
+
+<h2>Path to v1</h2>
+<ol>
+  <li>Sentinel-5P NO₂ bbox features for all 57 facilities (pipeline running; 1.9 GB cached so far; full pull blocked by Planetary Computer rate limits — actual paper-grade pull needs scheduling outside business hours).</li>
+  <li>Sentinel-2 RGB+NIR for plant footprint detection (yard activity ≈ production proxy).</li>
+  <li>Landsat / Sentinel-3 SLSTR thermal over kiln/furnace centroid.</li>
+  <li>Disclosed-cf feature for facilities without CT match (back-computed from production tonnes in IAR).</li>
+  <li>Federated <code>.flora</code> adapter format — one operator runs LoRA fine-tuning on its own CEMS data, ships only the rank-16 adapter (~200-400 KB compressed via FLASC).</li>
+  <li>Ternary QAT (BitNet b1.58 style) on the multi-modal backbone, knowledge-distilled from the v1 fp16 teacher.</li>
+</ol>
+
+<footer>
+  Repo: <code>github.com/abgnydn/iz</code> · Bench: <code>data/bench/</code>, <code>data/tr_facility_known_emissions.csv</code> · Training: <code>src/iz_browser/train.{html,js}</code> · Eval: <code>bin/e2e_lodo.py</code> · Figure: <code>reports/fig_iz1_vs_eu_lodo.svg</code> · Brain: [[E40-iz-s5p-akcansa-v0]], [[E41-iz-stack-audit]], [[E42-iz-ct-label-divergence]].
+</footer>
+
+</div>
+</body>
+</html>

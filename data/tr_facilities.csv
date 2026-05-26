@@ -1,6 +1,6 @@
 id,company,group,plant_name,cbam_scope,city,province,lat,lon,annual_capacity_t,cn_codes,public_disclosure_url,notes
 akcansa-buyukcekmece,Akçansa,Sabancı,Büyükçekmece Cement Plant,cement,Büyükçekmece,İstanbul,41.0397,28.5587,4500000,25232100;25232900;25231000,https://www.akcansa.com.tr/en/sustainability/,CSC Gold certified; fly-ash clinker substitution; v0 demo target
-akcansa-canakkale,Akçansa,Sabancı,Çanakkale Cement Plant,cement,Lapseki,Çanakkale,40.3450,26.6800,4500000,25232100;25232900;25231000,https://www.akcansa.com.tr/en/sustainability/,Coastal EU-shipping; CDP disclosure
+akcansa-canakkale,Akçansa,Sabancı,Çanakkale Cement Plant,cement,Lapseki,Çanakkale,40.3450,26.6800,6000000,25232100;25232900;25231000,https://www.akcansa.com.tr/en/sustainability/,Largest Akçansa plant (5.5M t cement output 2025 per IAR p167)
 akcansa-ladik,Akçansa,Sabancı,Ladik Cement Plant,cement,Ladik,Samsun,40.9200,36.0700,1500000,25232900,https://www.akcansa.com.tr/en/sustainability/,Inland
 cimsa-mersin,Çimsa,Sabancı,Mersin Cement Plant,cement,Mersin,Mersin,36.8300,34.6600,2400000,25232100;25232900,https://www.cimsa.com.tr/en/sustainability,Largest white cement plant in Europe; coastal EU-export
 cimsa-eskisehir,Çimsa,Sabancı,Eskişehir Cement Plant,cement,Eskişehir,Eskişehir,39.7800,30.5200,1500000,25232900,https://www.cimsa.com.tr/en/sustainability,
@@ -31,7 +31,7 @@ cimko-adiyaman,Çimko,Eren Holding,Adıyaman Cement Plant,cement,Adıyaman,Adıy
 denizli-cimento,Denizli Çimento,—,Denizli Cement Plant,cement,Denizli,Denizli,37.7800,29.0900,2500000,25232900,https://www.denizlicimento.com.tr,
 bolu-cimento,Bolu Çimento,OYAK,Bolu Cement Plant 2,cement,Bolu,Bolu,40.7300,31.5900,2500000,25232900,https://www.bolucimento.com.tr,
 goltas-isparta,Göltaş Çimento,—,Isparta Cement Plant,cement,Isparta,Isparta,37.7600,30.5500,2000000,25232900,https://www.goltas.com.tr,
-erdemir-eregli,Erdemir,OYAK,Karadeniz Ereğli Integrated Works,steel,Karadeniz Ereğli,Zonguldak,41.2800,31.4000,6000000,7208;7210;7225,https://www.erdemir.com.tr/en/sustainability,BF/BOF integrated; biggest TR steel exporter
+erdemir-eregli,Erdemir,OYAK,Karadeniz Ereğli Integrated Works,steel,Karadeniz Ereğli,Zonguldak,41.2800,31.4000,4000000,7208;7210;7225,https://www.erdemir.com.tr/en/sustainability,BF/BOF integrated; biggest TR flat-steel mill; 4M t crude steel capacity (corrected 2026-05-26)
 isdemir-iskenderun,İsdemir,OYAK,İskenderun Integrated Works,steel,İskenderun,Hatay,36.7800,36.1800,5500000,7208;7210;7227;7228,https://www.isdemir.com.tr,BF/BOF; Erdemir group
 tosyali-osmaniye,Tosyalı,Tosyalı Holding,Osmaniye DRI-EAF,steel,Osmaniye,Osmaniye,37.0700,36.2700,3500000,7207;7213;7214;7228,https://www.tosyali.com.tr/sustainability,DRI-EAF route; low-carbon story
 tosyali-iskenderun,Tosyalı,Tosyalı Holding,İskenderun EAF Mill,steel,Sarıseki,Hatay,36.6100,36.1600,3000000,7213;7214;7228,https://www.tosyali.com.tr/sustainability,EAF

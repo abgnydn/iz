@@ -1,0 +1,122 @@
+[
+  {
+    "facility_id": "akcansa-buyukcekmece",
+    "truth": 1514000.0,
+    "pred_median": 1557565.0,
+    "eu_default": 7128000.0,
+    "n_runs": 5,
+    "preds_all": [
+      1557565.0,
+      1575108.0,
+      1553317.0,
+      1540147.0,
+      1561396.0
+    ],
+    "ratio_median": 1.0287747688243065
+  },
+  {
+    "facility_id": "akcansa-canakkale",
+    "truth": 3466000.0,
+    "pred_median": 3379700.0,
+    "eu_default": 9504000.0,
+    "n_runs": 5,
+    "preds_all": [
+      3337584.0,
+      3551203.0,
+      3512510.0,
+      3379700.0,
+      3195737.0
+    ],
+    "ratio_median": 0.9751009809578766
+  },
+  {
+    "facility_id": "akcansa-ladik",
+    "truth": 499000.0,
+    "pred_median": 580381.0,
+    "eu_default": 2376000.0,
+    "n_runs": 5,
+    "preds_all": [
+      575988.0,
+      562920.0,
+      590151.0,
+      581197.0,
+      580381.0
+    ],
+    "ratio_median": 1.1630881763527054
+  },
+  {
+    "facility_id": "colakoglu-gebze",
+    "truth": 566519.0,
+    "pred_median": 532190.0,
+    "eu_default": 5700000.0,
+    "n_runs": 5,
+    "preds_all": [
+      533032.0,
+      532190.0,
+      512103.0,
+      534335.0,
+      524461.0
+    ],
+    "ratio_median": 0.939403621061253
+  },
+  {
+    "facility_id": "erdemir-eregli",
+    "truth": 6673266.0,
+    "pred_median": 6836892.0,
+    "eu_default": 7600000.0,
+    "n_runs": 5,
+    "preds_all": [
+      6576280.0,
+      6836892.0,
+      7916063.0,
+      7665022.0,
+      6569961.0
+    ],
+    "ratio_median": 1.0245196280202227
+  },
+  {
+    "facility_id": "isdemir-iskenderun",
+    "truth": 10663364.0,
+    "pred_median": 9381504.0,
+    "eu_default": 10450000.0,
+    "n_runs": 5,
+    "preds_all": [
+      9748078.0,
+      9768925.0,
+      8760549.0,
+      9381504.0,
+      9352917.0
+    ],
+    "ratio_median": 0.8797884044847386
+  },
+  {
+    "facility_id": "kardemir-karabuk",
+    "truth": 5539756.0,
+    "pred_median": 5978740.0,
+    "eu_default": 6650000.0,
+    "n_runs": 5,
+    "preds_all": [
+      5491090.0,
+      5978740.0,
+      6259550.0,
+      6750035.0,
+      5112483.0
+    ],
+    "ratio_median": 1.0792424792716502
+  },
+  {
+    "facility_id": "nuh-hereke",
+    "truth": 3573278.0,
+    "pred_median": 2356627.0,
+    "eu_default": 9504000.0,
+    "n_runs": 5,
+    "preds_all": [
+      2488942.0,
+      2479844.0,
+      2299368.0,
+      2356627.0,
+      2203601.0
+    ],
+    "ratio_median": 0.6595140372509499
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "facility_id": "akcansa-buyukcekmece",
+    "truth": 1514000.0,
+    "B0_eu_default": 7128000.0,
+    "B1_cf_formula": 1535103.0000000002,
+    "B2_ridge": 1855714.6539938385
+  },
+  {
+    "facility_id": "akcansa-canakkale",
+    "truth": 3466000.0,
+    "B0_eu_default": 9504000.0,
+    "B1_cf_formula": 3339714.0,
+    "B2_ridge": 3945976.6712171086
+  },
+  {
+    "facility_id": "akcansa-ladik",
+    "truth": 499000.0,
+    "B0_eu_default": 2376000.0,
+    "B1_cf_formula": 615498.0,
+    "B2_ridge": 632870.1891723358
+  },
+  {
+    "facility_id": "colakoglu-gebze",
+    "truth": 566519.0,
+    "B0_eu_default": 5700000.0,
+    "B1_cf_formula": 525000.0,
+    "B2_ridge": 623198.2493670911
+  },
+  {
+    "facility_id": "erdemir-eregli",
+    "truth": 6673266.0,
+    "B0_eu_default": 7600000.0,
+    "B1_cf_formula": 6688000.0,
+    "B2_ridge": 8271845.791165602
+  },
+  {
+    "facility_id": "isdemir-iskenderun",
+    "truth": 10663364.0,
+    "B0_eu_default": 10450000.0,
+    "B1_cf_formula": 10802000.0,
+    "B2_ridge": 8426005.726246255
+  },
+  {
+    "facility_id": "kardemir-karabuk",
+    "truth": 5539756.0,
+    "B0_eu_default": 6650000.0,
+    "B1_cf_formula": 4900000.0,
+    "B2_ridge": 6823317.577599016
+  },
+  {
+    "facility_id": "nuh-hereke",
+    "truth": 3573278.0,
+    "B0_eu_default": 9504000.0,
+    "B1_cf_formula": 2121900.0,
+    "B2_ridge": 2962403.7090321067
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "facility_id": "akcansa-buyukcekmece",
+    "truth": 1514000.0,
+    "pred_median": 1561396.0,
+    "eu_default": 7128000.0,
+    "ratio_median": 1.0313051519154557
+  },
+  {
+    "facility_id": "akcansa-canakkale",
+    "truth": 3466000.0,
+    "pred_median": 3195737.0,
+    "eu_default": 9504000.0,
+    "ratio_median": 0.9220245239469129
+  },
+  {
+    "facility_id": "akcansa-ladik",
+    "truth": 499000.0,
+    "pred_median": 580381.0,
+    "eu_default": 2376000.0,
+    "ratio_median": 1.1630881763527054
+  },
+  {
+    "facility_id": "colakoglu-gebze",
+    "truth": 566519.0,
+    "pred_median": 524461.0,
+    "eu_default": 5700000.0,
+    "ratio_median": 0.9257606540998625
+  },
+  {
+    "facility_id": "erdemir-eregli",
+    "truth": 6673266.0,
+    "pred_median": 6569961.0,
+    "eu_default": 7600000.0,
+    "ratio_median": 0.9845195740736246
+  },
+  {
+    "facility_id": "isdemir-iskenderun",
+    "truth": 10663364.0,
+    "pred_median": 9352917.0,
+    "eu_default": 10450000.0,
+    "ratio_median": 0.877107543173055
+  },
+  {
+    "facility_id": "kardemir-karabuk",
+    "truth": 5539756.0,
+    "pred_median": 5112483.0,
+    "eu_default": 6650000.0,
+    "ratio_median": 0.9228715127525472
+  },
+  {
+    "facility_id": "nuh-hereke",
+    "truth": 3573278.0,
+    "pred_median": 2203601.0,
+    "eu_default": 9504000.0,
+    "ratio_median": 0.6166889338025197
+  }
+]

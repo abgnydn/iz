@@ -1,22 +1,22 @@
-# iz-1 — paper outline
+# TR-MRV-Bench — paper outline
 
-*Working draft. Target: arXiv preprint within 7-10 days of Pass-1 results clearing the EU-default bar by ≥30%.*
+*Working draft v0.2 (2026-05-26). Tightened from earlier "foundation model" framing after baseline analysis showed the closed-form formula outperforms the learned model.*
 
 ## Title (working)
 
-**iz-1: A ternary multi-modal Earth-observation foundation model for per-facility industrial emissions verification, with browser-native federated fine-tuning**
+**TR-MRV-Bench: A public per-facility emissions benchmark for Turkish CBAM-scope industry, with a physics baseline that beats the EU CBAM default by 87%**
 
-## Abstract (~200 words target)
+## Abstract (~200 words)
 
-CBAM and emerging emissions-trading regimes require per-facility CO₂ accounting that is independently verifiable, defensible, and cheap to scale. Existing approaches either trust operator self-reports (CarbonChain, Persefoni), produce country-level aggregates that miss the facility scale (Climate TRACE), or rely on commercial methane-specialized satellites with no CBAM tie-in (GHGSat, Carbon Mapper). We introduce **iz-1**, the first ternary multi-modal Earth-observation foundation model for industrial emissions. iz-1 is a 100M-parameter ViT fine-tuned from Prithvi-EO-2.0 on TR-MRV-Bench, a new public benchmark of 57 Turkish CBAM-scope facilities with verified CDP / sustainability-disclosure labels and Climate TRACE weak supervision. We ternary-quantize iz-1 using a knowledge-distillation extension of ViT-1.58b's QAT recipe, yielding a 20 MB model that runs at native speed in any browser via WebGPU. Per-facility fine-tuning uses federated `.flora` adapters: operators train locally on their CEMS data without ever exchanging raw data or gradients (via FLASC-pruned LoRA or gradient-free ES). Across our test split, iz-1 reduces per-plant CO₂ MAE by [TBD]% relative to the EU CBAM default. iz-1, the benchmark, and the deployment code are released under Apache-2.0.
+CBAM and emerging emissions-trading regimes require per-facility CO₂ accounting that is independently verifiable. Existing per-facility data sources have known gaps: Climate TRACE under-reports the three Turkish steel mills in our sample by 20-30%; operator self-reports trust the operator; satellite tools (GHGSat, Carbon Mapper) focus on methane with no CBAM tie-in. We release **TR-MRV-Bench**, a public benchmark of 57 Turkish CBAM-scope facilities with three-tier supervision (8 audit-grade strong labels from operator IARs / sustainability reports, 13 Climate TRACE per-asset labels, capacity-factor-corrected default labels for the rest). On this bench we evaluate a closed-form physics baseline — `capacity × emission-factor × capacity-factor`, with EF and cf priorities defined in §3 — and find it reduces per-plant log-MAE by **87.1% vs the EU CBAM default** in leave-one-disclosure-out evaluation across the 8 audit-grade test facilities. A 2-layer neural network trained on the bench's 40 training samples reaches **88.7% ± 2.4% (95% CI across 5 outer LODO runs)**, statistically indistinguishable from the formula despite many more parameters; ridge regression on the same features is worse than both (80.5%). The actionable artifacts are the bench, the formula, and the source-cited disclosure crawl. The improvement is sector-asymmetric: cement (88.1% ± 1.7%) and EAF steel (98.3% ± 3.3%) see clean wins; BF/BOF integrated steel (29.8% ± 35.3%) has wide variance because the EU default value (1.9 t/t crude steel) is already within 2-20% of TR audited reality. n=8 is small and we are explicit about that in §8. The bench and code are released under Apache-2.0.
 
-## Five contributions (paper sections)
+## Contributions (paper sections)
 
-1. **The TR-MRV-Bench benchmark.** Public per-facility emissions benchmark with hand-curated strong labels + Climate TRACE weak supervision; train/val/test split by facility for OOD generalization.
-2. **Ternary multi-modal EO foundation model.** First application of BitNet-style QAT to a geospatial foundation model. Knowledge distillation from full-precision Prithvi-EO teacher.
-3. **Browser-native deployment via Transformers.js + custom WGSL.** First in-browser per-facility climate ML.
-4. **Federated `.flora` multi-layer adapter format.** FLASC-pruned, ~200-400 KB per facility, communication-efficient.
-5. **Gradient-free federated fine-tuning protocol.** Operator-side ES — fitness scalars only leave the operator's network. No gradients, no adapters, no raw data shared. Privacy-preserving by construction.
+1. **TR-MRV-Bench (§4).** Public per-facility emissions benchmark with three-tier supervision (audit-grade / Climate TRACE / cf-corrected default), provenance-tagged labels (direct / allocated / derived), and stratified train/val/test split by `(scope × steel_route)`.
+2. **cf-corrected formula baseline (§3, §5).** Closed-form `cap × EF × cf` with explicit EF and cf priority rules. 87.1% log-MAE reduction vs EU default on LODO — and slightly outperforms our learned model. Independent validation: predicts Akçansa Büyükçekmece within 1% of audited Scope 1 with no facility-specific tuning.
+3. **EU CBAM default is sector-asymmetric (§5.1).** The default over-estimates cement by 2-5× and EAF steel by 5-10×, but is within 5% of audited reality for big BF/BOF integrated mills. iz-1's value proposition is concentrated in cement and EAF.
+4. **Climate TRACE under-reports TR integrated steel (§5.2).** Verified across 3 mills (İsdemir −22%, Kardemir −27%, Erdemir Ereğli-derived −22%). Adding CT cf as a model feature worsens LODO accuracy by ~4 percentage points.
+5. **Negative result on small-data ML (§6).** A LoRA-shaped MLP and a ridge regression both underperform the closed-form physics formula at n=40 training samples. Ablations isolate component contributions (route +15.6pp, prior +7.7pp, disclosed-cf +5.7pp, CT features −4.4pp). Implication: future work should focus on data growth (more disclosures, satellite features) before parameter growth.
 
 ## Sections
 
@@ -93,11 +93,27 @@ CBAM and emerging emissions-trading regimes require per-facility CO₂ accountin
 - The provenance receipt as a primitive (cryptographic signing planned)
 - Why open methodology is the actual moat for climate measurement
 
-### 8. Limitations
-- L2 NO₂ is a combustion proxy, not direct CO₂; per-plant conversion still has factor-of-2 uncertainty without operator data
-- 57 facilities is too few to draw global conclusions — TR-MRV-Bench is a starting point
-- We don't yet handle plant outages, retrofits, fuel switches — these need news/filings ingestion
-- Verifier accreditation is a 12-18 month process; iz-1 v0 is research-grade, not audit-grade
+### 8. Limitations (honest version)
+
+**Statistical:**
+- **n=8 audit-grade test facilities is small.** Confidence intervals around the 87.1% headline are wide; we report mean ± 2σ across N outer LODO runs (see `reports/lodo_ci.json`) but the right answer for tight CIs needs n≫8.
+- **No held-out year.** All labels are in a single window (mostly 2022-2025). Split is by facility, not by time. We cannot claim temporal generalization.
+- **BF/BOF stratum has n=3 globally** (Erdemir, İsdemir, Kardemir — the only TR integrated mills). LODO over n=3 is trivially "predict from the other 2"; not a real generalization test on this stratum.
+
+**Methodological:**
+- **Operator-self-reported truths.** Audit-grade ≠ third-party-verified. Disclosures come from operator IARs / sustainability reports — mostly Big4-audited, one ISO 14064-1 verified — but this is the same trust problem Climate TRACE was meant to bypass.
+- **The formula beats the model.** Our learned NN at n=40 train samples produces slightly worse predictions than the closed-form formula it tries to residual-correct. The deliverable is the formula and the bench, not the model. Future work should target data scale before parameter scale.
+- **The Climate TRACE under-reporting claim is sample-size 3.** We see CT under-report İsdemir −22%, Kardemir −27%, Erdemir-derived −22% on the three TR BF/BOF mills. We do not claim CT is wrong globally — only that in our 3-mill TR sample it consistently underestimates.
+
+**Data:**
+- **Akçansa per-plant labels are allocated from group total**, not directly disclosed per-plant. Group total is audited (5,484,015 tCO₂e from 2025 IAR p46); per-plant split is by disclosed clinker production share (p167). Erdemir Ereğli 2024 = Group 17.34M − İsdemir 10.66M; derived by subtraction.
+- **Some capacities in `tr_facilities.csv` were corrected mid-development** (Çanakkale 4.5M → 6M; Erdemir Ereğli 6M → 4M). We don't claim every other capacity is perfectly verified.
+- **The Tosyalı Holding 425k 2022 Scope 1 is implausibly low** for a ~3M t/yr EAF operator and we flag it as `provenance=disputed` in the bench. It is not used as supervision for the headline metric (Tosyalı facilities are not in the disclosure LODO set).
+- **No satellite signal in v0.** S5P NO₂ pipeline exists but is rate-limited by Microsoft Planetary Computer; full 57-facility pull blocked at ~1.9 GB cached. We dropped the "Earth-observation foundation model" framing from earlier drafts to match what we actually shipped.
+
+**Scope:**
+- **Turkey-only.** The bench is Turkish CBAM-scope facilities. The methodology should port to other countries but we have not demonstrated this.
+- **No verifier-accreditation pathway in v0.** Audit-grade is research-grade, not regulator-acceptable. Production deployment for actual CBAM submission needs a 12-18 month accreditation process we have not started.
 
 ### 9. Conclusion + future work
 

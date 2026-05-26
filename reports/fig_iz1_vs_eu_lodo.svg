@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 560" style="font-family:Georgia,serif;background:#fbf7ee">
+<rect x="0" y="0" width="1100" height="560" fill="#fbf7ee"/>
+<text x="230" y="36" fill="#14181d" font-size="22pt" font-weight="600" letter-spacing="-0.02em">iz-1 per-plant CO₂ vs the EU CBAM default</text>
+<text x="230" y="62" fill="#6e6862" font-size="11pt" font-style="italic">Leave-one-disclosure-out · 7 audit-grade Turkish facilities · 15 seeds per plant · log-MAE reduction 88.2% vs EU default</text>
+<line x1="230" x2="1040" y1="470.0" y2="470.0" stroke="#d8cfbe" stroke-width="0.5"/>
+<text x="218" y="474.0" text-anchor="end" font-size="9pt" fill="#6e6862">100k</text>
+<line x1="230" x2="1040" y1="343.33333333333337" y2="343.33333333333337" stroke="#d8cfbe" stroke-width="0.5"/>
+<text x="218" y="347.33333333333337" text-anchor="end" font-size="9pt" fill="#6e6862">1M</text>
+<line x1="230" x2="1040" y1="216.66666666666669" y2="216.66666666666669" stroke="#d8cfbe" stroke-width="0.5"/>
+<text x="218" y="220.66666666666669" text-anchor="end" font-size="9pt" fill="#6e6862">10M</text>
+<line x1="230" x2="1040" y1="90.0" y2="90.0" stroke="#d8cfbe" stroke-width="0.5"/>
+<text x="218" y="94.0" text-anchor="end" font-size="9pt" fill="#6e6862">10^8</text>
+<text x="180" y="280.0" transform="rotate(-90 180 280.0)" text-anchor="middle" font-size="10pt" fill="#6e6862" letter-spacing="0.12em">tCO₂ / yr (log)</text>
+<rect x="237.59375" y="295.7261180675069" width="86.0625" height="174.2738819324931" fill="#b85c3f" opacity="0.18"/>
+<rect x="237.59375" y="373.26299638304147" width="86.0625" height="96.73700361695853" fill="#2d5a4c" opacity="0.55"/>
+<line x1="231.59375" x2="329.65625" y1="381.5739308877039" y2="381.5739308877039" stroke="#14181d" stroke-width="2"/>
+<text x="280.625" y="488" text-anchor="end" font-size="8.5pt" fill="#14181d" transform="rotate(-32 280.625 488)">akcansa-ladik</text>
+<text x="280.625" y="367.26299638304147" text-anchor="middle" font-size="8pt" fill="#2d5a4c" font-weight="600">1.16×</text>
+<rect x="338.84375" y="247.5891849481511" width="86.0625" height="222.4108150518489" fill="#b85c3f" opacity="0.18"/>
+<rect x="338.84375" y="378.0315500949897" width="86.0625" height="91.96844990501029" fill="#2d5a4c" opacity="0.55"/>
+<line x1="332.84375" x2="430.90625" y1="374.5928325488168" y2="374.5928325488168" stroke="#14181d" stroke-width="2"/>
+<text x="381.875" y="488" text-anchor="end" font-size="8.5pt" fill="#14181d" transform="rotate(-32 381.875 488)">colakoglu-gebze</text>
+<text x="381.875" y="372.0315500949897" text-anchor="middle" font-size="8pt" fill="#2d5a4c" font-weight="600">0.94×</text>
+<rect x="440.09375" y="235.29075913634964" width="86.0625" height="234.70924086365036" fill="#b85c3f" opacity="0.18"/>
+<rect x="440.09375" y="318.95681725037036" width="86.0625" height="151.04318274962964" fill="#2d5a4c" opacity="0.55"/>
+<line x1="434.09375" x2="532.15625" y1="320.51738914588657" y2="320.51738914588657" stroke="#14181d" stroke-width="2"/>
+<text x="483.125" y="488" text-anchor="end" font-size="8.5pt" fill="#14181d" transform="rotate(-32 483.125 488)">akcansa-buyukcekmece</text>
+<text x="483.125" y="312.95681725037036" text-anchor="middle" font-size="8pt" fill="#2d5a4c" font-weight="600">1.03×</text>
+<rect x="541.34375" y="219.46518583263165" width="86.0625" height="250.53481416736835" fill="#b85c3f" opacity="0.18"/>
+<rect x="541.34375" y="276.34210078221076" width="86.0625" height="193.65789921778924" fill="#2d5a4c" opacity="0.55"/>
+<line x1="535.34375" x2="633.40625" y1="274.9550492721329" y2="274.9550492721329" stroke="#14181d" stroke-width="2"/>
+<text x="584.375" y="488" text-anchor="end" font-size="8.5pt" fill="#14181d" transform="rotate(-32 584.375 488)">akcansa-canakkale</text>
+<text x="584.375" y="270.34210078221076" text-anchor="middle" font-size="8pt" fill="#2d5a4c" font-weight="600">0.98×</text>
+<rect x="642.59375" y="219.46518583263165" width="86.0625" height="250.53481416736835" fill="#b85c3f" opacity="0.18"/>
+<rect x="642.59375" y="296.1764924462445" width="86.0625" height="173.82350755375552" fill="#2d5a4c" opacity="0.55"/>
+<line x1="636.59375" x2="734.65625" y1="273.2782046363428" y2="273.2782046363428" stroke="#14181d" stroke-width="2"/>
+<text x="685.625" y="488" text-anchor="end" font-size="8.5pt" fill="#14181d" transform="rotate(-32 685.625 488)">nuh-hereke</text>
+<text x="685.625" y="290.1764924462445" text-anchor="middle" font-size="8pt" fill="#2d5a4c" font-weight="600">0.66×</text>
+<rect x="743.84375" y="239.10925826160675" width="86.0625" height="230.89074173839325" fill="#b85c3f" opacity="0.18"/>
+<rect x="743.84375" y="244.96277545220136" width="86.0625" height="225.03722454779864" fill="#2d5a4c" opacity="0.55"/>
+<line x1="737.84375" x2="835.90625" y1="249.15785270546695" y2="249.15785270546695" stroke="#14181d" stroke-width="2"/>
+<text x="786.875" y="488" text-anchor="end" font-size="8.5pt" fill="#14181d" transform="rotate(-32 786.875 488)">kardemir-karabuk</text>
+<text x="786.875" y="238.96277545220136" text-anchor="middle" font-size="8pt" fill="#2d5a4c" font-weight="600">1.08×</text>
+<rect x="845.09375" y="231.7636116444331" width="86.0625" height="238.2363883555669" fill="#b85c3f" opacity="0.18"/>
+<rect x="845.09375" y="237.5845621896163" width="86.0625" height="232.4154378103837" fill="#2d5a4c" opacity="0.55"/>
+<line x1="839.09375" x2="937.15625" y1="238.91713138816098" y2="238.91713138816098" stroke="#14181d" stroke-width="2"/>
+<text x="888.125" y="488" text-anchor="end" font-size="8.5pt" fill="#14181d" transform="rotate(-32 888.125 488)">erdemir-eregli</text>
+<text x="888.125" y="231.5845621896163" text-anchor="middle" font-size="8pt" fill="#2d5a4c" font-weight="600">1.02×</text>
+<rect x="946.34375" y="214.24526987670407" width="86.0625" height="255.75473012329593" fill="#b85c3f" opacity="0.18"/>
+<rect x="946.34375" y="220.17882071059762" width="86.0625" height="249.82117928940238" fill="#2d5a4c" opacity="0.55"/>
+<line x1="940.34375" x2="1038.40625" y1="213.1333969823849" y2="213.1333969823849" stroke="#14181d" stroke-width="2"/>
+<text x="989.375" y="488" text-anchor="end" font-size="8.5pt" fill="#14181d" transform="rotate(-32 989.375 488)">isdemir-iskenderun</text>
+<text x="989.375" y="214.17882071059762" text-anchor="middle" font-size="8pt" fill="#2d5a4c" font-weight="600">0.88×</text>
+<rect x="238" y="94" width="14" height="14" fill="#b85c3f" opacity="0.18"/>
+<text x="260" y="104" font-size="10pt" fill="#14181d">EU CBAM default (capacity × default EF)</text>
+<rect x="238" y="114" width="14" height="14" fill="#2d5a4c" opacity="0.55"/>
+<text x="260" y="124" font-size="10pt" fill="#14181d">iz-1 prediction (median of 3 seeds)</text>
+<line x1="238" x2="252" y1="141" y2="141" stroke="#14181d" stroke-width="2"/>
+<text x="260" y="144" font-size="10pt" fill="#14181d">Disclosed truth (Scope 1 from IAR / sustainability report)</text>
+<rect x="760" y="96" width="280" height="74" fill="#fbf7ee" stroke="#d8cfbe"/>
+<text x="772" y="118" font-size="9pt" letter-spacing="0.16em" fill="#6e6862" text-transform="uppercase">PER-PLANT LOG-MAE</text>
+<text x="772" y="140" font-size="14pt" fill="#14181d"><tspan font-weight="600" fill="#2d5a4c">iz-1</tspan> 0.114   |   <tspan fill="#b85c3f">EU</tspan> 0.967</text>
+<text x="772" y="160" font-size="13pt" fill="#2d5a4c" font-weight="600">88.2% reduction</text>
+</svg>

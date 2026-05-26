@@ -54,14 +54,15 @@ async function loadShaders() {
 }
 
 // --- buffer helpers -----------------------------------------------------
+// WebGPU buffer sizes must be a multiple of 4 (and ≥ 16 for storage).
 function bufStorage(sizeBytes, label) {
-  return device.createBuffer({ size: Math.max(sizeBytes, 16), usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST | GPUBufferUsage.COPY_SRC, label });
+  return device.createBuffer({ size: Math.max(pad4Bytes(sizeBytes), 16), usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST | GPUBufferUsage.COPY_SRC, label });
 }
 function bufUniform(sizeBytes, label) {
-  return device.createBuffer({ size: Math.max(sizeBytes, 16), usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST, label });
+  return device.createBuffer({ size: Math.max(pad4Bytes(sizeBytes), 16), usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST, label });
 }
 function bufRead(sizeBytes, label) {
-  return device.createBuffer({ size: Math.max(sizeBytes, 16), usage: GPUBufferUsage.MAP_READ | GPUBufferUsage.COPY_DST, label });
+  return device.createBuffer({ size: Math.max(pad4Bytes(sizeBytes), 16), usage: GPUBufferUsage.MAP_READ | GPUBufferUsage.COPY_DST, label });
 }
 
 function f32ToF16Bits(v) {
@@ -85,15 +86,21 @@ function f16BitsToF32(h) {
   else                 f = (1 + mant / 1024) * Math.pow(2, exp - 15);
   return sign ? -f : f;
 }
+// WebGPU requires writeBuffer and copyBufferToBuffer sizes to be multiples of
+// 4 bytes. Our buffers are all over the place (D=7 → 14 bytes, M=1 → 2 bytes),
+// so every f16-payload helper pads up to the next 4-byte boundary.
+function pad2(n) { return n + (n & 1); }  // round Uint16 length up to even
+function pad4Bytes(n) { return (n + 3) & ~3; }
 function toF16Buffer(arr) {
-  const u = new Uint16Array(arr.length);
+  const u = new Uint16Array(pad2(arr.length));
   for (let i = 0; i < arr.length; i++) u[i] = f32ToF16Bits(arr[i]);
   return u;
 }
 async function readF16Buffer(buf, n) {
-  const stage = bufRead(n * 2, "stage");
+  const bytes = pad4Bytes(n * 2);
+  const stage = bufRead(bytes, "stage");
   const enc = device.createCommandEncoder();
-  enc.copyBufferToBuffer(buf, 0, stage, 0, n * 2);
+  enc.copyBufferToBuffer(buf, 0, stage, 0, bytes);
   queue.submit([enc.finish()]);
   await stage.mapAsync(GPUMapMode.READ);
   const view = new Uint16Array(stage.getMappedRange().slice(0));
@@ -117,16 +124,22 @@ async function loadBench() {
 
 // --- training -----------------------------------------------------------
 class IzModel {
-  constructor(D, R, M) {
+  constructor(D, R, M, yMeanBias = 0) {
     this.D = D; this.R = R; this.M = M;
-    // Init A ~ N(0, 1/R), B = 0
-    const stdA = 1 / R;
-    const A = new Float32Array(R * D);
-    for (let i = 0; i < A.length; i++) {
+    this.yMeanBias = yMeanBias;   // target offset — model learns deviation from mean
+    // From-scratch (no frozen base) — init BOTH A and B as small Gaussian so
+    // gradient flows on step 0. Standard LoRA-on-frozen-base zero-init for B
+    // would freeze A's gradient because dL/dtemp = dy * B = 0.
+    const stdA = 1 / Math.sqrt(D);
+    const stdB = 1 / Math.sqrt(R);
+    const rng = () => {
       const u = Math.max(1e-9, Math.random()), v = Math.max(1e-9, Math.random());
-      A[i] = Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v) * stdA;
-    }
+      return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+    };
+    const A = new Float32Array(R * D);
+    for (let i = 0; i < A.length; i++) A[i] = rng() * stdA;
     const B = new Float32Array(M * R);
+    for (let i = 0; i < B.length; i++) B[i] = rng() * stdB;
     this.A = bufStorage(R * D * 2, "A"); queue.writeBuffer(this.A, 0, toF16Buffer(A));
     this.B = bufStorage(M * R * 2, "B"); queue.writeBuffer(this.B, 0, toF16Buffer(B));
     this.dA = bufStorage(R * D * 2, "dA");
@@ -161,7 +174,7 @@ class IzModel {
   }
 
   zero(buf, sizeBytes) {
-    queue.writeBuffer(buf, 0, new Uint8Array(sizeBytes));
+    queue.writeBuffer(buf, 0, new Uint8Array(pad4Bytes(sizeBytes)));
   }
 
   forward(xArr) {
@@ -252,7 +265,7 @@ class IzModel {
   async predict(xArr) {
     this.forward(xArr);
     const y = await readF16Buffer(this.y, this.M);
-    return y[0];
+    return y[0] + this.yMeanBias;
   }
 }
 
@@ -298,10 +311,23 @@ async function train() {
   const train = bench.samples.filter(s => s.split === "train");
   const val = bench.samples.filter(s => s.split === "val");
   if (train.length === 0) { status("no train samples"); return; }
-  status(`begin training: R=${R} lr=${lr} epochs=${epochs} batch=${batch} D=${D}`);
 
-  const model = new IzModel(D, R, M);
+  // Physics-informed target: subtract per-sample y_prior_log (cap × EF × cf
+  // formula in log space) so the model learns residuals against the prior.
+  // Falls back to yMean if y_prior_log is missing on a sample.
+  const yMean = train.reduce((a, s) => a + s.y_log, 0) / train.length;
+  const usePrior = train.every(s => typeof s.y_prior_log === "number" && isFinite(s.y_prior_log));
+  status(`begin training: R=${R} lr=${lr} epochs=${epochs} batch=${batch} D=${D}  ${usePrior ? "per-sample prior" : `yMean=${yMean.toFixed(2)}`}`);
+
+  // Model uses 0 bias when per-sample prior is active; bias added at predict time.
+  const model = new IzModel(D, R, M, usePrior ? 0 : yMean);
   lossHistory.train.length = 0; lossHistory.val.length = 0;
+
+  // Best-checkpoint tracking — guards against late-training gradient spikes.
+  let bestVL = Infinity;
+  let bestA = null;
+  let bestB = null;
+  let bestEp = 0;
 
   $("train-btn").disabled = true;
   const t0 = performance.now();
@@ -315,9 +341,11 @@ async function train() {
       const s = train[i];
       const x = norm(s.feat);
       model.forward(x);
-      // synchronous CPU loss + dY
-      const yhat = (await readF16Buffer(model.y, 1))[0];
-      const err = yhat - s.y_log;
+      const yhatRaw = (await readF16Buffer(model.y, 1))[0];
+      // Residual target: y_log − per-sample prior (physics-informed) or yMean fallback.
+      const bias = usePrior ? s.y_prior_log : yMean;
+      const target = s.y_log - bias;
+      const err = yhatRaw - target;
       const loss = 0.5 * err * err * s.w;
       losses.push(loss);
       await model.stepBackward(err * s.w, lr, 0.9, 0.999, 1e-8);
@@ -325,11 +353,13 @@ async function train() {
     const trL = losses.reduce((a, b) => a + b, 0) / losses.length;
     lossHistory.train.push(trL);
 
-    // val pass
+    // val pass — predict() returns yhatRaw + model.yMeanBias; if usePrior, add
+    // per-sample prior on top instead.
     let vMae = 0; let vn = 0;
     for (const s of val) {
       const yhat = await model.predict(norm(s.feat));
-      vMae += Math.abs(yhat - s.y_log); vn++;
+      const yhatFinal = usePrior ? yhat + s.y_prior_log : yhat;
+      vMae += Math.abs(yhatFinal - s.y_log); vn++;
     }
     const vL = vn ? vMae / vn : NaN;
     lossHistory.val.push(vL);
@@ -340,28 +370,51 @@ async function train() {
     drawLoss();
     if (ep % 10 === 0) status(`ep ${ep}  trL=${trL.toFixed(4)}  vMAE=${vL.toFixed(4)}`);
 
+    // Snapshot best-val weights to defend against late-training spikes
+    if (isFinite(vL) && vL < bestVL && ep >= 10) {
+      bestVL = vL;
+      bestEp = ep;
+      bestA = await readF16Buffer(model.A, model.R * model.D);
+      bestB = await readF16Buffer(model.B, model.M * model.R);
+    }
+
     // yield to UI
     await new Promise(r => setTimeout(r, 0));
   }
   const t1 = performance.now();
   status(`✓ training done in ${((t1 - t0) / 1000).toFixed(1)}s`);
 
+  // Restore best-val weights for test predictions
+  if (bestA && bestB) {
+    queue.writeBuffer(model.A, 0, toF16Buffer(bestA));
+    queue.writeBuffer(model.B, 0, toF16Buffer(bestB));
+    status(`✓ restored best-val weights from ep ${bestEp} (vMAE=${bestVL.toFixed(4)})`);
+  }
+
   // test set predictions
   const test = bench.samples.filter(s => s.split === "test");
   const body = $("preds-body");
   body.innerHTML = "";
+  const SCOPES = ["cement", "steel", "aluminum", "fertilizer"];
   for (const s of test) {
     const yhat = await model.predict(norm(s.feat));
+    const yhatFinal = usePrior ? yhat + s.y_prior_log : yhat;
     const truth = s.y_raw;
-    const pred = Math.expm1(yhat);
+    const pred = Math.expm1(yhatFinal);
     const ratio = (pred / truth);
+    const eu = s.eu_default || 0;
+    const reductionPct = eu > 0 ? ((eu - pred) / eu) * 100 : 0;
+    const scopeIdx = s.feat.slice(3).findIndex(v => v === 1);
+    const scopeName = SCOPES[scopeIdx] || "?";
     const row = document.createElement("tr");
     row.innerHTML = `<td>${s.company} <small>(${s.id})</small></td>
-      <td>${bench.facilities.find(f => f.id === s.id)?.feat ? bench.facilities.find(f => f.id === s.id).feat.slice(3).findIndex(v => v === 1) : ""}</td>
+      <td>${scopeName}</td>
       <td>${s.label_source}</td>
       <td class="num">${truth.toLocaleString(undefined, { maximumFractionDigits: 0 })}</td>
       <td class="num">${pred.toLocaleString(undefined, { maximumFractionDigits: 0 })}</td>
-      <td class="num">${ratio.toFixed(2)}×</td>`;
+      <td class="num">${ratio.toFixed(2)}×</td>
+      <td class="num">${eu.toLocaleString(undefined, { maximumFractionDigits: 0 })}</td>
+      <td class="num">${reductionPct >= 0 ? "−" : "+"}${Math.abs(reductionPct).toFixed(0)}%</td>`;
     body.appendChild(row);
   }
   status(`✓ wrote test predictions (${test.length} rows)`);
