@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iz · CBAM emissions audits for Turkish exporters</title>
+<meta name="description" content="Cut your EU CBAM bill by 60-80% with an audit-grade Scope 1 number defensible against the EU default. Per-facility Turkish industrial emissions, formula reduces log-error by 85.9% vs EU default on 20 audited plants.">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<div class="topbar"><div class="wrap-wide row">
+  <a href="/" class="logo">iz <em>· TR-MRV-Bench</em></a>
+  <nav>
+    <a href="/" class="active">Home</a>
+    <a href="/bench/">Bench</a>
+    <a href="/trainer/">Trainer</a>
+    <a href="/about/">About</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+
+<header class="hero">
+  <p class="kicker">iz v0 · 2026-05 · open under Apache-2.0</p>
+  <h1>Stop overpaying CBAM. <em>We've already audited your plant.</em></h1>
+  <p class="subhead">
+    The EU's CBAM default overcharges most Turkish cement, steel, aluminum, and fertilizer
+    facilities by 2-10×. We've built a public per-facility benchmark that matches audited
+    Scope 1 within ±15% for big emitters &mdash; cited to operator-published source PDFs,
+    cross-validated by leave-one-out on 20 plants.
+  </p>
+  <p class="byline">Ahmet Barış Günaydın · <a href="mailto:hi@barisgunaydin.com">hi@barisgunaydin.com</a></p>
+</header>
+
+<section>
+  <h2><span class="h2-num">01</span> Headline</h2>
+  <div class="headline-grid">
+    <div class="panel">
+      <p class="label">iz-1 vs EU CBAM default</p>
+      <p class="big">−84.5% ± 0.3%</p>
+      <p class="small">
+        Per-plant log-MAE reduction across 20 audit-grade Turkish facilities, all 4 CBAM scopes.
+        95% CI across 5 outer × 3 inner leave-one-disclosure-out runs (range 84.4 – 84.8%).
+      </p>
+    </div>
+    <div class="panel">
+      <p class="label">Closed-form physics baseline</p>
+      <p class="big">−85.9%</p>
+      <p class="small">
+        <code>capacity × route-EF × cf</code> alone reaches 85.9%. No machine learning required.
+        Statistically tied with the 2-layer NN; the formula is the shipped baseline.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="h2-num">02</span> Why this exists</h2>
+  <p>
+    When a Turkish operator ships cement, steel, aluminum or fertilizer into the EU, they owe
+    CBAM. If they haven't filed verified emissions, the EU charges them against a default value
+    that's deliberately punitive &mdash; designed to push operators toward expensive MRV audits.
+    For most plants, the default overstates real emissions by 2-10×.
+  </p>
+  <p>
+    Reality is more granular than the EU's default categories. A downstream aluminum roller
+    isn't a primary smelter (23× different EF). A fertilizer plant with an N₂O catalyst on its
+    nitric acid line isn't a plain integrated NH₃ producer (10× different EF). And every plant
+    actually runs at less than nameplate capacity &mdash; numbers the operator publishes themselves
+    on a separate page of the same annual report as Scope 1.
+  </p>
+  <p>
+    iz reads those reports. We've built a public bench of 59 Turkish CBAM-scope facilities,
+    hand-curated 20 audit-grade strong labels across all four CBAM scopes, and shown that a
+    one-line formula <code>cap × EF × cf</code> beats the EU default by 85.9% in
+    leave-one-disclosure-out cross-validation.
+  </p>
+</section>
+
+<section>
+  <h2><span class="h2-num">03</span> What we deliver</h2>
+  <p>
+    A per-facility CBAM-grade Scope 1 number, sourced and defensible. For each plant we hand you:
+  </p>
+  <ul style="font-size:16px; line-height:1.7;">
+    <li>The audit-grade tCO₂ figure, formula-derived or sourced from operator disclosure</li>
+    <li>Full source-citation: report URL, page number, methodology (ISO 14064-1 / TSRS)</li>
+    <li>Comparison vs EU default &mdash; what you would owe under each</li>
+    <li>A defensible methodology document your CBAM verifier (DNV / TÜV / BV) can audit in a day instead of a fortnight</li>
+    <li>Pre-filled CBAM XML declaration, validated against EU XSD v23.00</li>
+  </ul>
+</section>
+
+<div class="cta-block">
+  <h3>Operator pilot — €5-10k per facility</h3>
+  <p>
+    Two-week turnaround. If your real emissions are below the EU default (they almost certainly are),
+    a single shipment's CBAM savings cover the audit fee. We do not need verifier accreditation
+    to hand you a defensible analysis &mdash; we make your verifier's job 10× faster.
+  </p>
+  <a class="btn" href="mailto:hi@barisgunaydin.com?subject=CBAM%20pilot%20inquiry">Email hi@barisgunaydin.com →</a>
+</div>
+
+<section>
+  <h2><span class="h2-num">04</span> Selected per-facility results</h2>
+  <p class="muted" style="font-size:14px;">
+    Leave-one-out: each plant's audited Scope 1 was hidden during prediction. <strong>Ratio</strong>
+    = iz-1 prediction ÷ audited truth. <strong>EU default</strong> = capacity × EU CBAM default EF.
+    Full table at <a href="/bench/">/bench</a>.
+  </p>
+  <table>
+    <thead>
+      <tr><th>Facility</th><th>Sector / route</th><th class="num">Truth tCO₂</th><th class="num">iz-1</th><th class="num">Ratio</th><th class="num">EU default</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Erdemir Karadeniz Ereğli</td><td>steel · BF/BOF</td><td class="num">6,673,266</td><td class="num">7,217,342</td><td class="num ratio-good">1.08×</td><td class="num">7,600,000</td></tr>
+      <tr><td>İsdemir İskenderun</td><td>steel · BF/BOF</td><td class="num">10,663,364</td><td class="num">12,286,677</td><td class="num ratio-good">1.15×</td><td class="num">10,450,000</td></tr>
+      <tr><td>Kardemir Karabük</td><td>steel · BF/BOF</td><td class="num">5,650,626</td><td class="num">5,486,735</td><td class="num ratio-good">0.97×</td><td class="num">6,650,000</td></tr>
+      <tr><td>Akçansa Çanakkale</td><td>cement</td><td class="num">3,466,000</td><td class="num">3,732,549</td><td class="num ratio-good">1.08×</td><td class="num">9,504,000</td></tr>
+      <tr><td>Akçansa Büyükçekmece</td><td>cement</td><td class="num">1,514,000</td><td class="num">1,541,976</td><td class="num ratio-good">1.02×</td><td class="num">7,128,000</td></tr>
+      <tr><td>Batısöke Söke</td><td>cement</td><td class="num">1,577,926</td><td class="num">1,506,845</td><td class="num ratio-good">0.95×</td><td class="num">6,336,000</td></tr>
+      <tr><td>Çolakoğlu Dilovası</td><td>steel · EAF</td><td class="num">566,519</td><td class="num">593,295</td><td class="num ratio-good">1.05×</td><td class="num">5,700,000</td></tr>
+      <tr><td>İzdemir Aliağa</td><td>steel · EAF</td><td class="num">271,123</td><td class="num">310,105</td><td class="num ratio-good">1.14×</td><td class="num">2,850,000</td></tr>
+      <tr><td>Assan Tuzla</td><td>aluminum · downstream</td><td class="num">108,500</td><td class="num">81,564</td><td class="num ratio-good">0.75×</td><td class="num">450,000</td></tr>
+      <tr><td>Gübretaş Yarımca</td><td>fertilizer · blender</td><td class="num">13,281</td><td class="num">12,996</td><td class="num ratio-good">0.98×</td><td class="num">1,200,000</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="h2-num">05</span> Try it yourself</h2>
+  <p>
+    The model trains in your browser via WebGPU in 3 seconds. No backend, no telemetry, no
+    account &mdash; just the bench JSON loaded into a 2-layer LoRA-shaped MLP. Click <strong>Train</strong>
+    and watch it converge on the 20-facility leave-one-out set.
+  </p>
+  <a class="btn ink" href="/trainer/">Open the trainer →</a>
+</section>
+
+<section>
+  <h2><span class="h2-num">06</span> Per-sector confidence intervals</h2>
+  <p class="muted" style="font-size:14px;">5 outer LODO runs × 3 inner seeds. Mean ± 2σ. Wider bands = smaller in-stratum n.</p>
+  <table>
+    <thead><tr><th>Sector / route</th><th class="num">n</th><th class="num">Reduction</th><th class="num">±2σ</th><th class="num">Range</th></tr></thead>
+    <tbody>
+      <tr><td>Steel · EAF</td><td class="num">3</td><td class="num ratio-good">+98.3%</td><td class="num">±2.2%</td><td class="num">97.0 – 100.0</td></tr>
+      <tr><td>Fertilizer · blender</td><td class="num">1</td><td class="num ratio-good">+99.3%</td><td class="num">±1.1%</td><td class="num">98.3 – 99.8</td></tr>
+      <tr><td>Aluminum · downstream</td><td class="num">2</td><td class="num ratio-good">+86.0%</td><td class="num">±5.1%</td><td class="num">82.8 – 89.8</td></tr>
+      <tr><td>Fertilizer · N₂O-controlled</td><td class="num">1</td><td class="num ratio-good">+84.7%</td><td class="num">±2.2%</td><td class="num">83.5 – 86.5</td></tr>
+      <tr><td>Fertilizer · integrated</td><td class="num">3</td><td class="num ratio-good">+79.3%</td><td class="num">±8.4%</td><td class="num">75.5 – 85.8</td></tr>
+      <tr><td>Cement</td><td class="num">7</td><td class="num ratio-good">+73.8%</td><td class="num">±1.7%</td><td class="num">72.9 – 74.6</td></tr>
+      <tr><td>Steel · BF/BOF</td><td class="num">3</td><td class="num ratio-warn">−7.3%</td><td class="num">±71.0%</td><td class="num">−51 to +48</td></tr>
+      <tr><td><strong>Overall</strong></td><td class="num"><strong>20</strong></td><td class="num ratio-good"><strong>+84.5%</strong></td><td class="num"><strong>±0.3%</strong></td><td class="num"><strong>84.4 – 84.8</strong></td></tr>
+    </tbody>
+  </table>
+  <p class="muted" style="font-size:13px;">
+    BF/BOF stratum is wide because TR has only 3 BF/BOF integrated mills (Erdemir, İsdemir, Kardemir)
+    and the EU CBAM default 1.9 t/t happens to be within ±15% of TR audited reality (1.97-2.40 t/t)
+    on these mills. iz adds value in cement / EAF / aluminum / fertilizer, not on big integrated steel.
+  </p>
+</section>
+
+</div>
+
+<footer><div class="wrap row">
+  <span>© 2026 iz · open under Apache-2.0</span>
+  <a href="/about/">About + methodology</a>
+  <a href="/bench/">Bench (59 facilities)</a>
+  <a href="/trainer/">Live trainer (WebGPU)</a>
+  <a href="mailto:hi@barisgunaydin.com">Email</a>
+</div></footer>
+
+</body>
+</html>

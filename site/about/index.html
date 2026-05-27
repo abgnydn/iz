@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About · iz · TR-MRV-Bench</title>
+<meta name="description" content="Who built iz, why, and the formula behind the 84.5% reduction vs EU CBAM default.">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<div class="topbar"><div class="wrap-wide row">
+  <a href="/" class="logo">iz <em>· TR-MRV-Bench</em></a>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/bench/">Bench</a>
+    <a href="/trainer/">Trainer</a>
+    <a href="/about/" class="active">About</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+
+<header class="hero">
+  <p class="kicker">iz · about</p>
+  <h1>What this is. <em>And what it isn't.</em></h1>
+  <p class="subhead">
+    iz is a one-person effort to produce a public, source-cited per-facility emissions
+    benchmark for Turkish CBAM-scope industry. The deliverable is the bench, the formula,
+    and the disclosure crawl. The neural network is a working reference implementation,
+    not the product.
+  </p>
+  <p class="byline">Ahmet Barış Günaydın · <a href="mailto:hi@barisgunaydin.com">hi@barisgunaydin.com</a></p>
+</header>
+
+<section>
+  <h2><span class="h2-num">01</span> The formula in one line</h2>
+  <p style="font-family:var(--mono);font-size:18px;background:var(--paper);border:1px solid var(--rule);padding:18px 22px;">
+    tCO₂ = <strong>capacity</strong> × <strong>route-EF</strong> × <strong>capacity-factor</strong>
+  </p>
+  <p>
+    <strong>Capacity</strong> is operator-published nameplate (industry registries, KAP filings).
+    <strong>Route-EF</strong> depends on what kind of plant it actually is — not just the CBAM
+    category. Steel splits into BF/BOF (2.0 t/t), EAF (0.25), DRI-EAF (0.4). Aluminum splits
+    into primary (8.6) vs downstream rolling (0.45) — a 19× spread the EU lumps together.
+    Fertilizer splits into integrated (0.5), N₂O-controlled (0.05), blender (0.025) — a 20×
+    spread driven by whether the plant has an N₂O catalyst on its nitric acid line.
+    <strong>Capacity-factor</strong> is operator-disclosed production ÷ capacity (non-leaky in
+    LODO because production tonnage is reported independently of Scope 1), with fallback to
+    sector mean for facilities lacking disclosure.
+  </p>
+</section>
+
+<section>
+  <h2><span class="h2-num">02</span> Evaluation methodology</h2>
+  <p>
+    <strong>Leave-one-disclosure-out (LODO).</strong> For each of the 20 audit-grade facilities,
+    we force it into the test set, retrain the bench, and predict its Scope 1 from features
+    alone. Aggregate per-plant log-MAE across the 20 holdouts is the headline metric. We run
+    5 outer LODO passes × 3 inner seeds = 15 seeds per facility, report mean ± 2σ across the
+    5 outer runs (≈95% CI).
+  </p>
+  <p>
+    <strong>Why log-MAE not cost-savings.</strong> A cost-savings metric (EU default − iz) /
+    EU default rewards under-prediction. Log-MAE against audited truth penalizes both over-
+    and under-prediction. We report log-MAE throughout to align vendor incentives with
+    measurement quality.
+  </p>
+  <p>
+    <strong>Non-leaky cf.</strong> Operator integrated reports publish Scope 1 emissions on
+    one page and production tonnes on a separate page. The capacity factor is derived from
+    production ÷ capacity, not from emissions. When a facility is held out, its production
+    tonnage remains available — the held-out emissions don't leak through.
+  </p>
+</section>
+
+<section>
+  <h2><span class="h2-num">03</span> What's different from other players</h2>
+  <table>
+    <thead><tr><th>Player</th><th>Approach</th><th>Limitation</th></tr></thead>
+    <tbody>
+      <tr><td><strong>EU CBAM default</strong></td><td>capacity × one industry-average EF</td><td>Off by 2-10× on most plants; deliberately punitive to push operators to MRV</td></tr>
+      <tr><td><strong>Climate TRACE</strong></td><td>Global per-asset bottom-up emissions inventory</td><td>Under-reports TR BF/BOF steel by 20-30% (misses captive coal power)</td></tr>
+      <tr><td><strong>Persefoni / CarbonChain / Sweep</strong></td><td>Ingest operator-typed data, dashboard it</td><td>Trust the operator; garbage in, garbage out</td></tr>
+      <tr><td><strong>GHGSat / Carbon Mapper</strong></td><td>Satellite plume detection</td><td>Methane-focused; CO₂ plumes hard to see; no CBAM tie-in</td></tr>
+      <tr><td><strong>iz</strong></td><td>Hand-curated bench + closed-form formula, cited PDFs</td><td>20 facilities is small; needs operator partnerships to scale to 200+</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="h2-num">04</span> What's open, what's commercial</h2>
+  <p>
+    <strong>Open under Apache-2.0:</strong> the bench (CSV + JSON + source-cited disclosures),
+    the formula, the LODO evaluation harness, the browser-native trainer, the paper preview.
+    Cite us at <a href="https://github.com/abgnydn/iz" target="_blank" rel="noopener">github.com/abgnydn/iz</a> (repo TBD).
+  </p>
+  <p>
+    <strong>Commercial:</strong> per-facility audit reports for operators (€5-10k/facility),
+    bulk subscriptions for EU-accredited CBAM verifiers (DNV / TÜV Süd / Bureau Veritas / SGS),
+    and methodology consulting. We do not seek CBAM verifier accreditation ourselves; we make
+    accredited verifiers' jobs faster.
+  </p>
+</section>
+
+<section>
+  <h2><span class="h2-num">05</span> Honest limitations</h2>
+  <ul style="font-size:15px;line-height:1.7;">
+    <li><strong>n=20 is small.</strong> Single-instance disclosure-route strata (BAGFAŞ N₂O-controlled, Gübretaş blender) have no in-stratum LODO training counterpart.</li>
+    <li><strong>BF/BOF stratum is structurally hard.</strong> TR has only 3 BF/BOF integrated mills (Erdemir, İsdemir, Kardemir) and the EU CBAM default 1.9 t/t happens to be within ±15% of TR audited reality on these mills. Our value is in cement / EAF / aluminum / fertilizer, not BF/BOF.</li>
+    <li><strong>No satellite signal in v0.</strong> The Sentinel-5P NO₂ pipeline runs but didn't make it into the model. We dropped the "Earth-observation foundation model" framing from earlier drafts — it isn't one.</li>
+    <li><strong>Operator-self-reported truths.</strong> Audit-grade ≠ third-party-verified. Our strong labels come from operator IARs / sustainability reports / TSRS filings (mostly Big4-audited, several ISO 14064-1 verified; BAGFAŞ N₂O measurement directly MRV-verified).</li>
+    <li><strong>Some labels are allocated.</strong> Akçansa per-plant Scope 1 is split from the group total by clinker production share. Toros Mersin/Samsun/Ceyhan are split from the 842k group total by nameplate capacity — Mersin (NH₃+urea) is likely more process-heavy than the capacity-share allocation reflects.</li>
+    <li><strong>The model and the formula are tied.</strong> The 2-layer NN reaches +84.5% ± 0.3% vs the formula's 85.9% on n=20. The actionable shipped baseline is the formula. The NN exists as a reference implementation and a placeholder for future signal extraction (satellite features, multi-year LODO).</li>
+  </ul>
+</section>
+
+<div class="cta-block">
+  <h3>Contact</h3>
+  <p>Operator pilots · CBAM verifier partnerships · methodology questions · paper citations.</p>
+  <a class="btn" href="mailto:hi@barisgunaydin.com">hi@barisgunaydin.com</a>
+</div>
+
+</div>
+
+<footer><div class="wrap row">
+  <span>© 2026 Ahmet Barış Günaydın · open under Apache-2.0</span>
+  <a href="/">Home</a>
+  <a href="/bench/">Bench</a>
+  <a href="/trainer/">Trainer</a>
+</div></footer>
+
+</body>
+</html>

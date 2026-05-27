@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>iz-1 — browser-native training on TR-MRV-Bench</title>
+<style>
+  :root { --bg:#f4ede2; --paper:#fbf7ee; --ink:#14181d; --muted:#6e6862; --rule:#d8cfbe; --cost:#b85c3f; --saved:#2d5a4c; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: Georgia, serif; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 24px; }
+  h1 { font-size: 28pt; letter-spacing: -0.02em; margin: 0 0 4pt; }
+  h1 em { font-style: italic; color: var(--cost); }
+  .sub { color: var(--muted); margin: 0 0 18pt; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18pt; }
+  .panel { background: var(--paper); border: 1px solid var(--rule); padding: 14pt; }
+  .panel h2 { font-size: 14pt; margin: 0 0 8pt; letter-spacing: -0.01em; }
+  label { display: block; font-family: Inter, system-ui, sans-serif; font-size: 9pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-top: 8pt; }
+  input, select { width: 100%; padding: 6pt; font-family: inherit; font-size: 11pt; border: 1px solid var(--rule); background: white; }
+  button { font-family: inherit; font-size: 11pt; padding: 8pt 14pt; background: var(--ink); color: var(--paper); border: none; cursor: pointer; margin-top: 10pt; }
+  button:disabled { background: var(--muted); cursor: not-allowed; }
+  .status { font-family: Menlo, monospace; font-size: 9pt; color: var(--muted); white-space: pre-wrap; max-height: 180px; overflow-y: auto; line-height: 1.5; }
+  .metric { font-size: 22pt; font-weight: 600; color: var(--saved); margin-top: 4pt; line-height: 1; letter-spacing: -0.02em; }
+  .metric small { font-size: 10pt; color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; font-family: Inter, system-ui, sans-serif; font-size: 9pt; }
+  th, td { padding: 4pt 6pt; text-align: left; border-bottom: 1px solid var(--rule); }
+  th { font-size: 8pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .canvas-wrap { border: 1px solid var(--rule); background: white; }
+  canvas { display: block; width: 100%; }
+  .legend { display: flex; gap: 12pt; font-family: Inter, system-ui, sans-serif; font-size: 9pt; color: var(--muted); margin-top: 4pt; }
+  .swatch { display: inline-block; width: 10pt; height: 10pt; vertical-align: middle; margin-right: 4pt; }
+</style>
+</head>
+<body>
+<style>
+  .iz-topbar { background: var(--paper); border-bottom: 1px solid var(--rule); padding: 14px 28px; font-family: -apple-system, system-ui, sans-serif; display: flex; align-items: center; gap: 24px; }
+  .iz-topbar a { color: #6e6862; text-decoration: none; font-size: 13px; letter-spacing: 0.04em; border-bottom: none; }
+  .iz-topbar a:hover, .iz-topbar a.active { color: var(--ink); border-bottom: 1px solid var(--ink); }
+  .iz-topbar .iz-logo { font-family: Georgia, serif; font-size: 18px; font-weight: 600; color: var(--ink); }
+  .iz-topbar .iz-logo em { color: #2d5a4c; font-style: italic; font-weight: 400; }
+  .iz-topbar nav { margin-left: auto; display: flex; gap: 22px; }
+</style>
+<div class="iz-topbar">
+  <a href="/" class="iz-logo">iz <em>· TR-MRV-Bench</em></a>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/bench/">Bench</a>
+    <a href="/trainer/" class="active">Trainer</a>
+    <a href="/about/">About</a>
+  </nav>
+</div>
+<div class="container">
+
+<h1>iz-1 <em>— trained right here.</em></h1>
+<p class="sub">TR-MRV-Bench v0: 57 Turkish CBAM-scope facilities, 7 features per facility, mixed strong + sector-default weak labels. Training loop runs on your GPU via WebGPU using the fused-lora shaders (LoRA-shaped 2-layer MLP, rank-32 hidden). No Python, no Colab, no API calls.</p>
+
+<div class="grid">
+  <div class="panel">
+    <h2>Configure</h2>
+    <label>Hidden rank (R)</label>
+    <input id="rank" type="number" value="32" min="4" max="256" step="4">
+    <label>Learning rate</label>
+    <input id="lr" type="number" value="0.05" min="0.00001" max="1" step="0.001">
+    <label>Epochs</label>
+    <input id="epochs" type="number" value="100" min="10" max="2000" step="10">
+    <label>Batch size</label>
+    <input id="batch" type="number" value="8" min="1" max="32" step="1">
+    <button id="train-btn" disabled>Train</button>
+    <button id="reset-btn">Reset</button>
+  </div>
+
+  <div class="panel">
+    <h2>Live</h2>
+    <label>Train loss (last)</label>
+    <div class="metric" id="train-loss">— <small>MSE on log-CO₂</small></div>
+    <label>Val MAE (last) — log-space</label>
+    <div class="metric" id="val-mae">—</div>
+    <label>Step</label>
+    <div class="metric" id="step">0 / 0</div>
+    <div class="canvas-wrap" style="margin-top:10pt;">
+      <canvas id="loss-canvas" width="540" height="180"></canvas>
+    </div>
+    <div class="legend">
+      <span><span class="swatch" style="background:#b85c3f;"></span>train</span>
+      <span><span class="swatch" style="background:#2d5a4c;"></span>val</span>
+    </div>
+  </div>
+</div>
+
+<div class="panel" style="margin-top:18pt;">
+  <h2>Status</h2>
+  <div class="status" id="status">awaiting WebGPU + bench load…</div>
+</div>
+
+<div class="panel" style="margin-top:18pt;">
+  <h2>Test-set predictions (after training)</h2>
+  <div id="preds-table">
+    <table>
+      <thead>
+        <tr><th>Facility</th><th>Scope</th><th>Source</th><th class="num">Truth (tCO₂/yr)</th><th class="num">Predicted</th><th class="num">Ratio</th><th class="num">EU default</th><th class="num">vs EU</th></tr>
+      </thead>
+      <tbody id="preds-body"></tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+
+<script type="module" src="./train.js"></script>
+</body>
+</html>

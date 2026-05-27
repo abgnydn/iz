@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TR-MRV-Bench · 59 Turkish CBAM-scope facilities</title>
+<meta name="description" content="Public per-facility emissions benchmark for Turkish industry. 59 facilities, 20 audit-grade Scope 1 labels across all 4 CBAM scopes.">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<div class="topbar"><div class="wrap-wide row">
+  <a href="/" class="logo">iz <em>· TR-MRV-Bench</em></a>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/bench/" class="active">Bench</a>
+    <a href="/trainer/">Trainer</a>
+    <a href="/about/">About</a>
+  </nav>
+</div></div>
+
+<div class="wrap-wide">
+
+<header class="hero">
+  <p class="kicker">TR-MRV-Bench v0 · 59 facilities · 4 CBAM scopes</p>
+  <h1>The bench. <em>Every facility, every source.</em></h1>
+  <p class="subhead">
+    Every row below cites a public, traceable source. <strong>Disclosure</strong> rows have audit-grade
+    Scope 1 from operator integrated reports / TSRS filings / ISO 14064-1 verifications.
+    <strong>Climate TRACE</strong> rows pull from the CT v6 per-asset details endpoint.
+    <strong>cf-corrected</strong> rows are formula-only:
+    <code>capacity × route-EF × cf</code>. Sort by clicking a column header.
+  </p>
+  <p class="byline">
+    Download raw: <a href="/bench/facilities.json">facilities.json</a> ·
+    Source code: bin/export_bench_browser.py
+  </p>
+</header>
+
+<section>
+  <h2><span class="h2-num">01</span> Filter</h2>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;font-family:var(--sans);font-size:13px;align-items:center;">
+    <label>Scope:
+      <select id="filter-sector" style="margin-left:6px;padding:4px 8px;font-family:inherit;">
+        <option value="">All</option>
+        <option value="cement">cement</option>
+        <option value="steel">steel</option>
+        <option value="aluminum">aluminum</option>
+        <option value="fertilizer">fertilizer</option>
+      </select>
+    </label>
+    <label>Label source:
+      <select id="filter-source" style="margin-left:6px;padding:4px 8px;font-family:inherit;">
+        <option value="">All</option>
+        <option value="disclosure">Disclosure (audit-grade)</option>
+        <option value="climate_trace">Climate TRACE</option>
+        <option value="cf_corrected">cf-corrected formula</option>
+      </select>
+    </label>
+    <label>Search:
+      <input id="filter-q" placeholder="company, plant, city…" style="margin-left:6px;padding:4px 8px;font-family:inherit;width:240px;">
+    </label>
+    <span class="muted" id="filter-count" style="margin-left:auto;"></span>
+  </div>
+</section>
+
+<section>
+  <table class="sortable">
+    <thead>
+      <tr>
+        <th data-sort="company">Company / plant</th>
+        <th data-sort="sector">Scope</th>
+        <th data-sort="city">City</th>
+        <th class="num" data-sort="capacity">Capacity (t/yr)</th>
+        <th class="num" data-sort="truth">Label tCO₂</th>
+        <th data-sort="provenance">Provenance</th>
+        <th class="num" data-sort="eu_default">EU default</th>
+        <th class="num" data-sort="reduction">Reduction</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+</section>
+
+</div>
+
+<footer><div class="wrap row">
+  <span>© 2026 iz · open under Apache-2.0</span>
+  <a href="/">Home</a>
+  <a href="/about/">About</a>
+  <a href="mailto:hi@barisgunaydin.com">Email</a>
+</div></footer>
+
+<script>
+const fmt = n => n == null ? '—' : n.toLocaleString('en-US', { maximumFractionDigits: 0 });
+const pct = (eu, truth) => (eu && truth) ? (((eu - truth) / eu) * 100).toFixed(0) + '%' : '—';
+
+const provenanceTag = p => {
+  if (!p) return '';
+  const cls = { 'direct': 'iz', 'allocated': '', 'derived': '', 'disputed': '', 'composite': '' }[p] ?? '';
+  return `<span class="tag ${cls}">${p}</span>`;
+};
+
+const labelTag = src => {
+  if (src === 'disclosure') return `<span class="tag iz">disclosure</span>`;
+  if (src === 'climate_trace') return `<span class="tag" style="border-color:#b85c3f;color:#b85c3f">CT</span>`;
+  return `<span class="tag">formula</span>`;
+};
+
+let DATA = [];
+let sortKey = 'capacity';
+let sortDir = 'desc';
+
+async function load() {
+  const r = await fetch('/bench/facilities.json');
+  DATA = await r.json();
+  // pre-compute reduction
+  DATA.forEach(d => {
+    d.reduction = (d.eu_default && d.truth) ? ((d.eu_default - d.truth) / d.eu_default) : null;
+  });
+  render();
+}
+
+function render() {
+  const sector = document.querySelector('#filter-sector').value;
+  const source = document.querySelector('#filter-source').value;
+  const q = document.querySelector('#filter-q').value.toLowerCase();
+  let rows = DATA.filter(d => {
+    if (sector && d.sector !== sector) return false;
+    if (source && d.label_source !== source) return false;
+    if (q && !(d.company.toLowerCase().includes(q) || d.plant.toLowerCase().includes(q) || d.city.toLowerCase().includes(q) || d.id.toLowerCase().includes(q))) return false;
+    return true;
+  });
+  rows.sort((a, b) => {
+    let av = a[sortKey], bv = b[sortKey];
+    if (av == null) return 1; if (bv == null) return -1;
+    if (typeof av === 'string') return sortDir === 'asc' ? av.localeCompare(bv) : bv.localeCompare(av);
+    return sortDir === 'asc' ? av - bv : bv - av;
+  });
+
+  document.querySelector('#filter-count').textContent = `showing ${rows.length} of ${DATA.length} facilities`;
+
+  const tb = document.querySelector('#rows');
+  tb.innerHTML = rows.map(d => {
+    const truthCell = d.truth ? `${fmt(d.truth)} <span class="muted" style="font-size:10px;">(${d.truth_year ?? '—'})</span>` : '—';
+    const srcCell = d.truth_src
+      ? `<span class="muted" style="font-size:11px;line-height:1.3;display:block;max-width:340px;">${escapeHtml(d.truth_src)}</span>`
+      : '<span class="muted">—</span>';
+    const reductionCls = d.reduction == null ? '' : d.reduction > 0.5 ? 'ratio-good' : d.reduction > 0 ? 'ratio-warn' : 'ratio-bad';
+    return `<tr>
+      <td><strong>${escapeHtml(d.company)}</strong><br><span class="muted" style="font-size:11px;">${escapeHtml(d.plant)}</span></td>
+      <td>${labelTag(d.label_source)} <span style="font-size:11px;color:#6e6862;">${d.sector}</span></td>
+      <td>${escapeHtml(d.city)}</td>
+      <td class="num">${fmt(d.capacity)}</td>
+      <td class="num">${truthCell}</td>
+      <td>${provenanceTag(d.provenance)}</td>
+      <td class="num">${fmt(d.eu_default)}</td>
+      <td class="num ${reductionCls}">${d.reduction == null ? '—' : '−' + (d.reduction * 100).toFixed(0) + '%'}</td>
+      <td>${srcCell}</td>
+    </tr>`;
+  }).join('');
+
+  // Update sort indicators
+  document.querySelectorAll('th[data-sort]').forEach(th => {
+    th.dataset.sortActive = th.dataset.sort === sortKey ? sortDir : '';
+  });
+}
+
+function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c])); }
+
+document.addEventListener('click', e => {
+  const th = e.target.closest('th[data-sort]');
+  if (!th) return;
+  const k = th.dataset.sort;
+  if (k === sortKey) { sortDir = sortDir === 'asc' ? 'desc' : 'asc'; }
+  else { sortKey = k; sortDir = (k === 'company' || k === 'sector' || k === 'city' || k === 'provenance') ? 'asc' : 'desc'; }
+  render();
+});
+
+['#filter-sector', '#filter-source', '#filter-q'].forEach(sel => {
+  document.querySelector(sel).addEventListener('input', render);
+});
+
+load();
+</script>
+
+</body>
+</html>
