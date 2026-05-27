@@ -14,10 +14,10 @@
   "notes": "Allocated from Ak\u00e7ansa 2025 group Scope 1 (5,484,015) \u00d7 B\u00fcy\u00fck\u00e7ekmece clinker share 27.6%. Group total is audit-grade; per-plant split is by disclosed clinker tonnage, not directly disclosed.",
   "eu_default": 7128000.0,
   "label_source": "disclosure",
-  "pred_median": 1605733.0,
-  "pred_min": null,
-  "pred_max": null,
-  "n_runs": 0
+  "pred_median": 1632215.0,
+  "pred_min": 1619068.0,
+  "pred_max": 1750577.0,
+  "n_runs": 5
  },
  {
   "id": "akcansa-canakkale",
@@ -34,10 +34,10 @@
   "notes": "Allocated from Ak\u00e7ansa 2025 group \u00d7 clinker share 63.2%. See B\u00fcy\u00fck\u00e7ekmece note.",
   "eu_default": 9504000.0,
   "label_source": "disclosure",
-  "pred_median": 3806167.0,
-  "pred_min": null,
-  "pred_max": null,
-  "n_runs": 0
+  "pred_median": 3691315.0,
+  "pred_min": 3413388.0,
+  "pred_max": 3866577.0,
+  "n_runs": 5
  },
  {
   "id": "akcansa-ladik",
@@ -54,10 +54,10 @@
   "notes": "Allocated from Ak\u00e7ansa 2025 group \u00d7 clinker share 9.1%. See B\u00fcy\u00fck\u00e7ekmece note.",
   "eu_default": 2376000.0,
   "label_source": "disclosure",
-  "pred_median": 631721.0,
-  "pred_min": null,
-  "pred_max": null,
-  "n_runs": 0
+  "pred_median": 626556.0,
+  "pred_min": 611153.0,
+  "pred_max": 670200.0,
+  "n_runs": 5
  },
  {
   "id": "cimsa-mersin",
@@ -394,10 +394,10 @@
   "notes": "Single-site (Nuh has only Hereke) \u2014 third-party verified Scope 1",
   "eu_default": 9504000.0,
   "label_source": "disclosure",
-  "pred_median": 2539658.0,
-  "pred_min": null,
-  "pred_max": null,
-  "n_runs": 0
+  "pred_median": 2475689.0,
+  "pred_min": 2303721.0,
+  "pred_max": 2533156.0,
+  "n_runs": 5
  },
  {
   "id": "cimentas-izmir",
@@ -634,10 +634,10 @@
   "notes": "Isparta plant only (excludes G\u00f6lta\u015f Beton + Enerji subsidiaries); TSRS limited assurance",
   "eu_default": 3168000.0,
   "label_source": "disclosure",
-  "pred_median": 769456.0,
-  "pred_min": null,
-  "pred_max": null,
-  "n_runs": 0
+  "pred_median": 755725.0,
+  "pred_min": 741041.0,
+  "pred_max": 766690.0,
+  "n_runs": 5
  },
  {
   "id": "erdemir-eregli",
@@ -654,10 +654,10 @@
   "notes": "Subtraction: Ere\u011fli \u2248 Group \u2212 \u0130sdemir; assumes no other major subsidiary",
   "eu_default": 7600000.0,
   "label_source": "disclosure",
-  "pred_median": 5952425.0,
-  "pred_min": null,
-  "pred_max": null,
-  "n_runs": 0
+  "pred_median": 7190082.0,
+  "pred_min": 6408080.0,
+  "pred_max": 10089020.0,
+  "n_runs": 5
  },
  {
   "id": "isdemir-iskenderun",
@@ -674,10 +674,10 @@
   "notes": "Audit-grade per-asset \u0130sdemir Scope 1 (line item: \"Kapsam 1 (ton COeq) 10.663.364\")",
   "eu_default": 10450000.0,
   "label_source": "disclosure",
-  "pred_median": 9021003.0,
-  "pred_min": null,
-  "pred_max": null,
-  "n_runs": 0
+  "pred_median": 9972550.0,
+  "pred_min": 9324418.0,
+  "pred_max": 10748769.0,
+  "n_runs": 5
  },
  {
   "id": "tosyali-osmaniye",
@@ -774,10 +774,10 @@
   "notes": "Single-site EAF plant \u2014 direct disclosure",
   "eu_default": 5700000.0,
   "label_source": "disclosure",
-  "pred_median": 585007.0,
-  "pred_min": null,
-  "pred_max": null,
-  "n_runs": 0
+  "pred_median": 577309.0,
+  "pred_min": 532784.0,
+  "pred_max": 578685.0,
+  "n_runs": 5
  },
  {
   "id": "ekinciler-iskenderun",
@@ -834,10 +834,10 @@
   "notes": "EAF main line only (\u00c7elikhane + \u00c7ubuk Haddehanesi). Haba\u015f also operates a plate mill at the same site with separate Scope 1 = 193,961 (2024). If treating as 'Haba\u015f Alia\u011fa total,' add 193,961.",
   "eu_default": 9500000.0,
   "label_source": "disclosure",
-  "pred_median": 888267.0,
-  "pred_min": null,
-  "pred_max": null,
-  "n_runs": 0
+  "pred_median": 923032.0,
+  "pred_min": 875618.0,
+  "pred_max": 1071128.0,
+  "n_runs": 5
  },
  {
   "id": "kardemir-karabuk",
@@ -854,10 +854,10 @@
   "notes": "Latest year supersedes 2022 as LODO label",
   "eu_default": 6650000.0,
   "label_source": "disclosure",
-  "pred_median": 5925699.0,
-  "pred_min": null,
-  "pred_max": null,
-  "n_runs": 0
+  "pred_median": 5061563.0,
+  "pred_min": 4223033.0,
+  "pred_max": 5619936.0,
+  "n_runs": 5
  },
  {
   "id": "diler-aliaga",
@@ -914,10 +914,10 @@
   "notes": "EAF; 1.82M t product; calc-based not 3rd-party verified; excludes \u0130zdemir Energy power plant",
   "eu_default": 2850000.0,
   "label_source": "disclosure",
-  "pred_median": 288988.0,
-  "pred_min": null,
-  "pred_max": null,
-  "n_runs": 0
+  "pred_median": 302349.0,
+  "pred_min": 292412.0,
+  "pred_max": 326150.0,
+  "n_runs": 5
  },
  {
   "id": "asilcelik-izmit",
@@ -994,10 +994,10 @@
   "notes": "Combined Tuzla + Dilovas\u0131 sites. Downstream rolling/foil only \u2014 no Hall-H\u00e9roult smelting. EF 0.379 t/t Al is ~23\u00d7 lower than EU CBAM default 8.6 (calibrated for primary smelters).",
   "eu_default": 450000.0,
   "label_source": "disclosure",
-  "pred_median": 97216.0,
-  "pred_min": null,
-  "pred_max": null,
-  "n_runs": 0
+  "pred_median": 98819.0,
+  "pred_min": 86381.0,
+  "pred_max": 114359.0,
+  "n_runs": 5
  },
  {
   "id": "asas-akyazi",
@@ -1014,10 +1014,10 @@
   "notes": "Akyaz\u0131+Karap\u00fcr\u00e7ek single ID; extrusion+rolling, no smelting; 4yr history (2021:89988, 2022:82193, 2023:79112, 2024:68618)",
   "eu_default": 375000.0,
   "label_source": "disclosure",
-  "pred_median": 94435.0,
-  "pred_min": null,
-  "pred_max": null,
-  "n_runs": 0
+  "pred_median": 90439.0,
+  "pred_min": 73803.0,
+  "pred_max": 95949.0,
+  "n_runs": 5
  },
  {
   "id": "toros-mersin",
@@ -1034,10 +1034,10 @@
   "notes": "Allocated from Toros group (842,174) by NAMEPLATE CAPACITY share (45.5%). Mersin has the NH\u2083+urea line \u2014 likely process-heavier than capacity-share allocation reflects. Medium-confidence label.",
   "eu_default": 1200000.0,
   "label_source": "disclosure",
-  "pred_median": 290924.0,
-  "pred_min": null,
-  "pred_max": null,
-  "n_runs": 0
+  "pred_median": 301628.0,
+  "pred_min": 283180.0,
+  "pred_max": 312993.0,
+  "n_runs": 5
  },
  {
   "id": "toros-samsun",
@@ -1054,10 +1054,10 @@
   "notes": "Allocated from Toros group by capacity share 30.3%. NPK/CAN \u2014 less process-heavy.",
   "eu_default": 800000.0,
   "label_source": "disclosure",
-  "pred_median": 196475.0,
-  "pred_min": null,
-  "pred_max": null,
-  "n_runs": 0
+  "pred_median": 197389.0,
+  "pred_min": 182488.0,
+  "pred_max": 209172.0,
+  "n_runs": 5
  },
  {
   "id": "toros-ceyhan",
@@ -1074,10 +1074,10 @@
   "notes": "Allocated from Toros group by capacity share 24.2%. AN/CAN.",
   "eu_default": 640000.0,
   "label_source": "disclosure",
-  "pred_median": 150441.0,
-  "pred_min": null,
-  "pred_max": null,
-  "n_runs": 0
+  "pred_median": 160182.0,
+  "pred_min": 157969.0,
+  "pred_max": 169310.0,
+  "n_runs": 5
  },
  {
   "id": "gubretas-izmit",
@@ -1094,10 +1094,10 @@
   "notes": "Yar\u0131mca is a BLENDING/granulation facility \u2014 no NH\u2083 or urea process emissions. Fuel + refrigerant only. Do NOT use as a benchmark for integrated fertilizer plants.",
   "eu_default": 1200000.0,
   "label_source": "disclosure",
-  "pred_median": 13581.0,
-  "pred_min": null,
-  "pred_max": null,
-  "n_runs": 0
+  "pred_median": 14352.0,
+  "pred_min": 12034.0,
+  "pred_max": 16125.0,
+  "n_runs": 5
  },
  {
   "id": "bagfas-bandirma",
@@ -1114,10 +1114,10 @@
   "notes": "2024 was a partial-capacity year for BAGFA\u015e (cf=0.29). An average-utilization year would push Scope 1 ~3\u00d7 higher. N\u2082O catalyst installed 2015 cuts ~80% of nitric-acid process N\u2082O.",
   "eu_default": 960000.0,
   "label_source": "disclosure",
-  "pred_median": 19969.0,
-  "pred_min": null,
-  "pred_max": null,
-  "n_runs": 0
+  "pred_median": 19513.0,
+  "pred_min": 19389.0,
+  "pred_max": 21458.0,
+  "n_runs": 5
  },
  {
   "id": "gemlik-gubre",
@@ -1154,10 +1154,10 @@
   "notes": "Standalone subsidiary (\u00c7imsa 51%); 1.1M ton cement production; ISO 14064 + TSRS limited assurance",
   "eu_default": 3326400.0,
   "label_source": "disclosure",
-  "pred_median": 702986.0,
-  "pred_min": null,
-  "pred_max": null,
-  "n_runs": 0
+  "pred_median": 712644.0,
+  "pred_min": 698946.0,
+  "pred_max": 731690.0,
+  "n_runs": 5
  },
  {
   "id": "batisoke-soke",
@@ -1174,9 +1174,9 @@
   "notes": "Single integrated S\u00f6ke plant; process EF 540-546 kg CO2/t clinker; ISO 14064-1:2018 verified",
   "eu_default": 6336000.0,
   "label_source": "disclosure",
-  "pred_median": 1673534.0,
-  "pred_min": null,
-  "pred_max": null,
-  "n_runs": 0
+  "pred_median": 1595923.0,
+  "pred_min": 1468664.0,
+  "pred_max": 1685631.0,
+  "n_runs": 5
  }
 ]
