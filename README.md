@@ -2,6 +2,47 @@
 
 **A public per-facility emissions benchmark for Turkish CBAM-scope industry, plus a closed-form physics baseline that beats the EU CBAM default by 85%.**
 
+> 🌐 **Live site:** [iz-b0n.pages.dev](https://iz-b0n.pages.dev)
+> 📊 **Browse the bench:** [iz-b0n.pages.dev/bench/](https://iz-b0n.pages.dev/bench/)
+> 🧪 **Verify in your browser (3 sec WebGPU train):** [iz-b0n.pages.dev/verify/](https://iz-b0n.pages.dev/verify/)
+> 📖 **How to use this:** [iz-b0n.pages.dev/use/](https://iz-b0n.pages.dev/use/)
+> 📝 **arXiv preprint draft:** [paper/iz_v0.md](paper/iz_v0.md)
+
+---
+
+## TL;DR
+
+The EU charges Turkish CBAM-scope exporters (cement, steel, aluminum, fertilizer) a CO₂ tariff based on a default value that overcharges most plants by **2-10×**. iz-1 is a one-line formula — `tCO₂ = capacity × emission-factor × capacity-factor` — that reproduces 21 audit-grade Turkish facility emissions within ±20% on average, using only operator-published numbers. **+85.3% log-MAE reduction vs EU CBAM default**, 95% data-bootstrap CI [+73.5%, +90.4%].
+
+If every TR operator used this instead of the default, **~€2 billion per year in CBAM payments stays in Turkey** instead of going to the EU treasury. That's the entire point. **Released under Apache-2.0** as open infrastructure for Turkish CBAM compliance — not a SaaS. Use it, cite it, contribute back.
+
+This is a one-person project by [Ahmet Barış Günaydın](https://barisgunaydin.com) (<hi@barisgunaydin.com>).
+
+---
+
+## Quickstart
+
+```bash
+git clone https://github.com/abgnydn/iz
+cd iz
+uv sync && playwright install chromium
+
+# Build the bench
+.venv/bin/python bin/export_bench_browser.py
+.venv/bin/python bin/build_facilities_json.py
+
+# Run the headline LODO eval
+python3 -m http.server 8765 --bind 127.0.0.1 --directory src/iz_browser &
+IZ_NO_CT=1 .venv/bin/python bin/e2e_lodo_aggregate.py 5
+.venv/bin/python bin/bootstrap_ci.py
+.venv/bin/python bin/baselines.py
+```
+
+Tests: `.venv/bin/python -m pytest tests/` (9 sanity checks).
+Consistency check: `.venv/bin/python bin/check_consistency.py`.
+
+---
+
 > **Headline (v0, n=21 audit-grade disclosure facilities across all 4 CBAM scopes; capacity-corrected vs operator sources 2026-05-27):**
 > - **B0 — EU CBAM default**: 0% (baseline).
 > - **B1 — cf-corrected formula** `cap × EF × cf` (no learned parameters): **+85.3% log-MAE reduction** vs EU default.
