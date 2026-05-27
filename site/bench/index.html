@@ -89,13 +89,26 @@
         <th class="num" data-sort="capacity">Capacity (t/yr)</th>
         <th class="num" data-sort="truth">Label tCO₂</th>
         <th data-sort="provenance">Provenance</th>
+        <th data-sort="assurance">Assurance</th>
+        <th class="num" data-sort="pred_median">iz-1 (LODO median)</th>
+        <th class="num" data-sort="ratio">Ratio</th>
         <th class="num" data-sort="eu_default">EU default</th>
-        <th class="num" data-sort="reduction">Reduction</th>
-        <th>Source</th>
+        <th>Source · notes</th>
       </tr>
     </thead>
     <tbody id="rows"></tbody>
   </table>
+  <p class="muted" style="font-size:11px;margin-top:14px;font-family:var(--sans);">
+    <strong>Provenance</strong>: <code>direct</code> = operator-published per-plant figure;
+    <code>allocated</code> = our split from operator-published group total using disclosed
+    production / capacity share; <code>derived</code> = back-computed; <code>disputed</code> = flagged
+    (excluded from LODO test set).
+    <strong>Assurance</strong>: <code>iso14064</code> = ISO 14064-1 third-party verified;
+    <code>tsrs_assured</code> = TSRS-compliant limited assurance (KGK-registered audit firm);
+    <code>operator_audited</code> = published in Big4-audited annual report without GHG-specific verification.
+    <strong>iz-1 (LODO median)</strong> = median of N outer leave-one-disclosure-out runs (3 inner seeds each).
+    <strong>Ratio</strong> = iz-1 ÷ truth.
+  </p>
 </section>
 
 </div>
@@ -120,10 +133,29 @@ const provenanceTag = p => {
   return `<span class="tag ${cls}">${p}</span>`;
 };
 
+const assuranceTag = a => {
+  if (!a) return '<span class="muted">—</span>';
+  const styles = {
+    'iso14064': 'background:#2d5a4c;color:#fbf7ee;border-color:#2d5a4c;',
+    'tsrs_assured': 'background:#fbf7ee;color:#2d5a4c;border-color:#2d5a4c;',
+    'operator_audited': 'background:transparent;color:#6e6862;border-color:#d8cfbe;',
+  };
+  const label = { 'iso14064': 'ISO 14064', 'tsrs_assured': 'TSRS', 'operator_audited': 'operator' }[a] ?? a;
+  return `<span class="tag" style="${styles[a] ?? ''}">${label}</span>`;
+};
+
 const labelTag = src => {
   if (src === 'disclosure') return `<span class="tag iz">disclosure</span>`;
   if (src === 'climate_trace') return `<span class="tag" style="border-color:#b85c3f;color:#b85c3f">CT</span>`;
   return `<span class="tag">formula</span>`;
+};
+
+const ratioClass = r => {
+  if (r == null) return '';
+  const off = Math.abs(Math.log(r));
+  if (off < 0.18) return 'ratio-good';  // within ~20%
+  if (off < 0.4)  return 'ratio-warn';
+  return 'ratio-bad';
 };
 
 let DATA = [];
@@ -133,9 +165,8 @@ let sortDir = 'desc';
 async function load() {
   const r = await fetch('/bench/facilities.json');
   DATA = await r.json();
-  // pre-compute reduction
   DATA.forEach(d => {
-    d.reduction = (d.eu_default && d.truth) ? ((d.eu_default - d.truth) / d.eu_default) : null;
+    d.ratio = (d.pred_median && d.truth) ? (d.pred_median / d.truth) : null;
   });
   render();
 }
@@ -162,10 +193,18 @@ function render() {
   const tb = document.querySelector('#rows');
   tb.innerHTML = rows.map(d => {
     const truthCell = d.truth ? `${fmt(d.truth)} <span class="muted" style="font-size:10px;">(${d.truth_year ?? '—'})</span>` : '—';
-    const srcCell = d.truth_src
-      ? `<span class="muted" style="font-size:11px;line-height:1.3;display:block;max-width:340px;">${escapeHtml(d.truth_src)}</span>`
+    const predCell = d.pred_median
+      ? `${fmt(d.pred_median)}<br><span class="muted" style="font-size:10px;">n=${d.n_runs} · ${fmt(d.pred_min)}–${fmt(d.pred_max)}</span>`
       : '<span class="muted">—</span>';
-    const reductionCls = d.reduction == null ? '' : d.reduction > 0.5 ? 'ratio-good' : d.reduction > 0 ? 'ratio-warn' : 'ratio-bad';
+    const ratioCell = d.ratio
+      ? `<span class="${ratioClass(d.ratio)}" style="font-weight:600;">${d.ratio.toFixed(2)}×</span>`
+      : '<span class="muted">—</span>';
+    const srcBlock = d.truth_src
+      ? `<span class="muted" style="font-size:11px;line-height:1.35;display:block;max-width:380px;">${escapeHtml(d.truth_src)}</span>`
+      : '<span class="muted">—</span>';
+    const notesBlock = d.notes
+      ? `<details style="margin-top:4px;"><summary style="font-size:10px;color:#8a5a1f;cursor:pointer;font-family:var(--sans);letter-spacing:0.08em;text-transform:uppercase;">caveat</summary><span style="font-size:11px;color:#6e6862;line-height:1.35;display:block;max-width:380px;margin-top:4px;">${escapeHtml(d.notes)}</span></details>`
+      : '';
     return `<tr>
       <td><strong>${escapeHtml(d.company)}</strong><br><span class="muted" style="font-size:11px;">${escapeHtml(d.plant)}</span></td>
       <td>${labelTag(d.label_source)} <span style="font-size:11px;color:#6e6862;">${d.sector}</span></td>
@@ -173,9 +212,11 @@ function render() {
       <td class="num">${fmt(d.capacity)}</td>
       <td class="num">${truthCell}</td>
       <td>${provenanceTag(d.provenance)}</td>
+      <td>${assuranceTag(d.assurance)}</td>
+      <td class="num">${predCell}</td>
+      <td class="num">${ratioCell}</td>
       <td class="num">${fmt(d.eu_default)}</td>
-      <td class="num ${reductionCls}">${d.reduction == null ? '—' : '−' + (d.reduction * 100).toFixed(0) + '%'}</td>
-      <td>${srcCell}</td>
+      <td>${srcBlock}${notesBlock}</td>
     </tr>`;
   }).join('');
 
