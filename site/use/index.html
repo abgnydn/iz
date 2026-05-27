@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to use iz · TR-MRV-Bench</title>
+<meta name="description" content="Plain-language guide for Turkish operators, EU-accredited CBAM verifiers, and researchers using the TR-MRV-Bench. Step by step.">
+<meta name="theme-color" content="#2d5a4c">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<link rel="canonical" href="https://iz-b0n.pages.dev/use/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="iz · TR-MRV-Bench">
+<meta property="og:title" content="How to use iz · TR-MRV-Bench">
+<meta property="og:description" content="Operator, verifier, and researcher guides. Open infrastructure for TR CBAM compliance.">
+<meta property="og:url" content="https://iz-b0n.pages.dev/use/">
+<meta property="og:image" content="https://iz-b0n.pages.dev/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="iz · how to use the bench">
+<meta name="twitter:image" content="https://iz-b0n.pages.dev/assets/og.png">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<div class="topbar"><div class="wrap-wide row">
+  <a href="/" class="logo">iz <em>· TR-MRV-Bench</em></a>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/bench/">Bench</a>
+    <a href="/use/" class="active">Use</a>
+    <a href="/about/">About</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+
+<header class="hero">
+  <p class="kicker">iz · how to use the bench</p>
+  <h1>Use it. Cite it. <em>Correct it.</em></h1>
+  <p class="subhead">
+    iz is open infrastructure for Turkish CBAM compliance. Three audiences. Three paths. Pick yours.
+  </p>
+  <p class="byline">
+    Apache-2.0 · no NDA, no contract, no quote needed. Questions:
+    <a href="mailto:hi@barisgunaydin.com">hi@barisgunaydin.com</a>.
+  </p>
+</header>
+
+<section>
+  <h2><span class="h2-num">01</span> If you're a Turkish operator</h2>
+  <p>
+    You ship cement, steel, aluminum, or fertilizer to the EU. CBAM is phasing in (full enforcement 2034)
+    and you're either paying the EU default value (almost certainly an overcharge) or building MRV.
+    Here's how iz helps:
+  </p>
+  <ol style="font-size:16px;line-height:1.7;">
+    <li><strong>Find your plant in the <a href="/bench/">bench</a>.</strong> Filter by city or company.
+      If your plant is in the 20 audit-grade rows (ink outline on the map), you have a defensible per-facility
+      Scope 1 number already worked out. If it's in the 39 cf-corrected rows, the formula
+      <code>capacity × route-EF × cf</code> is your starting point.</li>
+    <li><strong>Cross-check the number against your own records.</strong> Compare to your most recent
+      audited Scope 1 (or ISO 14064-1 verification). If we're within ±15%, ship the iz number to
+      your verifier. If we're materially off, <a href="mailto:hi@barisgunaydin.com">tell us why</a> —
+      we'll update the bench (or you can open a PR).</li>
+    <li><strong>Hire an EU-accredited verifier</strong> (DNV / TÜV Süd / Bureau Veritas / SGS Turkey desks).
+      Hand them the iz analysis as supporting evidence. Their job becomes a 1-day desk review instead
+      of a 2-week ground-up audit. You pay them less; they sign off faster.</li>
+    <li><strong>Submit verified data to your EU importer.</strong> They file the CBAM declaration using
+      your verified number, not the EU default. You avoid the overcharge.</li>
+  </ol>
+  <p>
+    <strong>Important caveat:</strong> downloading the iz CSV does <em>not</em> legally substitute for
+    an EU-accredited verifier audit. Step 3 is required by CBAM regulations. iz makes that audit
+    cheaper and faster, not unnecessary.
+  </p>
+</section>
+
+<section>
+  <h2><span class="h2-num">02</span> If you're a CBAM verifier (DNV / TÜV / BV / SGS Turkey desk)</h2>
+  <p>
+    Your Turkey desk audits a handful of operators per year. Each audit is a from-scratch crawl of
+    operator IARs, KAP filings, and on-site inspections. iz pre-builds the reference baseline:
+  </p>
+  <ol style="font-size:16px;line-height:1.7;">
+    <li><strong>Download <a href="/bench/tr_bench_v0.csv">tr_bench_v0.csv</a>.</strong> 59 facilities, 20 with
+      audit-grade Scope 1, every cell sourced.</li>
+    <li><strong>For each operator you audit</strong>, the iz row gives you: nameplate capacity (operator-verified),
+      audit-grade Scope 1 (or cf-corrected formula result), source PDF + page number, assurance tier
+      (ISO 14064-1 / TSRS / operator), and per-plant ratio vs the EU default.</li>
+    <li><strong>Validate against your own on-site work.</strong> If iz is off, you correct on-the-ground.
+      If iz matches, you've cut your prep time by ~80%.</li>
+    <li><strong>Cite TR-MRV-Bench v0 in your audit methodology section</strong> (CITATION.cff in the repo
+      gives the exact citation format). The fact that the underlying methodology is public + peer-reviewable
+      makes your audit more defensible upstream.</li>
+  </ol>
+  <p>
+    No commercial license needed. Apache-2.0. If you'd like a quarterly update or want to suggest
+    methodology changes, <a href="mailto:hi@barisgunaydin.com">email Ahmet</a> — corrections are
+    welcome and surfaced in the changelog.
+  </p>
+</section>
+
+<section>
+  <h2><span class="h2-num">03</span> If you're a researcher, policy person, journalist</h2>
+  <p>
+    The bench is a public dataset. Cite it like any open dataset:
+  </p>
+  <pre style="background:var(--paper);border:1px solid var(--rule);padding:14px 18px;font-family:var(--mono);font-size:13px;overflow-x:auto;">Günaydın, A. B. (2026). TR-MRV-Bench: A public per-facility emissions
+benchmark for Turkish CBAM-scope industry (v0.1) [Dataset].
+https://github.com/abgnydn/iz · https://iz-b0n.pages.dev</pre>
+  <p>
+    Or use <a href="https://github.com/abgnydn/iz/blob/master/CITATION.cff" target="_blank" rel="noopener">CITATION.cff</a>
+    which GitHub auto-formats into BibTeX/APA/Chicago. The full methodology is in
+    <code>PAPER_METHOD.md</code> and <code>PAPER_DISCUSSION.md</code> in the repo.
+  </p>
+  <p>
+    <strong>If you find a methodology error, a wrong capacity, a missing disclosure</strong> — open
+    a GitHub issue or PR. Every correction makes the bench better.
+  </p>
+</section>
+
+<section>
+  <h2><span class="h2-num">04</span> Why this is open and not a SaaS</h2>
+  <p>
+    The math is simple enough that no one should rent it. Three numbers from each operator's own
+    published annual report. The right answer is for every TR CBAM-scope operator to have access
+    to a defensible per-facility baseline — paid behind a paywall, the bench helps no one.
+  </p>
+  <p>
+    If CBAM enforcement at €85/tCO₂ proceeds as the EU plans, <strong>~€2 billion/year in
+    overcharged CBAM payments to the EU treasury can be avoided by Turkish exporters using
+    real per-facility data</strong>. That money stays in Turkey, supports the lira's current
+    account, lowers cost-to-produce, and makes TR exports more EU-competitive at the margin.
+    The point of iz is to make sure no operator pays more than they should because they couldn't
+    afford the verifier audit.
+  </p>
+  <p>
+    This is a one-person contribution. It's maintained by Ahmet Barış Günaydın as a public good.
+    No fundraising, no SaaS, no NDA, no upsell. If you find it useful, the only ask is to cite
+    it and contribute corrections back.
+  </p>
+</section>
+
+<div class="cta-block">
+  <h3>Questions, corrections, or just to say it's useful</h3>
+  <p>
+    Email is the front door. Methodology disagreements are especially welcome — the limitations
+    page is long and explicit, but I'm sure I missed things.
+  </p>
+  <a class="btn" href="mailto:hi@barisgunaydin.com">hi@barisgunaydin.com</a>
+  <a class="btn outline" href="https://github.com/abgnydn/iz/issues" target="_blank" rel="noopener" style="margin-left:8px;">Open a GitHub issue →</a>
+</div>
+
+</div>
+
+<footer><div class="wrap row">
+  <span>© 2026 Ahmet Barış Günaydın · open under Apache-2.0</span>
+  <a href="/">Home</a>
+  <a href="/bench/">Bench</a>
+  <a href="/about/">About</a>
+  <a href="https://barisgunaydin.com" target="_blank" rel="noopener">barisgunaydin.com</a>
+  <a href="https://github.com/abgnydn/iz" target="_blank" rel="noopener">GitHub</a>
+  <a href="mailto:hi@barisgunaydin.com">Email</a>
+</div></footer>
+
+</body>
+</html>

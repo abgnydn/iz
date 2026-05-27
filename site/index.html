@@ -31,6 +31,7 @@
   <nav>
     <a href="/" class="active">Home</a>
     <a href="/bench/">Bench</a>
+    <a href="/use/">Use</a>
     <a href="/about/">About</a>
   </nav>
 </div></div>
@@ -53,12 +54,13 @@
 
   <p class="subhead">
     The EU's CBAM default overcharges most Turkish cement, steel, aluminum, and fertilizer
-    facilities by 2-10×. We've built a public per-facility benchmark with audit-grade Scope 1
-    cited to operator-published source PDFs, and a one-line formula that recovers it within
-    ±15% for big emitters.
+    facilities by 2-10×. iz is a public per-facility benchmark with audit-grade Scope 1
+    cited to operator-published source PDFs, plus a one-line formula that recovers it within
+    ±15% for big emitters. <strong>Released as open infrastructure under Apache-2.0 — use it,
+    cite it, contribute back.</strong>
   </p>
   <p class="byline">
-    Ahmet Barış Günaydın ·
+    Built and maintained by Ahmet Barış Günaydın ·
     <a href="mailto:hi@barisgunaydin.com">hi@barisgunaydin.com</a> ·
     <a href="https://barisgunaydin.com" target="_blank" rel="noopener">barisgunaydin.com</a> ·
     <a href="https://github.com/abgnydn/iz" target="_blank" rel="noopener">github.com/abgnydn/iz</a>
@@ -113,32 +115,33 @@
 </section>
 
 <section>
-  <h2><span class="h2-num">03</span> What we deliver</h2>
+  <h2><span class="h2-num">03</span> What's in the bench, for whom</h2>
   <p>
-    A per-facility CBAM-grade Scope 1 number, sourced and defensible. For each plant we hand you:
+    The bench is a public good. Three audiences, three uses:
   </p>
   <ul style="font-size:16px; line-height:1.7;">
-    <li>The audit-grade tCO₂ figure, formula-derived or sourced from operator disclosure</li>
-    <li>Full source-citation: report URL, page number, methodology (ISO 14064-1 / TSRS)</li>
-    <li>Comparison vs EU default &mdash; what you would owe under each</li>
-    <li>A defensible methodology document your CBAM verifier (DNV / TÜV / BV) can audit in a day instead of a fortnight</li>
-    <li>Pre-filled CBAM XML declaration, validated against EU XSD v23.00</li>
+    <li><strong>Turkish operators</strong>: find your plant in <a href="/bench/">/bench</a>. The audit-grade tCO₂ figure, source PDF, and capacity factor are already worked out. Take the row to your CBAM-accredited verifier — they cite our methodology and your audit goes from a fortnight to a day. <a href="/use/">Operator guide →</a></li>
+    <li><strong>EU-accredited verifiers</strong> (DNV / TÜV Süd / BV / SGS Turkey desks): every TR cement/steel/aluminum/fertilizer plant has a pre-built reference baseline. <a href="/use/">Verifier workflow →</a></li>
+    <li><strong>Researchers, policy, journalists</strong>: the bench is downloadable as <a href="/bench/tr_bench_v0.csv">CSV</a> or <a href="/bench/facilities.json">JSON</a> with full provenance. <a href="https://github.com/abgnydn/iz/blob/master/CITATION.cff" target="_blank" rel="noopener">CITATION.cff</a> for citing.</li>
   </ul>
 </section>
 
 <div class="cta-block">
-  <h3>Operator pilot — €5-10k per facility</h3>
+  <h3>Open infrastructure for TR CBAM compliance — Apache-2.0</h3>
   <p>
-    Two-week turnaround. If your real emissions are below the EU default (they almost certainly are),
-    a single shipment's CBAM savings cover the audit fee. We do not carry verifier accreditation
-    ourselves &mdash; we make your existing accredited verifier's (DNV / TÜV / BV / SGS) audit 10× faster.
+    This is a contribution to the Turkish economy, not a SaaS. If every TR CBAM-scope operator
+    used real per-facility data instead of paying the EU default, <strong>~€2 billion per year</strong>
+    stays in Turkey instead of going to the EU treasury (CBAM at €85/tCO₂, realistic sector
+    EU-export shares). Use the bench. Cite it. Correct it. Submit a pull request when you find
+    a better source.
   </p>
   <p style="font-size:13px;color:color-mix(in srgb, var(--paper) 70%, transparent);margin:14px 0 18px;">
-    Reply with your plant name, capacity, and CBAM customs code(s). We'll send a sample report from
-    a comparable facility within 48h, no NDA needed for the sample.
+    Questions, corrections, citation requests, methodology disagreements — all welcome.
+    No NDA, no contract, no quote.
   </p>
-  <a class="btn" href="mailto:hi@barisgunaydin.com?subject=CBAM%20pilot%20%E2%80%94%20%5Bplant%20name%5D&body=Hi%20Bar%C4%B1%C5%9F%2C%0A%0APlant%3A%20%0ACBAM%20customs%20code(s)%3A%20%0ACapacity%20(t%2Fyr)%3A%20%0ALast%20published%20Scope%201%20(if%20any)%3A%20%0A%0AWhat%20we%20need%20help%20with%3A%20%0A%0AThanks%2C%0A">Email hi@barisgunaydin.com →</a>
+  <a class="btn" href="/use/">How to use this →</a>
   <a class="btn outline" href="https://github.com/abgnydn/iz" target="_blank" rel="noopener" style="margin-left:8px;">Source on GitHub →</a>
+  <a class="btn outline" href="mailto:hi@barisgunaydin.com" style="margin-left:8px;">hi@barisgunaydin.com</a>
 </div>
 
 <section>
