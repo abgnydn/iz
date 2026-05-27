@@ -106,48 +106,45 @@ FERT_ROUTE_MAP = {
 # disclosures, not from emissions. Used as a feature so the model can infer
 # per-plant utilization even when CT doesn't cover the facility.
 DISCLOSED_CF = {
-    # Non-leaky: production / capacity from operator IAR text (production
-    # is disclosed independently of Scope 1).
-    "akcansa-buyukcekmece": 0.562,   # 2,527,776 / 4,500,000 — Akçansa 2025 IAR p167
-    "akcansa-canakkale":    0.917,   # 5,500,000 / 6,000,000 — Akçansa 2025 IAR p167
-    "akcansa-ladik":        0.676,   # 1,013,760 / 1,500,000 — Akçansa 2025 IAR p167
-    "erdemir-eregli":       0.836,   # 3,343,000 / 4,000,000 — Erdemir 2024 IAR p38 (sıvı çelik); cap = 4M
-    "isdemir-iskenderun":   0.982,   # 5,400,000 / 5,500,000 — Erdemir 2024 IAR p38
-
-    # Non-leaky group averages from disclosed clinker production / capacity:
-    # OYAK 2023 IAR p15: 7,230,883 t clinker / 10,400,000 t capacity = 0.695.
-    # Limak 2023 SR p88: 980,493 t coal × ~3.0 (alt-fuel share) ≈ 13M t clinker
-    # equivalent / ~14M cap ≈ 0.93; reduced to 0.85 as conservative anchor.
-    # Both derive from production tonnage, not emissions → non-leaky in LODO.
-    "oyak-bolu":            0.695,   # OYAK 2023 IAR p15 — group clinker/cap
+    # All values are operator-disclosed production / nameplate capacity.
+    # Capacities corrected against operator sources 2026-05-27 (see capacity audit
+    # in tr_facilities.csv notes). Values updated to keep formula = production stable.
+    # ------ Cement ------
+    "akcansa-buyukcekmece": 0.999,   # ~2,497k cement (1,943k clinker × 1.285) / 2,500k cap
+    "akcansa-canakkale":    0.980,   # ~5,718k cement (4,450k clinker × 1.285) / 5,500k cap (clamped to <1)
+    "akcansa-ladik":        0.828,   # ~828k cement (644k clinker × 1.285) / 1,000k cap
+    "nuh-hereke":           0.673,   # 3,834k cement / 5,700k cap — Nuh 2024 TSRS p56
+    "afyon-cimento":        0.611,   # 1,100k cement / 1,800k cap — Afyon 2024 TSRS p23
+    # OYAK group-avg from OYAK 2023 IAR p15: 7,230,883 t clinker / 10,400,000 t capacity = 0.695
+    "oyak-bolu":            0.695,
     "oyak-unye":            0.695,
     "oyak-mardin":          0.695,
     "oyak-adana":           0.695,
     "oyak-aslan":           0.695,
-    # Additional cement per-plant cf from agent 3 TSRS crawls
-    "nuh-hereke":           0.640,   # 3,834k cement / 6,000k cap — Nuh 2024 TSRS p56
-    "afyon-cimento":        0.524,   # 1,100k cement / 2,100k cap — Afyon 2024 TSRS p23
-
-    "limak-ankara":         0.85,    # Limak 2023 SR p88 group-avg
+    # Limak group-avg from Limak 2023 SR p88 (conservative anchor 0.85)
+    "limak-ankara":         0.85,
     "limak-sanliurfa":      0.85,
     "limak-kurtalan":       0.85,
     "limak-trakya":         0.85,
     "limak-ergani":         0.85,
     "limak-derik":          0.85,
     "limak-bitlis":         0.85,
-
-    # Steel EAF — non-leaky production / capacity from operator SRs.
-    "habas-aliaga":         0.77,    # 3,854,796 / 5,000,000 — Habaş 2024 SR p75
-    "colakoglu-gebze":      0.84,    # 2,519,230 / 3,000,000 — Çolakoğlu 2024 SR p82
-    "izdemir-aliaga":       0.85,    # production exceeds cap — capacity in our CSV is conservative; use saturated
-
-    # Aluminum + fertilizer non-leaky cf from disclosed production
-    "assan-tuzla":          0.954,   # 286,119 / 300,000 — Assan 2024 SR p76 (combined Tuzla+Dilovası)
-    "toros-mersin":         0.486,   # 1,603,140 / 3,300,000 — Tekfen 2024 TSRS group
-    "toros-samsun":         0.486,
-    "toros-ceyhan":         0.486,
-    "bagfas-bandirma":      0.291,   # 349,442 / 1,200,000 — BAGFAŞ 2024 SR partial-cap year
-    "gubretas-izmit":       0.403,   # 604,174 / 1,500,000 — Gübretaş 2024 TSRS p23
+    # ------ Steel ------
+    "erdemir-eregli":       0.836,   # 3,343k / 4,000k — Erdemir 2024 IAR p38 (sıvı çelik)
+    "isdemir-iskenderun":   0.980,   # 5,400k / 5,300k — clamped to <1 (production effectively at cap)
+    "habas-aliaga":         0.856,   # 3,854,796 / 4,500,000 — Habaş 2024 SR p75 + agent-verified cap
+    "colakoglu-gebze":      0.560,   # 2,519,230 / 4,500,000 — Çolakoğlu 2024 SR p82 + post-EAF2 cap 4.5M
+    "izdemir-aliaga":       0.85,    # operator-published 1.5M cap, production saturated
+    # ------ Aluminum (downstream only — primary smelter is Eti Seydişehir) ------
+    "assan-tuzla":          0.795,   # 286,119 / 360,000 — Assan 2024 SR + agent-verified cap
+    # ASAŞ no production tonnes disclosed — leave to sector default (~0.85)
+    # ------ Fertilizer ------
+    # Toros group: production 1,603,140 / group cap (810 + 575 + 821.7 = 2,206.7k) = 0.726
+    "toros-mersin":         0.726,
+    "toros-samsun":         0.726,
+    "toros-ceyhan":         0.726,
+    "bagfas-bandirma":      0.499,   # 349,442 / 700,000 — BAGFAŞ 2024 SR partial-cap year + agent-verified cap
+    "gubretas-izmit":       0.755,   # 604,174 / 800,000 — Gübretaş 2024 TSRS p23 + agent-verified cap
 }
 
 STEEL_ROUTE_MAP = {

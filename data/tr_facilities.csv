@@ -1,7 +1,7 @@
 id,company,group,plant_name,cbam_scope,city,province,lat,lon,annual_capacity_t,cn_codes,public_disclosure_url,notes
-akcansa-buyukcekmece,Akçansa,Sabancı,Büyükçekmece Cement Plant,cement,Büyükçekmece,İstanbul,41.0397,28.5587,4500000,25232100;25232900;25231000,https://www.akcansa.com.tr/en/sustainability/,CSC Gold certified; fly-ash clinker substitution; v0 demo target
-akcansa-canakkale,Akçansa,Sabancı,Çanakkale Cement Plant,cement,Lapseki,Çanakkale,40.3450,26.6800,6000000,25232100;25232900;25231000,https://www.akcansa.com.tr/en/sustainability/,Largest Akçansa plant (5.5M t cement output 2025 per IAR p167)
-akcansa-ladik,Akçansa,Sabancı,Ladik Cement Plant,cement,Ladik,Samsun,40.9200,36.0700,1500000,25232900,https://www.akcansa.com.tr/en/sustainability/,Inland
+akcansa-buyukcekmece,Akçansa,Sabancı,Büyükçekmece Cement Plant,cement,Büyükçekmece,İstanbul,41.0397,28.5587,2500000,25232100;25232900;25231000,https://www.akcansa.com.tr/en/sustainability/,"CSC Gold certified; fly-ash clinker substitution; v0 demo target | capacity corrected 2026-05-27: 4500000 → 2500000. Akçansa 2017 AR plant-level disclosure (2,527,776 cement) — cross-checked: 1.514M audited Scope 1 → EF 0.60 t/t at 100% cf, consistent with cement reality."
+akcansa-canakkale,Akçansa,Sabancı,Çanakkale Cement Plant,cement,Lapseki,Çanakkale,40.3450,26.6800,5500000,25232100;25232900;25231000,https://www.akcansa.com.tr/en/sustainability/,Largest Akçansa plant (5.5M t cement output 2025 per IAR p167) | capacity corrected 2026-05-27: 6000000 → 5500000. Akçansa operator press release + 2024 IAR p9+167 (5.5M cement / 4.45M clinker).
+akcansa-ladik,Akçansa,Sabancı,Ladik Cement Plant,cement,Ladik,Samsun,40.9200,36.0700,1000000,25232900,https://www.akcansa.com.tr/en/sustainability/,Inland | capacity corrected 2026-05-27: 1500000 → 1000000. Akçansa 2017 AR plant-level (1.01M cement).
 cimsa-mersin,Çimsa,Sabancı,Mersin Cement Plant,cement,Mersin,Mersin,36.8300,34.6600,2400000,25232100;25232900,https://www.cimsa.com.tr/en/sustainability,Largest white cement plant in Europe; coastal EU-export
 cimsa-eskisehir,Çimsa,Sabancı,Eskişehir Cement Plant,cement,Eskişehir,Eskişehir,39.7800,30.5200,1500000,25232900,https://www.cimsa.com.tr/en/sustainability,
 cimsa-kayseri,Çimsa,Sabancı,Kayseri Cement Plant,cement,Kayseri,Kayseri,38.7400,35.4900,1700000,25232900,https://www.cimsa.com.tr/en/sustainability,
@@ -18,7 +18,7 @@ limak-trakya,Limak Çimento,Limak,Trakya Cement Plant,cement,Tekirdağ,Tekirdağ
 limak-ergani,Limak Çimento,Limak,Ergani Cement Plant,cement,Ergani,Diyarbakır,38.2700,39.7600,1200000,25232900,https://www.limakcimento.com,
 limak-derik,Limak Çimento,Limak,Derik Cement Plant,cement,Derik,Mardin,37.3600,40.2700,1000000,25232900,https://www.limakcimento.com,
 limak-bitlis,Limak Çimento,Limak,Bitlis Cement Plant,cement,Bitlis,Bitlis,38.4000,42.1000,800000,25232900,https://www.limakcimento.com,
-nuh-hereke,Nuh Çimento,Nuh,Hereke Cement Plant,cement,Hereke,Kocaeli,40.7800,29.6500,6000000,25232100;25232900;25231000,https://www.nuhcimento.com.tr/en/sustainability,Largest TR cement plant; Marmara coast
+nuh-hereke,Nuh Çimento,Nuh,Hereke Cement Plant,cement,Hereke,Kocaeli,40.7800,29.6500,5700000,25232100;25232900;25231000,https://www.nuhcimento.com.tr/en/sustainability,Largest TR cement plant; Marmara coast | capacity corrected 2026-05-27: 6000000 → 5700000. Nuh Çimento operator + World Cement Assn (5.7M cement / 4.6M clinker).
 cimentas-izmir,Çimentaş,Cementir Holding,İzmir Cement Plant,cement,Bornova,İzmir,38.4300,27.2100,2500000,25232900,https://www.cimentas.com.tr,Italian-owned (Cementir)
 cimentas-edirne,Çimentaş,Cementir Holding,Edirne Cement Plant,cement,Edirne,Edirne,41.6700,26.5600,1500000,25232900,https://www.cimentas.com.tr,EU border proximity
 cimentas-elazig,Çimentaş,Cementir Holding,Elazığ Cement Plant,cement,Elazığ,Elazığ,38.6700,39.2200,1000000,25232900,https://www.cimentas.com.tr,
@@ -30,17 +30,17 @@ baticim-izmir,Batıçim,Batıçim,İzmir Cement Plant,cement,Aliağa,İzmir,38.5
 cimko-adiyaman,Çimko,Eren Holding,Adıyaman Cement Plant,cement,Adıyaman,Adıyaman,37.7600,38.2800,2000000,25232900,https://www.cimko.com.tr,
 denizli-cimento,Denizli Çimento,—,Denizli Cement Plant,cement,Denizli,Denizli,37.7800,29.0900,2500000,25232900,https://www.denizlicimento.com.tr,
 bolu-cimento,Bolu Çimento,OYAK,Bolu Cement Plant 2,cement,Bolu,Bolu,40.7300,31.5900,2500000,25232900,https://www.bolucimento.com.tr,
-goltas-isparta,Göltaş Çimento,—,Isparta Cement Plant,cement,Isparta,Isparta,37.7600,30.5500,2000000,25232900,https://www.goltas.com.tr,
+goltas-isparta,Göltaş Çimento,—,Isparta Cement Plant,cement,Isparta,Isparta,37.7600,30.5500,5000000,25232900,https://www.goltas.com.tr,"capacity corrected 2026-05-27: 2000000 → 5000000. Göltaş operator kurumsal page (5,068,800 cement / 3,150,000 clinker)."
 erdemir-eregli,Erdemir,OYAK,Karadeniz Ereğli Integrated Works,steel,Karadeniz Ereğli,Zonguldak,41.2800,31.4000,4000000,7208;7210;7225,https://www.erdemir.com.tr/en/sustainability,BF/BOF integrated; biggest TR flat-steel mill; 4M t crude steel capacity (corrected 2026-05-26)
-isdemir-iskenderun,İsdemir,OYAK,İskenderun Integrated Works,steel,İskenderun,Hatay,36.7800,36.1800,5500000,7208;7210;7227;7228,https://www.isdemir.com.tr,BF/BOF; Erdemir group
+isdemir-iskenderun,İsdemir,OYAK,İskenderun Integrated Works,steel,İskenderun,Hatay,36.7800,36.1800,5300000,7208;7210;7227;7228,https://www.isdemir.com.tr,BF/BOF; Erdemir group | capacity corrected 2026-05-27: 5500000 → 5300000. İsdemir operator/Wikipedia consensus (5.3M liquid steel).
 tosyali-osmaniye,Tosyalı,Tosyalı Holding,Osmaniye DRI-EAF,steel,Osmaniye,Osmaniye,37.0700,36.2700,3500000,7207;7213;7214;7228,https://www.tosyali.com.tr/sustainability,DRI-EAF route; low-carbon story
 tosyali-iskenderun,Tosyalı,Tosyalı Holding,İskenderun EAF Mill,steel,Sarıseki,Hatay,36.6100,36.1600,3000000,7213;7214;7228,https://www.tosyali.com.tr/sustainability,EAF
 tosyali-sivas,Tosyalı,Tosyalı Holding,Sivas Mill,steel,Sivas,Sivas,39.7500,36.9500,1500000,7213;7214,https://www.tosyali.com.tr/sustainability,
 icdas-biga,İçdaş,İçdaş,Biga Çamlıca Plant,steel,Biga,Çanakkale,40.4000,27.2000,3500000,7213;7214;7228,https://www.icdas.com.tr,EAF; EU-export heavy
-colakoglu-gebze,Çolakoğlu,Çolakoğlu Metalurji,Gebze Dilovası Plant,steel,Dilovası,Kocaeli,40.7900,29.4900,3000000,7208;7210,https://www.colakoglu.com.tr,EAF flat
+colakoglu-gebze,Çolakoğlu,Çolakoğlu Metalurji,Gebze Dilovası Plant,steel,Dilovası,Kocaeli,40.7900,29.4900,4500000,7208;7210,https://www.colakoglu.com.tr,"EAF flat | capacity corrected 2026-05-27: 3000000 → 4500000. Çolakoğlu post-2023 EAF2 commissioning (EAF1 3.2M + EAF2 1.3M = 4.5M crude steel, GEM citing Primetals press release)."
 ekinciler-iskenderun,Ekinciler,Ekinciler Holding,İskenderun Plant,steel,İskenderun,Hatay,36.6500,36.1600,2000000,7213;7214,https://www.ekincilerholding.com.tr,EAF long products
 borcelik-gemlik,Borçelik,Borusan,Gemlik Flat Steel Plant,steel,Gemlik,Bursa,40.4200,29.1800,1000000,7210;7212,https://www.borusan.com/en/sustainability,Flat steel coating
-habas-aliaga,Habaş,Habaş,Aliağa Plant,steel,Aliağa,İzmir,38.7900,26.9700,5000000,7213;7214;7228,https://www.habas.com.tr,EAF
+habas-aliaga,Habaş,Habaş,Aliağa Plant,steel,Aliağa,İzmir,38.7900,26.9700,4500000,7213;7214;7228,https://www.habas.com.tr,"EAF | capacity corrected 2026-05-27: 5000000 → 4500000. Habaş 3×EAF×1.5M = 4.5M crude steel (operator + industry consensus). 7.5M expansion is planned, not yet commissioned."
 kardemir-karabuk,Kardemir,Kardemir,Karabük Integrated Works,steel,Karabük,Karabük,41.2000,32.6200,3500000,7207;7213;7214;7228,https://www.kardemir.com/en/sustainability,BF/BOF; only inland integrated mill
 diler-aliaga,Diler,Diler Holding,Aliağa Plant,steel,Aliağa,İzmir,38.8100,26.9700,2000000,7213;7214,https://www.dilerholding.com,
 kroman-gebze,Kroman Çelik,—,Gebze Plant,steel,Gebze,Kocaeli,40.7900,29.4900,1000000,7213;7214,https://www.kromanchelik.com,
@@ -48,13 +48,13 @@ izdemir-aliaga,İzdemir,—,Aliağa Plant,steel,Aliağa,İzmir,38.7900,26.9500,1
 asilcelik-izmit,Asilçelik,Yıldız Holding,İzmit Plant,steel,İzmit,Kocaeli,40.7200,29.9400,1000000,7228,https://www.asilcelik.com.tr,Special steels
 yazici-iskenderun,Yazıcı Demir Çelik,Yazıcı Holding,Payas Plant,steel,Payas,Hatay,36.7100,36.2100,1000000,7213;7214,https://www.yazicidemircelik.com.tr,
 eti-aluminyum-seydisehir,Eti Alüminyum,Cengiz Holding,Seydişehir Plant,aluminum,Seydişehir,Konya,37.4200,31.8500,80000,7601,https://www.etialuminyum.com,Only primary aluminum smelter in TR
-assan-tuzla,Assan Alüminyum,Kibar Holding,Tuzla Plant,aluminum,Tuzla,İstanbul,40.8500,29.3000,300000,7606;7607,https://www.assan.com.tr/en/sustainability,Rolling + foil (downstream)
+assan-tuzla,Assan Alüminyum,Kibar Holding,Tuzla Plant,aluminum,Tuzla,İstanbul,40.8500,29.3000,360000,7606;7607,https://www.assan.com.tr/en/sustainability,"Rolling + foil (downstream) | capacity corrected 2026-05-27: 300000 → 360000. Assan operator About page (360k flat-rolled aluminum; downstream only, no smelter)."
 asas-akyazi,Asaş Alüminyum,—,Akyazı Plant,aluminum,Akyazı,Sakarya,40.7100,30.5900,250000,7604;7608,https://www.asastr.com,Extrusion + rolling
-toros-mersin,Toros Tarım,Tekfen Holding,Mersin Fertilizer Plant,fertilizer,Mersin,Mersin,36.7800,34.6100,1500000,3102;3105,https://www.torostarim.com.tr,NH3 + urea + compound NPK
-toros-samsun,Toros Tarım,Tekfen Holding,Samsun Fertilizer Plant,fertilizer,Samsun,Samsun,41.3000,36.3200,1000000,3105,https://www.torostarim.com.tr,
-toros-ceyhan,Toros Tarım,Tekfen Holding,Ceyhan Fertilizer Plant,fertilizer,Ceyhan,Adana,36.8400,35.8300,800000,3102;3105,https://www.torostarim.com.tr,
-gubretas-izmit,Gübretaş,Gübretaş,Yarımca Plant,fertilizer,Körfez,Kocaeli,40.7700,29.7800,1500000,3102;3105,https://www.gubretas.com.tr/en/sustainability,
-bagfas-bandirma,BAGFAŞ,BAGFAŞ,Bandırma Plant,fertilizer,Bandırma,Balıkesir,40.3600,27.9400,1200000,3102;3103;3105,https://www.bagfas.com.tr,Sulfuric acid + DAP/MAP
+toros-mersin,Toros Tarım,Tekfen Holding,Mersin Fertilizer Plant,fertilizer,Mersin,Mersin,36.7800,34.6100,810000,3102;3105,https://www.torostarim.com.tr,"NH3 + urea + compound NPK | capacity corrected 2026-05-27: 1500000 → 810000. Toros operator page (CAN 660k + DAP 150k = 810k fertilizer product, CBAM-scope)."
+toros-samsun,Toros Tarım,Tekfen Holding,Samsun Fertilizer Plant,fertilizer,Samsun,Samsun,41.3000,36.3200,575000,3105,https://www.torostarim.com.tr,capacity corrected 2026-05-27: 1000000 → 575000. Toros operator page (NP/NPK + DAP combined 575k).
+toros-ceyhan,Toros Tarım,Tekfen Holding,Ceyhan Fertilizer Plant,fertilizer,Ceyhan,Adana,36.8400,35.8300,821700,3102;3105,https://www.torostarim.com.tr,capacity corrected 2026-05-27: 800000 → 821700. Toros operator page (MAP 161.7k + NPK 660k = 821.7k).
+gubretas-izmit,Gübretaş,Gübretaş,Yarımca Plant,fertilizer,Körfez,Kocaeli,40.7700,29.7800,800000,3102;3105,https://www.gubretas.com.tr/en/sustainability,capacity corrected 2026-05-27: 1500000 → 800000. Gübretaş operator About page (Yarımca 800k chemical fertilizer).
+bagfas-bandirma,BAGFAŞ,BAGFAŞ,Bandırma Plant,fertilizer,Bandırma,Balıkesir,40.3600,27.9400,700000,3102;3103;3105,https://www.bagfas.com.tr,Sulfuric acid + DAP/MAP | capacity corrected 2026-05-27: 1200000 → 700000. BAGFAŞ derived from daily figures (NPK 800t/d + AS 800t/d + DAP-mode 575t/d) × 330 op days ≈ 700k. Operator only publishes daily.
 gemlik-gubre,Gemlik Gübre,—,Gemlik Plant,fertilizer,Gemlik,Bursa,40.4200,29.1600,500000,3102;3105,https://www.gemlikgubre.com.tr,
-afyon-cimento,Afyon Çimento,Çimsa,Afyonkarahisar Cement Plant,cement,Afyonkarahisar,Afyonkarahisar,38.7560,30.5430,2100000,25232900,https://www.afyoncimento.com,Çimsa subsidiary (51%); gri only
+afyon-cimento,Afyon Çimento,Çimsa,Afyonkarahisar Cement Plant,cement,Afyonkarahisar,Afyonkarahisar,38.7560,30.5430,1800000,25232900,https://www.afyoncimento.com,Çimsa subsidiary (51%); gri only | capacity corrected 2026-05-27: 2100000 → 1800000. Çimsa Halımoru post-2017 relocation: 1.5M clinker → ~1.8M cement (derived at standard 1.2 c/k ratio). Provenance: derived from operator clinker figure.
 batisoke-soke,Batısöke Söke Çimento,Batı Anadolu,Söke Cement Plant,cement,Söke,Aydın,37.7500,27.4010,4000000,25232900,https://www.batisoke.com.tr,Single integrated plant; 3M clinker cap
