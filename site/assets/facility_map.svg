@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 540" style="font-family:-apple-system, system-ui, sans-serif; background:#fbf7ee; max-width:100%; height:auto;">
+<rect x="0" y="0" width="1200" height="540" fill="#fbf7ee"/>
+<polygon points="123.5,73.0 176.2,101.6 234.6,137.5 374.9,123.1 439.2,87.3 585.4,73.0 661.4,108.8 790.0,130.3 877.7,137.5 977.1,116.0 1053.1,166.1 1129.1,244.9 1158.3,323.7 1140.8,402.5 1053.1,424.0 994.6,402.5 906.9,416.9 760.8,452.7 673.1,481.3 626.3,495.7 556.2,459.9 468.5,445.5 380.8,431.2 293.1,481.3 176.2,445.5 117.7,402.5 82.6,323.7 100.2,273.6 65.1,230.6 59.2,173.3 76.8,123.1 88.5,87.3" fill="#e8dec8" stroke="#a89e90" stroke-width="1" stroke-linejoin="round"/>
+<line x1="30" y1="495.7" x2="1170" y2="495.7" stroke="#a89e90" stroke-width="0.3" opacity="0.4"/>
+<line x1="30" y1="424.0" x2="1170" y2="424.0" stroke="#a89e90" stroke-width="0.3" opacity="0.4"/>
+<line x1="30" y1="352.4" x2="1170" y2="352.4" stroke="#a89e90" stroke-width="0.3" opacity="0.4"/>
+<line x1="30" y1="280.7" x2="1170" y2="280.7" stroke="#a89e90" stroke-width="0.3" opacity="0.4"/>
+<line x1="30" y1="209.1" x2="1170" y2="209.1" stroke="#a89e90" stroke-width="0.3" opacity="0.4"/>
+<line x1="30" y1="137.5" x2="1170" y2="137.5" stroke="#a89e90" stroke-width="0.3" opacity="0.4"/>
+<line x1="30" y1="65.8" x2="1170" y2="65.8" stroke="#a89e90" stroke-width="0.3" opacity="0.4"/>
+<line x1="59.2" y1="30" x2="59.2" y2="510" stroke="#a89e90" stroke-width="0.3" opacity="0.4"/>
+<line x1="176.2" y1="30" x2="176.2" y2="510" stroke="#a89e90" stroke-width="0.3" opacity="0.4"/>
+<line x1="293.1" y1="30" x2="293.1" y2="510" stroke="#a89e90" stroke-width="0.3" opacity="0.4"/>
+<line x1="410.0" y1="30" x2="410.0" y2="510" stroke="#a89e90" stroke-width="0.3" opacity="0.4"/>
+<line x1="526.9" y1="30" x2="526.9" y2="510" stroke="#a89e90" stroke-width="0.3" opacity="0.4"/>
+<line x1="643.8" y1="30" x2="643.8" y2="510" stroke="#a89e90" stroke-width="0.3" opacity="0.4"/>
+<line x1="760.8" y1="30" x2="760.8" y2="510" stroke="#a89e90" stroke-width="0.3" opacity="0.4"/>
+<line x1="877.7" y1="30" x2="877.7" y2="510" stroke="#a89e90" stroke-width="0.3" opacity="0.4"/>
+<line x1="994.6" y1="30" x2="994.6" y2="510" stroke="#a89e90" stroke-width="0.3" opacity="0.4"/>
+<line x1="1111.5" y1="30" x2="1111.5" y2="510" stroke="#a89e90" stroke-width="0.3" opacity="0.4"/>
+<circle cx="401.2" cy="393.9" r="4.0" fill="#5a4a7a" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Eti Alüminyum — Seydişehir Plant (aluminum, cap 80,000 t/yr)</title></circle>
+<circle cx="327.6" cy="158.2" r="6.7" fill="#5a4a7a" fill-opacity="0.78" stroke="#14181d" stroke-width="1.6"><title>Asaş Alüminyum — Akyazı Plant (aluminum, cap 250,000 t/yr); LODO ratio 1.11× truth</title></circle>
+<circle cx="252.2" cy="148.2" r="7.5" fill="#5a4a7a" fill-opacity="0.78" stroke="#14181d" stroke-width="1.6"><title>Assan Alüminyum — Tuzla Plant (aluminum, cap 360,000 t/yr); LODO ratio 0.98× truth</title></circle>
+<circle cx="244.0" cy="179.0" r="8.3" fill="#7a6a2d" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Gemlik Gübre — Gemlik Plant (fertilizer, cap 500,000 t/yr)</title></circle>
+<circle cx="662.6" cy="116.0" r="8.6" fill="#7a6a2d" fill-opacity="0.78" stroke="#14181d" stroke-width="1.6"><title>Toros Tarım — Samsun Fertilizer Plant (fertilizer, cap 575,000 t/yr); LODO ratio 0.63× truth</title></circle>
+<circle cx="172.6" cy="183.3" r="9.1" fill="#7a6a2d" fill-opacity="0.78" stroke="#14181d" stroke-width="1.6"><title>BAGFAŞ — Bandırma Plant (fertilizer, cap 700,000 t/yr); LODO ratio 2.05× truth</title></circle>
+<circle cx="1000.5" cy="323.7" r="9.4" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Limak Çimento — Bitlis Cement Plant (cement, cap 800,000 t/yr)</title></circle>
+<circle cx="280.2" cy="153.9" r="9.4" fill="#7a6a2d" fill-opacity="0.78" stroke="#14181d" stroke-width="1.6"><title>Gübretaş — Yarımca Plant (fertilizer, cap 800,000 t/yr); LODO ratio 0.99× truth</title></circle>
+<circle cx="562.6" cy="439.8" r="9.4" fill="#7a6a2d" fill-opacity="0.78" stroke="#14181d" stroke-width="1.6"><title>Toros Tarım — Mersin Fertilizer Plant (fertilizer, cap 810,000 t/yr); LODO ratio 0.57× truth</title></circle>
+<circle cx="633.9" cy="435.5" r="9.5" fill="#7a6a2d" fill-opacity="0.78" stroke="#14181d" stroke-width="1.6"><title>Toros Tarım — Ceyhan Fertilizer Plant (fertilizer, cap 821,700 t/yr); LODO ratio 1.19× truth</title></circle>
+<circle cx="647.9" cy="143.2" r="9.9" fill="#2d5a4c" fill-opacity="0.78" stroke="#14181d" stroke-width="1.6"><title>Akçansa — Ladik Cement Plant (cement, cap 1,000,000 t/yr); LODO ratio 1.10× truth</title></circle>
+<circle cx="893.5" cy="398.2" r="9.9" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Limak Çimento — Derik Cement Plant (cement, cap 1,000,000 t/yr)</title></circle>
+<circle cx="832.1" cy="304.4" r="9.9" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Çimentaş — Elazığ Cement Plant (cement, cap 1,000,000 t/yr)</title></circle>
+<circle cx="245.1" cy="179.0" r="9.9" fill="#7a3b22" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Borçelik — Gemlik Flat Steel Plant (steel, cap 1,000,000 t/yr)</title></circle>
+<circle cx="263.3" cy="152.5" r="9.9" fill="#7a3b22" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Kroman Çelik — Gebze Plant (steel, cap 1,000,000 t/yr)</title></circle>
+<circle cx="289.6" cy="157.5" r="9.9" fill="#7a3b22" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Asilçelik — İzmit Plant (steel, cap 1,000,000 t/yr)</title></circle>
+<circle cx="656.1" cy="444.8" r="9.9" fill="#7a3b22" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Yazıcı Demir Çelik — Payas Plant (steel, cap 1,000,000 t/yr)</title></circle>
+<circle cx="863.7" cy="333.0" r="10.3" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Limak Çimento — Ergani Cement Plant (cement, cap 1,200,000 t/yr)</title></circle>
+<circle cx="566.7" cy="355.3" r="10.7" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Çimsa — Niğde Cement Plant (cement, cap 1,400,000 t/yr)</title></circle>
+<circle cx="323.5" cy="224.9" r="10.9" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Çimsa — Eskişehir Cement Plant (cement, cap 1,500,000 t/yr)</title></circle>
+<circle cx="976.5" cy="358.1" r="10.9" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Limak Çimento — Kurtalan Cement Plant (cement, cap 1,500,000 t/yr)</title></circle>
+<circle cx="92.0" cy="89.5" r="10.9" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Çimentaş — Edirne Cement Plant (cement, cap 1,500,000 t/yr)</title></circle>
+<circle cx="939.7" cy="214.8" r="10.9" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Aşkale Çimento — Erzurum Cement Plant (cement, cap 1,500,000 t/yr)</title></circle>
+<circle cx="699.4" cy="227.0" r="10.9" fill="#7a3b22" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Tosyalı — Sivas Mill (steel, cap 1,500,000 t/yr)</title></circle>
+<circle cx="114.8" cy="295.8" r="10.9" fill="#7a3b22" fill-opacity="0.78" stroke="#14181d" stroke-width="1.6"><title>İzdemir — Aliağa Plant (steel, cap 1,500,000 t/yr); LODO ratio 1.11× truth</title></circle>
+<circle cx="614.0" cy="299.4" r="11.2" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Çimsa — Kayseri Cement Plant (cement, cap 1,700,000 t/yr)</title></circle>
+<circle cx="324.8" cy="298.2" r="11.3" fill="#2d5a4c" fill-opacity="0.78" stroke="#14181d" stroke-width="1.6"><title>Afyon Çimento — Afyonkarahisar Cement Plant (cement, cap 1,800,000 t/yr); LODO ratio 0.59× truth</title></circle>
+<circle cx="357.4" cy="156.1" r="11.5" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>OYAK Çimento — Aslan Cement Plant (cement, cap 2,000,000 t/yr)</title></circle>
+<circle cx="234.0" cy="194.1" r="11.5" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Bursa Çimento — Bursa Cement Plant (cement, cap 2,000,000 t/yr)</title></circle>
+<circle cx="120.6" cy="313.0" r="11.5" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Batıçim — İzmir Cement Plant (cement, cap 2,000,000 t/yr)</title></circle>
+<circle cx="777.1" cy="369.6" r="11.5" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Çimko — Adıyaman Cement Plant (cement, cap 2,000,000 t/yr)</title></circle>
+<circle cx="653.2" cy="449.1" r="11.5" fill="#7a3b22" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Ekinciler — İskenderun Plant (steel, cap 2,000,000 t/yr)</title></circle>
+<circle cx="115.9" cy="294.4" r="11.5" fill="#7a3b22" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Diler — Aliağa Plant (steel, cap 2,000,000 t/yr)</title></circle>
+<circle cx="565.5" cy="436.2" r="12.0" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Çimsa — Mersin Cement Plant (cement, cap 2,400,000 t/yr)</title></circle>
+<circle cx="208.8" cy="134.6" r="12.1" fill="#2d5a4c" fill-opacity="0.78" stroke="#14181d" stroke-width="1.6"><title>Akçansa — Büyükçekmece Cement Plant (cement, cap 2,500,000 t/yr); LODO ratio 1.12× truth</title></circle>
+<circle cx="459.7" cy="212.0" r="12.1" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Limak Çimento — Ankara Cement Plant (cement, cap 2,500,000 t/yr)</title></circle>
+<circle cx="807.0" cy="412.6" r="12.1" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Limak Çimento — Şanlıurfa Cement Plant (cement, cap 2,500,000 t/yr)</title></circle>
+<circle cx="147.5" cy="138.9" r="12.1" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Limak Çimento — Trakya Cement Plant (cement, cap 2,500,000 t/yr)</title></circle>
+<circle cx="130.0" cy="321.6" r="12.1" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Çimentaş — İzmir Cement Plant (cement, cap 2,500,000 t/yr)</title></circle>
+<circle cx="239.9" cy="368.1" r="12.1" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Denizli Çimento — Denizli Cement Plant (cement, cap 2,500,000 t/yr)</title></circle>
+<circle cx="386.0" cy="156.8" r="12.1" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Bolu Çimento — Bolu Cement Plant 2 (cement, cap 2,500,000 t/yr)</title></circle>
+<circle cx="921.0" cy="401.8" r="12.5" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>OYAK Çimento — Mardin Cement Plant (cement, cap 3,000,000 t/yr)</title></circle>
+<circle cx="653.2" cy="452.0" r="12.5" fill="#7a3b22" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Tosyalı — İskenderun EAF Mill (steel, cap 3,000,000 t/yr)</title></circle>
+<circle cx="719.8" cy="128.1" r="12.6" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>OYAK Çimento — Ünye Cement Plant (cement, cap 3,200,000 t/yr)</title></circle>
+<circle cx="387.2" cy="156.1" r="12.9" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>OYAK Çimento — Bolu Cement Plant (cement, cap 3,500,000 t/yr)</title></circle>
+<circle cx="604.1" cy="424.7" r="12.9" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>OYAK Çimento — Adana Cement Plant (cement, cap 3,500,000 t/yr)</title></circle>
+<circle cx="439.8" cy="362.4" r="12.9" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Konya Çimento — Konya Cement Plant (cement, cap 3,500,000 t/yr)</title></circle>
+<circle cx="605.3" cy="426.2" r="12.9" fill="#2d5a4c" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Adana Çimento — Adana T.A.Ş. (cement, cap 3,500,000 t/yr)</title></circle>
+<circle cx="659.6" cy="419.0" r="12.9" fill="#7a3b22" fill-opacity="0.78" stroke="none" stroke-width="0"><title>Tosyalı — Osmaniye DRI-EAF (steel, cap 3,500,000 t/yr)</title></circle>
+<circle cx="129.4" cy="180.4" r="12.9" fill="#7a3b22" fill-opacity="0.78" stroke="none" stroke-width="0"><title>İçdaş — Biga Çamlıca Plant (steel, cap 3,500,000 t/yr)</title></circle>
+<circle cx="446.2" cy="123.1" r="12.9" fill="#7a3b22" fill-opacity="0.78" stroke="#14181d" stroke-width="1.6"><title>Kardemir — Karabük Integrated Works (steel, cap 3,500,000 t/yr); LODO ratio 0.90× truth</title></circle>
+<circle cx="374.9" cy="117.4" r="13.2" fill="#7a3b22" fill-opacity="0.78" stroke="#14181d" stroke-width="1.6"><title>Erdemir — Karadeniz Ereğli Integrated Works (steel, cap 4,000,000 t/yr); LODO ratio 1.06× truth</title></circle>
+<circle cx="141.1" cy="370.3" r="13.2" fill="#2d5a4c" fill-opacity="0.78" stroke="#14181d" stroke-width="1.6"><title>Batısöke Söke Çimento — Söke Cement Plant (cement, cap 4,000,000 t/yr); LODO ratio 0.97× truth</title></circle>
+<circle cx="263.3" cy="152.5" r="13.4" fill="#7a3b22" fill-opacity="0.78" stroke="#14181d" stroke-width="1.6"><title>Çolakoğlu — Gebze Dilovası Plant (steel, cap 4,500,000 t/yr); LODO ratio 1.12× truth</title></circle>
+<circle cx="115.9" cy="295.8" r="13.4" fill="#7a3b22" fill-opacity="0.78" stroke="#14181d" stroke-width="1.6"><title>Habaş — Aliağa Plant (steel, cap 4,500,000 t/yr); LODO ratio 1.13× truth</title></circle>
+<circle cx="325.2" cy="369.6" r="13.7" fill="#2d5a4c" fill-opacity="0.78" stroke="#14181d" stroke-width="1.6"><title>Göltaş Çimento — Isparta Cement Plant (cement, cap 5,000,000 t/yr); LODO ratio 1.16× truth</title></circle>
+<circle cx="654.4" cy="439.8" r="13.8" fill="#7a3b22" fill-opacity="0.78" stroke="#14181d" stroke-width="1.6"><title>İsdemir — İskenderun Integrated Works (steel, cap 5,300,000 t/yr); LODO ratio 0.90× truth</title></circle>
+<circle cx="99.0" cy="184.4" r="13.9" fill="#2d5a4c" fill-opacity="0.78" stroke="#14181d" stroke-width="1.6"><title>Akçansa — Çanakkale Cement Plant (cement, cap 5,500,000 t/yr); LODO ratio 1.06× truth</title></circle>
+<circle cx="272.6" cy="153.2" r="14.0" fill="#2d5a4c" fill-opacity="0.78" stroke="#14181d" stroke-width="1.6"><title>Nuh Çimento — Hereke Cement Plant (cement, cap 5,700,000 t/yr); LODO ratio 0.72× truth</title></circle>
+<rect x="38" y="420" width="190" height="80" fill="#fbf7ee" stroke="#a89e90" stroke-width="0.5"/>
+<text x="48" y="438" font-size="10" letter-spacing="0.15em" fill="#14181d" font-weight="600">CBAM SECTOR</text>
+<circle cx="56" cy="450" r="5" fill="#2d5a4c" fill-opacity="0.78"/>
+<text x="68" y="453" font-size="10" fill="#14181d">cement</text>
+<circle cx="56" cy="464" r="5" fill="#7a3b22" fill-opacity="0.78"/>
+<text x="68" y="467" font-size="10" fill="#14181d">steel</text>
+<circle cx="56" cy="478" r="5" fill="#5a4a7a" fill-opacity="0.78"/>
+<text x="68" y="481" font-size="10" fill="#14181d">aluminum</text>
+<circle cx="56" cy="492" r="5" fill="#7a6a2d" fill-opacity="0.78"/>
+<text x="68" y="495" font-size="10" fill="#14181d">fertilizer</text>
+<text x="1170" y="488" text-anchor="end" font-size="10" fill="#a89e90">59 facilities · 20 LODO-tested (ink outline) · dot size ∝ log(capacity)</text>
+<text x="1170" y="502" text-anchor="end" font-size="10" fill="#a89e90" font-style="italic">hover a dot to inspect</text>
+</svg>

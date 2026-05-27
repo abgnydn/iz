@@ -47,13 +47,21 @@
     <code>capacity × route-EF × cf</code>. Sort by clicking a column header.
   </p>
   <p class="byline">
-    Download raw: <a href="/bench/facilities.json">facilities.json</a> ·
-    Source code: bin/export_bench_browser.py
+    Download: <a href="/bench/facilities.json">facilities.json</a> ·
+    <a href="/bench/tr_bench_v0.csv">tr_bench_v0.csv</a> ·
+    Source code: <a href="https://github.com/abgnydn/iz/blob/master/bin/export_bench_browser.py" target="_blank" rel="noopener">bin/export_bench_browser.py</a>
   </p>
 </header>
 
 <section>
-  <h2><span class="h2-num">01</span> Filter</h2>
+  <h2><span class="h2-num">01</span> Map</h2>
+  <div style="background:var(--paper);border:1px solid var(--rule);padding:14px;margin:8px 0 22px;">
+    <object data="/assets/facility_map.svg" type="image/svg+xml" style="width:100%;height:auto;display:block;"></object>
+  </div>
+</section>
+
+<section>
+  <h2><span class="h2-num">02</span> Filter</h2>
   <div style="display:flex;gap:14px;flex-wrap:wrap;font-family:var(--sans);font-size:13px;align-items:center;">
     <label>Scope:
       <select id="filter-sector" style="margin-left:6px;padding:4px 8px;font-family:inherit;">

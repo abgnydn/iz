@@ -1,0 +1,41 @@
+cff-version: 1.2.0
+title: "TR-MRV-Bench — public per-facility emissions benchmark for Turkish CBAM-scope industry"
+message: "If you use this bench, please cite it."
+type: dataset
+authors:
+  - family-names: Günaydın
+    given-names: Ahmet Barış
+    email: hi@barisgunaydin.com
+    affiliation: independent
+repository-code: "https://github.com/abgnydn/iz"
+url: "https://iz-b0n.pages.dev/"
+abstract: >
+  TR-MRV-Bench is a public per-facility CO₂ emissions benchmark for Turkish
+  CBAM-scope industry (cement, steel, aluminum, fertilizer). It comprises 59
+  facilities, with 20 audit-grade Scope 1 strong labels from operator
+  Integrated Annual Reports, TSRS-compliant sustainability reports, and
+  ISO 14064-1 third-party verifications, plus 8 Climate TRACE per-asset
+  labels and capacity-factor-corrected default labels for the rest. The
+  bench is released alongside a closed-form physics baseline,
+  `capacity × emission-factor × capacity-factor`, with route-aware EF
+  priorities (BF/BOF / EAF / DRI-EAF; primary / downstream aluminum;
+  integrated / N₂O-controlled / blender fertilizer) and cf priorities
+  (Climate TRACE > disclosed production / capacity > sector mean) that
+  reduces per-plant log-MAE by 87% vs the EU CBAM default in
+  leave-one-disclosure-out cross-validation. We additionally ship a
+  browser-native 2-layer LoRA-shaped MLP that ties the formula at 86.3%
+  (95% data-bootstrap CI [+76.6%, +92.5%]).
+keywords:
+  - emissions
+  - CBAM
+  - Turkey
+  - carbon accounting
+  - MRV
+  - cement
+  - steel
+  - aluminum
+  - fertilizer
+  - benchmark
+license: Apache-2.0
+version: "0.1.0"
+date-released: "2026-05-27"
