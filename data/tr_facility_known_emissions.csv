@@ -58,3 +58,5 @@ isdemir-iskenderun,İsdemir,2023,co2_scope1_t,9018940,tCO2e,high,direct,Erdemir 
 isdemir-iskenderun,İsdemir,2022,co2_scope1_t,9492257,tCO2e,high,direct,Erdemir 2024 IAR p156-157,Audit-grade 2022 (historical)
 erdemir-eregli,Erdemir,2022,co2_scope1_t,7068563,tCO2e,high,direct,Erdemir 2024 IAR p156-157,Audit-grade 2022 confirms our derived 7069830
 kardemir-karabuk,Kardemir,2021,co2_scope1_t,5773509,tCO2e,high,direct,Kardemir 2023 SR p100,Audit-grade 2021 (historical)
+bursa-cimento,Bursa Çimento,2024,co2_scope1_t,1121545,tCO2e,high,direct,Bursa Çimento 2024 TSRS Sustainability Report p59 (Tablo 24),"Single integrated plant Bursa Çimento Fabrikası A.Ş. (Kestel). ISO 14064-1 verified by TÜRKAK-accredited body; TSRS limited assurance by PKF İstanbul. EF=0.532 t/t grey clinker (process). Excludes Çemtaş steel (46,079) and Roda Liman (3,206) subsidiaries."
+bursa-cimento,Bursa Çimento,2024,co2_specific_t_per_t,0.532,tCO2/t,high,direct,Bursa Çimento 2024 TSRS Report p58 Tablo 21,Process EF per tonne grey clinker (TSRS-verified).

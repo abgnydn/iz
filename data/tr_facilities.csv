@@ -4,8 +4,8 @@ akcansa-canakkale,Akçansa,Sabancı,Çanakkale Cement Plant,cement,Lapseki,Çana
 akcansa-ladik,Akçansa,Sabancı,Ladik Cement Plant,cement,Ladik,Samsun,40.9200,36.0700,1000000,25232900,https://www.akcansa.com.tr/en/sustainability/,Inland | capacity corrected 2026-05-27: 1500000 → 1000000. Akçansa 2017 AR plant-level (1.01M cement).
 cimsa-mersin,Çimsa,Sabancı,Mersin Cement Plant,cement,Mersin,Mersin,36.8300,34.6600,2400000,25232100;25232900,https://www.cimsa.com.tr/en/sustainability,Largest white cement plant in Europe; coastal EU-export
 cimsa-eskisehir,Çimsa,Sabancı,Eskişehir Cement Plant,cement,Eskişehir,Eskişehir,39.7800,30.5200,1500000,25232900,https://www.cimsa.com.tr/en/sustainability,
-cimsa-kayseri,Çimsa,Sabancı,Kayseri Cement Plant,cement,Kayseri,Kayseri,38.7400,35.4900,1700000,25232900,https://www.cimsa.com.tr/en/sustainability,
-cimsa-nigde,Çimsa,Sabancı,Niğde Cement Plant,cement,Niğde,Niğde,37.9600,34.6800,1400000,25232900,https://www.cimsa.com.tr/en/sustainability,
+cimsa-kayseri,Çimsa,Sabancı,Kayseri Cement Plant,cement,Kayseri,Kayseri,38.7400,35.4900,1700000,25232900,https://www.cimsa.com.tr/en/sustainability,DIVESTED FROM ÇİMSA per 2024 IAR (Çimsa now operates only Mersin/Eskişehir/Afyon in TR)
+cimsa-nigde,Çimsa,Sabancı,Niğde Cement Plant,cement,Niğde,Niğde,37.9600,34.6800,1400000,25232900,https://www.cimsa.com.tr/en/sustainability,DIVESTED FROM ÇİMSA per 2024 IAR (Çimsa now operates only Mersin/Eskişehir/Afyon in TR)
 oyak-bolu,OYAK Çimento,OYAK,Bolu Cement Plant,cement,Bolu,Bolu,40.7400,31.6100,3500000,25232100;25232900,https://www.oyakcimento.com/en/sustainability,
 oyak-unye,OYAK Çimento,OYAK,Ünye Cement Plant,cement,Ünye,Ordu,41.1300,37.3000,3200000,25232900,https://www.oyakcimento.com/en/sustainability,Coastal Black Sea
 oyak-mardin,OYAK Çimento,OYAK,Mardin Cement Plant,cement,Mardin,Mardin,37.3100,40.7400,3000000,25232900,https://www.oyakcimento.com/en/sustainability,

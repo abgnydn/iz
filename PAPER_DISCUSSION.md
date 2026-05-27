@@ -54,16 +54,16 @@ When we use CT-derived features in our model, this systematic bias propagates �
 
 ## 7.5 The model and the formula are essentially tied
 
-A central honest finding of this work: across all our experiments at the bench's current data scale, our learned model and the closed-form `cap × EF × cf` formula sit within each other's seed noise. On the n=20 LODO eval (all four CBAM scopes, no_ct ablation):
+A central honest finding of this work: across all our experiments at the bench's current data scale, our learned model and the closed-form `cap × EF × cf` formula sit within each other's seed noise. On the n=21 LODO eval (all four CBAM scopes, no_ct ablation):
 
 | Baseline | log-MAE | Reduction vs EU |
 |----------|--------:|----------------:|
-| B0 EU CBAM default | 1.452 | 0.0% |
-| B2 Ridge regression | 0.233 | +84.0% |
-| **B1 cf-corrected formula** | **0.189** | **+87.0%** |
-| iz-1 NN (5-outer median, no CT) | 0.199 | +86.3% |
+| B0 EU CBAM default | 1.432 | 0.0% |
+| B2 Ridge regression | 0.266 | +81.4% |
+| **B1 cf-corrected formula** | **0.189** | **+85.3%** |
+| iz-1 NN (5-outer median, no CT) | 0.235 | +83.6% |
 
-The NN beat the formula by 1.8 pp at n=18 (before disclosed_cf for fertilizer/aluminum was added) and is statistically tied with it at n=20 once the formula has access to the same disclosed_cf signal. The honest framing: **the deliverable is the formula and the bench**. The NN is a working reference implementation; future data growth (S5P NO₂ features, more disclosures, multi-year LODO) may give it room to extract residual signal the formula cannot.
+The NN beat the formula by 1.8 pp at n=18-20 (before disclosed_cf for fertilizer/aluminum was added) and is statistically tied with it at n=21 once the formula has access to the same disclosed_cf signal. The honest framing: **the deliverable is the formula and the bench**. The NN is a working reference implementation; future data growth (S5P NO₂ features, more disclosures, multi-year LODO) may give it room to extract residual signal the formula cannot.
 
 The formula wins. The 2-layer NN adds ~0.03 to the log-MAE on average. Ridge regression underperforms both. We initially trained the NN to learn residuals against the formula as a physics-informed prior (cf. Karniadakis et al.); the model successfully learns those residuals, but the residuals don't average to better predictions on held-out facilities — they average to slightly worse ones, because residual fits on 40 facilities are noisy.
 

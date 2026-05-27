@@ -46,8 +46,8 @@
     <p class="formula">tCO₂ = <strong>capacity</strong> × <strong>route-EF</strong> × <strong>capacity-factor</strong></p>
     <p class="formula-note">
       Three numbers your own annual report already publishes. No machine learning, no satellites,
-      no proprietary data. We've validated this formula against 20 audit-grade Turkish facilities
-      and shown it beats the EU CBAM default by <strong>87.0%</strong> in leave-one-disclosure-out
+      no proprietary data. We've validated this formula against 21 audit-grade Turkish facilities
+      and shown it beats the EU CBAM default by <strong>85.3%</strong> in leave-one-disclosure-out
       cross-validation across all four CBAM scopes.
     </p>
   </div>
@@ -72,19 +72,19 @@
   <div class="headline-grid">
     <div class="panel">
       <p class="label">Formula vs EU CBAM default</p>
-      <p class="big">−87.0%</p>
+      <p class="big">−85.3%</p>
       <p class="small">
-        <code>cap × route-EF × cf</code> on 20 audit-grade Turkish facilities, all 4 CBAM scopes.
+        <code>cap × route-EF × cf</code> on 21 audit-grade Turkish facilities, all 4 CBAM scopes.
         Closed-form, no learned parameters. <strong>This is what we ship.</strong>
       </p>
     </div>
     <div class="panel">
       <p class="label">2-layer NN (validates the ceiling)</p>
-      <p class="big">−86.3%</p>
+      <p class="big">−83.6%</p>
       <p class="small">
-        <strong>95% data-bootstrap CI: +76.6% to +92.5%</strong> (5000 resamples of the n=20 facilities)
+        <strong>95% data-bootstrap CI: +73.5% to +90.4%</strong> (5000 resamples of the n=21 facilities)
         — the honest data-variance number. Per-outer seed CI is tight (±0.3%, model is reproducible);
-        the wider data CI reflects that we only have 20 audit-grade Turkish facilities.
+        the wider data CI reflects that we only have 21 audit-grade Turkish facilities.
         <a href="/verify/">Verify in your browser →</a>
       </p>
     </div>
@@ -108,7 +108,7 @@
   </p>
   <p>
     iz reads those reports. We've built a public bench of 59 Turkish CBAM-scope facilities,
-    hand-curated 20 audit-grade strong labels across all four CBAM scopes, and shown that a
+    hand-curated 21 audit-grade strong labels across all four CBAM scopes, and shown that a
     one-line formula <code>cap × EF × cf</code> beats the EU default by 85.9% in
     leave-one-disclosure-out cross-validation.
   </p>
@@ -153,7 +153,7 @@
     </p>
   </div>
 
-  <h3 style="font-size:18px;margin:24px 0 8px;">All 20 LODO predictions, sorted by truth</h3>
+  <h3 style="font-size:18px;margin:24px 0 8px;">All 21 LODO predictions, sorted by truth</h3>
   <p class="muted" style="font-size:14px;">
     Leave-one-out: each plant's audited Scope 1 was hidden during prediction.
     <strong>iz-1 (5-run median)</strong> = median of 5 outer LODO × 3 inner seeds = 15 predictions per plant.
@@ -165,26 +165,27 @@
       <tr><th>Facility</th><th>Sector / route</th><th class="num">Truth tCO₂</th><th class="num">iz-1 (5-run median)</th><th class="num">Ratio</th><th class="num">EU default</th></tr>
     </thead>
     <tbody>
-      <tr><td>İsdemir İskenderun</td><td>steel · BF/BOF</td><td class="num">10,663,364</td><td class="num">9,589,169<br><span class="muted" style="font-size:10px;">n=5: 8,600,398–10,282,262</span></td><td class="num ratio-good">0.90×</td><td class="num">10,070,000</td></tr>
-      <tr><td>Erdemir Karadeniz Ereğli</td><td>steel · BF/BOF</td><td class="num">6,673,266</td><td class="num">7,066,739<br><span class="muted" style="font-size:10px;">n=5: 6,545,246–7,441,902</span></td><td class="num ratio-good">1.06×</td><td class="num">7,600,000</td></tr>
-      <tr><td>Kardemir Karabük</td><td>steel · BF/BOF</td><td class="num">5,650,626</td><td class="num">5,086,494<br><span class="muted" style="font-size:10px;">n=5: 4,661,223–5,496,120</span></td><td class="num ratio-good">0.90×</td><td class="num">6,650,000</td></tr>
-      <tr><td>Nuh Hereke</td><td>cement</td><td class="num">3,573,278</td><td class="num">2,587,434<br><span class="muted" style="font-size:10px;">n=5: 2,528,615–2,632,917</span></td><td class="num ratio-warn">0.72×</td><td class="num">9,028,800</td></tr>
-      <tr><td>Akçansa Çanakkale</td><td>cement</td><td class="num">3,466,000</td><td class="num">3,684,122<br><span class="muted" style="font-size:10px;">n=5: 3,451,315–3,857,394</span></td><td class="num ratio-good">1.06×</td><td class="num">8,712,000</td></tr>
-      <tr><td>Göltaş Isparta</td><td>cement</td><td class="num">1,669,072</td><td class="num">1,940,029<br><span class="muted" style="font-size:10px;">n=5: 1,865,707–2,018,912</span></td><td class="num ratio-good">1.16×</td><td class="num">7,920,000</td></tr>
-      <tr><td>Batısöke Söke</td><td>cement</td><td class="num">1,577,926</td><td class="num">1,536,940<br><span class="muted" style="font-size:10px;">n=5: 1,488,881–1,590,186</span></td><td class="num ratio-good">0.97×</td><td class="num">6,336,000</td></tr>
-      <tr><td>Akçansa Büyükçekmece</td><td>cement</td><td class="num">1,514,000</td><td class="num">1,691,201<br><span class="muted" style="font-size:10px;">n=5: 1,579,936–1,747,656</span></td><td class="num ratio-good">1.12×</td><td class="num">3,960,000</td></tr>
-      <tr><td>Afyon Çimento</td><td>cement</td><td class="num">1,200,000</td><td class="num">703,611<br><span class="muted" style="font-size:10px;">n=5: 681,410–711,390</span></td><td class="num ratio-bad">0.59×</td><td class="num">2,851,200</td></tr>
-      <tr><td>Habaş Aliağa</td><td>steel · EAF</td><td class="num">830,338</td><td class="num">938,312<br><span class="muted" style="font-size:10px;">n=5: 865,760–955,539</span></td><td class="num ratio-good">1.13×</td><td class="num">8,550,000</td></tr>
-      <tr><td>Çolakoğlu Dilovası</td><td>steel · EAF</td><td class="num">566,519</td><td class="num">633,325<br><span class="muted" style="font-size:10px;">n=5: 619,211–647,899</span></td><td class="num ratio-good">1.12×</td><td class="num">8,550,000</td></tr>
-      <tr><td>Akçansa Ladik</td><td>cement</td><td class="num">499,000</td><td class="num">547,130<br><span class="muted" style="font-size:10px;">n=5: 537,826–603,294</span></td><td class="num ratio-good">1.10×</td><td class="num">1,584,000</td></tr>
-      <tr><td>Toros Mersin</td><td>fertilizer · integrated</td><td class="num">383,150</td><td class="num">216,539<br><span class="muted" style="font-size:10px;">n=5: 187,674–217,812</span></td><td class="num ratio-bad">0.57×</td><td class="num">648,000</td></tr>
-      <tr><td>İzdemir Aliağa</td><td>steel · EAF</td><td class="num">271,123</td><td class="num">300,142<br><span class="muted" style="font-size:10px;">n=5: 297,071–311,946</span></td><td class="num ratio-good">1.11×</td><td class="num">2,850,000</td></tr>
-      <tr><td>Toros Samsun</td><td>fertilizer · integrated</td><td class="num">255,180</td><td class="num">159,840<br><span class="muted" style="font-size:10px;">n=5: 157,785–174,226</span></td><td class="num ratio-bad">0.63×</td><td class="num">460,000</td></tr>
-      <tr><td>Toros Ceyhan</td><td>fertilizer · integrated</td><td class="num">203,840</td><td class="num">242,379<br><span class="muted" style="font-size:10px;">n=5: 221,877–279,829</span></td><td class="num ratio-good">1.19×</td><td class="num">657,360</td></tr>
-      <tr><td>Assan Tuzla</td><td>aluminum · downstream</td><td class="num">108,500</td><td class="num">105,810<br><span class="muted" style="font-size:10px;">n=5: 89,036–110,902</span></td><td class="num ratio-good">0.98×</td><td class="num">540,000</td></tr>
-      <tr><td>ASAŞ Akyazı</td><td>aluminum · downstream</td><td class="num">68,618</td><td class="num">75,988<br><span class="muted" style="font-size:10px;">n=5: 72,535–85,477</span></td><td class="num ratio-good">1.11×</td><td class="num">375,000</td></tr>
-      <tr><td>Gübretaş Yarımca</td><td>fertilizer · blender</td><td class="num">13,281</td><td class="num">13,133<br><span class="muted" style="font-size:10px;">n=5: 12,619–14,430</span></td><td class="num ratio-good">0.99×</td><td class="num">640,000</td></tr>
-      <tr><td>BAGFAŞ Bandırma</td><td>fertilizer · N₂O-controlled</td><td class="num">9,828</td><td class="num">20,164<br><span class="muted" style="font-size:10px;">n=5: 18,652–23,189</span></td><td class="num ratio-bad">2.05×</td><td class="num">560,000</td></tr>
+      <tr><td>İsdemir İskenderun</td><td>steel · BF/BOF</td><td class="num">10,663,364</td><td class="num">8,533,469<br><span class="muted" style="font-size:10px;">n=5: 7,613,022–10,651,884</span></td><td class="num ratio-warn">0.80×</td><td class="num">10,070,000</td></tr>
+      <tr><td>Erdemir Karadeniz Ereğli</td><td>steel · BF/BOF</td><td class="num">6,673,266</td><td class="num">7,865,974<br><span class="muted" style="font-size:10px;">n=5: 7,302,418–8,381,467</span></td><td class="num ratio-good">1.18×</td><td class="num">7,600,000</td></tr>
+      <tr><td>Kardemir Karabük</td><td>steel · BF/BOF</td><td class="num">5,650,626</td><td class="num">5,624,740<br><span class="muted" style="font-size:10px;">n=5: 4,903,483–6,308,644</span></td><td class="num ratio-good">1.00×</td><td class="num">6,650,000</td></tr>
+      <tr><td>Nuh Hereke</td><td>cement</td><td class="num">3,573,278</td><td class="num">2,601,607<br><span class="muted" style="font-size:10px;">n=5: 2,530,082–2,619,532</span></td><td class="num ratio-warn">0.73×</td><td class="num">9,028,800</td></tr>
+      <tr><td>Akçansa Çanakkale</td><td>cement</td><td class="num">3,466,000</td><td class="num">3,814,782<br><span class="muted" style="font-size:10px;">n=5: 3,608,237–3,991,030</span></td><td class="num ratio-good">1.10×</td><td class="num">8,712,000</td></tr>
+      <tr><td>Göltaş Isparta</td><td>cement</td><td class="num">1,669,072</td><td class="num">1,968,777<br><span class="muted" style="font-size:10px;">n=5: 1,891,159–2,028,547</span></td><td class="num ratio-good">1.18×</td><td class="num">7,920,000</td></tr>
+      <tr><td>Batısöke Söke</td><td>cement</td><td class="num">1,577,926</td><td class="num">1,505,283<br><span class="muted" style="font-size:10px;">n=5: 1,489,926–1,575,790</span></td><td class="num ratio-good">0.95×</td><td class="num">6,336,000</td></tr>
+      <tr><td>Akçansa Büyükçekmece</td><td>cement</td><td class="num">1,514,000</td><td class="num">1,673,948<br><span class="muted" style="font-size:10px;">n=5: 1,652,629–1,752,998</span></td><td class="num ratio-good">1.11×</td><td class="num">3,960,000</td></tr>
+      <tr><td>Afyon Çimento</td><td>cement</td><td class="num">1,200,000</td><td class="num">675,797<br><span class="muted" style="font-size:10px;">n=5: 655,225–702,957</span></td><td class="num ratio-bad">0.56×</td><td class="num">2,851,200</td></tr>
+      <tr><td>Bursa Çimento Kestel</td><td>cement</td><td class="num">1,121,545</td><td class="num">629,747<br><span class="muted" style="font-size:10px;">n=5: 617,642–656,674</span></td><td class="num ratio-bad">0.56×</td><td class="num">3,168,000</td></tr>
+      <tr><td>Habaş Aliağa</td><td>steel · EAF</td><td class="num">830,338</td><td class="num">878,268<br><span class="muted" style="font-size:10px;">n=5: 848,290–926,306</span></td><td class="num ratio-good">1.06×</td><td class="num">8,550,000</td></tr>
+      <tr><td>Çolakoğlu Dilovası</td><td>steel · EAF</td><td class="num">566,519</td><td class="num">621,782<br><span class="muted" style="font-size:10px;">n=5: 601,003–642,396</span></td><td class="num ratio-good">1.10×</td><td class="num">8,550,000</td></tr>
+      <tr><td>Akçansa Ladik</td><td>cement</td><td class="num">499,000</td><td class="num">546,963<br><span class="muted" style="font-size:10px;">n=5: 530,005–581,600</span></td><td class="num ratio-good">1.10×</td><td class="num">1,584,000</td></tr>
+      <tr><td>Toros Mersin</td><td>fertilizer · integrated</td><td class="num">383,150</td><td class="num">222,868<br><span class="muted" style="font-size:10px;">n=5: 197,836–228,767</span></td><td class="num ratio-bad">0.58×</td><td class="num">648,000</td></tr>
+      <tr><td>İzdemir Aliağa</td><td>steel · EAF</td><td class="num">271,123</td><td class="num">290,420<br><span class="muted" style="font-size:10px;">n=5: 269,202–322,874</span></td><td class="num ratio-good">1.07×</td><td class="num">2,850,000</td></tr>
+      <tr><td>Toros Samsun</td><td>fertilizer · integrated</td><td class="num">255,180</td><td class="num">166,207<br><span class="muted" style="font-size:10px;">n=5: 156,710–170,710</span></td><td class="num ratio-bad">0.65×</td><td class="num">460,000</td></tr>
+      <tr><td>Toros Ceyhan</td><td>fertilizer · integrated</td><td class="num">203,840</td><td class="num">270,179<br><span class="muted" style="font-size:10px;">n=5: 200,058–291,492</span></td><td class="num ratio-warn">1.33×</td><td class="num">657,360</td></tr>
+      <tr><td>Assan Tuzla</td><td>aluminum · downstream</td><td class="num">108,500</td><td class="num">94,593<br><span class="muted" style="font-size:10px;">n=5: 88,171–112,127</span></td><td class="num ratio-good">0.87×</td><td class="num">540,000</td></tr>
+      <tr><td>ASAŞ Akyazı</td><td>aluminum · downstream</td><td class="num">68,618</td><td class="num">81,444<br><span class="muted" style="font-size:10px;">n=5: 78,266–100,972</span></td><td class="num ratio-good">1.19×</td><td class="num">375,000</td></tr>
+      <tr><td>Gübretaş Yarımca</td><td>fertilizer · blender</td><td class="num">13,281</td><td class="num">13,800<br><span class="muted" style="font-size:10px;">n=5: 13,496–14,821</span></td><td class="num ratio-good">1.04×</td><td class="num">640,000</td></tr>
+      <tr><td>BAGFAŞ Bandırma</td><td>fertilizer · N₂O-controlled</td><td class="num">9,828</td><td class="num">21,044<br><span class="muted" style="font-size:10px;">n=5: 19,230–22,907</span></td><td class="num ratio-bad">2.14×</td><td class="num">560,000</td></tr>
     </tbody>
   </table>
 </section>
@@ -207,11 +208,11 @@
   <table>
     <thead><tr><th>Sector / route</th><th class="num">n</th><th class="num">Mean reduction</th><th class="num">95% CI</th></tr></thead>
     <tbody>
-      <tr><td>Aluminum · downstream</td><td class="num">2</td><td class="num ratio-good">+96.2%</td><td class="num">[+94.0, +98.4]</td></tr>
-      <tr><td>Steel · EAF</td><td class="num">3</td><td class="num ratio-good">+95.5%</td><td class="num">[+94.8, +95.9]</td></tr>
-      <tr><td>Cement</td><td class="num">7</td><td class="num ratio-good">+83.0%</td><td class="num">[+67.8, +93.3]</td></tr>
-      <tr><td>Fertilizer (mixed strata)</td><td class="num">5</td><td class="num ratio-good">+77.2%</td><td class="num">[+33.8, +94.5]</td></tr>
-      <tr><td>Steel · BF/BOF</td><td class="num">3</td><td class="num ratio-warn">+17.4%</td><td class="num">[−85.5, +55.9]</td></tr>
+      <tr><td>Aluminum · downstream</td><td class="num">2</td><td class="num ratio-good">+90.7%</td><td class="num">[+89.9, +91.5]</td></tr>
+      <tr><td>Steel · EAF</td><td class="num">3</td><td class="num ratio-good">+97.1%</td><td class="num">[+96.6, +97.6]</td></tr>
+      <tr><td>Cement</td><td class="num">7</td><td class="num ratio-good">+81.7%</td><td class="num">[+66.2, +92.2]</td></tr>
+      <tr><td>Fertilizer (mixed strata)</td><td class="num">5</td><td class="num ratio-good">+76.2%</td><td class="num">[+34.6, +93.0]</td></tr>
+      <tr><td>Steel · BF/BOF</td><td class="num">3</td><td class="num ratio-warn">+17.4%</td><td class="num">[-289.2, +97.2]</td></tr>
       <tr><td><strong>Overall</strong></td><td class="num"><strong>20</strong></td><td class="num ratio-good"><strong>+85.9%</strong></td><td class="num"><strong>[+76.6, +92.5]</strong></td></tr>
     </tbody>
   </table>

@@ -38,6 +38,7 @@ PRETTY_NAME = {
     "toros-ceyhan": ("Toros Ceyhan", "fertilizer · integrated"),
     "bagfas-bandirma": ("BAGFAŞ Bandırma", "fertilizer · N₂O-controlled"),
     "gubretas-izmit": ("Gübretaş Yarımca", "fertilizer · blender"),
+    "bursa-cimento": ("Bursa Çimento Kestel", "cement"),
 }
 
 

@@ -776,14 +776,14 @@
         0.0,
         0.0
       ],
-      "y_log": 13.782706638128921,
-      "y_raw": 967727.2933100001,
-      "w": 0.7,
+      "y_log": 13.93021864859701,
+      "y_raw": 1121545.0,
+      "w": 1.0,
       "split": "train",
-      "label_source": "climate_trace",
+      "label_source": "disclosure",
       "eu_default": 3168000.0,
-      "y_prior_log": 13.469211596850313,
-      "y_prior": 707300.0
+      "y_prior_log": 13.279710656944145,
+      "y_prior": 585200.0
     },
     {
       "id": "adana-cimento",
