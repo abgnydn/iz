@@ -87,7 +87,9 @@ Section 6 ablations show that removing the prior drops overall LODO log-MAE redu
 
 ## 3.5 Evaluation: Leave-one-disclosure-out (LODO)
 
-Standard random or stratified test splits put only 1 of 8 disclosure-labeled facilities in test under the n=8 strong-label regime — too few for a meaningful per-source metric. We instead evaluate each of the 8 audit-grade facilities by forcing it into the test set, stratifying the remaining 56 facilities normally, training, and reading the prediction for the held-out facility. This gives `n = 8` test points without resampling.
+Standard random or stratified test splits put too few disclosure-labeled facilities in test for a meaningful per-source metric. We instead evaluate each of the **n=20 audit-grade facilities** by forcing it into the test set, stratifying the remaining 58 facilities normally, training the model, and reading the prediction for the held-out facility. This gives n=20 test points without resampling. We run 5 outer LODO passes × 3 inner seeds (15 predictions per facility), report the per-facility median, and additionally bootstrap-resample the n=20 facilities 5000 times to compute the data-variance confidence interval.
+
+**Headline result: iz-1 NN +86.3% log-MAE reduction vs EU CBAM default; closed-form formula +87.0%; ridge regression +84.0%; 95% data-bootstrap CI [+76.6%, +92.5%].** The formula and the NN are statistically tied at this data scale; the deliverable is the formula and the bench.
 
 Each LODO iteration is run for 3 seeds (random model init + shuffle order). We then wrap the whole LODO evaluation in an **outer aggregator** that repeats it 5 times, taking the per-facility median across all 5 × 3 = 15 seeds. The outer aggregation reduces variance on the headline metric from ~7 percentage points (single LODO run) to ~1-2 percentage points (15-seed median).
 

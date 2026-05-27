@@ -112,7 +112,7 @@
       "y_log": 15.058512037774669,
       "y_raw": 3466000.0,
       "w": 1.0,
-      "split": "test",
+      "split": "val",
       "label_source": "disclosure",
       "eu_default": 8712000.0,
       "y_prior_log": 15.000829760611188,
@@ -286,7 +286,7 @@
       "y_log": 14.754790552532185,
       "y_raw": 2558137.8811999997,
       "w": 0.7,
-      "split": "val",
+      "split": "train",
       "label_source": "climate_trace",
       "eu_default": 5544000.0,
       "y_prior_log": 14.32609425246774,
@@ -1591,7 +1591,7 @@
       "y_log": 12.44972837627047,
       "y_raw": 255180.0,
       "w": 1.0,
-      "split": "train",
+      "split": "test",
       "label_source": "disclosure",
       "eu_default": 460000.0,
       "y_prior_log": 12.248777666043658,
@@ -1815,7 +1815,7 @@
         0.98,
         1.0
       ],
-      "split": "test"
+      "split": "val"
     },
     {
       "id": "akcansa-ladik",
@@ -1947,7 +1947,7 @@
         0.695,
         1.0
       ],
-      "split": "val"
+      "split": "train"
     },
     {
       "id": "oyak-unye",
@@ -2937,7 +2937,7 @@
         0.726,
         1.0
       ],
-      "split": "train"
+      "split": "test"
     },
     {
       "id": "toros-ceyhan",

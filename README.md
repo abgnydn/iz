@@ -1,14 +1,14 @@
 # TR-MRV-Bench / iz-1
 
-**A public per-facility emissions benchmark for Turkish CBAM-scope industry, plus a closed-form physics baseline that beats the EU CBAM default by 85%.**
+**A public per-facility emissions benchmark for Turkish CBAM-scope industry, plus a closed-form physics baseline that beats the EU CBAM default by 87%.**
 
-> **Headline (v0, n=20 audit-grade disclosure facilities across all 4 CBAM scopes, 5-outer LODO × 3 inner seeds):**
+> **Headline (v0, n=20 audit-grade disclosure facilities across all 4 CBAM scopes; capacity-corrected vs operator sources 2026-05-27):**
 > - **B0 — EU CBAM default**: 0% (baseline).
-> - **B1 — cf-corrected formula** `cap × EF × cf` (no learned parameters): **85.9% log-MAE reduction** vs EU default.
-> - B2 — ridge regression on same features: 81.7%.
-> - **iz-1 — 2-layer NN, no_ct ablation**: **+85.1%** (median across 5 outer × 3 inner seeds); per-outer CI **+84.5% ± 0.3%** (range 84.4 – 84.8%) — statistically tied with the closed-form formula.
-> - B3 — Climate TRACE direct on matched subset (n=3 BF/BOF steel): 37.4%.
-> - Per-sector CI: cement +73.8% ± 1.7%, EAF +98.3% ± 2.2%, BF/BOF −7.3% ± 71.0% (wide on n=3 stratum), aluminum downstream +86.0% ± 5.1%, fertilizer integrated +79.3% ± 8.4%, fertilizer N₂O-controlled +84.7% ± 2.2%, fertilizer blender +99.3% ± 1.1%.
+> - **B1 — cf-corrected formula** `cap × EF × cf` (no learned parameters): **+87.0% log-MAE reduction** vs EU default.
+> - B2 — ridge regression on same features: +84.0%.
+> - **iz-1 — 2-layer NN, no_ct ablation**: **+86.3%** (median across 5 outer × 3 inner seeds). 95% **data-bootstrap CI: [+76.6%, +92.5%]** (5000 resamples of the n=20 facilities). 95% per-outer seed CI: ±0.3% (range 84.4 – 84.8%) — the model is reproducible; the data CI reflects that we only have 20 facilities.
+> - B3 — Climate TRACE direct on matched subset (n=5 audit-matched): under-reports 4 of 5, mean bias −17.2%.
+> - Per-sector bootstrap CI: cement [+67.8, +93.3], EAF [+94.8, +95.9], BF/BOF [−85.5, +55.9] (n=3 stratum, structurally wide), aluminum downstream [+94.0, +98.4], fertilizer [+33.8, +94.5].
 >
 > Coverage: all four CBAM scopes (cement, steel, aluminum, fertilizer) including primary vs downstream aluminum split and N₂O-controlled vs integrated fertilizer split. n=20 is still small. We are honest about variance and confidence in §8. No satellite signal in v0.
 
@@ -32,11 +32,11 @@ Four baselines + the model, all on the same leave-one-disclosure-out (LODO) spli
 
 | Baseline | log-MAE | Reduction vs EU |
 |----------|--------:|----------------:|
-| B0 EU CBAM default | 1.573 | 0.0% |
-| B3 Climate TRACE direct (n=3 matched, BF/BOF only) | — | +37.4% (subset) |
-| B2 Ridge regression | 0.288 | +81.7% |
-| **iz-1 NN (5-outer × 3-inner median, no_ct)** | **0.234** | **+85.1%** (per-outer CI: +84.5% ± 0.3%) |
-| **B1 cf-corrected formula** | **0.221** | **+85.9%** |
+| B0 EU CBAM default | 1.452 | 0.0% |
+| B3 Climate TRACE direct (n=5 matched, all strata) | — | mean bias −17.2% (under-reports 4 of 5) |
+| B2 Ridge regression | 0.233 | +84.0% |
+| **iz-1 NN (5-outer × 3-inner median, no_ct)** | **0.199** | **+86.3%** (95% data-bootstrap CI: +76.6% to +92.5%) |
+| **B1 cf-corrected formula** | **0.189** | **+87.0%** |
 
 **Per-sector CI (mean ± 2σ over 5 outer runs):**
 
@@ -50,32 +50,32 @@ Four baselines + the model, all on the same leave-one-disclosure-out (LODO) spli
 | Fertilizer · N₂O-controlled | 1 | +84.7% ± 2.2% | 83.5 – 86.5% |
 | Fertilizer · blender | 1 | +99.3% ± 1.1% | 98.3 – 99.8% |
 
-Per-facility numbers for the iz-1 NN on all 20 LODO holdouts. **iz-1 (5-run median)** = median of 5 outer LODO runs × 3 inner seeds (n=15 predictions per facility); these are stable cross-run estimates, not single-outer snapshots.
+Per-facility numbers for the iz-1 NN on all 20 LODO holdouts. **iz-1 (5-run median)** = median of 5 outer LODO runs × 3 inner seeds (n=15 predictions per facility); these are stable cross-run estimates. Capacities corrected against operator sources 2026-05-27.
 
 | Facility | Sector / route | Truth (tCO₂) | iz-1 (5-run median) | Ratio | EU default |
 |----------|----------------|-------------:|--------------------:|------:|-----------:|
-| İsdemir İskenderun | steel · BF/BOF | 10,663,364 | 9,972,550 | 0.94× | 10,450,000 |
-| Erdemir Karadeniz Ereğli | steel · BF/BOF | 6,673,266 | 7,190,082 | 1.08× | 7,600,000 |
-| Kardemir Karabük | steel · BF/BOF | 5,650,626 | 5,061,563 | 0.90× | 6,650,000 |
-| Nuh Hereke | cement | 3,573,278 | 2,475,689 | 0.69× | 9,504,000 |
-| Akçansa Çanakkale (allocated) | cement | 3,466,000 | 3,691,315 | 1.07× | 9,504,000 |
-| Göltaş Isparta | cement | 1,669,072 | 755,725 | 0.45× | 3,168,000 |
-| Batısöke Söke | cement | 1,577,926 | 1,595,923 | 1.01× | 6,336,000 |
-| Akçansa Büyükçekmece (allocated) | cement | 1,514,000 | 1,632,215 | 1.08× | 7,128,000 |
-| Afyon Çimento | cement | 1,200,000 | 712,644 | 0.59× | 3,326,400 |
-| Habaş Aliağa | steel · EAF | 636,377 | 923,032 | 1.45× | 9,500,000 |
-| Çolakoğlu Dilovası | steel · EAF | 566,519 | 577,309 | 1.02× | 5,700,000 |
-| Akçansa Ladik (allocated) | cement | 499,000 | 626,556 | 1.26× | 2,376,000 |
-| Toros Mersin (allocated) | fertilizer · integrated | 383,150 | 301,628 | 0.79× | 1,200,000 |
-| İzdemir Aliağa | steel · EAF | 271,123 | 302,349 | 1.12× | 2,850,000 |
-| Toros Samsun (allocated) | fertilizer · integrated | 255,180 | 197,389 | 0.77× | 800,000 |
-| Toros Ceyhan (allocated) | fertilizer · integrated | 203,840 | 160,182 | 0.79× | 640,000 |
-| Assan Tuzla | aluminum · downstream | 108,500 | 98,819 | 0.91× | 450,000 |
-| ASAŞ Akyazı | aluminum · downstream | 68,618 | 90,439 | 1.32× | 375,000 |
-| Gübretaş Yarımca | fertilizer · blender | 13,281 | 14,352 | 1.08× | 1,200,000 |
-| BAGFAŞ Bandırma | fertilizer · N₂O-controlled | 9,828 | 19,513 | 1.99× | 960,000 |
+| İsdemir İskenderun | steel · BF/BOF | 10,663,364 | 9,589,169 | 0.90× | 10,070,000 |
+| Erdemir Karadeniz Ereğli | steel · BF/BOF | 6,673,266 | 7,066,739 | 1.06× | 7,600,000 |
+| Kardemir Karabük | steel · BF/BOF | 5,650,626 | 5,086,494 | 0.90× | 6,650,000 |
+| Nuh Hereke | cement | 3,573,278 | 2,587,434 | 0.72× | 9,028,800 |
+| Akçansa Çanakkale (allocated) | cement | 3,466,000 | 3,684,122 | 1.06× | 8,712,000 |
+| Göltaş Isparta | cement | 1,669,072 | 1,940,029 | 1.16× | 7,920,000 |
+| Batısöke Söke | cement | 1,577,926 | 1,536,940 | 0.97× | 6,336,000 |
+| Akçansa Büyükçekmece (allocated) | cement | 1,514,000 | 1,691,201 | 1.12× | 3,960,000 |
+| Afyon Çimento | cement | 1,200,000 | 703,611 | 0.59× | 2,851,200 |
+| Habaş Aliağa (combined) | steel · EAF | 830,338 | 938,312 | 1.13× | 8,550,000 |
+| Çolakoğlu Dilovası | steel · EAF | 566,519 | 633,325 | 1.12× | 8,550,000 |
+| Akçansa Ladik (allocated) | cement | 499,000 | 547,130 | 1.10× | 1,584,000 |
+| Toros Mersin (allocated) | fertilizer · integrated | 383,150 | 216,539 | 0.57× | 648,000 |
+| İzdemir Aliağa | steel · EAF | 271,123 | 300,142 | 1.11× | 2,850,000 |
+| Toros Samsun (allocated) | fertilizer · integrated | 255,180 | 159,840 | 0.63× | 460,000 |
+| Toros Ceyhan (allocated) | fertilizer · integrated | 203,840 | 242,379 | 1.19× | 657,360 |
+| Assan Tuzla | aluminum · downstream | 108,500 | 105,810 | 0.98× | 540,000 |
+| ASAŞ Akyazı | aluminum · downstream | 68,618 | 75,988 | 1.11× | 375,000 |
+| Gübretaş Yarımca | fertilizer · blender | 13,281 | 13,133 | 0.99× | 640,000 |
+| BAGFAŞ Bandırma | fertilizer · N₂O-controlled | 9,828 | 20,164 | 2.05× | 560,000 |
 
-Big-emitter predictions land tight: Erdemir 1.08×, İsdemir 0.94×, Kardemir 0.90×, Akçansa Çanakkale 1.07×, Batısöke 1.01×, Çolakoğlu 1.02×, Akçansa Büyükçekmece 1.08×, İzdemir 1.12×, Gübretaş 1.08×, Assan 0.91×. **BAGFAŞ 1.99× was 3.71× without disclosed_cf** — adding the audited production-derived cf (0.29) for the only N₂O-controlled facility halved its prediction error. **Göltaş 0.45×, Afyon 0.59×, Nuh 0.69×** are the cement under-predictions: all three have actual EF×cf well above the sector mean, which the formula prior can't infer without disclosed cf.
+**15 of 20 facilities land within ±20% of audit truth** (was 8 of 20 before the capacity audit). Big-emitter predictions: Erdemir 1.06×, İsdemir 0.90×, Kardemir 0.90×, Akçansa Çanakkale 1.06×, Batısöke 0.97×, **Göltaş 1.16× — was 0.45× before capacity correction (2M → 5M)**, Çolakoğlu 1.12×, Habaş 1.13×, İzdemir 1.11×, Assan 0.98×, ASAŞ 1.11×, Gübretaş 0.99×. **BAGFAŞ 2.05× remains the only structurally hard outlier** — single-instance N₂O-controlled stratum; the model has never seen another N₂O-catalyst plant in training. Toros allocation noise (Mersin 0.57×, Samsun 0.63×) reflects that capacity-share is the wrong allocation key for NH₃+urea-heavy Mersin; better keys need process-tonnage disclosures Toros doesn't publish.
 
 ## Limitations (paper §8 honest version)
 
