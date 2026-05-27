@@ -19,7 +19,7 @@ On this bench we evaluate a closed-form physics baseline:
 tCO₂ = capacity × route-EF × capacity-factor
 ```
 
-with route-aware emission factors (steel BF/BOF / EAF / DRI-EAF, aluminum primary / downstream, fertilizer integrated / N₂O-controlled / blender) and a capacity-factor priority (Climate-TRACE per-asset > operator-disclosed production-÷-capacity > sector mean). The formula reduces per-plant log-MAE by **+85.3%** vs the EU CBAM default in leave-one-disclosure-out (LODO) evaluation across the 21 audit-grade test facilities (capacities operator-audited). A 2-layer LoRA-shaped neural network trained on the bench's residuals against this prior reaches **+83.6%** with 95% data-bootstrap CI [+73.5%, +90.4%] — statistically tied with the closed-form formula. Ridge regression on the same features lags both at +81.4%.
+with route-aware emission factors (steel BF/BOF / EAF / DRI-EAF, aluminum primary / downstream, fertilizer integrated / N₂O-controlled / blender) and a capacity-factor priority (Climate-TRACE per-asset > operator-disclosed production-÷-capacity > sector mean). The formula reduces per-plant log-MAE by **+85.3%** vs the EU CBAM default in leave-one-disclosure-out (LODO) evaluation across the 21 audit-grade test facilities (capacities operator-audited). A 2-layer LoRA-shaped neural network trained on the bench's residuals against this prior reaches **+83.3%** with 95% data-bootstrap CI [+72.0%, +90.6%] — statistically tied with the closed-form formula. Ridge regression on the same features lags both at +81.4%.
 
 Per-sector bootstrap 95% CIs: aluminum downstream [+89.9%, +91.5%], EAF steel [+96.6%, +97.6%], cement [+66.2%, +92.2%], fertilizer [+34.6%, +93.0%], BF/BOF steel [−289%, +97%] (n=3 stratum, structurally wide).
 
@@ -47,7 +47,7 @@ This paper presents the bench, methodology, and result as **open infrastructure*
 
 4. **Climate TRACE under-reports TR industrial emissions (§5.2).** 4 of 5 audit-matched facilities under-reported: Erdemir −29%, İsdemir −22%, Kardemir −23%, Nuh −23%; Göltaş the lone over-report at +11%. Mean bias −17.2%, median −22.5%.
 
-5. **The formula and the model are statistically tied (§6).** A LoRA-shaped MLP achieves +83.6% vs the formula's +85.3% on n=21 LODO. Ridge regression lags at +81.4%. **The shipped baseline is the formula.** The NN is a working reference implementation that future work on satellite features or multi-year LODO can build on.
+5. **The formula and the model are statistically tied (§6).** A LoRA-shaped MLP achieves +83.3% vs the formula's +85.3% on n=21 LODO. Ridge regression lags at +81.4%. **The shipped baseline is the formula.** The NN is a working reference implementation that future work on satellite features or multi-year LODO can build on.
 
 ### 1.2 What's not in this work
 
@@ -146,7 +146,7 @@ For cement and EAF, both metrics agree — iz is more accurate AND the operator 
 
 ### 3.8 The model
 
-A 2-layer LoRA-shaped MLP with rank-32 hidden dimension, trained on the bench's residuals against the formula prior `y_prior_log = log(cap × EF × cf)`. 15 features per facility (log capacity, normalized lat/lon, scope one-hot, route one-hots, disclosed cf, has-disclosed-cf, CT features when not ablated). Trained in the browser via WebGPU in ~3 seconds. Best-val checkpoint restored. We run with `IZ_NO_CT=1` (no Climate TRACE features) as the headline configuration — including CT features worsens LODO by ~3-4 pp because CT systematically under-reports the TR mills.
+A 2-layer LoRA-shaped MLP with rank-32 hidden dimension, trained on the bench's residuals against the formula prior `y_prior_log = log(cap × EF × cf)`. 18 features per facility (log capacity, normalized lat/lon, scope one-hot, route one-hots, disclosed cf, has-disclosed-cf, CT features when not ablated). Trained in the browser via WebGPU in ~3 seconds. Best-val checkpoint restored. We run with `IZ_NO_CT=1` (no Climate TRACE features) as the headline configuration — including CT features worsens LODO by ~3-4 pp because CT systematically under-reports the TR mills.
 
 ---
 
@@ -157,11 +157,11 @@ A 2-layer LoRA-shaped MLP with rank-32 hidden dimension, trained on the bench's 
 | Baseline | log-MAE | Reduction vs EU |
 |----------|--------:|----------------:|
 | B0 EU CBAM default | 1.432 | 0.0% |
-| B2 Ridge regression | 0.266 | +81.4% |
-| **iz-1 NN** | **0.235** | **+83.6%** |
+| B2 Ridge regression | 0.350 | +75.6% |
+| **iz-1 NN** | **0.239** | **+83.3%** |
 | **B1 cf-corrected formula** | **0.211** | **+85.3%** |
 
-95% data-bootstrap CI for the NN: **[+73.5%, +90.4%]** (5000 resamples of n=21).
+95% data-bootstrap CI for the NN: **[+72.0%, +90.6%]** (5000 resamples of n=21).
 Per-outer seed CI for the NN: ±0.3% (range 84.4 – 84.8%). The model is reproducible across seeds; the data CI is wider because n=21 is small.
 
 ### 4.2 Per-sector
@@ -173,7 +173,7 @@ Per-outer seed CI for the NN: ±0.3% (range 84.4 – 84.8%). The model is reprod
 | Cement | 7 | +81.7% | [+66.2, +92.2] |
 | Fertilizer (all strata) | 5 | +76.2% | [+34.6, +93.0] |
 | Steel · BF/BOF | 3 | −31.3% | [−289, +97] |
-| **Overall** | **21** | **+83.1%** | **[+73.5, +90.4]** |
+| **Overall** | **21** | **+83.1%** | **[+72.0, +90.6]** |
 
 BF/BOF crosses zero because TR has only 3 BF/BOF mills (Erdemir, İsdemir, Kardemir) and the EU CBAM default 1.9 t/t is already within ±15% of TR audited reality (1.97-2.40 t/t) on those mills. iz's value is concentrated in cement, EAF, aluminum, and fertilizer.
 
@@ -243,7 +243,7 @@ This suggests a **shadow CBAM default** — a published EF×CF table that the EU
 
 ### 5.3 The model and the formula are statistically tied
 
-The 2-layer NN reaches +83.6% vs the formula's +85.3% on n=21 LODO. Ridge regression on the same features lags at +81.4%. **The actionable shipped baseline is the formula.** The NN exists as a reference implementation that future researchers can build on once the bench has hundreds or thousands of disclosure-labeled facilities or year-time-series satellite features. At today's data scale (~40 training samples post-LODO), parameter growth offers no meaningful gain over data growth.
+The 2-layer NN reaches +83.3% vs the formula's +85.3% on n=21 LODO. Ridge regression on the same features lags at +81.4%. **The actionable shipped baseline is the formula.** The NN exists as a reference implementation that future researchers can build on once the bench has hundreds or thousands of disclosure-labeled facilities or year-time-series satellite features. At today's data scale (~40 training samples post-LODO), parameter growth offers no meaningful gain over data growth.
 
 Implications for the field:
 - Small-data ML in emissions verification is hard for the same reason small-data ML is hard everywhere: you can't beat strong baselines without much more data than the baseline needs.
@@ -259,7 +259,7 @@ For other CBAM-exporting countries (Russia, India, China, Brazil, Egypt, Morocco
 
 ## 6. Limitations
 
-1. **n=21 is small.** Single-instance disclosure-route strata (BAGFAŞ N₂O-controlled, Gübretaş blender) have no in-stratum LODO training counterpart. Our 95% data-bootstrap CI [+73.5%, +90.4%] reflects this.
+1. **n=21 is small.** Single-instance disclosure-route strata (BAGFAŞ N₂O-controlled, Gübretaş blender) have no in-stratum LODO training counterpart. Our 95% data-bootstrap CI [+72.0%, +90.6%] reflects this.
 
 2. **"Audit-grade" is three tiers.** ISO 14064-1 verified (n=5) > TSRS limited assurance (n=6) > operator IAR (n=10). The headline does not weight by tier — a v0 simplification.
 
@@ -293,7 +293,7 @@ For other CBAM-exporting countries (Russia, India, China, Brazil, Egypt, Morocco
 
 ## 7. Conclusion
 
-We release TR-MRV-Bench v0 and the cf-corrected formula as **open infrastructure for Turkish CBAM compliance**. The formula reduces per-plant log-MAE by +85.3% vs the EU CBAM default across 21 audit-grade Turkish facilities in all four CBAM scopes. The bench is downloadable as CSV and JSON with full source-PDF citations. The model (a 2-layer LoRA-shaped MLP) ties the formula at +83.6% on the same evaluation.
+We release TR-MRV-Bench v0 and the cf-corrected formula as **open infrastructure for Turkish CBAM compliance**. The formula reduces per-plant log-MAE by +85.3% vs the EU CBAM default across 21 audit-grade Turkish facilities in all four CBAM scopes. The bench is downloadable as CSV and JSON with full source-PDF citations. The model (a 2-layer LoRA-shaped MLP) ties the formula at +83.3% on the same evaluation.
 
 If every TR CBAM-scope operator used real per-facility data instead of paying the EU default, **~€2 billion per year** stays in Turkey instead of going to the EU treasury (CBAM at €85/tCO₂, realistic sector EU-export shares). That is the prize. The point of iz is to make sure no operator pays more than they should because they couldn't afford the verifier audit.
 

@@ -4,146 +4,146 @@
     "truth": 1200000.0,
     "B0_eu_default": 2851200.0,
     "B1_cf_formula": 707171.4,
-    "B2_ridge": 719593.9680922739
+    "B2_ridge": 741762.6139139814
   },
   {
     "facility_id": "akcansa-buyukcekmece",
     "truth": 1514000.0,
     "B0_eu_default": 3960000.0,
     "B1_cf_formula": 1515982.5,
-    "B2_ridge": 1926196.2686756027
+    "B2_ridge": 1948330.8199697868
   },
   {
     "facility_id": "akcansa-canakkale",
     "truth": 3466000.0,
     "B0_eu_default": 8712000.0,
     "B1_cf_formula": 3271730.0,
-    "B2_ridge": 3960904.418974756
+    "B2_ridge": 4186976.757763587
   },
   {
     "facility_id": "akcansa-ladik",
     "truth": 499000.0,
     "B0_eu_default": 1584000.0,
     "B1_cf_formula": 502596.0,
-    "B2_ridge": 632081.6491178476
+    "B2_ridge": 669345.3971044935
   },
   {
     "facility_id": "asas-akyazi",
     "truth": 68618.0,
     "B0_eu_default": 375000.0,
     "B1_cf_formula": 95625.0,
-    "B2_ridge": 84142.22412061258
+    "B2_ridge": 94905.37313946623
   },
   {
     "facility_id": "assan-tuzla",
     "truth": 108500.0,
     "B0_eu_default": 540000.0,
     "B1_cf_formula": 128790.0,
-    "B2_ridge": 91581.91889588958
+    "B2_ridge": 80451.33457202237
   },
   {
     "facility_id": "bagfas-bandirma",
     "truth": 9828.0,
     "B0_eu_default": 560000.0,
     "B1_cf_formula": 17465.0,
-    "B2_ridge": 25325.255941737716
+    "B2_ridge": 26317.986455434624
   },
   {
     "facility_id": "batisoke-soke",
     "truth": 1577926.0,
     "B0_eu_default": 6336000.0,
     "B1_cf_formula": 1414600.0,
-    "B2_ridge": 1636177.4543109338
+    "B2_ridge": 1747000.8781339056
   },
   {
     "facility_id": "bursa-cimento",
     "truth": 1121545.0,
     "B0_eu_default": 3168000.0,
     "B1_cf_formula": 585200.0,
-    "B2_ridge": 702765.5853553077
+    "B2_ridge": 582801.9638349176
   },
   {
     "facility_id": "colakoglu-gebze",
     "truth": 566519.0,
     "B0_eu_default": 8550000.0,
     "B1_cf_formula": 630000.0000000001,
-    "B2_ridge": 633463.9322798086
+    "B2_ridge": 613615.8852444065
   },
   {
     "facility_id": "erdemir-eregli",
     "truth": 6667232.0,
     "B0_eu_default": 7600000.0,
     "B1_cf_formula": 6688000.0,
-    "B2_ridge": 8377322.674792476
+    "B2_ridge": 10176906.287334615
   },
   {
     "facility_id": "goltas-isparta",
     "truth": 1669072.0,
     "B0_eu_default": 7920000.0,
     "B1_cf_formula": 1768250.0000000002,
-    "B2_ridge": 2115182.087062
+    "B2_ridge": 2268599.193459844
   },
   {
     "facility_id": "gubretas-izmit",
     "truth": 13281.0,
     "B0_eu_default": 640000.0,
     "B1_cf_formula": 15100.0,
-    "B2_ridge": 12757.242620939816
+    "B2_ridge": 10730.91424455683
   },
   {
     "facility_id": "habas-aliaga",
     "truth": 830338.0,
     "B0_eu_default": 8550000.0,
     "B1_cf_formula": 963000.0,
-    "B2_ridge": 891217.3122212612
+    "B2_ridge": 945586.5561387374
   },
   {
     "facility_id": "isdemir-iskenderun",
     "truth": 10663364.0,
     "B0_eu_default": 10070000.0,
     "B1_cf_formula": 10388000.0,
-    "B2_ridge": 8364680.323255881
+    "B2_ridge": 6788256.639734732
   },
   {
     "facility_id": "izdemir-aliaga",
     "truth": 271123.0,
     "B0_eu_default": 2850000.0,
     "B1_cf_formula": 318750.0,
-    "B2_ridge": 313663.79672842845
+    "B2_ridge": 325214.3189637182
   },
   {
     "facility_id": "kardemir-karabuk",
     "truth": 5650626.0,
     "B0_eu_default": 6650000.0,
     "B1_cf_formula": 4900000.0,
-    "B2_ridge": 6306242.897112332
+    "B2_ridge": 7521204.117309271
   },
   {
     "facility_id": "nuh-hereke",
     "truth": 3584953.0,
     "B0_eu_default": 9028800.0,
     "B1_cf_formula": 2466612.3000000003,
-    "B2_ridge": 2871374.815081756
+    "B2_ridge": 2464092.841308035
   },
   {
     "facility_id": "toros-ceyhan",
     "truth": 203840.0,
     "B0_eu_default": 657360.0,
     "B1_cf_formula": 298277.1,
-    "B2_ridge": 175832.7405510226
+    "B2_ridge": 172240.76530470833
   },
   {
     "facility_id": "toros-mersin",
     "truth": 383150.0,
     "B0_eu_default": 648000.0,
     "B1_cf_formula": 294030.0,
-    "B2_ridge": 172655.6544923685
+    "B2_ridge": 163682.61273633435
   },
   {
     "facility_id": "toros-samsun",
     "truth": 255180.0,
     "B0_eu_default": 460000.0,
     "B1_cf_formula": 208725.0,
-    "B2_ridge": 190181.9288585802
+    "B2_ridge": 190377.13637176313
   }
 ]

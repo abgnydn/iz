@@ -12,7 +12,7 @@
 
 ## TL;DR
 
-The EU charges Turkish CBAM-scope exporters (cement, steel, aluminum, fertilizer) a CO₂ tariff based on a default value that overcharges most plants by **2-10×**. iz-1 is a one-line formula — `tCO₂ = capacity × emission-factor × capacity-factor` — that reproduces 21 audit-grade Turkish facility emissions within ±20% on average, using only operator-published numbers. **+85.3% log-MAE reduction vs EU CBAM default**, 95% data-bootstrap CI [+73.5%, +90.4%].
+The EU charges Turkish CBAM-scope exporters (cement, steel, aluminum, fertilizer) a CO₂ tariff based on a default value that overcharges most plants by **2-10×**. iz-1 is a one-line formula — `tCO₂ = capacity × emission-factor × capacity-factor` — that reproduces 21 audit-grade Turkish facility emissions within ±20% on average, using only operator-published numbers. **+85.3% log-MAE reduction vs EU CBAM default**, 95% data-bootstrap CI [+72.0%, +90.6%].
 
 If every TR operator used this instead of the default, **~€2 billion per year in CBAM payments stays in Turkey** instead of going to the EU treasury. That's the entire point. **Released under Apache-2.0** as open infrastructure for Turkish CBAM compliance — not a SaaS. Use it, cite it, contribute back.
 
@@ -47,7 +47,7 @@ Consistency check: `.venv/bin/python bin/check_consistency.py`.
 > - **B0 — EU CBAM default**: 0% (baseline).
 > - **B1 — cf-corrected formula** `cap × EF × cf` (no learned parameters): **+85.3% log-MAE reduction** vs EU default.
 > - B2 — ridge regression on same features: +81.4%.
-> - **iz-1 — 2-layer NN, no_ct ablation**: **+83.6%** (median across 5 outer × 3 inner seeds). 95% **data-bootstrap CI: [+73.5%, +90.4%]** (5000 resamples of the n=21 facilities). 95% per-outer seed CI: ±0.3% (range 84.4 – 84.8%) — the model is reproducible; the data CI reflects that we only have 21 facilities.
+> - **iz-1 — 2-layer NN, no_ct ablation**: **+83.3%** (median across 5 outer × 3 inner seeds). 95% **data-bootstrap CI: [+72.0%, +90.6%]** (5000 resamples of the n=21 facilities). 95% per-outer seed CI: ±0.3% (range 84.4 – 84.8%) — the model is reproducible; the data CI reflects that we only have 21 facilities.
 > - B3 — Climate TRACE direct on matched subset (n=5 audit-matched): under-reports 4 of 5, mean bias −17.2%.
 > - Per-sector bootstrap CI: cement [+66.2, +92.2], EAF [+96.6, +97.6], BF/BOF [-289.2, +97.2] (n=3 stratum, structurally wide), aluminum downstream [+89.9, +91.5], fertilizer [+34.6, +93.0].
 >
@@ -75,8 +75,8 @@ Four baselines + the model, all on the same leave-one-disclosure-out (LODO) spli
 |----------|--------:|----------------:|
 | B0 EU CBAM default | 1.432 | 0.0% |
 | B3 Climate TRACE direct (n=5 matched, all strata) | — | mean bias −17.2% (under-reports 4 of 5) |
-| B2 Ridge regression | 0.266 | +81.4% |
-| **iz-1 NN (5-outer × 3-inner median, no_ct)** | **0.199** | **+83.6%** (95% data-bootstrap CI: +73.5% to +90.4%) |
+| B2 Ridge regression | 0.350 | +75.6% |
+| **iz-1 NN (5-outer × 3-inner median, no_ct)** | **0.239** | **+83.3%** (95% data-bootstrap CI: +72.0% to +90.6%) |
 | **B1 cf-corrected formula** | **0.189** | **+85.3%** |
 
 **Per-sector CI (mean ± 2σ over 5 outer runs):**

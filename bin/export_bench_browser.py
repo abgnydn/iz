@@ -32,6 +32,7 @@ KNOWN_CSV = REPO / "data" / "tr_facility_known_emissions.csv"
 CT_PARQUET = REPO / "reports" / "climate_trace_tr_joined.parquet"
 CT_DETAILS = REPO / "reports" / "climate_trace_tr_details.parquet"
 S5P_DIR = REPO / "data" / "s5p"
+S5P_AGG = REPO / "data" / "s5p_no2_aggregated.csv"
 OUT_JSON = REPO / "src" / "iz_browser" / "bench.json"
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)s | %(message)s")
@@ -181,7 +182,8 @@ def main():
     ABL_NO_DISC = os.environ.get("IZ_NO_DISC_CF", "") == "1"    # drop disc_cf + has_disc_cf, ignore in cf_corrected
     ABL_NO_CT = os.environ.get("IZ_NO_CT", "") == "1"            # drop ct_cf/ct_activity/ct_has, ignore in cf_corrected
     ABL_NO_PRIOR_FLAG = os.environ.get("IZ_NO_PRIOR", "") == "1"  # write samples without y_prior_log so train.js falls back to yMean
-    log.info("ablation flags: NO_ROUTE=%s NO_DISC=%s NO_CT=%s NO_PRIOR=%s", ABL_NO_ROUTE, ABL_NO_DISC, ABL_NO_CT, ABL_NO_PRIOR_FLAG)
+    ABL_NO_S5P = os.environ.get("IZ_NO_S5P", "") == "1"            # drop S5P NO2 features
+    log.info("ablation flags: NO_ROUTE=%s NO_DISC=%s NO_CT=%s NO_PRIOR=%s NO_S5P=%s", ABL_NO_ROUTE, ABL_NO_DISC, ABL_NO_CT, ABL_NO_PRIOR_FLAG, ABL_NO_S5P)
     facs = pd.read_csv(FACS_CSV)
     log.info("facilities: %d", len(facs))
     # Stratified split: each (scope × steel_route) cell gets minimum coverage
@@ -204,6 +206,27 @@ def main():
     split_lookup = {**{i: "train" for i in split.train},
                     **{i: "val" for i in split.val},
                     **{i: "test" for i in split.test}}
+
+    # ---- S5P NO₂ features (per-facility aggregated from satellite) ----
+    # See bin/extract_s5p_no2_all.py + bin/aggregate_s5p.py.
+    # Non-leaky: NO₂ is a satellite measurement independent of Scope 1 disclosure.
+    s5p_feats: dict[str, dict[str, float]] = {}
+    if S5P_AGG.exists() and not ABL_NO_S5P:
+        s5p_df = pd.read_csv(S5P_AGG)
+        # Normalize NO2 to a stable scale: TR plant values ~1e-5 to 1e-4 mol/m².
+        # Multiply by 1e5 so feature values are O(1).
+        for _, r in s5p_df.iterrows():
+            fid = str(r["facility_id"])
+            plant = r["no2_plant_mean"]
+            delta = r["no2_delta_mean"]
+            n = r["no2_n_obs"]
+            if pd.notna(plant) and pd.notna(delta) and pd.notna(n) and float(n) >= 1:
+                s5p_feats[fid] = {
+                    "plant": float(plant) * 1e5,
+                    "delta": float(delta) * 1e5,
+                    "n": float(n),
+                }
+        log.info("S5P NO2 features: %d facilities", len(s5p_feats))
 
     # ---- CT-derived features (capacity factor + activity) ----
     ct_feats: dict[str, dict[str, float]] = {}
@@ -235,6 +258,12 @@ def main():
         is_bfbof = 1.0 if route == "BF/BOF" else 0.0
         is_eaf = 1.0 if route == "EAF" else 0.0
         is_dri_eaf = 1.0 if route == "DRI-EAF" else 0.0
+        # S5P NO2 features — satellite-derived activity proxy.
+        # Independent of operator-disclosed Scope 1 (truly leak-safe).
+        s5p_dict = s5p_feats.get(fac["id"], {})
+        no2_plant = s5p_dict.get("plant", 0.0)
+        no2_delta = s5p_dict.get("delta", 0.0)
+        no2_has = 1.0 if fac["id"] in s5p_feats else 0.0
         feat = [
             math.log1p(capacity) / 20.0,
             (float(fac["lat"]) - 38.0) / 5.0,
@@ -248,6 +277,9 @@ def main():
             is_dri_eaf,
             disc_cf,
             has_disc_cf,
+            no2_plant,
+            no2_delta,
+            no2_has,
         ]
         feat_rows.append({"id": fac["id"], "company": fac["company"], "feat": feat, "split": split_lookup[fac["id"]]})
     feat_idx = {r["id"]: i for i, r in enumerate(feat_rows)}
@@ -377,7 +409,7 @@ def main():
     X = np.array([s["feat"] for s in samples], dtype=np.float32)
     feat_mean = X.mean(0).tolist()
     feat_std = (X.std(0) + 1e-6).tolist()
-    feat_names = ["log_capacity", "lat_norm", "lon_norm"] + [f"is_{s}" for s in SCOPES] + ["ct_cf", "ct_activity_log", "ct_has", "is_bfbof", "is_eaf", "is_dri_eaf", "disc_cf", "disc_has"]
+    feat_names = ["log_capacity", "lat_norm", "lon_norm"] + [f"is_{s}" for s in SCOPES] + ["ct_cf", "ct_activity_log", "ct_has", "is_bfbof", "is_eaf", "is_dri_eaf", "disc_cf", "disc_has", "no2_plant", "no2_delta", "no2_has"]
 
     out = {
         "schema": {

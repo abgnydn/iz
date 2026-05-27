@@ -25,3 +25,6 @@ reports/*.xml
 .idea/
 .vscode/
 *.swp
+
+# S5P NetCDF cache (transient, large)
+data/s5p/

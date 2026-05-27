@@ -59,9 +59,9 @@ A central honest finding of this work: across all our experiments at the bench's
 | Baseline | log-MAE | Reduction vs EU |
 |----------|--------:|----------------:|
 | B0 EU CBAM default | 1.432 | 0.0% |
-| B2 Ridge regression | 0.266 | +81.4% |
+| B2 Ridge regression | 0.350 | +75.6% |
 | **B1 cf-corrected formula** | **0.189** | **+85.3%** |
-| iz-1 NN (5-outer median, no CT) | 0.235 | +83.6% |
+| iz-1 NN (5-outer median, no CT) | 0.239 | +83.3% |
 
 The NN beat the formula by 1.8 pp at n=18-20 (before disclosed_cf for fertilizer/aluminum was added) and is statistically tied with it at n=21 once the formula has access to the same disclosed_cf signal. The honest framing: **the deliverable is the formula and the bench**. The NN is a working reference implementation; future data growth (S5P NO₂ features, more disclosures, multi-year LODO) may give it room to extract residual signal the formula cannot.
 
