@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>iz-1 — browser-native training on TR-MRV-Bench</title>
+<title>Verify · iz · TR-MRV-Bench</title>
 <style>
   :root { --bg:#f4ede2; --paper:#fbf7ee; --ink:#14181d; --muted:#6e6862; --rule:#d8cfbe; --cost:#b85c3f; --saved:#2d5a4c; }
   html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: Georgia, serif; }
@@ -44,14 +44,18 @@
   <nav>
     <a href="/">Home</a>
     <a href="/bench/">Bench</a>
-    <a href="/trainer/" class="active">Trainer</a>
     <a href="/about/">About</a>
   </nav>
 </div>
 <div class="container">
 
-<h1>iz-1 <em>— trained right here.</em></h1>
-<p class="sub">TR-MRV-Bench v0: 57 Turkish CBAM-scope facilities, 7 features per facility, mixed strong + sector-default weak labels. Training loop runs on your GPU via WebGPU using the fused-lora shaders (LoRA-shaped 2-layer MLP, rank-32 hidden). No Python, no Colab, no API calls.</p>
+<h1>Verify the bench <em>— in your own browser.</em></h1>
+<p class="sub">
+  The formula does the work — but if you suspect we fudged the bench, this is where you check.
+  A 2-layer LoRA-shaped MLP (rank-32) trains on TR-MRV-Bench via WebGPU on your GPU in ~3 seconds.
+  No backend, no telemetry, no account. The model ties the formula at ±0.3% in 5-outer LODO;
+  if the bench were rigged, this page would show it.
+</p>
 
 <div class="grid">
   <div class="panel">

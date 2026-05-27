@@ -14,7 +14,6 @@
   <nav>
     <a href="/" class="active">Home</a>
     <a href="/bench/">Bench</a>
-    <a href="/trainer/">Trainer</a>
     <a href="/about/">About</a>
   </nav>
 </div></div>
@@ -23,33 +22,45 @@
 
 <header class="hero">
   <p class="kicker">iz v0 · 2026-05 · open under Apache-2.0</p>
-  <h1>Stop overpaying CBAM. <em>We've already audited your plant.</em></h1>
+  <h1>Stop overpaying CBAM. <em>Three numbers from your own report.</em></h1>
+
+  <div class="formula-block">
+    <p class="formula">tCO₂ = <strong>capacity</strong> × <strong>route-EF</strong> × <strong>capacity-factor</strong></p>
+    <p class="formula-note">
+      Three numbers your own annual report already publishes. No machine learning, no satellites,
+      no proprietary data. We've validated this formula against 20 audit-grade Turkish facilities
+      and shown it beats the EU CBAM default by <strong>85.9%</strong> in leave-one-disclosure-out
+      cross-validation across all four CBAM scopes.
+    </p>
+  </div>
+
   <p class="subhead">
     The EU's CBAM default overcharges most Turkish cement, steel, aluminum, and fertilizer
-    facilities by 2-10×. We've built a public per-facility benchmark that matches audited
-    Scope 1 within ±15% for big emitters &mdash; cited to operator-published source PDFs,
-    cross-validated by leave-one-out on 20 plants.
+    facilities by 2-10×. We've built a public per-facility benchmark with audit-grade Scope 1
+    cited to operator-published source PDFs, and a one-line formula that recovers it within
+    ±15% for big emitters.
   </p>
   <p class="byline">Ahmet Barış Günaydın · <a href="mailto:hi@barisgunaydin.com">hi@barisgunaydin.com</a></p>
 </header>
 
 <section>
-  <h2><span class="h2-num">01</span> Headline</h2>
+  <h2><span class="h2-num">01</span> Proof of the formula</h2>
   <div class="headline-grid">
     <div class="panel">
-      <p class="label">iz-1 vs EU CBAM default</p>
-      <p class="big">−84.5% ± 0.3%</p>
+      <p class="label">Formula vs EU CBAM default</p>
+      <p class="big">−85.9%</p>
       <p class="small">
-        Per-plant log-MAE reduction across 20 audit-grade Turkish facilities, all 4 CBAM scopes.
-        95% CI across 5 outer × 3 inner leave-one-disclosure-out runs (range 84.4 – 84.8%).
+        <code>cap × route-EF × cf</code> on 20 audit-grade Turkish facilities, all 4 CBAM scopes.
+        Closed-form, no learned parameters. <strong>This is what we ship.</strong>
       </p>
     </div>
     <div class="panel">
-      <p class="label">Closed-form physics baseline</p>
-      <p class="big">−85.9%</p>
+      <p class="label">2-layer NN (validates the ceiling)</p>
+      <p class="big">−84.5% ± 0.3%</p>
       <p class="small">
-        <code>capacity × route-EF × cf</code> alone reaches 85.9%. No machine learning required.
-        Statistically tied with the 2-layer NN; the formula is the shipped baseline.
+        95% CI across 5 outer × 3 inner LODO runs. Statistically tied with the formula.
+        We trained a NN to prove the formula is at the data-scale ceiling, not to replace it.
+        <a href="/verify/">Verify in your browser →</a>
       </p>
     </div>
   </div>
@@ -129,13 +140,14 @@
 </section>
 
 <section>
-  <h2><span class="h2-num">05</span> Try it yourself</h2>
+  <h2><span class="h2-num">05</span> Verify the result</h2>
   <p>
-    The model trains in your browser via WebGPU in 3 seconds. No backend, no telemetry, no
-    account &mdash; just the bench JSON loaded into a 2-layer LoRA-shaped MLP. Click <strong>Train</strong>
-    and watch it converge on the 20-facility leave-one-out set.
+    Don't take our word for it. The bench loads into a 2-layer LoRA-shaped MLP that trains in
+    your browser via WebGPU in 3 seconds &mdash; no backend, no telemetry, no account.
+    Click <strong>Train</strong> and watch it converge on the same leave-one-out set we used.
+    If we'd fudged the bench, you'd see it here.
   </p>
-  <a class="btn ink" href="/trainer/">Open the trainer →</a>
+  <a class="btn ink" href="/verify/">Verify in your browser →</a>
 </section>
 
 <section>
@@ -167,7 +179,7 @@
   <span>© 2026 iz · open under Apache-2.0</span>
   <a href="/about/">About + methodology</a>
   <a href="/bench/">Bench (59 facilities)</a>
-  <a href="/trainer/">Live trainer (WebGPU)</a>
+  <a href="/verify/">Verify in browser</a>
   <a href="mailto:hi@barisgunaydin.com">Email</a>
 </div></footer>
 

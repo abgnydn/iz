@@ -1,3 +1,5 @@
-/trainer  /trainer/  301
-/bench    /bench/    301
-/about    /about/    301
+/trainer/* /verify/:splat  301
+/trainer   /verify/       301
+/verify    /verify/       301
+/bench     /bench/        301
+/about     /about/        301
