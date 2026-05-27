@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; padding: 0; }
+  body {
+    width: 1200px; height: 630px;
+    background: #f4ede2;
+    font-family: Georgia, "Times New Roman", serif;
+    color: #14181d;
+    display: flex; flex-direction: column;
+    padding: 44px 64px; box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+  }
+  .kicker {
+    font-family: -apple-system, system-ui, sans-serif;
+    font-size: 15px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: #6e6862; margin: 0 0 18px;
+  }
+  h1 {
+    font-size: 60px; line-height: 1.05; font-weight: 600;
+    letter-spacing: -0.02em; margin: 0 0 18px; max-width: 1060px;
+  }
+  h1 em { font-style: italic; color: #2d5a4c; font-weight: 400; }
+
+  .formula-block {
+    background: #fbf7ee; border: 1px solid #d8cfbe;
+    border-left: 6px solid #2d5a4c;
+    padding: 18px 24px;
+    margin: 0 0 22px;
+  }
+  .formula {
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 26px; color: #14181d; margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .formula strong { color: #2d5a4c; font-weight: 700; }
+
+  .bottom {
+    margin-top: auto;
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 40px;
+  }
+  .result { display: flex; flex-direction: column; }
+  .result-label {
+    font-family: -apple-system, system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: #6e6862; margin-bottom: 6px;
+  }
+  .result-big {
+    font-size: 86px; font-weight: 600; color: #2d5a4c;
+    line-height: 1; letter-spacing: -0.03em;
+  }
+  .result-sub {
+    font-family: -apple-system, system-ui, sans-serif;
+    font-size: 14px; color: #6e6862; margin-top: 8px; max-width: 480px;
+    line-height: 1.4;
+  }
+  .brand {
+    text-align: right;
+    font-family: -apple-system, system-ui, sans-serif;
+    font-size: 15px; color: #6e6862;
+  }
+  .brand .name {
+    font-family: Georgia, serif;
+    font-size: 30px; color: #14181d;
+    font-weight: 600; letter-spacing: -0.01em;
+    display: block; margin-bottom: 4px;
+  }
+  .brand .name em { color: #2d5a4c; font-style: italic; font-weight: 400; }
+  .brand .url { letter-spacing: 0.05em; }
+
+  .rule { position: absolute; left: 0; right: 0; height: 6px; background: #14181d; }
+  .rule-top { top: 0; }
+  .rule-bot { bottom: 0; height: 3px; }
+</style>
+</head>
+<body>
+  <div class="rule rule-top"></div>
+
+  <p class="kicker">TR-MRV-Bench · CBAM emissions audit · 59 Turkish facilities</p>
+
+  <h1>Stop overpaying CBAM. <em>Three numbers from your own report.</em></h1>
+
+  <div class="formula-block">
+    <p class="formula">tCO₂ = <strong>capacity</strong> × <strong>route-EF</strong> × <strong>capacity-factor</strong></p>
+  </div>
+
+  <div class="bottom">
+    <div class="result">
+      <span class="result-label">vs EU CBAM default</span>
+      <span class="result-big">−85.9%</span>
+      <span class="result-sub">log-MAE reduction across 20 audit-grade Turkish facilities · all 4 CBAM scopes · leave-one-out cross-validated</span>
+    </div>
+    <div class="brand">
+      <span class="name">iz <em>· TR-MRV-Bench</em></span>
+      <span class="url">iz-b0n.pages.dev</span>
+    </div>
+  </div>
+
+  <div class="rule rule-bot"></div>
+</body>
+</html>

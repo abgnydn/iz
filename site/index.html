@@ -5,6 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>iz · CBAM emissions audits for Turkish exporters</title>
 <meta name="description" content="Cut your EU CBAM bill by 60-80% with an audit-grade Scope 1 number defensible against the EU default. Per-facility Turkish industrial emissions, formula reduces log-error by 85.9% vs EU default on 20 audited plants.">
+<meta name="theme-color" content="#2d5a4c">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<link rel="canonical" href="https://iz-b0n.pages.dev/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="iz · TR-MRV-Bench">
+<meta property="og:title" content="iz · Stop overpaying CBAM. Three numbers from your own report.">
+<meta property="og:description" content="A public per-facility emissions benchmark for Turkish industry. Formula beats the EU CBAM default by 85.9% on 20 audit-grade facilities across all 4 CBAM scopes.">
+<meta property="og:url" content="https://iz-b0n.pages.dev/">
+<meta property="og:image" content="https://iz-b0n.pages.dev/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="iz · TR-MRV-Bench. Formula: tCO₂ = capacity × route-EF × capacity-factor. −85.9% vs EU CBAM default.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="iz · Stop overpaying CBAM.">
+<meta name="twitter:description" content="Public per-facility Turkish emissions benchmark. Formula beats EU CBAM default by 85.9% on 20 audited plants.">
+<meta name="twitter:image" content="https://iz-b0n.pages.dev/assets/og.png">
 <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
@@ -114,7 +131,15 @@
 </div>
 
 <section>
-  <h2><span class="h2-num">04</span> Selected per-facility results</h2>
+  <h2><span class="h2-num">04</span> Per-facility predictions vs EU default</h2>
+  <div style="background:var(--paper);border:1px solid var(--rule);padding:18px;margin:8px 0 22px;overflow-x:auto;">
+    <object data="/assets/fig_iz1_vs_eu_lodo.svg" type="image/svg+xml" style="width:100%;min-width:900px;height:auto;display:block;"></object>
+    <p class="muted" style="font-size:12px;margin:10px 0 0;font-style:italic;font-family:var(--sans);">
+      Each pair of bars is one leave-one-out held-out facility. Light red = EU CBAM default. Green = iz-1 prediction (median of 3 seeds). Black tick = audit-grade disclosed Scope 1 truth. Log y-axis, bars sorted by truth ascending.
+    </p>
+  </div>
+
+  <h3 style="font-size:18px;margin:24px 0 8px;">Selected rows</h3>
   <p class="muted" style="font-size:14px;">
     Leave-one-out: each plant's audited Scope 1 was hidden during prediction. <strong>Ratio</strong>
     = iz-1 prediction ÷ audited truth. <strong>EU default</strong> = capacity × EU CBAM default EF.
