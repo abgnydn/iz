@@ -80,9 +80,9 @@
       <p class="label">2-layer NN (validates the ceiling)</p>
       <p class="big">−85.1%</p>
       <p class="small">
-        Median across 5 outer × 3 inner LODO runs (n=15 predictions per facility).
-        Per-outer-run CI: ±0.3% (range 84.4–84.8%). Statistically tied with the formula.
-        We trained a NN to prove the formula is at the data-scale ceiling, not to replace it.
+        <strong>95% data-bootstrap CI: +75.8% to +91.1%</strong> (5000 resamples of the n=20 facilities)
+        — this is the honest data-variance number. Per-outer seed CI is tight (±0.3%, model is reproducible);
+        the wider data CI reflects that we only have 20 audit-grade Turkish facilities.
         <a href="/verify/">Verify in your browser →</a>
       </p>
     </div>

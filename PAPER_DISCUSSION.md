@@ -34,19 +34,23 @@ Independent of the model, our `cap × EF × cf` formula reproduces the only dire
 
 This suggests a **shadow CBAM default** — a published EF×CF table that the EU could adopt with very little additional verification overhead, dropping the headline EU default from `cap × 1.584` (cement) to `cap × 0.643 × cf_sector` (≈ `cap × 0.35`), closing roughly 78% of the per-plant accuracy gap for cement without any operator MRV submission. We make no claim about EU regulatory feasibility; we observe only that the formula is sufficient and the inputs are public.
 
-## 7.4 Climate TRACE consistently under-reports TR integrated steel by 20-30%
+## 7.4 Climate TRACE consistently under-reports TR industrial emissions (n=5 audit-matched)
 
-We have three independent verifications:
+Five facilities have both a TR audit-grade disclosure and a Climate TRACE per-asset label. CT under-reports 4 of 5, mean bias −17.2%, median −22.5%:
 
-| Mill | CT 2024 | Audited 2024 | CT bias |
-|------|--------:|-------------:|--------:|
-| İsdemir | 8,310,166 | 10,663,364 | −22% |
-| Erdemir Ereğli | (not in our matched CT set; group total verifies) | 6,673,266 | n/a |
-| Kardemir | 4,367,749 (2024) | 5,539,756 (2022 audited) | −21% (assuming 2022 ≤ 2024) |
+| Facility | Sector | CT (latest) | Audited (latest) | CT bias |
+|----------|--------|------------:|-----------------:|--------:|
+| Erdemir Karadeniz Ereğli | steel · BF/BOF | 4,724,148 | 6,673,266 | **−29%** |
+| Kardemir Karabük | steel · BF/BOF | 4,367,749 | 5,650,626 | **−23%** |
+| Nuh Hereke | cement | 2,768,786 | 3,573,278 | **−23%** |
+| İsdemir İskenderun | steel · BF/BOF | 8,310,166 | 10,663,364 | **−22%** |
+| Göltaş Isparta | cement | 1,846,026 | 1,669,072 | **+11%** |
 
-For cement plants the CT-vs-disclosure gap is much smaller (cf-corrected formula and CT measurements agree within ~5% — see Akçansa Büyükçekmece). The under-reporting is concentrated on BF/BOF integrated steel. Plausible mechanism: CT's bottom-up steel inventory underestimates on-site co-generation (captive power plants common in TR integrated mills), which Scope 1 audits include but CT's source data may miss.
+Earlier drafts of this paper limited the claim to BF/BOF integrated steel (the original n=3 finding). Widening to all audit-matched facilities shows the under-reporting extends into cement (Nuh, also −23%), with only Göltaş as a counter-example (over-reports by 11%). The pattern is too consistent to dismiss as sampling noise but n=5 is too small for a strong global claim.
 
-This is a finding worth publishing in its own right and would be a useful note for the CT methodology team.
+Plausible mechanism: CT's bottom-up inventory underestimates on-site fuel mix in TR — captive coal power plants are common in TR integrated mills, and the alternative-fuel share at TR cement plants varies plant-to-plant in ways the global methodology may not capture. The audited Scope 1 includes all on-site combustion + process emissions; CT's source data may miss the captive-power and alt-fuel deltas. Worth publishing as a methodology note for the CT team.
+
+When we use CT-derived features in our model, this systematic bias propagates — which is why our headline configuration is the `no_ct` ablation. Adding CT features to the formula prior makes per-plant predictions ~3-4 pp worse.
 
 ## 7.5 The model and the formula are essentially tied
 

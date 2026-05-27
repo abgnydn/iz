@@ -54,9 +54,9 @@
       0.4993543326854706
     ],
     "splits": {
-      "train": 39,
+      "train": 38,
       "val": 10,
-      "test": 10
+      "test": 11
     }
   },
   "samples": [
@@ -1185,7 +1185,7 @@
       "y_log": 13.247267663328333,
       "y_raw": 566519.0,
       "w": 1.0,
-      "split": "train",
+      "split": "test",
       "label_source": "disclosure",
       "eu_default": 5700000.0,
       "y_prior_log": 13.353476685668044,
@@ -1269,8 +1269,8 @@
         0.77,
         1.0
       ],
-      "y_log": 13.363548005395057,
-      "y_raw": 636377.0,
+      "y_log": 13.629589330121368,
+      "y_raw": 830338.0,
       "w": 1.0,
       "split": "train",
       "label_source": "disclosure",
@@ -2629,7 +2629,7 @@
         0.84,
         1.0
       ],
-      "split": "train"
+      "split": "test"
     },
     {
       "id": "ekinciler-iskenderun",
