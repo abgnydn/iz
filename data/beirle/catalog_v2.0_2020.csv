@@ -1,0 +1,1175 @@
+# Catalog of NOx point sources v2.0
+# 
+# Contact: steffen.beirle@mpic.de
+# 
+# Covered time range: Jan 2020 to Dec 2020 
+# Used datasets:
+# - TROPOMI NO2 measurements: https://data-portal.s5p-pal.com/products/no2.html
+# - ERA5 wind fields: https://www.ecmwf.int/en/forecasts/datasets/reanalysis-datasets/era5
+# - Global power plant database (GPPD): https://datasets.wri.org/dataset/globalpowerplantdatabase
+# - World cities database (WCD): https://simplemaps.com/data/world-cities
+# 
+# Version 2 of the catalog provides a fundamental update compared to version 1.
+# Several improvements have been implemented resulting in generally higher and
+# more realistic emissions.
+# A detailed description of the dataset is to be submitted to ESSD.
+# 
+# Data:
+# Column 1: Rank of NOx point source
+# Column 2: Latitude [degree North] of point source
+# Column 3: Longitude [degree East] of point source
+# Column 4: NOx emissions [kg/s]
+# Column 5: NOx emissions error [kg/s]
+# Column 6: Number of months (within the considered time range)
+#           where significant emissions could be detected.
+# Column 7: Combustion power plants above 100 MW within 15 km
+#           as listed in GPPD, separated by semicolon.
+#           Spelling exactly as in GPPD.
+#           No entry if no match to GPPD was found.
+#           Primarily based on GPPD v1.3, 
+#           but extended by entries from v1.2 if missing in 1.3
+#           (labelled as "v1.2")
+# Column 8: Cities with more than 100,000 inhabitants within 15 km
+#           as listed in WCD, separated by semicolon.
+#           Spelling exactly as in WCD.
+#           No entry if no match to WCD was found.
+rank,lat,lon,E,err,months_significant,power_plants,cities
+1,-26.2875,29.1625,2.4085,0.4679,9,Matla power station;Kriel power station,
+2,-26.5625,29.1625,2.2161,0.4075,11,,
+3,-23.6875,27.5875,2.3242,0.5827,11,Matimba power station,
+4,-26.7375,27.9875,1.9177,0.4622,11,Lethabo power station,Vereeniging
+5,-27.1125,29.7875,1.7892,0.3126,10,Majuba power station,
+6,22.3875,82.6875,1.9367,0.6345,9,KORBA STPS;KORBA-WEST;KORBA-EAST;KASAIPALLI;SALORA,
+7,40.6375,109.7375,1.6368,0.5370,10,Baotou East Hope power station;Baotou Hexi power station;Huaneng Baotou-2 power station;Huaneng Baotou-1 power station;Baotou Olefins power station;Baotou Works power station,Baotou
+8,21.0125,107.1375,1.5581,0.3427,6,Quang Ninh 1,Hạ Long;Cẩm Phả
+9,-26.0875,28.9875,1.6807,0.3402,9,Kendal power station,
+10,-32.4125,151.0125,1.4884,0.3287,9,Bayswater;Liddell,
+11,35.4375,51.8625,1.8512,0.5190,8,Damavand C.C.,
+12,1.2875,103.7125,1.2926,0.5602,7,PowerSeraya Pulau Seraya Oil Power Station Singapore;PowerSeraya Pulau Seraya CCGT Cogen Power Plant Singapore;Tuas CCGT Power Station Singapore;Keppel Merlimau Cogen Power Plant Singapore;SembCorp Pulau Sakra CCGT Cogen Power Station Singapore;Tuas Oil Power Station Singapore;Jurong Island - PLP CCGT Power Plant Singapore;Pasir Panjang Gas Turbine Power Station Singapore;PowerSeraya OCGT Power Plant Singapore,Singapore
+13,27.5625,52.5375,1.6244,0.4089,11,Mobin Petroshimi,
+14,41.1375,122.9625,1.7026,0.1939,10,Anshan Steel Company No 2 power station,Anshan
+15,27.0375,49.5625,1.5161,0.4432,12,BERI GP;JUBAIL COGEN (JEC),Al Jubayl
+16,20.4125,105.9125,1.3716,0.3311,5,,
+17,21.7875,84.0625,1.5485,0.5101,7,STERLITE TPP,
+18,25.9625,56.1125,1.4665,0.5581,9,,
+19,57.1125,61.7125,1.0984,0.1506,5,Reftinskaya GRES,
+20,36.3125,58.8375,1.1793,0.3166,8,Neishabour,Neyshābūr
+21,51.8875,75.3875,1.0400,0.1287,8,Ekibastuz-1 power station,
+22,-25.9875,29.3625,1.2396,0.2518,9,Duvha power station,
+23,30.6375,114.4625,1.0542,0.2415,8,Huaneng Yangluo power station;Qingshan power station;WISCO Qingshan power station;Wuhan Ethylene power station,
+24,11.5625,79.4375,1.1364,0.4045,8,NEYVELI ST II;NEYVELI ST I;NEYVELI TPS EXP -II;NEYVELI FST EXT;NEYVELI TPS(Z),
+25,18.7625,79.4625,1.1096,0.3727,11,R_GUNDEM STPS;SINGARENI TPP,Rāmgundam
+26,22.3125,69.8625,1.1518,0.2181,10,SIKKA REP.;HAZIRA CCCP,
+27,21.0625,107.3375,1.0446,0.2710,7,Mong Duong 2;Mong Duong 1;Cam Pha I,Cẩm Phả
+28,24.4125,47.0125,1.0901,0.2047,10,Riyadh 10,
+29,-26.7875,29.3625,0.8733,0.1612,10,Tutuka power station,
+30,35.5125,129.3375,1.0229,0.1949,10,Ulsan;Yeongnam,Ulsan
+31,15.1875,76.6625,1.0174,0.3411,8,BELLARY TPS;TORANGALLU EXT;TORANGALLU IMP,
+32,21.2625,79.1125,0.9565,0.2740,8,KORADI;K_KHEDA II,Nāgpur
+33,20.0375,-99.2625,0.9197,0.6447,11,Francisco Pérez Ríos (Tula);Tula;Pemex-Refinación  Refinería Miguel Hidalgo,
+34,14.6375,101.1125,1.1934,0.3688,8,Kaeng Khoi 2,
+35,20.0875,105.8875,1.1275,0.3041,5,,
+36,21.0875,85.0875,1.1657,0.3979,8,TALCHER STPS;DERANG,
+37,24.9375,47.0625,0.9538,0.1547,11,Riyadh 9,
+38,22.1375,82.2875,1.0709,0.3327,10,SIPAT STPS,
+39,19.9875,79.2875,0.9469,0.3010,10,CHANDRAPUR_Coal;DHARIWAL INF TPP;TADALI,Chānda
+40,41.2875,123.7125,1.0535,0.1745,9,,Benxi
+41,32.7875,51.4875,0.9136,0.2049,10,Shahid M. Montazeri,Khomeynī Shahr;Shāhīn Shahr
+42,36.4625,59.4125,0.7467,0.1901,6,Ferdosi C.C.;Touss,
+43,18.2875,99.7625,0.9003,0.3168,7,Mae Mah,
+44,22.8125,69.5375,1.1064,0.2441,11,MUNDRA TPP;MUNDRA UMPP,
+45,31.9875,120.6375,0.8119,0.1421,9,Jiangsu Nantong power station;Zhangjiagang Shazhou power station;Jiangsu Zhangjiagang Huaxing;Zhangjiagang - Huaxing Gas;Tianshenggan power station;Zhangjiagang Shagang power station,Yangshe
+46,39.3875,106.9375,1.0140,0.2823,11,Ordos Power Qipanjing power station;Huaneng Wuhai Haibowan power station;Ordos Resources Qipanjing power station;Shenhua Wuhai Xilaifeng power station,
+47,23.4625,87.1375,0.7565,0.2254,9,MEJIA;MEJIA TPS EXT;DURGAPUR STEEL TPS;DURGAPUR,
+48,12.7125,101.1625,0.9248,0.3310,8,BLCP Power;Rayong;Gheco One power station;Glow Energy power complex;Glow Energy Phase 5 Power Plant;Glow Energy Phase 2 Power Plant;CUP-1;Glow Demin;CUP-2,
+49,53.4375,59.0375,0.8514,0.1269,7,CHP Plant of MMK,Magnitogorsk
+50,24.3875,109.3875,0.9023,0.1952,3,Liuzhou City power station,Liuzhou
+51,19.3375,105.7875,0.9435,0.3686,7,Nghi Son 1,
+52,24.6875,74.6625,0.8729,0.2333,9,,
+53,-24.3375,150.6375,0.7256,0.1538,11,Callide C;Callide B,
+54,6.9625,79.9375,0.9241,0.4073,7,CEB Kelantitissa;Yugadanavi;Sojitz Kelanitissa;Sapugaskanda,Colombo;Sri Jayewardenepura Kotte
+55,39.6125,126.2875,1.0835,0.1695,7,Pukchang power station,
+56,52.1125,76.8625,0.8830,0.1184,7,Aksu power station,
+57,36.2125,44.0125,0.7070,0.1729,9,,Erbil
+58,40.1125,65.3375,0.6954,0.1119,12,Navoi,Navoiy
+59,24.7625,87.8875,0.8213,0.2365,8,FARAKKA STPS,
+60,30.5625,47.4125,0.9304,0.1410,12,,
+61,55.1875,61.4125,0.7142,0.0808,7,Chelyabinsk CHP-1;Chelyabinsk GRES,Chelyabinsk
+62,35.1625,119.3625,0.6563,0.1987,11,Rizhao Iron and Steel Cogen power station,
+63,13.2375,80.3125,0.6668,0.2067,10,VALLUR ntpc/ntecl;NORTH CHENNAI EXTENSION;NORTH CHENNAI,
+64,33.9875,49.5125,0.6965,0.3113,9,Shazand,
+65,51.4875,6.7375,0.6720,0.0875,6,KW Voerde;KW Walsum;KW West;Huckingen;Duisburg Hamborn;Duisburg Ruhrort;HKW III/B;Kraftwerk N 230;G-Kraftwerk,Duisburg;Oberhausen;Mülheim;Bottrop;Moers
+66,55.9875,92.9125,0.6789,0.1224,4,,Krasnoyarsk
+67,11.3125,108.8125,0.7958,0.2045,10,Vinh Tan 2,
+68,29.0375,48.1375,0.6676,0.1878,9,Shuiba North;Shuiba SPSS;Shuwaikh,
+69,14.3375,80.1375,0.6963,0.2176,12,DAMODARAM SANJEEVAIAH;PAINAMPURAM;SEMBCORP GAYATRI;SIMHAPURI TPP;THAMMINAPATNAM TPP,
+70,35.0375,136.8625,0.7116,0.1061,10,Chita;Shin Nagoya;Chita Daini;Nishi Nagoya;Nagoya power station;Nagoya Power Plant 2,Nagoya;Kariya;Tōkai
+71,51.0125,6.6375,0.4958,0.0949,6,Niederaussem power station;BoA 2;Neurath power station;Frimmersdorf power station,
+72,2.6125,101.7125,0.7028,0.3606,7,Jimah power station;Tuanku Jaafar (PDI);Tyanku Jaafar (PDII),
+73,-5.8875,106.0375,0.7833,0.3379,10,PLTU Suralaya;PLTGU Cilegon;Banten Serang power station;PLTGU Krakatau Daya Listrik (KDL);PLTG Krakatau Posco Energy;Merak power station,Cilegon
+74,22.7875,86.2125,0.6853,0.2090,9,JOJBERA,Jamshedpur
+75,-25.9375,29.7875,0.7679,0.1627,8,Arnot power station,
+76,5.2875,-4.0125,0.6592,0.2996,8,Azito OCGT Power Plant Ivory Coast;Vridi CIPREL OCGT Power Plant Cote DIvoire,Abidjan
+77,21.4125,79.9625,0.5706,0.1695,8,TIRORA TPP,
+78,61.2875,73.4875,0.6337,0.0851,5,Surgutskaya GRES-2,Surgut
+79,51.2875,4.3125,0.6481,0.0863,6,INESCO WKK,Antwerp
+80,52.5625,39.6375,0.6331,0.0876,7,Lipetsk CHPP-2;NLMK cogeneration plant;UTETS NLMK,Lipetsk
+81,32.6875,44.0625,0.6522,0.1124,12,,Karbalā’
+82,55.0625,73.2375,0.6420,0.0675,7,Omskaya TPP-4,Omsk
+83,25.2375,87.2625,0.5883,0.1602,9,KAHALGAON,
+84,27.1625,56.0625,0.5410,0.1632,11,Bandar Abbas,
+85,57.0625,-111.6875,0.5916,0.1134,4,Poplar Creek;MacKay River,
+86,-23.5125,150.3125,0.5400,0.1270,10,Stanwell,
+87,32.6125,14.3375,0.6135,0.1544,12,Al Khums,Al Khums
+88,50.0375,73.0375,0.6236,0.1286,8,Karaganda TPS-2 power station,Temirtaū
+89,32.4375,44.2875,0.5797,0.0934,12,,Al Ḩillah
+90,47.8125,37.9875,0.7076,0.0906,7,Starobeshivska,
+91,29.3875,52.5875,0.6345,0.2051,12,Fars;Hormozgan (Khalije Fars),
+92,30.4625,48.2625,0.6545,0.0973,12,Koramshahr;Abadan C.C.,Madan;Khorramshahr
+93,36.0375,120.1625,0.6678,0.1190,10,Huangdao power station,
+94,56.2375,90.4125,0.6672,0.1077,5,CHP of the Achinsk Alumina Combine (TPP AGK),Achinsk
+95,28.4625,36.5125,0.6054,0.1259,12,TABUK-2;TABUK-1,Tabūk
+96,31.7375,118.4875,0.7296,0.1510,7,WEnergy Maanshan Power Station;Maanshan - Masteel Coal;Maanshan Steel power station,Ma’anshan
+97,-7.1375,112.6375,0.5566,0.2235,8,PLTGU Gresik;PLTU Gresik,
+98,26.2125,44.0125,0.6162,0.1030,12,QASSIM CENTRAL,Buraydah
+99,29.5625,51.6875,0.5080,0.1381,9,Kazeroon,
+100,36.0125,129.3875,0.6704,0.0947,11,Pohang Works;FINEX,Pohang
+101,55.3625,86.0125,0.6349,0.1039,5,NOVO-KEMEROVO CHP;KEMEROVO GRES,Kemerovo
+102,59.1375,37.8375,0.5760,0.0914,3,"CHP-PVS;Thermal power station EVS-2;CHPP of JSC ""PhosAgro-Cherepovets""",Cherepovets
+103,47.8875,106.8125,0.6073,0.1485,7,Ulaanbaatar-4 Thermal Power Plant;Ulaanbaatar-3 Thermal Power Plant,Ulaanbaatar
+104,23.4625,58.2625,0.6352,0.2411,12,Rusail,
+105,30.4625,49.1125,0.6158,0.1113,12,Fajr Petroshimi;Razi Petroshimi;Bandar Imam,Bandar-e Māhshahr
+106,16.5875,80.5375,0.4561,0.1445,7,KONDAPALLI GT;VIJAYWADA;VIJAYWADA TPP-IV,Bezwāda
+107,29.1125,55.3125,0.6739,0.1458,12,,
+108,24.0125,38.2625,0.5705,0.1760,11,YANBU PLANT,
+109,40.9375,117.6875,0.6211,0.0987,9,Luanhe power station,
+110,19.0375,72.9125,0.5567,0.1901,8,TROMBAY_Coal;TROMBAY;TROMBAY GT;TROMBAY_Oil,Mumbai
+111,4.1625,100.6375,0.6202,0.3101,7,Manjung power station,
+112,-26.7875,151.9125,0.5696,0.1442,11,Tarong;Tarong North,
+113,26.2625,74.1875,0.6637,0.1637,11,,
+114,-26.0375,29.6125,0.5330,0.1085,6,Hendrina power station,
+115,35.9875,43.7625,0.5650,0.1181,11,Erbil,
+116,34.0875,131.7875,0.6409,0.1546,8,Nanyo Complex power station,Shūnan
+117,52.4875,103.9125,0.5897,0.1197,5,Thermal Power Station 10;Thermal Power Station 9;Irkutsk TPP-1,Angarsk
+118,53.8875,87.2375,0.7188,0.1463,6,West Siberian CHP;Zapadno-Sibirskaya power station,
+119,16.3375,77.3375,0.5031,0.1631,8,RAICHUR;YERMARUS TPP,
+120,29.5375,48.1625,0.5665,0.1137,12,Sabiya,
+121,21.1125,106.3125,0.6239,0.1477,7,Pha Lai 2;Pha Lai 1,
+122,23.2875,81.0625,0.5981,0.1953,8,SANJAY GANDHI,
+123,36.7375,36.2125,0.5895,0.1611,6,İskenderun Atlas Termik Santrali,
+124,34.5125,133.7375,0.6044,0.1250,9,Tamashima;Mizushima Energy Center,Kurashiki
+125,21.5875,82.0375,0.5596,0.1758,7,,
+126,17.6125,80.7125,0.4673,0.1717,9,K_GUDEM NEW;K_GUDEM,
+127,9.0625,7.4875,0.5531,0.2773,5,,Abuja
+128,47.4125,40.2125,0.4967,0.0598,8,Novocherkasskaya GRES,Novocherkassk
+129,-38.2625,146.5875,0.4857,0.1049,6,Loy Yang A;Loy Yang B;Valley (Peaking Facility);Jeeralang B;Jeeralang A,
+130,21.1875,81.4125,0.5037,0.1514,9,BHILAI TPP,Bhilai;Drug
+131,27.1875,31.0125,0.5148,0.0928,12,Walidia,
+132,23.0625,72.5875,0.4497,0.1057,8,TORR POWER SAB.,Ahmedabad
+133,-3.9375,122.4125,0.5342,0.3241,3,,
+134,10.4375,-61.4875,0.2614,0.1182,2,Point Lisas,
+135,57.4625,41.1625,0.4041,0.0687,4,Krostromskaya,
+136,12.8625,44.9875,0.4951,0.1961,12,Al Mansoura;Al Hiswa,Aden;Ash Shaykh ‘Uthmān
+137,17.7125,83.2375,0.4793,0.1335,10,,Vishākhapatnam
+138,38.7125,110.1625,0.5507,0.2406,9,Shenhua Guohua Jinjie power station;Shaanxi Beiyuan power station,
+139,17.5875,44.3375,0.5812,0.1706,12,NAJRAN,
+140,51.2625,19.3125,0.4612,0.0812,5,Bełchatów,
+141,24.6375,77.0375,0.5888,0.1669,10,CHHABRA TPS,
+142,36.7625,43.2375,0.4955,0.1307,8,,
+143,8.7375,78.1625,0.4859,0.1519,8,TUTICORIN;TUTICORIN JV;TUTICORIN- IND BARATH,Tuticorin
+144,45.4625,119.5625,0.5542,0.0897,9,Huolinhe Zhanute power station;Hongjun Aluminum power station;CPI Huolinhe power station;Chuangyuan Smelter power station,Mositai
+145,36.9875,126.7125,0.6117,0.0910,7,Bugok;Pyeongtaek;Pyeongtaek;Hwasung KDHC;Asan Baebang CHP;Bugok Biomass,
+146,37.3625,58.0625,0.6008,0.3179,6,Shirvan,
+147,25.1625,75.8125,0.4445,0.1213,10,KOTA;KOTA COMPLEX,Kota
+148,28.4875,-100.7125,0.4255,0.0762,12,Carbón II;José López Portillo (Río Escondido);Altos Hornos de México,
+149,36.1125,117.8125,0.4310,0.0926,7,Huaneng Laiwu power station,
+150,28.7125,48.3625,0.4757,0.0826,11,Az Zour South CCGT;Az Zour North,
+151,40.3125,122.1125,0.6082,0.0782,10,Huaneng Yingkou power station,
+152,51.1625,71.4625,0.4494,0.0779,8,Astana-2 power station,Nur-Sultan
+153,24.2375,90.4125,0.5094,0.1692,5,,
+154,25.9375,51.5375,0.4413,0.0979,9,Ras Laffan C (Ras Qartas) CCGT Power Plant Qatar;Ras Laffan B CCGT Power Plant Qatar;Ras Laffan A Cogen GT Power Plant Qatar,
+155,22.1125,83.4625,0.4992,0.1667,5,TAMNAR TPP,
+156,31.4125,76.8625,0.4280,0.1621,6,,
+157,31.9625,11.1625,0.5144,0.0866,12,Western Mountain Station- Ruwais,
+158,53.5375,49.4625,0.4747,0.0583,7,CHP Volga Car;Togliatti,Tolyatti
+159,31.6875,74.0875,0.4179,0.1097,9,Atlas Power Sheikhupura,Shekhupura
+160,55.6125,51.9375,0.5295,0.0762,7,Nizhnekamsk cogeneration station-1;Nizhnekamsk cogeneration station-2,Nizhnekamsk
+161,21.6625,108.4125,0.5767,0.1087,8,Fangchenggang Coal,Fangchenggang
+162,43.8875,126.5125,0.5042,0.0884,5,Songhuajiang power station;Guodian Jiangnan power station;Jilin - Guodian Coal,Jilin
+163,35.4125,47.0375,0.4992,0.0994,7,Sanandaj,Sanandaj
+164,32.0125,44.9375,0.4454,0.0655,12,,Ad Dīwānīyah
+165,24.4375,82.9875,0.4626,0.1322,7,OBRA-A,
+166,51.2625,37.7625,0.4647,0.0736,7,,Staryy Oskol
+167,48.8625,37.7625,0.4345,0.0621,7,Slavyansk power station,Sloviansk
+168,53.5125,9.9375,0.4120,0.0574,5,Hamburg-Moorburg;Tiefstack power station;GuD Tiefstack,Hamburg
+169,35.2375,128.6125,0.5160,0.0724,9,,Changwon;Masan
+170,-6.8375,39.2375,0.4317,0.1422,8,Ubungo Gas (Songas),Dar es Salaam
+171,23.8125,86.7625,0.4555,0.1351,7,MAITHON RB TPP,
+172,35.8875,128.5375,0.4622,0.0862,6,,Daegu
+173,42.6875,21.0625,0.5141,0.1024,9,Kosovo A Coal Power Plant Kosovo;Kosovo B Coal Power Plant Kosovo;TE KOSOVO B;TE KOSOVO A,
+174,21.9125,83.1875,0.4543,0.1494,8,UCHPINDA TPP;BARADARHA TPP;RAIGARH TPP;BINJKOTE;NAWAPARA,
+175,18.5375,-69.3375,0.2957,0.0781,7,Quisqueya 2,San Pedro de Macorís
+176,-28.4375,-49.0125,0.4242,0.0995,9,Jorge Lacerda IV;Jorge Lacerda III;Jorge Lacerda I e II,
+177,39.7625,111.2375,0.4694,0.2148,10,Zhungeer power station;Shenhua Zhunneng power station;Jingtai Zhungeer Suancigou power station;Zhunda power station,
+178,30.2125,56.7875,0.5174,0.1198,12,Kerman,
+179,28.2125,115.4375,0.4961,0.1281,6,,
+180,11.5375,104.9125,0.5468,0.2104,8,,Phnom Penh
+181,-1.2875,36.8625,0.4104,0.2294,5,Iberafrica I & II (Nairobi south diesel PP),Nairobi
+182,35.9125,140.6625,0.4274,0.0890,8,Kashima;Kashima Kyodo;Kashima Kita;Sumitomo Metals Kashima power station,
+183,27.7625,111.9375,0.4065,0.1065,4,Hunan Lianyuan power station,Loudi
+184,21.4375,81.8625,0.6133,0.1899,8,RAIKHEDA,
+185,24.1875,-110.2875,0.4467,0.1251,11,Punta Prieta II,La Paz
+186,44.6625,20.1625,0.4724,0.0776,8,TENT A;TENT B,
+187,57.3125,-111.5625,0.4681,0.1098,4,Muskeg River;Aurora;Horizon (CNRL),
+188,23.7125,86.1125,0.4451,0.1246,8,CHANDRAPURA;BOKARO A ''EXP'',
+189,24.7875,67.3625,0.4509,0.0904,11,Port Qasim EPC power station;Bin Qasim;Fauji Fertilizer Power Plant,
+190,56.2625,43.8875,0.5267,0.0755,8,Sormovo cogeneration station,Nizhniy Novgorod
+191,51.4625,-0.4125,0.2272,0.0403,3,Taylor's Lane GT,Slough
+192,34.3625,47.3625,0.4323,0.1028,6,Zagros;Bistoon,
+193,53.3625,-114.3125,0.4175,0.0553,5,Genesee;Keephills,
+194,44.4625,86.0875,0.3760,0.1034,8,XPCC Shihezi Cogen power station;Tianye power station;Tianfu North power station;Hesheng Shanshan power station;Shihezi Tianhe power station;Tianfu West power station,
+195,-4.0375,39.6125,0.3235,0.1004,8,Kipevu III,Mombasa
+196,27.7875,114.9125,0.3988,0.1028,5,Datang Xinyu power station,Xinyu
+197,57.1125,65.5875,0.4457,0.0708,6,Tyumen CHP-1,Tyumen
+198,27.4625,41.7375,0.4808,0.1075,12,HAIL2,Ḩā’il
+199,47.8625,33.3875,0.4228,0.0659,8,,Kryvyi Rih
+200,30.8375,117.7875,0.4991,0.1278,7,Tongling Wanneng power station,Wusong
+201,-6.4375,110.7375,0.4416,0.1781,6,PLTU Tanjung Jati B - expansion;PLTU Tanjung Jati B,
+202,40.7625,122.7875,0.3990,0.1445,5,,Haicheng
+203,40.2125,69.0875,0.3996,0.1029,7,Syrdarya,
+204,31.9125,118.6125,0.4190,0.0909,6,Nanre Coal;Nanjing Meishan power station,
+205,32.0125,44.3625,0.4221,0.0724,11,Al-Najaf,An Najaf;Al Kūfah
+206,-20.1375,57.4625,0.3516,0.1316,5,Fort William Ceb;Fort George,Port Louis
+207,19.0625,73.1375,0.4921,0.1626,8,,
+208,57.9125,56.1375,0.4279,0.0786,5,Permskaya CHPP-9;Perm HPP-13,Perm
+209,34.7375,134.8125,0.4372,0.0945,6,Himeji Daini;Himeji Daiichi;Takasago power station,Himeji;Kakogawachō-honmachi
+210,29.9375,-90.1375,0.4675,0.1190,12,Nine Mile Point,Metairie
+211,23.8375,87.4625,0.4350,0.1372,8,BAKRESWAR,
+212,0.3125,32.5875,0.3458,0.2071,2,,Kampala
+213,10.9125,-74.7625,0.4045,0.1660,6,Termobarranquilla;Termoflores,Barranquilla;Soledad
+214,21.1625,72.6875,0.3893,0.1221,10,KAWAS GT;ESSAR GT IMP.;HAZIRA-GSECL,Sūrat
+215,45.0375,39.0625,0.3564,0.0534,10,Krasnodar TPP,Krasnodar
+216,-33.3625,150.0625,0.4907,0.0977,7,Mt Piper;Wallerawang C,
+217,24.9375,74.6625,0.3986,0.1324,10,CHANDERIA SMELTER,Chittaurgarh
+218,36.2125,117.6375,0.4357,0.0854,7,Huaneng Laiwu power station;Laicheng power station,Laiwu
+219,33.0875,-8.6375,0.3923,0.0924,12,Centrale Thermique de Jorf Lasfar (JLEC),
+220,39.2875,-76.6625,0.3736,0.0562,9,Westport,Baltimore
+221,29.0125,31.2125,0.2624,0.0514,12,,Banī Suwayf
+222,14.6875,78.4625,0.2387,0.0781,5,RAYAL SEEMA,Proddatūr
+223,29.4375,76.8625,0.3675,0.0731,11,PANIPAT,Pānīpat
+224,-6.8625,111.9125,0.3454,0.1341,7,Tanjung Awar-Awar power station,
+225,16.5125,75.8375,0.2906,0.1044,4,KUDGI,
+226,12.6375,-7.9875,0.4042,0.1188,10,,Bamako
+227,37.3375,45.2625,0.3914,0.1138,6,Orumia,
+228,37.3125,37.1625,0.3702,0.0706,11,,
+229,42.3625,-71.1125,0.3372,0.0445,8,Mystic Generating Station;Kendall Square Station;Medical Area Total Energy Plant,Boston;Cambridge
+230,34.4625,133.4375,0.4030,0.0852,7,,Fukuyama
+231,35.1125,50.3875,0.3764,0.1064,9,,Sāveh
+232,33.7875,130.9875,0.3569,0.0779,4,,Kitakyūshū
+233,14.6875,-17.4125,0.4329,0.1387,12,,Pikine;Dakar
+234,32.6875,-16.9125,0.4167,0.1185,3,,Funchal
+235,24.3625,85.5875,0.3931,0.1075,8,KODERMA,
+236,21.3625,81.6625,0.4055,0.1279,7,,Raipur
+237,30.2125,-93.2875,0.3500,0.0712,9,R S Nelson;RS Cogen;Calcasieu;PPG Powerhouse C,Lake Charles
+238,38.9625,118.4875,0.3477,0.0916,9,Caofeidian Works power station;China Resources Caofeidian power station,
+239,22.8625,73.3625,0.2627,0.0644,8,WANAKBORI,
+240,25.9125,81.3375,0.3271,0.0844,8,UNCHAHAR,
+241,19.6875,101.2875,0.4067,0.1303,5,Hongsa,
+242,14.6125,-90.5125,0.3462,0.3388,3,,Guatemala City;Villa Nueva
+243,53.3375,83.6625,0.3508,0.0537,6,Barnaulskaya CHP Plant-3,Barnaul
+244,11.7875,77.8375,0.2606,0.1072,3,METTUR;METTUR TPS EXT,
+245,32.8375,44.2875,0.3825,0.0821,8,Al-Mussaib;Al-Mansurya,
+246,51.6625,39.1875,0.3741,0.0656,7,Voronezhskaya CHPP-2,Voronezh
+247,41.4875,31.9125,0.4090,0.0748,10,Zonguldak Eren (ZETES);Çatalağzı-B power station,
+248,-3.0875,-59.9625,0.3981,0.1812,4,Aparecida Parte I;Electron (TG),Manaus
+249,26.8625,-101.4375,0.3520,0.1044,12,,Monclova
+250,45.8125,130.8625,0.4250,0.0710,6,,Taihecun
+251,39.1625,27.6625,0.3056,0.0453,9,Soma power station,
+252,17.0125,53.9875,0.3520,0.1255,8,,Şalālah
+253,31.5125,118.3875,0.3810,0.0906,6,Wuhu Zhongdian power station;Datang Maanshan Dangtu power station,
+254,37.7125,121.0375,0.3928,0.0930,7,,
+255,17.6625,42.1125,0.3945,0.1474,12,SHUQAIQ IWPP;SHUAIBA (SWCC),
+256,36.3625,43.1375,0.3469,0.0747,8,,Mosul
+257,53.7875,87.5625,0.4825,0.1047,6,,
+258,36.1375,114.2625,0.3635,0.0787,5,Datang Anyang-2 power station,Dengtalu
+259,54.4375,86.4375,0.3769,0.0641,5,,
+260,35.6125,44.8875,0.3236,0.0715,8,,
+261,-2.6125,-44.3625,0.2524,0.0837,2,Porto do Itaqui (Antiga Termomaranhão),São Luís
+262,16.9375,42.6375,0.3533,0.1411,12,JAZAN,Jāzān
+263,35.1875,126.8875,0.3549,0.0648,8,Suwan Energy,Gwangju
+264,21.0625,75.8375,0.2007,0.0579,6,BHUSAWAL,Bhusāval
+265,38.7625,26.9625,0.3061,0.0550,10,Enka İzmir Doğalgaz Santrali;İzdemir Enerji power station,
+266,31.1375,73.9125,0.2045,0.0543,5,Nishat Chunian Limited;Nishat Power Limited,
+267,40.5125,-112.1875,0.3396,0.0850,6,,
+268,24.3625,88.1125,0.3499,0.1073,7,SAGARDIGHI TPP,
+269,31.5125,48.8875,0.2429,0.0500,10,Ahwaz (ramiin),
+270,49.5125,8.4375,0.3687,0.0598,6,GKM (Mannheim) power station;Kraftwerk Mitte;Kraftwerk Süd,Mannheim;Ludwigshafen
+271,24.2125,120.5125,0.2897,0.1155,8,Taizhong Taichung;Taichung;Changhua power station,
+272,21.9625,82.4125,0.3479,0.1175,3,AKALTARA TPP,
+273,-34.4375,150.8375,0.3092,0.0640,7,Tallawarra,Wollongong
+274,22.1125,78.1875,0.3136,0.0987,8,SATPURA,
+275,13.0875,100.9375,0.3164,0.1268,4,Sriracha;Laem Chabang;Saha Patana,
+276,47.8625,35.1625,0.3221,0.0525,8,,Zaporizhzhia
+277,34.7875,48.4875,0.3447,0.0810,5,,Bahār;Hamadān
+278,29.4875,60.8125,0.3370,0.0570,11,,Zāhedān
+279,35.0125,26.1375,0.3016,0.0711,9,Atherinolakkos,
+280,32.3625,15.0875,0.3169,0.0803,12,Misrata,Mişrātah
+281,27.8125,112.9125,0.3241,0.0938,3,Xiangtan power station,Xiangtan
+282,37.3375,28.0875,0.3378,0.1022,10,Yatağan power station,
+283,-18.3875,26.4625,0.2705,0.0688,8,Hwange Coal Power Plant Zimbabwe,
+284,5.3625,100.4125,0.3022,0.1555,2,TNB Prai;Prai Power;Gelugor,Butterworth;George Town;Bukit Mertajam
+285,35.4625,44.3875,0.3391,0.0742,11,,Kirkuk
+286,57.5875,39.7875,0.3172,0.0627,2,Yaroslavl TPP-1,Yaroslavl
+287,53.5625,-113.3875,0.2890,0.0465,6,Clover Bar,Edmonton
+288,31.1125,118.0125,0.3325,0.0857,6,Tongling Guodian power station,
+289,41.7875,126.0125,0.3116,0.0620,3,Erdaojiang power station,Kuaidamao
+290,-14.0625,-72.3125,0.2958,0.1300,2,,
+291,10.6125,107.0375,0.3697,0.1297,4,Phu My 1;Phu My 21;Phu My 22;Phu My 3;Phu My 4,
+292,5.7125,0.0125,0.2420,0.1008,9,Tema,Tema
+293,12.9875,74.8625,0.3153,0.1291,8,TANIR BAVI;MANGALORE REFINERY,Mangalore
+294,28.7125,53.5375,0.3620,0.1181,11,Jahrom;Jahrom,
+295,48.0375,38.2875,0.3818,0.0625,7,Zuevskaya power station,
+296,34.2375,132.1875,0.3142,0.0581,4,,Iwakuni
+297,36.5125,-89.5625,0.4025,0.0630,12,New Madrid,
+298,49.2125,24.6625,0.2382,0.0520,5,Burshtyn power station,
+299,31.0625,31.3875,0.2140,0.0446,9,Talkha,Al Manşūrah
+300,-15.0125,-71.3875,0.2638,0.1125,3,,
+301,51.1625,3.8125,0.2945,0.0387,7,RINGVAART STEG;Zelzate 2 Knippegroen;RODENHUIZE 4,Gent
+302,47.5125,34.6125,0.2532,0.0305,7,Zaporizhia power station,
+303,37.4875,61.8375,0.3476,0.0556,12,Mary Thermal Power Plant Turkmenistan,Mary
+304,43.6625,94.9875,0.3316,0.0523,10,Xinjiang Guanghui power station,
+305,54.1875,87.1125,0.3486,0.0750,6,,
+306,43.0625,141.3125,0.0500,0.0440,3,,Sapporo
+307,27.2375,60.5125,0.3171,0.0685,12,Iranshahr GT,
+308,21.6875,83.8625,0.3942,0.1420,8,I.B.VALLEY;IND BARATH TPP,
+309,14.6625,-17.0125,0.3160,0.0564,11,,
+310,33.5625,118.9625,0.3192,0.0736,7,Huaneng Huaiyin power station;Huai'an - Guoxin Coal,Huaiyin
+311,54.9125,69.1875,0.3320,0.0442,8,Petropavlovsk-2 power station,Petropavl
+312,50.2875,127.4875,0.3186,0.0527,3,,Heihe;Blagoveshchensk
+313,54.5875,39.7375,0.3404,0.0690,5,Novo-Ryazan Thermal Power Station,Ryazan
+314,21.0625,110.4875,0.3676,0.0861,8,Baosteel Zhanjiang power station,
+315,41.5375,120.3375,0.3378,0.0712,9,Chaoyang Yanshanhu power station,Chaoyang
+316,26.4875,119.6875,0.3308,0.0752,6,Fuzhou Kemen power station;Huaneng Luoyuan power station,
+317,39.1125,-84.7875,0.3354,0.0541,9,Lawrenceburg Power  LLC;Miami Fort,
+318,-18.9125,47.5375,0.2773,0.1259,7,,Antananarivo
+319,51.5875,45.9625,0.3145,0.0450,6,Saratov HPP-2,Saratov
+320,24.2625,113.4125,0.2275,0.0694,2,,Yingcheng
+321,-32.7875,-71.3875,0.2791,0.1233,10,VENTANAS;QUINTERO;NUEVA VENTANAS;CAMPICHE,
+322,37.0125,126.3875,0.3240,0.0627,8,Dangjin;Daesan Works,
+323,21.5125,109.5125,0.4079,0.0847,11,Beihai Bebuwan power station,
+324,24.9625,34.6875,0.2668,0.0648,12,,
+325,29.9875,-90.4125,0.3173,0.0610,8,Little Gypsy;St. Charles Power Station (LA);Waterford 1 & 2;Taft Cogeneration Facility;Dow St Charles Operations,
+326,22.0875,76.5375,0.2228,0.0609,6,Shri Singaji MALWA TPP,
+327,52.2625,104.2125,0.2479,0.0694,3,Novo-Irkustsk,Irkutsk
+328,24.5625,81.0125,0.2010,0.0586,6,,
+329,26.0125,117.3375,0.3114,0.1133,3,Yongan power station,Yong’an
+330,22.3625,73.1375,0.2724,0.0693,8,G.I.P.C.L. GT,Vadodara
+331,35.7875,-0.2375,0.2996,0.0853,11,Marsat;Kahrama IPP;Marsat TG,
+332,56.8875,62.0375,0.3024,0.0506,4,,
+333,-20.3125,-45.5875,0.3076,0.0924,6,,
+334,-22.5125,-44.1125,0.2884,0.0910,5,,Volta Redonda;Barra Mansa
+335,24.6875,73.0125,0.2429,0.0637,6,,
+336,15.4625,45.3375,0.2909,0.1099,12,,
+337,23.6375,86.6625,0.3059,0.0963,6,RAGHUNATHPUR TPP PH-I,
+338,43.9875,115.9875,0.2727,0.0947,9,Inner Mongolia Xilin power station,
+339,41.2875,119.3875,0.3961,0.0677,9,,Lingyuan
+340,31.6625,6.0625,0.2288,0.0353,12,Hassi Messoud;Hassi Messoud Nord 2,
+341,53.6125,-0.2125,0.3326,0.0577,6,South Humber Bank;Saltend;Killingholme,
+342,23.7875,85.8875,0.2564,0.0801,7,TENUGHAT;BOKARO B,
+343,30.3875,114.8875,0.2776,0.0731,2,,Huanggang;Ezhou
+344,21.2125,73.5625,0.2266,0.0707,7,UKAI_Coal,
+345,31.8875,47.1625,0.2656,0.0457,10,,Al ‘Amārah
+346,43.1375,131.8875,0.2976,0.0623,6,Vladivostok CHPP;Vladivostok-2 power station,Vladivostok
+347,18.8125,-99.1875,0.2425,0.1136,6,,Cuernavaca;Jiutepec
+348,15.0375,78.0125,0.3190,0.0958,8,,Tādpatri
+349,32.9125,117.4875,0.2301,0.0641,3,,Bengbu
+350,12.0125,8.5375,0.2834,0.0859,9,,Kano
+351,31.2625,74.1875,0.2842,0.0763,9,Southern Electric Power Company;Kohinoor Energy Limited;Japan Power Company Lahore,
+352,43.3625,5.3875,0.2685,0.0506,10,PROVENCE 5,Marseille
+353,44.7375,37.8125,0.2296,0.0352,7,,Novorossiysk
+354,40.3375,109.9875,0.3141,0.0956,7,Dalate power station;Shenhua Yili power station,
+355,-17.8375,31.0375,0.2440,0.0652,6,,Harare
+356,53.7125,91.3375,0.2347,0.0473,4,,Abakan
+357,52.0625,113.3375,0.2721,0.0593,5,Chita CHPP-1,Chita
+358,20.9625,86.0375,0.2582,0.0778,8,,
+359,30.4875,-91.1875,0.2923,0.0585,10,Louisiana 1;Louisiana 2;Formosa Plastics,Baton Rouge
+360,33.1125,-109.3875,0.2885,0.0566,11,,
+361,33.7375,59.1375,0.3148,0.0643,11,,
+362,44.6875,89.0875,0.2842,0.0640,9,East Hope Metals Wucaiwan power station;Henglian Wucaiwan power station;Shenhua Zhundong Wucaiwan power station,
+363,28.4875,76.3625,0.1893,0.0437,7,INDRA GANDHI STPP;MAHATMA GANDHI TPP,
+364,0.1625,117.4875,0.2808,0.1317,4,,Bontang
+365,48.4625,35.0625,0.2538,0.0364,7,Prydniprovska power station,Dnipro
+366,9.5875,106.5125,0.2932,0.0722,8,Duyen Hai 1;Duyen Hai 3,
+367,21.8875,-102.2875,0.2759,0.0753,8,,Aguascalientes
+368,50.8375,6.3375,0.1435,0.0447,2,Weisweiler power station,
+369,18.9375,105.3375,0.2349,0.0696,2,,
+370,20.2625,86.6125,0.2713,0.0763,10,,
+371,18.0875,-94.3625,0.2530,0.0761,9,Pemex-Petroquímica  Complejo Petroquímico Morelos;Pemex-Petroquímica  Complejo Petroquímico Cangrejera,Coatzacoalcos
+372,24.6875,113.6625,0.3100,0.0786,5,Guangdong Shaoguan power station;Dabu Coal,Shaoguan
+373,24.7625,54.6875,0.2233,0.0599,9,TAPCO;Taweelah A1;Taweelah A2,
+374,53.4125,55.8875,0.2752,0.0387,6,Salavatskaya TPP,Salavat
+375,24.2125,80.7875,0.2840,0.0830,9,,Sannai
+376,35.4875,140.0125,0.2078,0.0732,4,Sodegaura;Anegasaki;Chiba;Goi;Chiba Kawatetsu,Ichihara
+377,29.2375,117.1875,0.2217,0.0641,3,Jingdezhen power station,Jingdezhen
+378,39.0125,125.7125,0.2698,0.0478,5,East Pyongyang power station;Pyongyang power station,Pyongyang
+379,-38.1875,146.3375,0.2957,0.0653,1,Hazelwood;Yallourn;Jeeralang B;Jeeralang A;Energy Brix,
+380,22.7625,114.6125,0.2430,0.0543,6,Huizhou LNG Gas;Guangdong Huizhou;Huizhou Cogen power station,
+381,57.9125,60.0375,0.2664,0.0487,3,CHP Plant of OAO EVRAZ NTMK,Nizhniy Tagil
+382,22.2125,84.8625,0.2979,0.0954,7,,Raurkela
+383,26.7875,119.7375,0.2036,0.0722,3,Datang Ningde power station,
+384,37.4625,116.2375,0.2709,0.0431,8,Huaneng Dezhou power station;Shandong Hualu Hengsheng power station,Dezhou
+385,22.4625,88.1375,0.2107,0.0572,9,BUDGE BUDGE,Uluberiya
+386,53.2375,50.2375,0.3081,0.0583,6,Samara TPP;Bezymyanskaya CHP,Samara
+387,9.9875,76.3875,0.2202,0.0934,4,BSES Kerala CCGT,Kochi
+388,49.0875,-103.0125,0.2580,0.0446,8,Boundary Dam;Shand,
+389,-12.6625,-38.3125,0.1626,0.0481,2,Camaçari;Muricy (Antiga Camaçari Muricy I);Arembepe (Antiga Camaçari Pólo de Apoio I);Rômulo Almeida Unidade I (Antiga Usina de Cogeração Camaçari - FAFEN Energia);Camaçari;Bahia Pulp (Antiga Bacell),Camaçari
+390,-20.5375,-43.7625,0.2559,0.0908,2,Açominas,Conselheiro Lafaiete
+391,40.5375,17.1875,0.2504,0.0519,8,,Taranto
+392,30.7125,33.8375,0.2513,0.0491,12,,
+393,21.1375,-101.6875,0.2629,0.0790,7,,León de los Aldama
+394,29.8125,115.5625,0.2265,0.0730,1,,Wuxue
+395,28.9625,-13.5125,0.2516,0.0550,12,PUNTA GRANDE 19 DIESEL 11,
+396,49.9875,82.6125,0.3437,0.0828,8,Ust-Kamenogorsk TETS power station,Öskemen
+397,36.9375,54.8875,0.2315,0.1246,3,Aliabad Power Plant,
+398,-34.8625,-56.2125,0.2183,0.0719,6,CTR,Montevideo
+399,50.8375,4.3875,0.1567,0.0288,3,DROGENBOS TGV,Brussels;Anderlecht
+400,17.3125,73.2125,0.2440,0.0749,9,JSW RATNAGIRI TPP,
+401,38.3625,36.9875,0.2321,0.0945,7,Afşin Elbistan Termik Santrali,
+402,47.1875,37.5625,0.2529,0.0437,6,,Mariupol
+403,13.4375,101.0375,0.2227,0.0718,7,Bang Pakong;Amata B Grimm,
+404,-25.2125,-49.3125,0.2502,0.0723,4,,Colombo;Almirante Tamandaré
+405,-36.9875,-60.2625,0.2402,0.0366,7,,
+406,51.8375,14.4625,0.2051,0.0379,4,Janschwalde power station,
+407,-34.8875,-57.9625,0.2458,0.0429,8,CT ENSENADA DE BARRAGAN;LA PLATA COGENERACION,La Plata
+408,33.2625,131.6375,0.2268,0.0530,2,Shin Oita;Oita Thermal Power Plant;Oita IPP power station,Ōita;Beppu
+409,24.3875,102.4625,0.2152,0.0562,3,,Yuxi
+410,32.3125,-64.7875,0.2424,0.0682,8,,
+411,43.2375,-79.8375,0.2308,0.0463,4,,Hamilton;Burlington
+412,25.1875,81.6625,0.2657,0.0718,9,PRYAGRAJ (BARA) TPP,
+413,-1.4375,36.9625,0.2252,0.1268,2,,
+414,22.9875,-82.7625,0.3650,0.0903,9,Máximo Gómez (Mariel),
+415,42.7875,-82.4875,0.1959,0.0407,5,Belle River;St Clair;Greenfield Energy Centre;St. Clair;Dean,
+416,49.9875,36.2875,0.2421,0.0471,6,Karkov CHP-5,Kharkiv
+417,-22.0875,-70.1875,0.2348,0.1180,4,TERMOELECTRICA TOCOPILLA (U12);TERMOELECTRICA NORGENER (NTO2),
+418,42.1375,25.9875,0.2362,0.0409,9,Maritsa Itzok-3 power station;AES Galabovo;Brikel power station,
+419,39.7125,-79.9375,0.2406,0.0491,5,FirstEnergy Fort Martin Power Station;Longview Power Plant,
+420,13.1375,-59.6875,0.2370,0.0817,4,,Bridgetown
+421,18.3875,79.8375,0.2336,0.0817,8,KAKATIYA TPP,
+422,25.0375,-77.3625,0.1984,0.0691,7,,Nassau
+423,51.6625,21.4625,0.1943,0.0354,3,Kozienice;Kozienice;Kozienice II,
+424,46.6125,131.0625,0.1979,0.0542,1,Datang Shuangyashan power station,Shuangyashan
+425,44.8125,118.4375,0.2665,0.1021,7,,
+426,35.5625,45.4125,0.1747,0.0473,6,,As Sulaymānīyah
+427,31.0375,46.2125,0.2550,0.0434,12,,An Nāşirīyah
+428,16.1125,32.6875,0.2853,0.0638,12,El Jaili,
+429,13.4625,144.6875,0.2500,0.0725,5,Cabras 1;Piti 8 (MEC),Maina
+430,36.9625,42.7875,0.2384,0.0704,6,Duhok,
+431,36.7125,5.8875,0.2672,0.0863,7,Jijel,
+432,38.4875,65.6375,0.1968,0.0404,7,Talimardjan,
+433,23.8375,53.6375,0.2413,0.0467,12,,
+434,43.5125,-5.7375,0.2256,0.0845,5,ABONO 2,Gijón
+435,44.7875,20.4625,0.2395,0.0438,6,,Belgrade;Zemun
+436,21.6875,110.9125,0.2425,0.0587,3,Maoming - Ruineng Coal,Maoming
+437,20.3875,45.2125,0.2249,0.0417,12,,
+438,54.1875,37.6375,0.2433,0.0464,3,,Tula
+439,24.0625,32.9125,0.1857,0.0374,11,,Aswān
+440,30.3125,112.3125,0.1933,0.0481,3,Guodian Changyuan Jingzhou power station,Longzhou
+441,32.3125,70.7625,0.2885,0.0925,3,,
+442,24.4875,54.3875,0.1940,0.0434,9,APC UAN,Abu Dhabi
+443,13.4125,45.3125,0.2368,0.1017,9,,
+444,50.3125,57.1625,0.2369,0.0317,8,,Aqtöbe
+445,-27.7375,22.9875,0.2367,0.1070,7,,
+446,41.8125,140.6375,0.2732,0.0519,2,,Hakodate
+447,17.3125,77.4625,0.2479,0.0843,6,,
+448,56.4875,84.9875,0.2663,0.0689,4,Tomsk GRES-2,Tomsk
+449,48.4625,38.2125,0.1145,0.0269,2,Vuglegirska power station,
+450,46.4375,-87.6625,0.1569,0.0426,2,F.D. Kuester Generating Station,
+451,28.4875,-16.2375,0.2222,0.0569,10,,Santa Cruz;La Laguna
+452,46.7875,130.3125,0.2405,0.0510,3,Jiamusi-2 power station;Jiamusi Zhongheng Cogen power station,Jiamusi
+453,46.4875,134.2875,0.2487,0.0526,2,Primorskaya TPP,
+454,21.7375,73.0125,0.2258,0.0630,7,PAGUTHAN;GANDHAR GT,Bharūch
+455,-15.4125,28.2875,0.2340,0.0945,5,,Lusaka
+456,51.4375,14.5625,0.2157,0.0439,4,Boxberg power station,
+457,27.8125,79.9375,0.2502,0.0536,9,ROSA TPP PH - 1,Shāhjānpur
+458,38.9375,-82.1125,0.2324,0.0480,2,Gavin Power  LLC;Kyger Creek,
+459,26.5875,82.6125,0.2675,0.0626,9,TANDA,
+460,4.9375,114.9125,0.1935,0.1098,1,Gadong 2 Power Plant Brunei Darussalam;Berakas CCGT Power Plant Brunei,
+461,24.7125,84.0875,0.2784,0.0760,7,NABI NAGAR TPP,
+462,40.1625,31.7375,0.1539,0.1352,5,Çayırhan power station,
+463,56.8375,53.2125,0.2208,0.0355,4,Izhevsk HPP-1;Izhevsk CHP Plant-1,Izhevsk
+464,33.4125,133.2875,0.2552,0.0556,7,,
+465,-15.5875,-47.8625,0.3055,0.0920,5,,
+466,32.1125,-81.1375,0.2420,0.0493,5,International Paper Savanna Mill,Savannah
+467,48.7125,29.2125,0.1792,0.0270,5,Ladyzhyn power station,
+468,50.6125,36.5875,0.2354,0.0441,7,,Belgorod
+469,32.1375,36.1375,0.1440,0.0460,7,Samra CCGT Power Plant Jordan;Hussein Thermal Power Plant Jordan,Az Zarqā’
+470,23.0625,81.7875,0.1926,0.0649,8,ANUPUR TPP;ANUPPUR,
+471,40.4125,21.9375,0.2025,0.0505,3,Agios Dimitrios power station;Kardia power station,
+472,33.8375,36.6625,0.2488,0.0781,8,Al Nasryeh (Nasserieh) OCGT Power Plant Syria,
+473,-27.9625,151.2875,0.2686,0.0759,11,Millmerran,
+474,54.5625,-1.2625,0.2708,0.0477,3,,Middlesbrough
+475,35.1375,48.8375,0.2478,0.0464,7,,
+476,30.9125,75.8625,0.2388,0.0592,8,,Ludhiāna
+477,50.9125,-1.3875,0.2336,0.0365,5,Marchwood,Southampton
+478,37.3625,97.3875,0.2588,0.0668,8,,
+479,22.0625,88.1125,0.2290,0.0590,7,HALDIA;INDIA POWER TPP(HALDIA  HIRANMAYE ),Haldia
+480,30.2125,47.8375,0.2274,0.0438,8,Shatt Al-Basra;Khor Al Zubayr,
+481,51.8125,55.1125,0.2274,0.0357,6,Sakmarskaya TPP,Orenburg
+482,14.1625,-16.0375,0.2355,0.0573,10,,Kaolack
+483,-33.3375,116.2375,0.2256,0.0404,5,Muja D;Collie (Bluewaters);Muja C;Collie A,
+484,35.2125,35.9375,0.2043,0.0506,7,Banias Thermal Power Plant Syria,
+485,30.2125,115.1375,0.2244,0.0608,4,Huadian Xisaishan power station;Huangshi power station,Huangshi
+486,27.5875,21.6125,0.2581,0.0535,12,,
+487,56.0375,90.3375,0.1907,0.0375,4,NAZAROVO GRES,
+488,53.7375,-1.0125,0.2872,0.0497,4,Drax;Eggborough,
+489,53.6625,55.9625,0.2271,0.0407,5,Sterlitamakskaya TPP;Novo-Sterlitamak TPP,Sterlitamak
+490,50.3375,19.3125,0.2285,0.0463,5,Łagisza;EC Nowa,Sosnowiec;Dąbrowa Górnicza
+491,34.1625,131.2125,0.2280,0.0625,4,,
+492,9.5125,-13.7125,0.3047,0.1563,7,,Conakry
+493,30.1125,-90.9125,0.1958,0.0458,6,,
+494,30.2875,31.7375,0.1680,0.0391,9,,
+495,58.6125,31.2375,0.2907,0.0475,4,Novgorod CHPP,Velikiy Novgorod
+496,23.0875,114.4625,0.2051,0.0505,3,Fengda Gas,Huizhou
+497,-38.7625,-62.2875,0.2329,0.0347,9,CENTRAL BAHIA BLANCA (PIEDRA BUENA) SA,Bahía Blanca
+498,56.2375,54.5875,0.1833,0.0370,3,Karmanovskaya TPP,
+499,-33.3625,-60.1625,0.2246,0.0444,8,SAN NICOLAS;TENARIS SIDERCA CETE II,San Nicolás de los Arroyos
+500,32.8875,-79.9625,0.2145,0.0440,7,Williams;Hagood,Charleston;North Charleston
+501,50.0125,20.9125,0.2165,0.0436,5,,Tarnów
+502,23.0375,112.0125,0.2366,0.0755,3,Bohe Coal;Yunfu power station;Yuelian Coal,Yunfu
+503,20.3625,-99.6875,0.2232,0.1219,9,,
+504,47.9875,37.2125,0.2404,0.0303,6,Kurakhov power station,
+505,49.0625,-105.4875,0.1637,0.0244,5,Poplar River,
+506,53.4375,34.4125,0.2220,0.0491,2,,
+507,4.4375,7.1375,0.2151,0.1095,3,,
+508,28.4625,-13.8625,0.1829,0.0352,9,,
+509,21.1875,79.3875,0.1652,0.0515,6,MOUDA STPS,
+510,-32.9375,-60.6875,0.2275,0.0426,8,SORRENTO,Rosario
+511,-29.5875,30.3625,0.2058,0.0680,5,,Pietermaritzburg
+512,-13.0125,28.6875,0.1963,0.0864,2,,Ndola
+513,38.0625,-85.9125,0.2108,0.0392,5,Mill Creek (KY);Cane Run,
+514,41.1875,-95.8375,0.1717,0.0284,6,Walter Scott Jr Energy Center;Sarpy County;Jones Street,
+515,45.8875,-106.6125,0.1581,0.0362,2,Colstrip,
+516,29.0875,-110.9875,0.2167,0.0595,12,Fuerza y Energía de Hermosillo,Hermosillo
+517,49.8125,18.2875,0.1515,0.0391,3,Trebovice power station,Ostrava
+518,37.4375,46.0125,0.1468,0.0561,6,Sahand,
+519,53.3875,-1.4125,0.1646,0.0386,2,,Sheffield;Rotherham
+520,20.8375,70.7125,0.2014,0.0474,8,,
+521,20.2625,78.9875,0.2242,0.0727,5,GMR WARORA TPP;WARDHA WARORA(Sai Wardha Power),
+522,30.9375,41.0625,0.2273,0.0520,12,ARAR,
+523,37.4625,113.6375,0.2326,0.0761,3,,
+524,49.3875,32.0625,0.2147,0.0415,5,Cherkasy power station,Cherkasy
+525,56.9375,24.1375,0.2046,0.0364,5,Riga Tec 2;RTEC1,Riga
+526,43.3125,-3.0625,0.2033,0.0439,5,CT SANTURCE 2;SANTURCE  GRUPO 4,Bilbao;San Vicente de Baracaldo
+527,29.2375,119.5875,0.1376,0.0667,1,Lanxi power station,Lanxi
+528,-22.2125,148.1625,0.2258,0.0533,6,,
+529,13.8875,121.7375,0.1830,0.0583,3,Pagbilao power station,Lucena
+530,51.2875,106.4625,0.1732,0.0531,2,Gusinoozyorskaya,
+531,53.6375,87.9125,0.2141,0.0470,2,,
+532,50.6125,13.7875,0.2661,0.0650,4,Ledvice power station;Trmice,
+533,49.5125,72.8125,0.2036,0.0484,7,,
+534,27.6375,113.9125,0.1992,0.0835,2,Huaneng Anyuan power station,Pingxiang
+535,32.7625,12.6625,0.1903,0.0380,7,Az Zawiyah;Double Corner Power Station 1,Az Zāwīyah
+536,4.1875,73.5125,0.2247,0.0793,6,,Male
+537,31.2375,37.4375,0.1621,0.0384,11,AL-QURAYYAT,
+538,13.2875,37.3875,0.2326,0.1227,2,,
+539,-1.0125,-80.6875,0.2229,0.1577,3,,Manta
+540,36.2125,37.1375,0.2455,0.0617,10,,Aleppo
+541,19.3125,-81.3625,0.2044,0.0517,9,,
+542,43.4375,4.8875,0.1925,0.0481,10,MARTIGUES PONTEAU;COMBIGOLFE,
+543,48.7375,44.5125,0.2164,0.0313,7,,Volgograd
+544,52.4875,4.6125,0.1655,0.0551,3,Ijmond,Haarlem;Zaanstad
+545,8.0625,79.7375,0.2443,0.0664,8,Lakvijaya,
+546,51.0875,16.9875,0.2209,0.0426,4,EC Wrocław;EC Czechnica,Wrocław
+547,37.1625,-88.7875,0.1701,0.0335,8,Shawnee;Joppa Steam;MEPI GT Facility,
+548,-3.5625,-38.8875,0.1229,0.0336,3,Porto do Pecém II;Fortaleza;Termoceará,
+549,-17.7625,-63.1375,0.1848,0.0646,5,Guaracachi CCGT Power Plant Bolivia,Santa Cruz
+550,25.6875,49.5125,0.2183,0.0345,12,SHEDGUM;SHEDGUM CO-GENERATION GAS PLANT,
+551,-8.0625,-34.9125,0.2435,0.0671,8,,Recife;Olinda;Paulista;Camarajibe;São Lourenço da Mata
+552,35.0625,117.1375,0.1107,0.0380,1,Tengzhou Xinyuan power station,Chengtangcun
+553,24.7625,76.7375,0.2133,0.0613,8,KAWAI TPP,
+554,35.5375,116.7625,0.1123,0.0338,0,Taiyang Mill power station,
+555,18.7625,82.9375,0.1762,0.0700,2,,
+556,53.2125,45.0125,0.2180,0.0446,3,Penza TPP-1,Penza
+557,6.2875,80.8625,0.2184,0.0651,3,,
+558,32.2625,-94.5625,0.2103,0.0386,9,Martin Lake;Knox Lee,
+559,-19.4875,-42.5375,0.1561,0.0625,2,,Ipatinga;Coronel Fabriciano
+560,19.4125,-92.0375,0.2379,0.0485,12,,
+561,37.2125,15.1125,0.1962,0.0380,8,PRIOLO C.LE;ISAB ENERGY;CTE NUCE NORD;AUGUSTA C.LE,
+562,-26.6375,30.1125,-0.0206,-0.0421,3,Camden power station,
+563,29.2875,120.1375,0.2842,0.0842,4,,Yiwu;Dongyang
+564,35.7875,114.9875,0.1878,0.0387,4,Puyang Pangking power station,Puyang;Puyang Chengguanzhen
+565,41.8125,123.9875,0.1550,0.1049,1,Liaoning-3 power station;Fushun CPI power station;Liaoning-2 power station;CNPC Fushun Petrochemical power station,Fushun
+566,48.4875,44.6375,0.2136,0.0264,7,Volgogradskaya CHPP-2;Volgogradskaya CHPP-3,
+567,54.6875,20.5875,0.1710,0.0330,4,Kaliningradskaya,Kaliningrad
+568,19.2875,41.7375,0.1797,0.0637,7,,
+569,47.5375,-92.6125,0.2128,0.0513,2,,
+570,43.3375,125.9125,0.2697,0.0484,4,,
+571,40.5125,141.4625,0.1848,0.0431,0,Hachinohe Taiheiyo,Hachinohe
+572,46.4625,30.7125,0.2046,0.0426,7,,Odesa
+573,-7.1875,-34.9625,0.0974,0.0324,4,Termonordeste,João Pessoa;Santa Rita
+574,4.6375,114.4875,0.1327,0.1040,1,Lumut Cogen Power Station Brunei,
+575,17.5625,75.9875,0.1966,0.0671,3,,Solāpur
+576,-8.3625,-35.0375,0.1331,0.0427,4,Termopernambuco;Suape II,Santo Agostinho
+577,32.2375,44.2625,0.1016,0.0503,7,,
+578,2.2625,102.4125,0.2209,0.1027,2,,
+579,54.2375,38.8875,0.1579,0.0479,3,,
+580,30.3375,70.5125,0.2161,0.0686,12,,
+581,22.4875,-100.3875,0.2108,0.0729,11,,
+582,38.1125,13.2875,0.2043,0.0431,9,,Palermo
+583,39.5375,-112.5875,0.1977,0.0340,10,Intermountain Power Project,
+584,20.9375,71.4375,0.1997,0.0762,6,PIPAVAV CCCP,
+585,47.0875,51.9125,0.1994,0.0326,9,Atyrau,Atyraū
+586,-32.5875,-60.7875,0.2161,0.0400,7,CENTRAL TERMOELECTRICA TIMBUES;VUELTA DE OBLIGADO,
+587,25.5875,-99.9375,0.1809,0.0781,8,,
+588,54.0875,38.1875,0.2165,0.0460,4,Novomoskovsk SDPS,Novomoskovsk
+589,27.1625,49.1625,0.2055,0.0326,11,Khursaniyah,
+590,54.6875,25.2375,0.1785,0.0374,2,Vilnius TE-3 CHP Power Plant Lithuania,Vilnius
+591,44.1125,42.0125,0.2191,0.0442,6,,Cherkessk
+592,38.1375,-90.2625,0.1818,0.0309,5,Rush Island,
+593,30.5125,31.1875,0.2297,0.0411,9,Banha,Banhā
+594,24.0375,102.1625,0.2031,0.0551,4,,
+595,39.1125,116.6875,0.2351,0.0402,6,,
+596,42.2625,26.1375,0.1416,0.0248,7,Maritsa Itzok-2 power station;TOPLO RUSE,
+597,26.1875,85.3125,0.1572,0.0403,6,MUZAFFARPUR,Muzaffarpur
+598,37.9125,-87.3375,0.2102,0.0381,7,Warrick;F B Culley,
+599,43.6125,51.2875,0.1794,0.0296,9,,Aqtaū;Mangghystaū
+600,16.7375,43.0375,0.2144,0.1050,11,,
+601,18.6875,73.0375,0.1697,0.0787,4,,
+602,32.6125,110.7625,0.1445,0.0458,1,Dongfeng Captive power station,Shiyan
+603,13.4125,80.1125,0.1526,0.0558,5,,
+604,18.9125,76.5625,0.2087,0.0688,4,PARLI,
+605,44.8125,126.4875,0.1662,0.0514,2,,Yushu
+606,55.7125,52.4625,0.1601,0.0459,3,Naberezhnye Chelny Thermal Power Plant,Naberezhnyye Chelny
+607,26.5625,12.6875,0.2472,0.0537,12,,
+608,23.2375,72.6625,0.1165,0.0365,6,,Ghāndīnagar
+609,29.3625,119.0375,0.1344,0.0474,1,,
+610,30.4375,70.9875,0.1548,0.0406,5,,Kot Addu
+611,40.4625,-107.5875,0.1814,0.0843,6,Craig (CO),
+612,10.3125,123.9125,0.1453,0.0593,2,,Cebu City;Lapu-Lapu City;Mandaue City;Talisay;Poblacion;Minglanilla;Consolacion
+613,50.7375,17.8625,0.1796,0.0381,4,Opole,Opole
+614,24.9125,89.9875,0.2202,0.0754,3,,Jamālpur
+615,-7.1625,29.9875,0.2293,0.1328,1,,
+616,62.0375,129.7625,0.2162,0.0456,4,Yakutsk SDPP;Yakutsk SDPP-2,Yakutsk
+617,-19.5375,-44.0625,0.1496,0.0493,2,,
+618,-26.6125,-65.8125,0.1843,0.0861,3,,
+619,53.8125,-113.0875,0.1805,0.0350,3,Scotford (Shell);Fort Saskatchewan (TransAlta),
+620,34.3375,-116.8625,0.1699,0.0555,8,,
+621,21.6875,72.6125,0.1946,0.0499,9,DGEN MEGA CCCP,
+622,24.7875,78.6625,0.1751,0.0493,7,LALITPUR TPP,
+623,2.0375,45.3125,0.1864,0.0656,9,,Mogadishu
+624,47.3625,-101.8375,0.2047,0.0309,6,Antelope Valley,
+625,51.1875,12.3625,0.1315,0.0287,2,Braunkohlekraftwerk Lippendorf;Lippendorf power station,
+626,66.0875,76.8125,0.0594,0.0451,2,,Novyy Urengoy
+627,56.1375,101.6125,0.1628,0.0453,4,Thermal Power Station 11,Bratsk
+628,51.0125,2.3125,0.1572,0.0471,3,DK6,
+629,12.1375,-68.9125,0.2080,0.0527,6,,Willemstad
+630,-26.7625,28.5125,0.1179,0.0498,1,Grootvlei power station,
+631,10.4625,106.4875,0.2076,0.0647,3,,Tân An
+632,47.3625,-101.1375,0.2024,0.0399,3,Coal Creek,
+633,9.4375,38.3625,0.2020,0.1098,3,,
+634,34.1125,112.7875,0.1570,0.0439,2,Pingdingshan Ruiping power station,Meishan
+635,24.7125,102.1375,0.1488,0.0633,1,,
+636,44.0875,10.1625,0.1676,0.0539,2,,
+637,-30.5875,150.1375,0.1580,0.0356,3,,
+638,-18.8875,-48.2625,0.1844,0.0526,4,,Uberlândia
+639,46.3625,48.0625,0.1805,0.0199,8,Astrakhanskaya CHPP-2;Central boiler-house [Astrakhan];Astrakhanskaya GRES,Astrakhan
+640,19.2375,109.0125,0.2091,0.0522,3,,
+641,19.3375,-96.7125,0.1767,0.0854,3,,
+642,30.7125,50.0875,0.1986,0.0501,8,,
+643,39.2875,-84.4875,0.2383,0.0413,4,Hamilton (OH),
+644,18.1375,-15.9625,0.1806,0.0374,12,,Nouakchott
+645,7.9125,6.4375,0.2114,0.1023,3,,
+646,51.6875,4.6125,0.1486,0.0329,2,,Dordrecht
+647,54.4625,45.8625,0.1561,0.0348,2,,
+648,36.5875,116.2125,0.1747,0.0346,3,Xinyuan Aluminum power station;Chiping Xinfa power station;Xinfa Xiwang power station,
+649,-20.6125,116.7875,0.1766,0.0391,12,Burrup Peninsula (Karratha Gas Plant);Burrup Peninsula (Pluto Phase 1);Dampier,
+650,25.4125,98.8125,0.1644,0.0654,4,,
+651,23.9875,79.3875,0.1689,0.0469,6,,
+652,27.8125,-97.4625,0.1756,0.0356,9,Nueces Bay;Corpus Christi Energy Center,Corpus Christi
+653,39.8625,26.2625,0.1750,0.0230,9,,
+654,35.6375,138.4375,0.1729,0.0422,5,,Kōfu
+655,28.9375,-110.8125,0.1918,0.0449,10,Hermosillo,
+656,45.3625,-93.8875,0.1586,0.0314,3,Sherburne County,
+657,22.2375,-97.8375,0.1649,0.0498,7,Pemex-Refinación  Refinería Francisco I. Madero,Tampico;Ciudad Madero;Miramar
+658,49.4875,0.1875,0.1342,0.0312,1,HAVRE 4,Le Havre
+659,31.4375,73.0875,0.1776,0.0460,10,,Faisalabad
+660,21.5875,96.2375,0.2118,0.0759,5,,
+661,2.9125,-60.7375,0.2119,0.0927,3,,Boa Vista
+662,21.7125,108.6375,0.2199,0.0473,7,SDIC Qinzhou power station;Jingui Mill power station,
+663,19.1125,41.1625,0.1880,0.0632,12,TIHAMA,
+664,35.2375,115.5375,0.2003,0.0463,3,Heze power station;Heze Huarun power station,Heze
+665,54.6625,83.6125,0.1870,0.0352,3,,
+666,4.0125,103.3625,0.1714,0.0683,3,,
+667,24.5625,74.8125,0.1511,0.0460,4,,
+668,44.5125,18.6125,0.1687,0.0650,4,Tuzla CHP Power Plant Bosnia and Herzegovina,Tuzla
+669,49.8125,24.0125,0.1845,0.0365,2,,Lviv
+670,33.4375,43.2875,0.1678,0.0285,11,,Ar Ramādī
+671,40.3125,-79.8875,0.1545,0.0306,3,,
+672,4.9875,-1.6875,0.2049,0.0985,6,Takoradi 1,Sekondi
+673,39.5625,-92.6375,0.2302,0.0323,9,Thomas Hill,
+674,20.9375,-89.6625,0.1877,0.0514,2,Mérida III;Mérida II,Mérida;Kanasín
+675,-28.1625,-69.5625,0.1543,0.0576,4,,
+676,38.5875,114.9375,0.1556,0.0381,5,Dingzhou power station,Dingzhou
+677,41.0875,80.1375,0.1304,0.0407,3,Aksu Xuzhou power station,Aksu
+678,47.0375,28.8625,0.1685,0.0297,5,CHP CET-2  Chisinau,Chisinau
+679,36.7375,29.4875,0.1739,0.0697,3,,
+680,24.5625,81.1875,0.1707,0.0513,6,,
+681,-9.8625,34.4125,0.1637,0.0856,3,,
+682,30.3125,-91.2125,0.1766,0.0393,3,Plaquemine Cogeneration Plant;LaO Energy Systems;Axiall Plaquemine;Willow Glen (GPPD v1.2),
+683,36.7875,-108.4375,0.1721,0.0297,9,Four Corners;San Juan,
+684,-22.4875,119.9625,0.1599,0.0455,5,,
+685,-22.4375,148.4375,0.1692,0.0463,7,,
+686,29.7625,116.2875,0.1722,0.0463,3,Shenhua Jiujiang power station,
+687,44.9375,23.1375,0.1185,0.0321,1,Rovinari power station,
+688,58.5875,49.6125,0.1678,0.0320,2,Kirov TPP-5;Kirov CHPP-3,Kirov
+689,46.1625,53.4125,0.1511,0.0328,9,,
+690,32.1375,74.1625,0.1913,0.0514,9,,Gujranwala
+691,35.3125,33.4375,0.1318,0.0274,7,,
+692,45.7875,15.9625,0.1673,0.0367,5,Zagreb Te-To CHP Power Plant Croatia,Zagreb
+693,32.9375,115.8375,0.0979,0.0390,0,Fuyang power station,Fuyang
+694,44.7375,21.1875,0.1766,0.0345,5,TE KOSTOLAC B;TE KOSTOLAC A,
+695,37.2875,38.7125,0.2057,0.0371,11,,Karaköprü
+696,33.8125,-116.5625,0.1938,0.0533,11,Sentinel Energy Center  LLC;Indigo Energy Facility,
+697,36.3125,43.7625,0.1627,0.0578,6,,
+698,37.0875,37.3625,0.1874,0.0607,9,,Gaziantep
+699,22.2125,-102.2125,0.1645,0.0838,4,,
+700,41.4375,119.5875,0.1924,0.0415,4,,
+701,38.3625,-87.7625,0.1953,0.0372,6,Gibson,
+702,23.2625,114.3375,0.1969,0.0647,3,,
+703,12.1375,15.0125,0.1686,0.0468,11,,N’Djamena;Kousséri
+704,31.6875,73.2125,0.1226,0.0324,6,,
+705,37.0125,35.3125,0.1964,0.0654,9,,Adana
+706,16.6875,102.7375,0.1616,0.0507,6,Nam Phom,
+707,34.0375,42.4125,0.1229,0.0189,8,,
+708,39.5375,54.3875,0.1773,0.0375,10,Balkanabat OCGT Power Plant Turkmenistan,
+709,23.8125,120.1875,0.1640,0.0641,7,Mailao,
+710,7.3375,3.8625,0.1796,0.0930,4,,Ibadan
+711,49.0125,33.6625,0.1641,0.0251,4,,
+712,36.1375,1.2625,0.1297,0.0340,3,,Chlef
+713,24.7375,116.2125,0.1609,0.0499,2,,
+714,39.8875,48.9375,0.1953,0.0394,7,Janub,
+715,4.5875,103.4375,0.0949,0.0456,0,Paka;YTL Paka,
+716,34.9875,5.7125,0.1703,0.0375,12,,
+717,-34.1625,-58.9625,0.1348,0.0259,2,,
+718,23.0875,109.6375,0.1902,0.0507,3,Huadian Guigang power station,Guigang
+719,50.5375,17.9625,0.1726,0.0380,2,,
+720,41.6375,27.5375,0.1653,0.0350,5,,
+721,37.9125,27.8375,0.1668,0.0399,6,,Aydın
+722,27.6625,76.1375,0.1581,0.0439,6,,
+723,10.5375,7.4375,0.1750,0.0597,6,,Kaduna
+724,29.8125,31.2875,0.2041,0.0422,5,Cairo South;El-Tebeen,Ḩalwān
+725,31.3875,49.6625,0.1704,0.0563,12,,
+726,19.9625,72.7625,0.1585,0.0526,8,DHANU,
+727,-37.9875,-57.6125,0.1630,0.0438,1,MAR DEL PLATA (9 DE JULIO),Mar del Plata
+728,39.5625,29.8875,0.0889,0.0494,2,Seyitömer power station,
+729,25.0625,101.5125,0.1545,0.0454,0,,Chuxiong;Dongguazhen
+730,30.8125,111.7875,0.1522,0.0414,1,,Dangyang
+731,50.3875,13.3125,0.1454,0.0411,1,Tusimice power station;Prunerov,
+732,49.4375,11.0625,0.1745,0.0399,0,Franken 1;HKW Sandreuth,Nuremberg;Fürth
+733,52.4375,30.9375,0.1595,0.0368,2,Gomel-2 CHP Power Plant Belarus,Homyel’
+734,23.0875,-82.3375,0.1539,0.0507,3,Havana TPP,Havana;Arroyo Naranjo;Centro Habana;Guanabacoa
+735,34.1625,50.3875,0.1470,0.0623,0,,
+736,19.5625,-92.2125,0.1808,0.0459,8,,
+737,28.5125,102.0625,0.1458,0.0485,3,,
+738,10.2625,104.6125,0.1781,0.0626,3,,
+739,47.0625,-101.2125,0.1388,0.0266,4,Milton R Young,
+740,20.3875,72.9375,0.1592,0.0472,8,,
+741,31.2375,32.2875,0.1525,0.0327,8,,Port Said
+742,54.6875,29.1375,0.1940,0.0409,4,Lukoml Thermal Power Plant Belarus,
+743,42.3125,59.5625,0.1765,0.0203,10,Takhiatash,
+744,41.0875,-101.1375,0.1590,0.0280,8,Gerald Gentleman,
+745,35.5125,68.2125,0.1646,0.0654,4,,
+746,53.1125,8.7125,0.1503,0.0305,1,Hafen power station;KW Mittelsbüren;Hastedt power station,Bremen
+747,53.6875,23.8625,0.1662,0.0399,3,Grodno CHP-2 Power Plant Belarus,Hrodna
+748,32.7375,117.3125,0.1432,0.0449,2,,
+749,50.0625,-110.7125,0.1302,0.0198,3,,
+750,17.8875,-93.1625,0.1772,0.0555,4,Pemex-Gas y Petroquímica Básica  Complejo Procesador de Gas Nuevo Pemex;Pemex-Gas y Petroquímica Básica  Complejo Procesador de Gas Cactus,
+751,44.6625,41.9375,0.1593,0.0302,4,Nevinnomysskya,Nevinnomyssk
+752,29.1625,74.0125,0.0779,0.0208,3,SURATGARH,
+753,37.8375,140.9125,0.1791,0.0405,2,Shinchi power station,
+754,16.7125,79.6875,0.1189,0.0417,4,,
+755,36.1625,-5.4125,0.1349,0.0353,6,CCC BAHIA DE ALGECIRAS;SAN ROQUE GRUPO 2;CAMPO DE GIBRALTAR GRUPO 20;BAHIA DE ALGECIRAS I;LOS BARRIOS,Gibraltar;Algeciras
+756,-14.9375,13.5125,0.1504,0.0634,5,,Lubango
+757,56.1125,44.1375,0.1852,0.0541,2,,
+758,25.5125,78.7625,0.1479,0.0402,6,PARICHA,
+759,36.9125,7.7125,0.1192,0.0358,3,,Annaba
+760,48.1625,33.5375,0.1705,0.0326,5,,
+761,15.6375,43.9125,0.1720,0.0695,8,,
+762,43.4625,43.6125,0.1614,0.0638,3,,Nalchik
+763,44.9375,34.1375,0.1504,0.0284,2,,Simferopol
+764,24.5375,76.1125,0.1516,0.0419,6,KALISINDH,
+765,39.9625,-76.7875,0.1556,0.0287,1,Pixelle Specialty Solutions LLC - Spring Grove Facility,York
+766,-5.0625,-42.7625,0.1316,0.0575,2,,Teresina;Timon
+767,52.9875,63.1375,0.1687,0.0288,6,,Rudnyy
+768,7.8125,40.0875,0.1358,0.0817,2,,
+769,13.2125,32.8125,0.1835,0.0461,6,,
+770,39.7375,116.9875,0.1054,0.0242,5,,
+771,-25.4375,-42.7625,0.1536,0.0391,4,,
+772,35.7875,43.2625,0.1342,0.0286,8,,
+773,40.3875,27.0375,0.1745,0.0306,6,İÇDAŞ Bekirli-2 power station,
+774,30.5375,76.5875,0.1010,0.0295,5,RAJPURA TPP,
+775,50.0125,8.2625,0.1477,0.0373,2,Kraftwerk Mainz;GuD-Anlage Rüsselsheim,Wiesbaden;Mainz
+776,56.8375,35.9125,0.1375,0.0383,1,Tverskaya CHPP-3,Tver
+777,47.7875,67.7375,0.1660,0.0313,9,Zhezkazgan power station,
+778,7.4625,10.7625,0.1660,0.0807,3,,
+779,22.4125,87.8625,0.0654,0.0198,1,KOLAGHAT,
+780,23.9875,82.4125,0.2111,0.0648,7,MAHAN TPP,
+781,-5.1875,-80.6875,0.1429,0.0724,11,,Piura
+782,17.9625,-94.5125,0.1469,0.0422,3,,Minatitlán
+783,20.8375,-97.2375,0.1419,0.0428,8,Tuxpan III y IV;Tuxpan II;Tuxpan V,
+784,16.8875,-99.9125,0.1565,0.0694,6,,Acapulco de Juárez
+785,50.4375,4.6875,0.1189,0.0292,1,,Namur
+786,26.2375,73.0125,0.1439,0.0325,8,,Jodhpur
+787,48.1375,17.1625,0.1509,0.0308,3,PPC Bratislava CCGT CHP Power Plant Slovakia,Bratislava;Petržalka
+788,55.3125,52.0125,0.0899,0.0291,1,Zainskaya GRES,
+789,-21.7375,147.9875,0.1355,0.0367,3,,
+790,21.0875,77.9125,0.0550,0.0192,2,AMARAVATI TPP,
+791,55.8375,51.9875,0.1388,0.0323,0,,
+792,55.2875,85.6125,0.1382,0.0308,2,,
+793,30.4625,117.2375,0.1387,0.0424,2,Shenhua Anqing power station,
+794,-20.2625,-70.1125,0.1588,0.0708,10,,Iquique;Alto Hospicio
+795,48.9625,24.6625,0.1369,0.0385,2,,Ivano-Frankivsk
+796,41.5125,64.5875,0.1518,0.0248,10,,
+797,31.7125,47.2625,0.1452,0.0334,7,,
+798,26.9875,55.5125,0.1093,0.0401,5,,
+799,-26.9125,150.7625,0.1819,0.0406,5,Kogan Creek,
+800,30.0625,-94.0625,0.1710,0.0377,4,ExxonMobil Beaumont Refinery,Beaumont
+801,29.2625,31.2125,0.1436,0.0304,5,Kuriemat 2;Kuriemat Solar/Thermal,
+802,18.6375,-92.2625,0.1522,0.0387,3,Compañía de Nitrógeno de Cantarell,
+803,52.4875,85.0875,0.1580,0.0308,3,Biysk CHPP-1,Biysk
+804,15.3875,108.7875,0.1766,0.0982,5,,
+805,24.8125,-107.4375,0.1416,0.0540,7,,Culiacán
+806,48.7875,44.8125,0.1762,0.0272,5,Volzhskaya HPP 1;Volzhskaya CHPP-2,Volzhskiy
+807,34.1375,118.7875,0.1157,0.0408,1,,Shuyangzha
+808,50.4125,80.2125,0.1708,0.0281,7,,Semey
+809,22.8875,-12.3125,0.1594,0.0254,12,,
+810,50.0875,118.0875,0.1646,0.0299,2,TPPP PGGHO (Krasnokamenskaya TPP),
+811,56.1125,47.2625,0.1493,0.0367,2,Cheboksary CHPP=2,Cheboksary;Novocheboksarsk
+812,35.3125,103.1375,0.1346,0.0658,1,,
+813,11.6375,-70.2125,0.1267,0.0239,3,Josefa Camejo;Punto Fijo,Punto Fijo
+814,29.9375,30.8875,0.1334,0.0389,9,,Madīnat as Sādis min Uktūbar
+815,-22.3875,119.7375,0.1571,0.0413,6,,
+816,49.5875,36.5125,0.1119,0.0246,1,Zmiivska power station,
+817,38.7625,-85.0375,0.1424,0.0286,2,Ghent,
+818,16.1625,120.0875,0.1522,0.0643,3,Sual power station,
+819,16.1875,75.2875,0.1569,0.0551,6,,
+820,41.2875,27.5875,0.1480,0.0218,5,,
+821,40.6875,30.7125,0.1292,0.0511,2,,
+822,38.2125,-104.6125,0.1293,0.0249,6,Comanche (CO);Pueblo Airport Generating Station,Pueblo
+823,36.2875,33.7375,0.1369,0.0333,7,,
+824,46.0625,122.0625,0.1586,0.0237,4,Inner Mongolia Xingan power station,Ulanhot
+825,57.0625,9.9625,0.1567,0.0294,3,Nordjylland power station,Aalborg
+826,25.8375,-97.5125,0.1607,0.0382,6,Silas Ray,Heroica Matamoros
+827,-11.6625,27.4875,0.1519,0.0707,5,,Lubumbashi
+828,52.1625,10.4125,0.1343,0.0297,3,HKW-Mitte,Braunschweig;Salzgitter
+829,40.7625,46.9875,0.1346,0.0322,3,Azerbaijan TPP,
+830,34.4375,115.6125,0.1460,0.0437,2,,Shangqiu
+831,13.5125,2.1125,0.1389,0.0339,9,,Niamey
+832,38.1625,58.3875,0.1318,0.0456,8,,
+833,32.0625,74.7875,0.0744,0.0229,5,,
+834,24.7625,89.3625,0.1394,0.0478,4,,
+835,34.7625,10.7125,0.1355,0.0283,9,Thyna 1,Sfax
+836,-22.1375,117.8875,0.1424,0.0401,5,Solomon Iron Ore Mine,
+837,50.8375,-1.0875,0.1752,0.0326,2,,Portsmouth
+838,32.9375,3.2375,0.1162,0.0189,12,SPP1 Thermal,
+839,11.5125,105.0875,0.1100,0.0450,4,,
+840,55.4625,65.2625,0.1183,0.0260,1,Kurgan CHPP;Kurgan CHPP-2,Kurgan
+841,48.5375,34.6375,0.1860,0.0285,6,,Kamianske
+842,19.9875,73.8875,0.1037,0.0385,4,NASIK TPP  PH 1;NASIK,Nāsik
+843,33.6375,-87.0625,0.1293,0.0285,2,James H Miller Jr;Gorgas (GPPD v1.2),
+844,50.1375,30.7375,0.1054,0.0297,3,Trypilska,
+845,20.6875,-101.3625,0.1348,0.0373,4,,Irapuato
+846,36.8875,6.9125,0.1443,0.0341,7,SKS IPP SNC Lavalin;Skikda,Skikda
+847,-22.5125,27.0375,0.1480,0.0323,4,Morpule,
+848,20.9875,-97.3625,0.0792,0.0287,1,Adolfo López Mateos (Tuxpan),Túxpam de Rodríguez Cano
+849,25.8875,71.3375,0.1405,0.0285,10,JALLIPPA KAPURDI TPP,
+850,50.5625,26.2375,0.1702,0.0477,4,,Rivne
+851,20.7125,76.8125,0.1667,0.0504,8,PARAS,
+852,33.0625,-83.7875,0.0788,0.0274,0,Scherer;Smarr Energy Center,
+853,-22.3125,-41.8875,0.1036,0.0317,1,Norte Fluminense,Macaé
+854,41.6375,-87.1625,0.1134,0.0674,0,ArcelorMittal Burns Harbor;Gary Works,
+855,24.2875,37.5875,0.1375,0.0351,8,,
+856,46.7375,-122.8625,0.1234,0.0277,2,Transalta Centralia Generation;Chehalis Generating Facility,
+857,37.7625,128.8375,0.1334,0.0577,2,Yeongdong,Gangneung
+858,23.2375,111.5875,0.1520,0.0480,3,,
+859,-9.6625,34.2875,0.1326,0.0806,1,,
+860,23.1375,108.2375,0.1511,0.0521,3,,
+861,15.5875,49.1375,0.1597,0.0483,10,,
+862,51.7375,19.4875,0.1013,0.0279,1,EC Łódź-3;EC Łódź-4,Łódź
+863,5.4375,100.6125,0.1287,0.1223,3,,
+864,35.6125,-80.9625,0.1143,0.0248,0,Marshall (NC),
+865,41.8875,-83.3375,0.1085,0.0270,0,Monroe (MI),
+866,35.3375,60.2125,0.1424,0.0452,7,,
+867,24.1375,81.9125,0.1410,0.0407,6,NIGRI,
+868,51.4625,-111.7875,0.0977,0.0239,0,Sheerness,
+869,30.7125,73.2375,0.1163,0.0312,6,Sahiwal,Sahiwal
+870,39.7875,64.4375,0.1357,0.0240,11,,Bukhara;Kogon Shahri
+871,24.8125,-112.0625,0.1336,0.0823,6,Gral. Agustín Olachea A. (Puerto San Carlos),
+872,24.5625,116.1875,0.1129,0.0398,2,,
+873,31.0125,112.2375,0.0918,0.0269,1,Guodian Jingmen power station;Huaneng Jingmen power station,Jiangjiafan
+874,-31.5625,-53.6875,0.0914,0.0309,3,Presidente Médici  A  B;Candiota III,
+875,34.8125,104.3875,0.1342,0.0422,4,,
+876,35.9875,126.6375,0.1291,0.0253,6,Gunsan;Seagull power station;Saemangeum Ocise,Kunsan
+877,44.5125,125.6375,0.1566,0.0282,4,,Dehui
+878,9.5375,41.8625,0.1737,0.0868,6,,Dire Dawa
+879,29.4875,-95.6375,0.1311,0.0362,3,W A Parish;Jack Fusco Energy Center;W.A. Parish Carbon Capture Plant,Sugar Land
+880,48.6125,21.1875,0.1354,0.0322,2,,Košice
+881,22.1875,84.5875,0.1472,0.0497,3,,
+882,35.2875,-101.7375,0.1319,0.0420,8,Harrington;Nichols,Amarillo
+883,26.2125,127.7125,0.1318,0.0447,1,,Naha;Urasoe
+884,32.7625,73.1375,0.1108,0.0520,3,,
+885,52.3125,18.2375,0.0960,0.0230,2,Pątnów I;Pątnów II;Konin,
+886,49.3625,6.7375,0.1174,0.0290,1,Kraftwerk Ensdorf,
+887,26.7625,-80.0875,0.1178,0.0445,6,Riviera,West Palm Beach
+888,34.1375,-84.9125,0.0959,0.0237,0,Bowen,
+889,20.5875,-101.1625,0.1372,0.0398,6,Salamanca;Pemex-Refinación  Ing. Antonio M. Amor,Salamanca
+890,36.8875,-111.4125,0.0378,0.0109,0,Navajo (GPPD v1.2),
+891,13.0875,-11.4125,0.1355,0.0422,6,,
+892,52.0625,47.4375,0.1462,0.0279,4,,
+893,26.4625,80.2875,0.1274,0.0318,5,PANKI (GPPD v1.2),Cawnpore
+894,25.9375,49.6875,0.1524,0.0313,10,ABQ PP,
+895,29.9125,75.2375,0.0709,0.0184,2,TALWANDI SABO,
+896,24.6375,-101.6625,0.1185,0.0375,3,,
+897,-6.2875,107.9375,0.1637,0.0613,6,PLTU Jawa Barat - Indramayu,
+898,19.3625,56.4625,0.1183,0.0242,12,,
+899,24.3125,78.1375,0.0944,0.0287,3,,
+900,17.9875,-92.9375,0.1392,0.0508,3,,Villahermosa
+901,51.7625,58.7875,0.0989,0.0181,2,Iriklinskaya,
+902,38.5625,-90.8375,0.1343,0.0235,4,Labadie,
+903,30.9625,-110.3375,0.1397,0.0269,6,,
+904,19.4125,72.8875,0.1119,0.0723,5,,
+905,24.2125,47.6625,0.1151,0.0234,11,,
+906,11.5625,43.1375,0.1351,0.0385,9,Boulaos,Djibouti
+907,-22.4375,-47.5375,0.1254,0.0373,2,,Rio Claro
+908,31.1625,-112.8625,0.1206,0.0285,12,,
+909,51.4875,31.2625,0.1323,0.0283,1,Chernihiv power station,Chernihiv
+910,11.3625,35.8875,0.1569,0.0871,4,,
+911,33.6625,46.3875,0.1254,0.0380,5,,
+912,35.8875,14.4625,0.1162,0.0367,6,,
+913,24.8625,53.6125,0.1424,0.0359,8,,
+914,36.0875,4.7375,0.1249,0.0313,4,,Bordj Bou Arreridj
+915,-26.5875,-66.1125,0.1058,0.0564,2,,
+916,-22.6625,-47.6625,0.1064,0.0313,2,,Piracicaba
+917,-23.3875,-51.9125,0.1198,0.0317,2,,Maringá
+918,37.9875,-90.0875,0.1208,0.0237,2,,
+919,23.4375,68.7125,0.1136,0.0217,6,,
+920,-14.2375,-41.7125,0.0993,0.0405,1,,
+921,31.0625,30.4375,0.1283,0.0243,8,Damanhour,Damanhūr
+922,18.0375,-63.0875,0.1078,0.0402,0,,
+923,17.1375,-61.7875,0.1034,0.0281,2,,
+924,32.7375,116.6625,0.1264,0.0295,5,Huainan Tianji power station;Huainan Fengtai power station;Huainan Guqiao power station;Pansan power station,
+925,44.4625,12.2125,0.1070,0.0288,1,PORTO CORSINI,Ravenna
+926,23.6625,113.2375,0.1003,0.0395,3,,
+927,38.8625,-84.2375,0.1937,0.0393,2,W H Zimmer,
+928,35.3375,1.3625,0.1200,0.0290,5,Tiaret,Tiaret
+929,-6.7625,108.6125,0.1238,0.0516,3,PLTU Cirebon,Cirebon
+930,54.4625,61.2375,0.1362,0.0244,3,Yuzhnouralskaya 2,
+931,41.5625,60.6375,0.1205,0.0190,6,,Urganch
+932,25.3875,49.5875,0.1437,0.0238,10,,Al Hufūf;Al Mubarraz
+933,27.1625,78.3625,0.1257,0.0322,6,,Fīrozābād
+934,13.1625,74.8125,0.1088,0.0442,5,UDUPI TPP,
+935,51.7625,36.1875,0.1219,0.0266,1,TPP Quadra,Kursk
+936,34.3125,-109.1625,0.0929,0.0285,4,Springerville,
+937,29.3875,-94.9375,0.1196,0.0490,4,Green Power 2;Texas City Power Plant;Bacliff;Power Station 4,Texas City
+938,50.8625,115.7125,0.1275,0.0256,2,Kharanorskaya,
+939,24.0375,-104.6625,0.1223,0.0716,6,,Durango
+940,45.4625,12.2375,0.0833,0.0344,2,Andrea Palladio power station (FUSINA);LEVANTE;AZOTATI,Venice
+941,56.7625,36.7375,0.0759,0.0400,1,Konakovskaya,
+942,31.6625,74.8875,0.1553,0.0488,7,,Amritsar
+943,42.3125,-96.3875,0.0731,0.0183,0,George Neal South;George Neal North,
+944,37.9125,139.0625,0.1052,0.0285,2,,Niigata
+945,41.8625,78.1875,0.1063,0.0440,2,,
+946,19.7125,79.1875,0.1108,0.0442,2,,
+947,30.9625,20.1125,0.1291,0.0199,7,Zuenita,
+948,34.7625,114.2875,0.0881,0.0304,2,,Huanglongsi;Kaifeng Chengguanzhen
+949,-22.5375,-64.9625,0.1230,0.0923,2,,
+950,44.2875,-105.3875,0.1338,0.0394,5,Dry Fork Station;Wyodak;Neil Simpson II;Wygen III,
+951,29.6625,-98.1875,0.1250,0.0296,5,Guadalupe Generating Station,
+952,49.8875,-97.1625,0.0933,0.0357,1,,Winnipeg
+953,-22.0625,148.2875,0.0952,0.0270,0,,
+954,40.5875,-89.6625,0.1162,0.0213,4,Powerton;E D Edwards,
+955,36.5625,-118.1875,0.1335,0.0507,2,,
+956,50.6375,3.1125,0.1244,0.0247,2,,Lille
+957,25.4875,85.7625,0.0984,0.0266,3,BARH STPP II,
+958,34.5875,-113.2125,0.1226,0.0386,8,,
+959,51.2375,51.3875,0.1438,0.0202,4,,Oral
+960,49.1625,16.5875,0.1046,0.0267,2,,Brno
+961,46.8375,74.9375,0.1373,0.0350,6,,
+962,37.3125,-77.2875,0.1168,0.0242,1,Chesterfield;Hopewell Cogeneration,
+963,27.6625,103.4125,0.1259,0.0564,2,,
+964,22.7375,79.9125,0.1330,0.0415,5,SEIONI TPP,
+965,41.7375,-108.7625,0.1285,0.0702,7,Jim Bridger,
+966,31.6625,-8.0375,0.1121,0.0310,6,,Marrakech
+967,42.1125,-104.8875,0.1233,0.0254,4,Laramie River Station,
+968,22.0625,-98.8625,0.1314,0.0530,3,Termoeléctrica Peñoles;Termoeléctrica del Golfo,
+969,-23.3625,119.6875,0.1324,0.0391,6,Newman Iron Ore Mine,
+970,30.0625,-90.6375,0.1117,0.0285,1,,
+971,33.8125,113.4375,0.1299,0.0334,1,,
+972,53.7125,86.8625,-0.0181,-0.0589,0,,
+973,22.8375,89.5625,0.0954,0.0300,3,Khulna (KPCL-2),Khulna
+974,-9.3625,-40.4875,0.0661,0.0275,0,Petrolina,Petrolina;Juazeiro
+975,43.5125,123.4625,0.0946,0.0169,3,Shuangliao West power station,Zhengjiatun
+976,47.4125,8.5625,0.0831,0.0263,1,,Zürich
+977,41.3375,-91.0875,0.0894,0.0173,2,Louisa;Muscatine Plant #1,
+978,50.0875,43.2375,0.0834,0.0277,0,,
+979,36.1625,5.6625,0.1250,0.0608,5,,El Eulma
+980,22.7375,75.8875,0.0878,0.0264,4,,Indore
+981,38.0125,114.9875,0.1392,0.0354,3,,
+982,38.6875,39.2375,0.1426,0.0787,6,,Elazığ
+983,-29.8625,-51.3875,0.1314,0.0399,3,,
+984,48.7625,39.2625,0.0966,0.0236,2,Luhanska,
+985,28.2875,35.2125,0.1041,0.0391,4,,
+986,26.5375,-78.7625,0.1039,0.0283,5,,
+987,-31.4125,-69.2875,0.1185,0.0491,2,,
+988,45.0625,41.9875,0.1030,0.0280,2,,Stavropol
+989,28.4125,45.9875,0.1406,0.0214,12,QAISUMAH,Ḩafr al Bāţin
+990,35.9875,-83.9625,0.1149,0.0375,1,,Knoxville
+991,25.2125,56.3375,0.1864,0.0617,7,FAPCO (Fuj F2);ESWPC (Fuj F1),
+992,-24.6375,25.8875,0.1095,0.0308,4,,Gaborone
+993,49.0375,104.1375,0.1342,0.0249,4,,Erdenet
+994,11.1625,79.0875,0.1572,0.0584,5,,
+995,20.9875,-101.4125,0.1020,0.0378,0,,
+996,40.0125,26.9875,0.1361,0.0264,2,İÇDAŞ Biga Termik Santrali;Çan-1 power station,
+997,-29.1375,26.1875,0.1049,0.0283,6,,Bloemfontein
+998,25.9625,113.2125,0.0644,0.0355,1,Liyujiang-2B power station;Liyujiang-2A power station,Tangdong
+999,53.0875,49.9125,0.1295,0.0291,2,Novokuibyshevsk HPP-1;Novokuybyshevskaya CHPP-2,Novokuybyshevsk
+1000,47.5625,7.6375,0.0933,0.0322,1,,Basel
+1001,-26.6375,-66.4625,0.1026,0.0367,1,,
+1002,13.0625,5.1875,0.1180,0.0284,6,,Sokoto
+1003,48.0875,123.4625,0.1351,0.0269,4,,
+1004,37.2625,126.4375,0.1591,0.0293,6,Yeongheung,
+1005,30.4125,30.5875,0.1222,0.0249,10,,
+1006,30.5625,-87.2375,0.1001,0.0229,1,Crist;Santa Rosa Energy Center;Pensacola Florida Plant,Pensacola
+1007,-29.3875,-69.9875,0.1155,0.0292,4,,
+1008,52.1375,-106.6875,0.1082,0.0255,1,Queen Elizabeth;Cory Cogeneration,Saskatoon
+1009,39.2625,44.4375,0.0929,0.0343,1,,
+1010,57.7125,11.9125,0.1051,0.0299,2,Rya,Gothenburg
+1011,39.9625,33.1625,0.1146,0.0738,4,,
+1012,37.5875,-0.9625,0.1258,0.0282,8,CARTAGENA GRUPO 1;CTCC ESCOMBRERAS;CT ESCOMBRERAS 5,Cartagena
+1013,-10.5125,27.5875,0.0802,0.0437,2,,
+1014,27.4875,-109.9625,0.1287,0.0441,6,,Ciudad Obregón
+1015,32.9375,129.5875,0.1067,0.0237,4,Matsushima power station,
+1016,42.5375,125.6375,0.0848,0.0301,1,,Meihekou
+1017,35.2625,-2.9625,0.1077,0.0340,2,,Nador
+1018,34.1375,113.4375,0.0772,0.0308,1,Xuchang Yulong power station;Longgang Coal,Yingchuan
+1019,31.4125,-96.2375,0.0887,0.0224,2,Limestone,
+1020,20.1375,-103.5625,0.1013,0.0472,4,,
+1021,36.5875,10.3125,0.1175,0.0263,4,,
+1022,23.4875,110.5125,0.1379,0.0377,3,,
+1023,-8.6875,115.2125,0.0783,0.0296,1,PLTG Pesanggaran,Denpasar
+1024,7.3375,6.4125,0.1270,0.0641,2,,
+1025,29.9125,-96.7625,0.1008,0.0230,2,Fayette Power Project,
+1026,35.7625,-5.8125,0.1050,0.0234,2,,Tangier
+1027,25.6375,32.5625,0.1118,0.0230,6,,Luxor
+1028,29.4625,55.6625,0.0504,0.0246,4,,Sīrjān
+1029,50.4375,21.3375,0.0869,0.0228,1,Połaniec;Połaniec Zielony Blok,
+1030,48.5625,119.7375,0.1267,0.0249,1,Huaneng Yimin power station,
+1031,34.7625,134.3625,0.1312,0.0334,2,Ako;Aioi,
+1032,47.2125,123.5875,0.0974,0.0210,3,Huadian Fulaerji-2 power station,Hong’an
+1033,28.6375,117.3875,0.0741,0.0283,2,,
+1034,36.8875,35.8625,0.0950,0.0498,6,İsken Sugözü power station,
+1035,51.2375,22.5625,0.0904,0.0224,0,EC Lublin Wrotków,Lublin
+1036,-27.3625,22.9625,0.1116,0.0376,1,,
+1037,18.5875,45.3625,0.1256,0.0273,11,,
+1038,21.8125,-100.9375,0.1409,0.0423,2,Villa de Reyes,
+1039,-33.6125,-71.6125,0.1024,0.0611,2,,
+1040,19.5125,42.5375,0.1181,0.0351,10,,
+1041,28.6125,51.6125,0.1051,0.0405,6,,
+1042,40.6375,-95.7875,0.1228,0.0211,3,Nebraska City,
+1043,39.8375,-88.9125,0.1055,0.0202,0,Archer Daniels Midland Decatur,
+1044,23.1625,81.6125,0.1032,0.0337,6,AMAR KANTAK,
+1045,40.9875,36.0625,0.1428,0.0437,4,,
+1046,31.0375,51.1625,0.0908,0.0359,0,,
+1047,17.6125,33.9875,0.1030,0.0224,10,,Atbara;EdDamer
+1048,27.9625,45.5625,0.1177,0.0225,11,,
+1049,28.4125,53.2375,0.0836,0.0264,8,,
+1050,17.3125,47.0875,0.1012,0.0249,11,SHAROURA,
+1051,20.5375,-15.5125,0.1037,0.0182,10,,
+1052,23.4875,40.8875,0.1163,0.0258,9,,
+1053,33.3625,6.8625,0.1015,0.0176,11,,El Oued
+1054,30.8125,8.0375,0.0856,0.0136,11,,
+1055,44.8375,65.5125,0.0958,0.0128,8,,Qyzylorda
+1056,29.4875,43.5625,0.0999,0.0238,9,,
+1057,31.0125,56.4625,0.1134,0.0309,6,,
+1058,-22.5375,15.0625,0.0938,0.0334,9,,
+1059,32.2875,55.5125,0.0842,0.0235,9,,
+1060,31.1625,36.0875,0.1117,0.0198,6,Al Qatrana CCGT Power Plant Jordan,
+1061,25.0625,67.4875,0.1259,0.0415,4,,
+1062,24.0875,48.9875,0.0914,0.0153,12,,
+1063,21.9125,41.2625,0.0980,0.0224,9,,
+1064,41.6125,-109.7875,0.0885,0.0282,3,,
+1065,24.9625,45.5375,0.0927,0.0167,9,,
+1066,33.8875,10.0125,0.0846,0.0188,7,Ghannouch;Bouchemma 1,Métouia;Gabès
+1067,-15.2125,-75.0875,0.0802,0.0340,9,,
+1068,31.3375,-106.4875,0.0845,0.0259,10,Samalayuca II;Benito Juárez (Samalayuca);Transalta Chihuahua III,
+1069,41.8375,59.9625,0.0970,0.0129,8,Dashoguz OCGT Power Plant Turkmenistan,Daşoguz
+1070,28.0625,57.7875,0.1036,0.0295,7,Shobaad,
+1071,15.7125,48.8125,0.0877,0.0260,8,,
+1072,39.1875,65.3125,0.0700,0.0127,4,,
+1073,32.3625,43.3375,0.0850,0.0140,10,,
+1074,34.9125,8.5375,0.0831,0.0150,6,Feriana 1,
+1075,34.4375,60.3875,0.1404,0.0834,9,,
+1076,30.2375,32.5625,0.1066,0.0240,6,,
+1077,40.0375,52.9625,0.0974,0.0382,6,Turkmenbashi Heat and Power Plant Turkmenistan;Turkmenbashi Oil Refinery OCGT Power Plant Turkmenistan,
+1078,33.1125,3.3375,0.0785,0.0133,11,Tilghemt 2;Tilghemt 1,
+1079,25.2125,48.6375,0.0880,0.0156,12,,
+1080,31.2375,44.9125,0.0951,0.0199,7,,
+1081,24.7875,45.6125,0.0791,0.0144,10,Riyadh 12;Riyadh 11,
+1082,43.9125,94.6375,0.0643,0.0121,3,,
+1083,29.6875,6.7125,0.0793,0.0127,11,,
+1084,23.1875,55.4625,0.0788,0.0182,12,,
+1085,19.7625,-14.4125,0.0807,0.0168,6,,
+1086,39.6875,75.0125,0.1075,0.0321,4,,
+1087,17.9375,34.0375,0.0796,0.0174,5,,
+1088,24.8125,70.3875,0.0927,0.0197,9,,
+1089,31.4875,65.8375,0.0852,0.0303,6,,
+1090,31.4375,39.1375,0.0860,0.0144,10,,
+1091,44.5125,90.3125,0.0855,0.0241,7,,
+1092,35.7125,4.4875,0.0503,0.0125,3,Msila 1,M’Sila
+1093,45.7875,85.2375,0.0666,0.0181,3,,
+1094,29.9625,40.2125,0.0796,0.0205,11,,Sakākā
+1095,31.9625,5.3375,0.0689,0.0119,11,,Ouargla
+1096,32.5375,45.8375,0.0810,0.0136,8,,Al Kūt
+1097,43.3625,52.8375,0.0664,0.0083,9,,
+1098,32.1375,54.1125,0.0375,0.0961,7,,
+1099,40.5875,82.8875,0.0784,0.0162,8,,
+1100,35.7875,9.8625,0.0499,0.0116,3,,
+1101,28.9875,51.9125,0.0627,0.0170,7,,
+1102,37.0375,72.4875,0.0318,0.0306,1,,
+1103,22.2875,43.2875,0.0671,0.0130,9,,
+1104,15.5625,45.8125,0.0627,0.0221,4,Marib,
+1105,22.8125,5.5375,0.0566,0.0176,3,,
+1106,32.7625,3.1875,0.0495,0.0091,4,,
+1107,28.6375,9.7875,0.0639,0.0115,7,,
+1108,23.2875,54.2375,0.0573,0.0122,6,,
+1109,15.6125,46.0375,0.0563,0.0184,7,,
+1110,31.4125,38.6875,0.0727,0.0126,10,,
+1111,32.1125,47.4125,0.0449,0.0100,5,,
+1112,37.2375,67.2875,0.0470,0.0110,2,,Termiz
+1113,22.3125,46.6875,0.0570,0.0124,9,LAYLA,
+1114,9.5625,44.0625,0.0540,0.0192,3,,
+1115,33.8125,2.8625,0.0572,0.0105,6,,Laghouat
+1116,38.7875,64.6625,0.0376,0.0086,2,,
+1117,23.8625,40.9375,0.0603,0.0123,5,,
+1118,21.6625,56.4125,0.0467,0.0111,7,,
+1119,27.8875,-0.2875,0.0516,0.0088,7,,
+1120,24.0125,55.4375,0.0491,0.0123,6,,
+1121,31.3875,6.9375,0.0555,0.0100,7,,
+1122,28.2625,43.2125,0.0584,0.0107,7,,
+1123,27.1625,-13.1875,0.0428,0.0089,1,,Laâyoune
+1124,31.0125,8.1625,0.0424,0.0081,2,,
+1125,33.7625,37.0125,0.0733,0.0178,2,,
+1126,31.6375,54.7375,0.0392,0.0317,6,,
+1127,30.3625,42.2625,0.0534,0.0131,7,,
+1128,23.5625,53.3125,0.0309,0.0070,3,,
+1129,27.6375,-8.1125,0.0524,0.0098,4,,
+1130,36.2125,57.6625,0.0574,0.0180,4,,Sabzevār
+1131,27.0375,14.4375,0.0478,0.0112,4,,Sabhā
+1132,23.9125,47.2875,0.0430,0.0215,3,,
+1133,44.1125,52.1125,0.0361,0.0099,1,,
+1134,17.7125,33.7875,0.0581,0.0177,5,,
+1135,38.6375,64.7625,0.0328,0.0073,2,,
+1136,24.2875,46.3125,0.1261,0.0293,7,,
+1137,33.5875,42.5125,0.0509,0.0099,3,,
+1138,31.7875,46.0875,0.0290,0.0079,1,,
+1139,24.6875,47.5375,-0.0041,-0.0067,1,,

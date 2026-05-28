@@ -28,3 +28,11 @@ reports/*.xml
 
 # S5P NetCDF cache (transient, large)
 data/s5p/
+!data/enmap_scenes_index.csv
+!data/beirle_match_audit_grade.csv
+!data/beirle/
+!data/beirle/*.csv
+data/beirle/supplement.zip
+data/beirle/catalog_ESSD.zip
+!data/s5p_no2_aggregated.csv
+!data/s5p_no2_per_facility.parquet

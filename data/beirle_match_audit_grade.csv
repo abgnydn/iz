@@ -1,0 +1,22 @@
+id,plant,beirle_rank,beirle_nox_kgs,beirle_nox_err_kgs,distance_km,within_30km,within_15km,within_5km,beirle_pp_match,beirle_city_match
+akcansa-buyukcekmece,Büyükçekmece Cement Plant,820,0.1463,0.0199,85.84,False,False,False,,
+akcansa-canakkale,Çanakkale Cement Plant,773,0.1572,0.0251,30.65,False,False,False,İÇDAŞ Bekirli-2 power station,
+akcansa-ladik,Ladik Cement Plant,1045,0.1104,0.0243,7.53,True,True,False,,
+nuh-hereke,Hereke Cement Plant,821,0.1462,0.0426,90.11,False,False,False,,
+bursa-cimento,Bursa Cement Plant,728,0.165,0.0813,105.11,False,False,False,Seyitömer power station,
+goltas-isparta,Isparta Cement Plant,679,0.1784,0.0691,147.55,False,False,False,,
+erdemir-eregli,Karadeniz Ereğli Integrated Works,247,0.3713,0.0672,48.59,False,False,False,Zonguldak Eren (ZETES);Çatalağzı-B power station,
+isdemir-iskenderun,İskenderun Integrated Works,123,0.5717,0.1641,5.54,True,True,False,İskenderun Atlas Termik Santrali,
+colakoglu-gebze,Gebze Dilovası Plant,821,0.1462,0.0426,103.63,False,False,False,,
+habas-aliaga,Aliağa Plant,265,0.3435,0.0589,3.13,True,True,True,Enka İzmir Doğalgaz Santrali;İzdemir Enerji power station,
+kardemir-karabuk,Karabük Integrated Works,247,0.3713,0.0672,67.16,False,False,False,Zonguldak Eren (ZETES);Çatalağzı-B power station,
+izdemir-aliaga,Aliağa Plant,265,0.3435,0.0589,3.24,True,True,True,Enka İzmir Doğalgaz Santrali;İzdemir Enerji power station,
+assan-tuzla,Tuzla Plant,821,0.1462,0.0426,120.31,False,False,False,,
+asas-akyazi,Akyazı Plant,821,0.1462,0.0426,10.63,True,True,False,,
+toros-mersin,Mersin Fertilizer Plant,705,0.1734,0.0554,67.61,False,False,False,,Adana
+toros-samsun,Samsun Fertilizer Plant,1045,0.1104,0.0243,40.89,False,False,False,,
+toros-ceyhan,Ceyhan Fertilizer Plant,1034,0.1128,0.0517,6.02,True,True,False,İsken Sugözü power station,
+gubretas-izmit,Yarımca Plant,821,0.1462,0.0426,79.11,False,False,False,,
+bagfas-bandirma,Bandırma Plant,773,0.1572,0.0251,76.51,False,False,False,İÇDAŞ Bekirli-2 power station,
+afyon-cimento,Afyonkarahisar Cement Plant,728,0.165,0.0813,106.0,False,False,False,Seyitömer power station,
+batisoke-soke,Söke Cement Plant,721,0.1682,0.034,42.38,False,False,False,,Aydın
