@@ -307,6 +307,42 @@ This work was completed by one person over a series of weekend sessions, with su
 
 ---
 
+## 8. v0.1-extension findings (after first draft)
+
+Three additional findings landed after the initial v0 release, included here:
+
+### 8.1 EnMAP scene coverage (toward direct CO₂ retrieval)
+
+We queried the DLR EOC Geoservice STAC API (`https://geoservice.dlr.de/eoc/ogc/stac/v1/search?collections=ENMAP_HSI_L2A`) for our 21 audit-grade facilities. **21 of 21 have at least one EnMAP scene; 18 of 21 have at least one zero-cloud-cover scene; the index has 103 scenes total (cloud cover ≤25%)**, with Akçansa Çanakkale leading at 11 scenes (9 zero-cloud), Erdemir Karadeniz Ereğli at 9 scenes (7 zero-cloud), Bursa Çimento Kestel at 8 (2 zero-cloud), and so on. The scene index is in `data/enmap_scenes_index.csv`. Borger et al. (2025, ERL doi:10.1088/1748-9326/adc0b1) demonstrated simultaneous CO₂ + NO₂ plume retrieval over four power plants using EnMAP's 30 m native resolution (3-4 orders finer than TROPOMI). The methodology — DOAS + RemoTeC atmospheric correction, plume identification, divergence-based emission estimation — is the natural v0.2 upgrade past S5P's 7 km blur. Each L2A scene is ~3-5 GB so we have not retrieved any in this release; the index alone is the contribution.
+
+### 8.2 Cross-match against Beirle et al. (2023) NOx point-source catalog v2
+
+The Beirle 2023 ESSD catalog (doi:10.5194/essd-15-3051-2023, with supplementary CSV at the journal page) provides 1,139 global NOx point sources from TROPOMI flux-divergence + ERA5 wind, May 2018 – Nov 2021. Cross-matching against our 21 audit-grade facilities (within 30 km):
+
+| Facility | Beirle NOx (kg/s) | ±err | dist | Beirle nearby tag |
+|---|---|---|---|---|
+| İsdemir İskenderun | 0.572 | 0.164 | 5.5 km | "İskenderun Atlas Termik Santrali" (captive coal power) |
+| Habaş Aliağa | 0.344 | 0.059 | 3.1 km | "Enka İzmir Doğalgaz Santrali; İzdemir Energy" |
+| İzdemir Aliağa | 0.344 | 0.059 | 3.2 km | same Aliağa industrial complex |
+| Toros Tarım Ceyhan | 0.113 | 0.052 | 6.0 km | "İsken Sugözü power station" |
+| Akçansa Ladik | 0.110 | 0.024 | 7.5 km | direct |
+| ASAŞ Akyazı | 0.146 | 0.043 | 10.6 km | direct |
+
+6 of 21 facilities match. The 15 non-matches are mostly cement and small fertilizer plants — Beirle's catalog focuses on combustion-dominated point sources, and cement-kiln NOx is below their detection threshold per-plant. The Beirle values for İsdemir / Habaş / İzdemir / Toros Ceyhan are partially attributable to colocated captive coal/gas power plants rather than the iz-tracked facility itself; for İsdemir the captive Atlas Termik IS the major Scope 1 contributor (~3 MtCO₂/yr from captive coal CHP), so the NOx attribution is meaningful. We catalog the cross-match in `data/beirle_match_audit_grade.csv` for v0.2 feature integration; we do not include the Beirle NOx as a feature in the v0.1 model because at n=21 the marginal feature would risk overfitting.
+
+### 8.3 Conformal prediction interval
+
+Following Singh et al. (2024, Nature Scientific Reports doi:10.1038/s41598-024-65954-w) and Chen et al. (2025, arXiv:2512.04566), we compute a jackknife split-conformal prediction interval on the LODO predictions. For each held-out facility i, we calibrate the conformity score |log(pred) − log(truth)| on the other 20 LODO predictions, take the 95th percentile, and form a multiplicative interval [pred ÷ exp(q), pred × exp(q)]:
+
+- Target coverage 95% (α = 0.05).
+- **Empirical coverage: 90.5% (19/21 covered).**
+- **Median log-space half-width: 0.722 → multiplicative factor 2.06×.**
+- Two not covered: BAGFAŞ (single-instance N₂O-controlled stratum) and Bursa Çimento Kestel (high-cf cement plant with no disclosed production). Both are already documented as known structural failures (§6 limitations 2 and 9).
+
+Operator-readable interpretation: **iz-1 predicts within a factor of ~2 of audited Scope 1 with 90% empirical coverage.** This is the form the prediction interval would take if iz-1 output were embedded in a CBAM filing — far more actionable than "log-MAE reduction by 83%".
+
+---
+
 ## Reproducibility
 
 ```bash
