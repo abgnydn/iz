@@ -65,7 +65,31 @@
     <a href="https://barisgunaydin.com" target="_blank" rel="noopener">barisgunaydin.com</a> ·
     <a href="https://github.com/abgnydn/iz" target="_blank" rel="noopener">github.com/abgnydn/iz</a>
   </p>
+
+  <div id="find-plant" style="background:var(--paper);border:1px solid var(--rule);padding:14px 18px;margin:22px 0 0;">
+    <label for="find-input" style="font-family:var(--sans);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);display:block;margin-bottom:6px;">Find your facility</label>
+    <input id="find-input" type="text" placeholder="Type company or plant name (e.g. Akçansa, Erdemir, İsdemir)…" style="width:100%;padding:10px 14px;font-family:var(--sans);font-size:15px;border:1px solid var(--rule);background:white;">
+    <div id="find-results" style="font-family:var(--sans);font-size:14px;margin-top:8px;max-height:240px;overflow:auto;"></div>
+  </div>
 </header>
+<script>
+(async () => {
+  const inp = document.getElementById('find-input');
+  const out = document.getElementById('find-results');
+  if (!inp || !out) return;
+  const r = await fetch('/bench/facilities.json');
+  const facs = await r.json();
+  function strip(s) { return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+  inp.addEventListener('input', () => {
+    const q = strip(inp.value).trim();
+    if (q.length < 2) { out.innerHTML = ''; return; }
+    const hits = facs.filter(f => strip(f.plant).includes(q) || strip(f.company).includes(q) || strip(f.city).includes(q)).slice(0, 8);
+    out.innerHTML = hits.length
+      ? hits.map(f => `<a href="/bench/${f.id}/" style="display:block;padding:8px 6px;border-bottom:1px solid var(--rule);text-decoration:none;border-bottom:1px solid var(--rule);"><strong>${f.plant}</strong> <span style="color:var(--muted);">· ${f.company} · ${f.sector}</span></a>`).join('')
+      : '<p style="color:var(--muted);padding:8px 6px;">No facility matches. <a href="/bench/#claim">Add yours →</a></p>';
+  });
+})();
+</script>
 
 <section>
   <h2><span class="h2-num">01</span> Proof of the formula</h2>

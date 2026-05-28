@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iz nasıl kullanılır · TR-MRV-Bench</title>
+<meta name="description" content="Türk üreticiler, AB akreditasyonlu CBAM denetçileri ve araştırmacılar için TR-MRV-Bench kullanım rehberi. Adım adım, anlaşılır Türkçe.">
+<meta name="theme-color" content="#2d5a4c">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<link rel="canonical" href="https://iz-b0n.pages.dev/use/tr/">
+<link rel="alternate" hreflang="en" href="https://iz-b0n.pages.dev/use/">
+<link rel="alternate" hreflang="tr" href="https://iz-b0n.pages.dev/use/tr/">
+<link rel="alternate" hreflang="x-default" href="https://iz-b0n.pages.dev/use/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="iz · TR-MRV-Bench">
+<meta property="og:title" content="iz nasıl kullanılır · TR-MRV-Bench">
+<meta property="og:description" content="Üretici, denetçi ve araştırmacı rehberi. Türk CBAM uyumu için açık altyapı.">
+<meta property="og:url" content="https://iz-b0n.pages.dev/use/tr/">
+<meta property="og:image" content="https://iz-b0n.pages.dev/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="iz · bench nasıl kullanılır">
+<meta name="twitter:image" content="https://iz-b0n.pages.dev/assets/og.png">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<div class="topbar"><div class="wrap-wide row">
+  <a href="/" class="logo">iz <em>· TR-MRV-Bench</em></a>
+  <nav>
+    <a href="/">Ana Sayfa</a>
+    <a href="/bench/">Bench</a>
+    <a href="/use/tr/" class="active">Kullanım</a>
+    <a href="/about/">Hakkında</a>
+    <a href="/use/" style="opacity:0.7;font-size:13px;">EN</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+
+<header class="hero">
+  <p class="kicker">iz · bench nasıl kullanılır</p>
+  <h1>Kullanın. Atıf yapın. <em>Düzeltin.</em></h1>
+  <p class="subhead">
+    iz, Türk CBAM uyumu için açık altyapıdır. Üç hedef kitle. Üç yol. Size uyanı seçin.
+  </p>
+  <p class="byline">
+    Apache-2.0 lisansı · gizlilik anlaşması, sözleşme ya da teklif gerektirmez. Sorularınız için:
+    <a href="mailto:hi@barisgunaydin.com">hi@barisgunaydin.com</a>.
+  </p>
+</header>
+
+<section>
+  <h2><span class="h2-num">01</span> Türk üretici iseniz</h2>
+  <p>
+    AB'ye çimento, çelik, alüminyum veya gübre ihraç ediyorsunuz. CBAM kademeli yürürlüğe giriyor
+    (tam uygulama 2034) ve şu anda ya AB varsayılan değerini ödüyorsunuz (büyük ihtimalle fazla ödeme)
+    ya da kendi MRV altyapınızı kuruyorsunuz. iz nasıl yardımcı olur:
+  </p>
+  <ol style="font-size:16px;line-height:1.7;">
+    <li><strong><a href="/bench/">Bench'te tesisinizi bulun.</a></strong> Şehir veya şirkete göre filtreleyin.
+      Tesisiniz 21 denetim-kaliteli (audit-grade) satırdan biriyse, savunulabilir bir tesis-bazlı Scope 1
+      rakamı zaten hesaplanmıştır. Eğer cf-düzeltilmiş 38 satırdan biriyse,
+      <code>kapasite × güzergâh-EF × kapasite-faktörü</code> formülü başlangıç noktanızdır.</li>
+    <li><strong>Rakamı kendi kayıtlarınızla karşılaştırın.</strong> En son denetlenmiş Scope 1 verinizle
+      (veya ISO 14064-1 doğrulamanızla) kıyaslayın. ±%15 içindeysek, iz rakamını denetçinize iletin.
+      Belirgin bir sapma varsa, <a href="mailto:hi@barisgunaydin.com">bize bildirin</a> —
+      bench'i güncelleriz (veya bir PR açabilirsiniz).</li>
+    <li><strong>AB-akredite bir denetçi tutun</strong> (DNV / TÜV Süd / Bureau Veritas / SGS'in Türkiye masaları).
+      iz analizini destekleyici kanıt olarak teslim edin. Onların işi 2 haftalık sıfırdan denetim yerine
+      1 günlük masa-başı incelemeye iner. Daha az ödersiniz; daha hızlı imzalanır.</li>
+    <li><strong>Doğrulanmış veriyi AB ithalatçınıza sunun.</strong> Onlar CBAM beyannamesini AB varsayılanı
+      yerine sizin doğrulanmış rakamınızla doldurur. Fazla ödemeden kurtulursunuz.</li>
+  </ol>
+  <p>
+    <strong>Önemli uyarı:</strong> iz CSV dosyasını indirmek, AB-akredite denetçi tarafından yapılacak
+    bir denetimin yerine geçmez. 3. adım CBAM mevzuatı gereği zorunludur. iz, o denetimi gereksiz
+    kılmaz — daha ucuz ve hızlı yapar.
+  </p>
+</section>
+
+<section>
+  <h2><span class="h2-num">02</span> CBAM denetçisi iseniz (DNV / TÜV / BV / SGS Türkiye masası)</h2>
+  <p>
+    Türkiye masanız yılda bir avuç operatörü denetler. Her denetim, operatör IAR'larını, KAP bildirimlerini
+    ve saha incelemelerini sıfırdan tarama gerektirir. iz bu referans temeli önceden inşa eder:
+  </p>
+  <ol style="font-size:16px;line-height:1.7;">
+    <li><strong><a href="/bench/tr_bench_v0.csv">tr_bench_v0.csv</a> dosyasını indirin.</strong> 59 tesis,
+      21 tanesi denetim-kaliteli Scope 1 ile, her hücre kaynaklı.</li>
+    <li><strong>Denetlediğiniz her operatör için</strong> iz satırı size şunları verir: nameplate kapasite
+      (operatör doğrulamalı), denetim-kaliteli Scope 1 (veya cf-düzeltilmiş formül sonucu), kaynak PDF
+      ve sayfa numarası, güvence seviyesi (ISO 14064-1 / TSRS / operatör), AB varsayılanına oran.</li>
+    <li><strong>Kendi saha çalışmanızla doğrulayın.</strong> iz hatalıysa, sahada düzeltirsiniz.
+      iz tutuyorsa, hazırlık sürenizi ~%80 kısaltmışsınızdır.</li>
+    <li><strong>Denetim metodolojinizde TR-MRV-Bench v0'a atıf yapın</strong> (depo içindeki CITATION.cff
+      tam atıf formatını verir). Altta yatan metodolojinin kamuya açık ve hakem-incelemeye-uygun olması,
+      denetiminizi yukarı yönde daha savunulabilir kılar.</li>
+  </ol>
+  <p>
+    Ticari lisans gerekmez. Apache-2.0. Üç-aylık güncellemeler isterseniz veya metodolojiye dair
+    değişiklik öneriniz varsa, <a href="mailto:hi@barisgunaydin.com">Ahmet'e e-posta atın</a> —
+    düzeltmeler memnuniyetle karşılanır ve changelog'da yer alır.
+  </p>
+</section>
+
+<section>
+  <h2><span class="h2-num">03</span> Araştırmacı, politika uzmanı, gazeteci iseniz</h2>
+  <p>
+    Bench açık bir veri kümesidir. Açık veri kümesi gibi atıf yapın:
+  </p>
+  <pre style="background:var(--paper);border:1px solid var(--rule);padding:14px 18px;font-family:var(--mono);font-size:13px;overflow-x:auto;">Günaydın, A. B. (2026). TR-MRV-Bench: A public per-facility emissions
+benchmark for Turkish CBAM-scope industry (v0.1) [Dataset].
+https://github.com/abgnydn/iz · https://iz-b0n.pages.dev</pre>
+  <p>
+    Veya GitHub'ın BibTeX/APA/Chicago olarak otomatik biçimlendirdiği
+    <a href="https://github.com/abgnydn/iz/blob/master/CITATION.cff" target="_blank" rel="noopener">CITATION.cff</a>
+    dosyasını kullanın. Tam metodoloji deponun <code>PAPER_METHOD.md</code> ve
+    <code>PAPER_DISCUSSION.md</code> dosyalarındadır.
+  </p>
+  <p>
+    <strong>Metodoloji hatası, yanlış kapasite, eksik açıklama bulursanız</strong> — bir GitHub
+    issue veya PR açın. Her düzeltme bench'i biraz daha iyileştirir.
+  </p>
+</section>
+
+<section>
+  <h2><span class="h2-num">04</span> Neden açık kaynak, SaaS değil</h2>
+  <p>
+    Matematik o kadar basit ki kimsenin bunu kiralaması gerekmemeli. Her operatörün kendi yıllık
+    raporunda zaten yayımladığı üç rakam. Doğru cevap, her TR CBAM-kapsamı operatörün savunulabilir
+    bir tesis-bazlı temele erişiminin olmasıdır — bir paywall ardına alınsa bench kimseye yaramaz.
+  </p>
+  <p>
+    CBAM, AB'nin planladığı gibi €85/tCO₂ üzerinden uygulanırsa, <strong>Türk ihracatçıların gerçek
+    tesis-bazlı veri kullanarak AB hazinesine fazla ödeyeceği yıllık ~€2 milyardan kaçınılabilir</strong>.
+    Bu para Türkiye'de kalır, cari hesabı destekler, üretim maliyetini düşürür ve marjda TR ihracatını
+    AB-rekabetinde avantajlı kılar. iz'in amacı, hiçbir operatörün denetçi denetimini karşılayamadığı
+    için olması gerekenden fazla ödememesini sağlamaktır.
+  </p>
+  <p>
+    Bu tek kişilik bir katkıdır. Ahmet Barış Günaydın tarafından kamu yararına sürdürülüyor.
+    Yatırım turu yok, SaaS yok, gizlilik anlaşması yok, ek satış yok. Faydalı bulursanız, tek istek
+    atıf yapmanız ve düzeltmeleri geri katkı olarak sunmanızdır.
+  </p>
+</section>
+
+<div class="cta-block">
+  <h3>Sorularınız, düzeltmeler veya sadece faydalı bulduğunuzu söylemek için</h3>
+  <p>
+    E-posta ön kapıdır. Metodoloji konusundaki itirazlar özellikle hoş karşılanır — kısıtlar
+    sayfası uzun ve açıktır, ama gözden kaçırdığım şeyler olduğuna eminim.
+  </p>
+  <a class="btn" href="mailto:hi@barisgunaydin.com">hi@barisgunaydin.com</a>
+  <a class="btn outline" href="https://github.com/abgnydn/iz/issues" target="_blank" rel="noopener" style="margin-left:8px;">GitHub issue açın →</a>
+</div>
+
+</div>
+
+<footer><div class="wrap row">
+  <span>© 2026 Ahmet Barış Günaydın · Apache-2.0 altında açık</span>
+  <a href="/">Ana Sayfa</a>
+  <a href="/bench/">Bench</a>
+  <a href="/about/">Hakkında</a>
+  <a href="/use/">English</a>
+  <a href="https://barisgunaydin.com" target="_blank" rel="noopener">barisgunaydin.com</a>
+  <a href="https://github.com/abgnydn/iz" target="_blank" rel="noopener">GitHub</a>
+  <a href="mailto:hi@barisgunaydin.com">E-posta</a>
+</div></footer>
+
+</body>
+</html>

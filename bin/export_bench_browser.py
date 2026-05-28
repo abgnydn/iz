@@ -33,6 +33,7 @@ CT_PARQUET = REPO / "reports" / "climate_trace_tr_joined.parquet"
 CT_DETAILS = REPO / "reports" / "climate_trace_tr_details.parquet"
 S5P_DIR = REPO / "data" / "s5p"
 S5P_AGG = REPO / "data" / "s5p_no2_aggregated.csv"
+BEIRLE_MATCH = REPO / "data" / "beirle_match_audit_grade.csv"
 OUT_JSON = REPO / "src" / "iz_browser" / "bench.json"
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)s | %(message)s")
@@ -183,7 +184,9 @@ def main():
     ABL_NO_CT = os.environ.get("IZ_NO_CT", "") == "1"            # drop ct_cf/ct_activity/ct_has, ignore in cf_corrected
     ABL_NO_PRIOR_FLAG = os.environ.get("IZ_NO_PRIOR", "") == "1"  # write samples without y_prior_log so train.js falls back to yMean
     ABL_NO_S5P = os.environ.get("IZ_NO_S5P", "") == "1"            # drop S5P NO2 features
-    log.info("ablation flags: NO_ROUTE=%s NO_DISC=%s NO_CT=%s NO_PRIOR=%s NO_S5P=%s", ABL_NO_ROUTE, ABL_NO_DISC, ABL_NO_CT, ABL_NO_PRIOR_FLAG, ABL_NO_S5P)
+    ABL_NO_BEIRLE = os.environ.get("IZ_NO_BEIRLE", "") == "1"      # drop Beirle NOx features
+    log.info("ablation flags: NO_ROUTE=%s NO_DISC=%s NO_CT=%s NO_PRIOR=%s NO_S5P=%s NO_BEIRLE=%s",
+             ABL_NO_ROUTE, ABL_NO_DISC, ABL_NO_CT, ABL_NO_PRIOR_FLAG, ABL_NO_S5P, ABL_NO_BEIRLE)
     facs = pd.read_csv(FACS_CSV)
     log.info("facilities: %d", len(facs))
     # Stratified split: each (scope × steel_route) cell gets minimum coverage
@@ -206,6 +209,30 @@ def main():
     split_lookup = {**{i: "train" for i in split.train},
                     **{i: "val" for i in split.val},
                     **{i: "test" for i in split.test}}
+
+    # ---- Beirle 2023 v2 NOx flux (TROPOMI divergence) ----
+    # Per-facility match within 15 km from data/beirle_match_audit_grade.csv.
+    # Independent of operator-disclosed Scope 1 (truly leak-safe).
+    beirle_feats: dict[str, dict[str, float]] = {}
+    if BEIRLE_MATCH.exists() and not ABL_NO_BEIRLE:
+        b_df = pd.read_csv(BEIRLE_MATCH)
+        for _, r in b_df.iterrows():
+            try:
+                fid = str(r["id"])
+                nox_raw = r["beirle_nox_kgs"]
+                d_raw = r["distance_km"]
+            except KeyError:
+                continue
+            if pd.isna(nox_raw) or pd.isna(d_raw):
+                continue
+            try:
+                nox = float(nox_raw)  # type: ignore[arg-type]
+                d = float(d_raw)  # type: ignore[arg-type]
+            except (TypeError, ValueError):
+                continue
+            if d <= 15:
+                beirle_feats[fid] = {"nox_kgs": nox, "distance_km": d}
+        log.info("Beirle NOx features (≤15 km): %d facilities", len(beirle_feats))
 
     # ---- S5P NO₂ features (per-facility aggregated from satellite) ----
     # See bin/extract_s5p_no2_all.py + bin/aggregate_s5p.py.
@@ -264,6 +291,12 @@ def main():
         no2_plant = s5p_dict.get("plant", 0.0)
         no2_delta = s5p_dict.get("delta", 0.0)
         no2_has = 1.0 if fac["id"] in s5p_feats else 0.0
+        # Beirle 2023 v2 NOx flux (TROPOMI divergence catalog).
+        # nox_kgs is normalized by log1p; distance_km normalized to [0,1] over 0-15 km.
+        b_dict = beirle_feats.get(fac["id"], {})
+        beirle_nox_log = math.log1p(b_dict.get("nox_kgs", 0.0))
+        beirle_dist = b_dict.get("distance_km", 15.0) / 15.0
+        beirle_has = 1.0 if fac["id"] in beirle_feats else 0.0
         feat = [
             math.log1p(capacity) / 20.0,
             (float(fac["lat"]) - 38.0) / 5.0,
@@ -280,6 +313,9 @@ def main():
             no2_plant,
             no2_delta,
             no2_has,
+            beirle_nox_log,
+            beirle_dist,
+            beirle_has,
         ]
         feat_rows.append({"id": fac["id"], "company": fac["company"], "feat": feat, "split": split_lookup[fac["id"]]})
     feat_idx = {r["id"]: i for i, r in enumerate(feat_rows)}
@@ -409,7 +445,7 @@ def main():
     X = np.array([s["feat"] for s in samples], dtype=np.float32)
     feat_mean = X.mean(0).tolist()
     feat_std = (X.std(0) + 1e-6).tolist()
-    feat_names = ["log_capacity", "lat_norm", "lon_norm"] + [f"is_{s}" for s in SCOPES] + ["ct_cf", "ct_activity_log", "ct_has", "is_bfbof", "is_eaf", "is_dri_eaf", "disc_cf", "disc_has", "no2_plant", "no2_delta", "no2_has"]
+    feat_names = ["log_capacity", "lat_norm", "lon_norm"] + [f"is_{s}" for s in SCOPES] + ["ct_cf", "ct_activity_log", "ct_has", "is_bfbof", "is_eaf", "is_dri_eaf", "disc_cf", "disc_has", "no2_plant", "no2_delta", "no2_has", "beirle_nox_log", "beirle_dist", "beirle_has"]
 
     out = {
         "schema": {

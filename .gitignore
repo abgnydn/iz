@@ -36,3 +36,8 @@ data/beirle/supplement.zip
 data/beirle/catalog_ESSD.zip
 !data/s5p_no2_aggregated.csv
 !data/s5p_no2_per_facility.parquet
+
+# Natural Earth cache: keep the small Türkiye-only file, ignore the 3MB world bundle.
+!data/geo/
+!data/geo/turkey.geojson
+data/geo/ne_50m_admin_0_countries.geojson

@@ -7,192 +7,369 @@
   "per_facility": [
     {
       "facility_id": "afyon-cimento",
+      "stratum": "cement",
       "truth": 1200000.0,
       "pred_median": 686817.0,
       "ci_lo": 333747.2176019775,
       "ci_hi": 1413397.8250915739,
       "covered": true,
-      "q_used": 0.7216840082856226
+      "q_used": 0.7216840082856226,
+      "ci_lo_stratum": 325045.22614964144,
+      "ci_hi_stratum": 1451236.7927281419,
+      "covered_stratum": true,
+      "q_stratum": 0.7481035511604706
     },
     {
       "facility_id": "akcansa-buyukcekmece",
+      "stratum": "cement",
       "truth": 1514000.0,
       "pred_median": 1668236.0,
       "ci_lo": 810651.3427935725,
       "ci_hi": 3433055.8709808714,
       "covered": true,
-      "q_used": 0.7216840082856226
+      "q_used": 0.7216840082856226,
+      "ci_lo_stratum": 789514.7439433995,
+      "ci_hi_stratum": 3524964.38229343,
+      "covered_stratum": true,
+      "q_stratum": 0.7481035511604706
     },
     {
       "facility_id": "akcansa-canakkale",
+      "stratum": "cement",
       "truth": 3466000.0,
       "pred_median": 3791569.0,
       "ci_lo": 1842449.4502843015,
       "ci_hi": 7802653.950447699,
       "covered": true,
-      "q_used": 0.7216840082856226
+      "q_used": 0.7216840082856226,
+      "ci_lo_stratum": 1794410.1603002995,
+      "ci_hi_stratum": 8011543.737221781,
+      "covered_stratum": true,
+      "q_stratum": 0.7481035511604706
     },
     {
       "facility_id": "akcansa-ladik",
+      "stratum": "cement",
       "truth": 499000.0,
       "pred_median": 533153.0,
       "ci_lo": 259076.7705315206,
       "ci_hi": 1097173.3236670743,
       "covered": true,
-      "q_used": 0.7216840082856226
+      "q_used": 0.7216840082856226,
+      "ci_lo_stratum": 252321.70644780205,
+      "ci_hi_stratum": 1126546.4450550703,
+      "covered_stratum": true,
+      "q_stratum": 0.7481035511604706
     },
     {
       "facility_id": "asas-akyazi",
+      "stratum": "aluminum-downstream",
       "truth": 68618.0,
       "pred_median": 86702.0,
       "ci_lo": 42131.38472187889,
       "ci_hi": 178423.68233618242,
       "covered": true,
-      "q_used": 0.7216840082856226
+      "q_used": 0.7216840082856226,
+      "ci_lo_stratum": 42131.38472187889,
+      "ci_hi_stratum": 178423.68233618242,
+      "covered_stratum": true,
+      "q_stratum": 0.7216840082856226
     },
     {
       "facility_id": "assan-tuzla",
+      "stratum": "aluminum-downstream",
       "truth": 108500.0,
       "pred_median": 96955.0,
       "ci_lo": 47113.65834363412,
       "ci_hi": 199523.28805453805,
       "covered": true,
-      "q_used": 0.7216840082856226
+      "q_used": 0.7216840082856226,
+      "ci_lo_stratum": 47113.65834363412,
+      "ci_hi_stratum": 199523.28805453805,
+      "covered_stratum": true,
+      "q_stratum": 0.7216840082856226
     },
     {
       "facility_id": "bagfas-bandirma",
+      "stratum": "fertilizer-N2O-controlled",
       "truth": 9828.0,
       "pred_median": 20225.0,
       "ci_lo": 11272.31652094481,
       "ci_hi": 36288.07124426937,
       "covered": false,
-      "q_used": 0.5845696084598782
+      "q_used": 0.5845696084598782,
+      "ci_lo_stratum": 11272.31652094481,
+      "ci_hi_stratum": 36288.07124426937,
+      "covered_stratum": false,
+      "q_stratum": 0.5845696084598782
     },
     {
       "facility_id": "batisoke-soke",
+      "stratum": "cement",
       "truth": 1577926.0,
       "pred_median": 1595047.0,
       "ci_lo": 775086.3740914711,
       "ci_hi": 3282440.534696785,
       "covered": true,
-      "q_used": 0.7216840082856226
+      "q_used": 0.7216840082856226,
+      "ci_lo_stratum": 754877.0820091926,
+      "ci_hi_stratum": 3370316.8275255947,
+      "covered_stratum": true,
+      "q_stratum": 0.7481035511604706
     },
     {
       "facility_id": "bursa-cimento",
+      "stratum": "cement",
       "truth": 1121545.0,
       "pred_median": 530786.0,
       "ci_lo": 295831.28785593115,
       "ci_hi": 952346.1153750678,
       "covered": false,
-      "q_used": 0.5845696084598782
+      "q_used": 0.5845696084598782,
+      "ci_lo_stratum": 303794.04013499955,
+      "ci_hi_stratum": 927384.150363197,
+      "covered_stratum": false,
+      "q_stratum": 0.5580089545838618
     },
     {
       "facility_id": "colakoglu-gebze",
+      "stratum": "steel-EAF",
       "truth": 566519.0,
       "pred_median": 598788.0,
       "ci_lo": 290970.9994561185,
       "ci_hi": 1232243.3150183142,
       "covered": true,
-      "q_used": 0.7216840082856226
+      "q_used": 0.7216840082856226,
+      "ci_lo_stratum": 529124.3209972979,
+      "ci_hi_stratum": 677623.4898222162,
+      "covered_stratum": true,
+      "q_stratum": 0.1236841966799993
     },
     {
       "facility_id": "erdemir-eregli",
+      "stratum": "steel-BF/BOF",
       "truth": 6673266.0,
       "pred_median": 7941227.0,
       "ci_lo": 3858906.252459829,
       "ci_hi": 16342217.752848981,
       "covered": true,
-      "q_used": 0.7216840082856226
+      "q_used": 0.7216840082856226,
+      "ci_lo_stratum": 6606593.822458475,
+      "ci_hi_stratum": 9545476.52848766,
+      "covered_stratum": true,
+      "q_stratum": 0.18399958301599106
     },
     {
       "facility_id": "goltas-isparta",
+      "stratum": "cement",
       "truth": 1669072.0,
       "pred_median": 1946671.0,
       "ci_lo": 945952.1675154513,
       "ci_hi": 4006046.0902523403,
       "covered": true,
-      "q_used": 0.7216840082856226
+      "q_used": 0.7216840082856226,
+      "ci_lo_stratum": 921287.7890820251,
+      "ci_hi_stratum": 4113294.485338725,
+      "covered_stratum": true,
+      "q_stratum": 0.7481035511604706
     },
     {
       "facility_id": "gubretas-izmit",
+      "stratum": "fertilizer-blender",
       "truth": 13281.0,
       "pred_median": 12928.0,
       "ci_lo": 6282.145067985167,
       "ci_hi": 26604.477004477,
       "covered": true,
-      "q_used": 0.7216840082856226
+      "q_used": 0.7216840082856226,
+      "ci_lo_stratum": 6282.145067985167,
+      "ci_hi_stratum": 26604.477004477,
+      "covered_stratum": true,
+      "q_stratum": 0.7216840082856226
     },
     {
       "facility_id": "habas-aliaga",
+      "stratum": "steel-EAF",
       "truth": 830338.0,
       "pred_median": 939659.0,
       "ci_lo": 456611.5526328802,
       "ci_hi": 1933720.316951567,
       "covered": true,
-      "q_used": 0.7216840082856226
+      "q_used": 0.7216840082856226,
+      "ci_lo_stratum": 865258.2125045864,
+      "ci_hi_stratum": 1020457.2733556344,
+      "covered_stratum": false,
+      "q_stratum": 0.08248906953895307
     },
     {
       "facility_id": "isdemir-iskenderun",
+      "stratum": "steel-BF/BOF",
       "truth": 10663364.0,
       "pred_median": 8871238.0,
       "ci_lo": 4310829.521087764,
       "ci_hi": 18256083.491045993,
       "covered": true,
-      "q_used": 0.7216840082856226
+      "q_used": 0.7216840082856226,
+      "ci_lo_stratum": 7454783.866939955,
+      "ci_hi_stratum": 10556827.00630035,
+      "covered_stratum": false,
+      "q_stratum": 0.17395840206696178
     },
     {
       "facility_id": "izdemir-aliaga",
+      "stratum": "steel-EAF",
       "truth": 271123.0,
       "pred_median": 294436.0,
       "ci_lo": 143076.24266996284,
       "ci_hi": 605918.6100936097,
       "covered": true,
-      "q_used": 0.7216840082856226
+      "q_used": 0.7216840082856226,
+      "ci_lo_stratum": 260180.97987461404,
+      "ci_hi_stratum": 333200.98239993793,
+      "covered_stratum": true,
+      "q_stratum": 0.1236841966799993
     },
     {
       "facility_id": "kardemir-karabuk",
+      "stratum": "steel-BF/BOF",
       "truth": 5650626.0,
       "pred_median": 5663322.0,
       "ci_lo": 2751996.470506799,
       "ci_hi": 11654526.602564123,
       "covered": true,
-      "q_used": 0.7216840082856226
+      "q_used": 0.7216840082856226,
+      "ci_lo_stratum": 4711522.305028324,
+      "ci_hi_stratum": 6807399.816711934,
+      "covered_stratum": true,
+      "q_stratum": 0.18399958301599106
     },
     {
       "facility_id": "nuh-hereke",
+      "stratum": "cement",
       "truth": 3573278.0,
       "pred_median": 2480606.0,
       "ci_lo": 1205408.9378491968,
       "ci_hi": 5104828.688441189,
       "covered": true,
-      "q_used": 0.7216840082856226
+      "q_used": 0.7216840082856226,
+      "ci_lo_stratum": 1173979.5873692096,
+      "ci_hi_stratum": 5241493.287822213,
+      "covered_stratum": true,
+      "q_stratum": 0.7481035511604706
     },
     {
       "facility_id": "toros-ceyhan",
+      "stratum": "fertilizer-integrated",
       "truth": 203840.0,
       "pred_median": 243209.0,
       "ci_lo": 118183.3400247218,
       "ci_hi": 500498.7815425311,
       "covered": true,
-      "q_used": 0.7216840082856226
+      "q_used": 0.7216840082856226,
+      "ci_lo_stratum": 135551.4872060551,
+      "ci_hi_stratum": 436370.1122001237,
+      "covered_stratum": true,
+      "q_stratum": 0.5845696084598782
     },
     {
       "facility_id": "toros-mersin",
+      "stratum": "fertilizer-integrated",
       "truth": 383150.0,
       "pred_median": 213547.0,
       "ci_lo": 103769.58793572318,
       "ci_hi": 439457.4760887263,
       "covered": true,
-      "q_used": 0.7216840082856226
+      "q_used": 0.7216840082856226,
+      "ci_lo_stratum": 135868.21176816383,
+      "ci_hi_stratum": 335636.42750235583,
+      "covered_stratum": false,
+      "q_stratum": 0.4521715641511115
     },
     {
       "facility_id": "toros-samsun",
+      "stratum": "fertilizer-integrated",
       "truth": 255180.0,
       "pred_median": 162357.0,
       "ci_lo": 78894.6648207664,
       "ci_hi": 334113.7896825397,
       "covered": true,
-      "q_used": 0.7216840082856226
+      "q_used": 0.7216840082856226,
+      "ci_lo_stratum": 90488.97371525524,
+      "ci_hi_stratum": 291303.9497159873,
+      "covered_stratum": true,
+      "q_stratum": 0.5845696084598782
+    }
+  ],
+  "per_stratum": [
+    {
+      "stratum": "aluminum-downstream",
+      "n": 2,
+      "empirical_coverage_stratum_pct": 100.0,
+      "empirical_coverage_global_pct": 100.0,
+      "median_q_stratum": 0.7216840082856226,
+      "median_q_global": 0.7216840082856226,
+      "multiplicative_factor_stratum": 2.057895807895808,
+      "tightening_vs_global_pct": 0.0
+    },
+    {
+      "stratum": "cement",
+      "n": 8,
+      "empirical_coverage_stratum_pct": 87.5,
+      "empirical_coverage_global_pct": 87.5,
+      "median_q_stratum": 0.7481035511604706,
+      "median_q_global": 0.7216840082856226,
+      "multiplicative_factor_stratum": 2.1129890388970325,
+      "tightening_vs_global_pct": -3.660818664613088
+    },
+    {
+      "stratum": "fertilizer-N2O-controlled",
+      "n": 1,
+      "empirical_coverage_stratum_pct": 0.0,
+      "empirical_coverage_global_pct": 0.0,
+      "median_q_stratum": 0.5845696084598782,
+      "median_q_global": 0.5845696084598782,
+      "multiplicative_factor_stratum": 1.7942186029305005,
+      "tightening_vs_global_pct": 0.0
+    },
+    {
+      "stratum": "fertilizer-blender",
+      "n": 1,
+      "empirical_coverage_stratum_pct": 100.0,
+      "empirical_coverage_global_pct": 100.0,
+      "median_q_stratum": 0.7216840082856226,
+      "median_q_global": 0.7216840082856226,
+      "multiplicative_factor_stratum": 2.057895807895808,
+      "tightening_vs_global_pct": 0.0
+    },
+    {
+      "stratum": "fertilizer-integrated",
+      "n": 3,
+      "empirical_coverage_stratum_pct": 66.66666666666666,
+      "empirical_coverage_global_pct": 100.0,
+      "median_q_stratum": 0.5845696084598782,
+      "median_q_global": 0.7216840082856226,
+      "multiplicative_factor_stratum": 1.7942186029305005,
+      "tightening_vs_global_pct": 18.999229337430236
+    },
+    {
+      "stratum": "steel-BF/BOF",
+      "n": 3,
+      "empirical_coverage_stratum_pct": 66.66666666666666,
+      "empirical_coverage_global_pct": 100.0,
+      "median_q_stratum": 0.18399958301599106,
+      "median_q_global": 0.7216840082856226,
+      "multiplicative_factor_stratum": 1.2020153218750294,
+      "tightening_vs_global_pct": 74.50413464847497
+    },
+    {
+      "stratum": "steel-EAF",
+      "n": 3,
+      "empirical_coverage_stratum_pct": 66.66666666666666,
+      "empirical_coverage_global_pct": 100.0,
+      "median_q_stratum": 0.1236841966799993,
+      "median_q_global": 0.7216840082856226,
+      "multiplicative_factor_stratum": 1.131658433071833,
+      "tightening_vs_global_pct": 82.86172407037063
     }
   ]
 }

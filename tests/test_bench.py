@@ -108,6 +108,38 @@ def test_eu_defaults_in_bench() -> None:
         )
 
 
+def test_facility_pages_exist() -> None:
+    """Each row in facilities.json should have a generated detail page + audit summary."""
+    fac_json = REPO / "site" / "bench" / "facilities.json"
+    if not fac_json.exists():
+        pytest.skip("no site/bench/facilities.json (run bin/build_facilities_json.py first)")
+    facs = json.loads(fac_json.read_text())
+    missing_detail = []
+    missing_summary = []
+    for f in facs:
+        detail = REPO / "site" / "bench" / f["id"] / "index.html"
+        summary = REPO / "site" / "bench" / f["id"] / "audit-summary" / "index.html"
+        if not detail.exists():
+            missing_detail.append(f["id"])
+        if not summary.exists():
+            missing_summary.append(f["id"])
+    if missing_detail or missing_summary:
+        pytest.skip(
+            f"detail pages not generated yet (run bin/build_facility_pages.py): "
+            f"missing {len(missing_detail)} details, {len(missing_summary)} summaries"
+        )
+    # Spot check one for required content
+    sample = json.loads(fac_json.read_text())[0]
+    detail = (REPO / "site" / "bench" / sample["id"] / "index.html").read_text()
+    summary = (REPO / "site" / "bench" / sample["id"] / "audit-summary" / "index.html").read_text()
+    assert sample["plant"] in detail
+    assert sample["company"] in detail
+    assert "audit-summary" in detail, "detail page must link to its audit summary"
+    assert "Verifier checklist" in summary
+    assert sample["plant"] in summary
+    assert "TR-MRV-Bench" in summary
+
+
 def test_log_mae_calculation_consistent() -> None:
     """Verify the headline reduction number is reproducible from the raw rows."""
     path = REPO / "reports" / "lodo_results.json"

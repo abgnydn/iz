@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Audit summary · Gebze Plant · iz</title>
+<style>
+@page { size: A4; margin: 18mm 16mm; }
+body { font-family: Georgia, "Times New Roman", serif; font-size: 10.5pt; line-height: 1.45; color: #14181d; max-width: 178mm; margin: 0 auto; padding: 12mm 0; }
+h1 { font-size: 16pt; margin: 0 0 2mm; }
+h2 { font-size: 11pt; margin: 5mm 0 2mm; text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 0.5pt solid #888; padding-bottom: 1mm; }
+.head { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1pt solid #14181d; padding-bottom: 3mm; margin-bottom: 4mm; }
+.head .id { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 9pt; color: #555; }
+.kv { display: grid; grid-template-columns: 50mm 1fr; gap: 1mm 4mm; }
+.kv dt { font-weight: bold; }
+.kv dd { margin: 0; }
+.figures { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; margin: 3mm 0; padding: 3mm 4mm; border: 0.5pt solid #888; }
+.figures .col .label { font-family: -apple-system, sans-serif; font-size: 7.5pt; text-transform: uppercase; letter-spacing: 0.04em; color: #555; }
+.figures .col .value { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13pt; font-weight: 700; }
+.figures .col .delta { font-family: -apple-system, sans-serif; font-size: 8pt; color: #555; }
+.cite { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 8.5pt; background: #f5f0e6; padding: 2mm 3mm; border-left: 2pt solid #2d5a4c; margin: 2mm 0; }
+.checklist { font-size: 10pt; line-height: 1.6; }
+.checklist li { margin: 1mm 0; }
+.footer { position: fixed; bottom: 8mm; left: 0; right: 0; text-align: center; font-family: -apple-system, sans-serif; font-size: 7.5pt; color: #777; }
+@media screen {
+  body { background: #f4ede2; padding: 20mm 24mm; max-width: 210mm; margin: 12mm auto; box-shadow: 0 0 24px rgba(0,0,0,0.08); background: white; }
+  .print-hint { position: fixed; top: 12px; right: 12px; font-family: -apple-system, sans-serif; font-size: 12px; background: #2d5a4c; color: white; padding: 8px 14px; border-radius: 3px; }
+}
+@media print { .print-hint { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="print-hint">Print this page (⌘P / Ctrl+P) → save as PDF for your verifier.</div>
+
+<div class="head">
+  <div>
+    <h1>Gebze Plant</h1>
+    <div>Kroman Çelik · steel · Gebze</div>
+  </div>
+  <div class="id">iz · TR-MRV-Bench v0.1<br>kroman-gebze<br>Issued: —</div>
+</div>
+
+<h2>1 · Facility identity</h2>
+<dl class="kv">
+  <dt>Company / operator</dt><dd>Kroman Çelik</dd>
+  <dt>Plant name</dt><dd>Gebze Plant</dd>
+  <dt>Sector (CBAM scope)</dt><dd>steel</dd>
+  <dt>Location</dt><dd>Gebze, Türkiye</dd>
+  <dt>Nameplate capacity</dt><dd>1,000,000 t/y</dd>
+</dl>
+
+<h2>2 · Emission figures (tCO₂)</h2>
+<div class="figures">
+  <div class="col">
+    <div class="label">Audit-grade Scope 1</div>
+    <div class="value">175,000</div>
+    <div class="delta">cf_corrected · </div>
+  </div>
+  <div class="col">
+    <div class="label">iz-1 prediction (LODO)</div>
+    <div class="value">—</div>
+    <div class="delta">not in LODO set</div>
+  </div>
+  <div class="col">
+    <div class="label">EU CBAM default value</div>
+    <div class="value">1,900,000</div>
+    <div class="delta">(EU default overstates by +986%)</div>
+  </div>
+</div>
+
+
+<h2>3 · Source citation for audit-grade Scope 1</h2>
+<div class="cite"></div>
+
+
+<h2>4 · Methodology (iz-1)</h2>
+<p style="font-size: 9.5pt;">iz-1 is a 2-layer browser-resident MLP with WebGPU-accelerated LoRA-shaped weights,
+trained on TR-MRV-Bench v0 (59 Turkish CBAM-scope facilities; 21 audit-grade Scope 1 labels with operator-PDF citations).
+Inputs: nameplate capacity, geo-coordinates, sector + steel route one-hot, Climate-TRACE-derived capacity factor and
+activity, operator-disclosed capacity factor (non-leaky in LODO), and Sentinel-5P NO₂ activity proxy.
+Evaluation: stratified leave-one-disclosure-out with 5 outer × 3 inner = 15 seeds per held-out facility.
+Headline: median 87% reduction in log-MAE vs. EU CBAM default; closed-form formula (capacity × route-EF × cf)
+reaches the same headline within statistical noise.
+</p>
+
+<h2>5 · Verifier checklist</h2>
+<ol class="checklist">
+  <li>☐ Confirm Scope 1 line item in the cited source matches the value above (tCO₂ basis; not CO₂-equivalent if different).</li>
+  <li>☐ Verify operator's verification statement (ISO 14064-1 / TSRS / financial audit) attached to the source.</li>
+  <li>☐ Cross-check capacity against latest published cement / steel / aluminum / fertilizer association registry.</li>
+  <li>☐ If using iz-1 prediction as input to CBAM Article 4(2) actual-emission declaration: the prediction is
+      a model output, not a measurement. Verifier must independently support the underlying activity data.</li>
+  <li>☐ Confirm the conformal prediction interval covers the operator's claimed Scope 1.</li>
+</ol>
+
+<h2>6 · License and citation</h2>
+<p style="font-size:8.5pt;">
+TR-MRV-Bench v0 is Apache-2.0 licensed. The benchmark, methodology, and per-facility data are public at
+<code>github.com/abgnydn/iz</code> and <code>iz-b0n.pages.dev</code>.
+Cite: Günaydın (2026), "TR-MRV-Bench: a public per-facility emissions benchmark for Turkish CBAM-scope
+industry, with a physics baseline that beats the EU CBAM default by 87%."
+</p>
+
+<div class="footer">iz · TR-MRV-Bench v0.1 · <code>kroman-gebze</code> · audit summary printed from
+iz-b0n.pages.dev/bench/kroman-gebze/audit-summary/ · Apache-2.0 · hi@barisgunaydin.com</div>
+
+</body>
+</html>

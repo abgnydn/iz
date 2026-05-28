@@ -107,6 +107,12 @@
     </thead>
     <tbody id="rows"></tbody>
   </table>
+  <p class="muted" style="font-size:12px;margin-top:14px;font-family:var(--sans);">
+    Each company/plant link goes to a deep-linkable per-facility page with full
+    evidence (audit-grade Scope 1, source PDF, conformal CI, EnMAP scene index,
+    Beirle NOx cross-check where available) plus a printable single-page audit
+    summary for verifiers.
+  </p>
   <p class="muted" style="font-size:11px;margin-top:14px;font-family:var(--sans);">
     <strong>Provenance</strong>: <code>direct</code> = operator-published per-plant figure;
     <code>allocated</code> = our split from operator-published group total using disclosed
@@ -117,6 +123,70 @@
     <code>operator_audited</code> = published in Big4-audited annual report without GHG-specific verification.
     <strong>iz-1 (LODO median)</strong> = median of N outer leave-one-disclosure-out runs (3 inner seeds each).
     <strong>Ratio</strong> = iz-1 ÷ truth.
+  </p>
+</section>
+
+<section id="claim">
+  <h2><span class="h2-num">06</span> Claim or correct a facility</h2>
+  <p>
+    If you operate or audit a facility on this bench and have a more recent or more accurate
+    Scope 1 disclosure than what's shown, submit it here. Submissions open a pre-filled GitHub
+    issue you can review before posting — no GitHub account is required to fill the form, but
+    you'll need one (or send the same payload by email) to actually submit.
+  </p>
+  <style>
+    @media (max-width: 600px) {
+      #claim-form { grid-template-columns: 1fr !important; }
+      #claim-form label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); margin-top: 6px; }
+    }
+  </style>
+  <form id="claim-form" style="display:grid;grid-template-columns:170px 1fr;gap:8px 14px;font-family:var(--sans);font-size:14px;margin:18px 0;max-width:720px;">
+    <label for="cf-facility">Facility</label>
+    <select id="cf-facility" required style="padding:6px 10px;font-family:inherit;">
+      <option value="">— pick one —</option>
+    </select>
+    <label for="cf-claim-type">Claim type</label>
+    <select id="cf-claim-type" required style="padding:6px 10px;font-family:inherit;">
+      <option value="correction">Correction (the number is wrong)</option>
+      <option value="more-recent">More recent disclosure available</option>
+      <option value="add">Add a missing facility</option>
+      <option value="remove">Remove this facility (no longer operating / out of scope)</option>
+      <option value="other">Other</option>
+    </select>
+    <label for="cf-scope1">Scope 1 (tCO₂)</label>
+    <input id="cf-scope1" type="number" min="0" step="1" placeholder="e.g. 1514000" style="padding:6px 10px;font-family:inherit;">
+    <label for="cf-year">Reporting year</label>
+    <input id="cf-year" type="number" min="2018" max="2030" placeholder="e.g. 2025" style="padding:6px 10px;font-family:inherit;">
+    <label for="cf-source">Public source URL</label>
+    <input id="cf-source" type="url" required placeholder="e.g. operator IAR PDF link" style="padding:6px 10px;font-family:inherit;">
+    <label for="cf-assurance">Assurance level</label>
+    <select id="cf-assurance" style="padding:6px 10px;font-family:inherit;">
+      <option value="">— pick one —</option>
+      <option value="iso14064">ISO 14064-1 verified</option>
+      <option value="tsrs_assured">TSRS / KGK assurance</option>
+      <option value="operator_audited">Operator-audited (financial-grade)</option>
+      <option value="self_reported">Self-reported (no assurance)</option>
+    </select>
+    <label for="cf-role">Your role</label>
+    <select id="cf-role" style="padding:6px 10px;font-family:inherit;">
+      <option value="">— pick one —</option>
+      <option value="operator">Operator / sustainability officer at this company</option>
+      <option value="verifier">Verifier / auditor</option>
+      <option value="analyst">Analyst / researcher</option>
+      <option value="ngo">NGO / civil society</option>
+      <option value="other">Other</option>
+    </select>
+    <label for="cf-notes">Notes (optional)</label>
+    <textarea id="cf-notes" rows="3" placeholder="page reference, calculation details, anything else useful" style="padding:6px 10px;font-family:inherit;"></textarea>
+    <span></span>
+    <div>
+      <button type="button" id="cf-submit" style="background:var(--iz);color:white;border:none;padding:10px 20px;font-family:var(--sans);font-size:14px;font-weight:600;cursor:pointer;border-radius:3px;">Open pre-filled GitHub issue →</button>
+      <button type="button" id="cf-email" style="background:transparent;color:var(--iz);border:1px solid var(--iz);padding:10px 20px;font-family:var(--sans);font-size:14px;cursor:pointer;border-radius:3px;margin-left:10px;">Or open in email client</button>
+    </div>
+  </form>
+  <p class="muted" style="font-size:13px;">
+    Corrections that include a verifiable public source land within 24 hours.
+    Apache-2.0 means anyone (including the operators themselves) can fork and host their own bench.
   </p>
 </section>
 
@@ -178,6 +248,7 @@ async function load() {
     d.ratio = (d.pred_median && d.truth) ? (d.pred_median / d.truth) : null;
   });
   render();
+  if (typeof populateClaimForm === 'function') populateClaimForm();
 }
 
 function render() {
@@ -215,7 +286,7 @@ function render() {
       ? `<details style="margin-top:4px;"><summary style="font-size:10px;color:#8a5a1f;cursor:pointer;font-family:var(--sans);letter-spacing:0.08em;text-transform:uppercase;">caveat</summary><span style="font-size:11px;color:#6e6862;line-height:1.35;display:block;max-width:380px;margin-top:4px;">${escapeHtml(d.notes)}</span></details>`
       : '';
     return `<tr>
-      <td><strong>${escapeHtml(d.company)}</strong><br><span class="muted" style="font-size:11px;">${escapeHtml(d.plant)}</span></td>
+      <td><a href="/bench/${escapeHtml(d.id)}/" style="border-bottom:none;"><strong>${escapeHtml(d.company)}</strong><br><span class="muted" style="font-size:11px;">${escapeHtml(d.plant)}</span></a></td>
       <td>${labelTag(d.label_source)} <span style="font-size:11px;color:#6e6862;">${d.sector}</span></td>
       <td>${escapeHtml(d.city)}</td>
       <td class="num">${fmt(d.capacity)}</td>
@@ -248,6 +319,65 @@ document.addEventListener('click', e => {
 
 ['#filter-sector', '#filter-source', '#filter-q'].forEach(sel => {
   document.querySelector(sel).addEventListener('input', render);
+});
+
+// ---- Claim-your-facility form ----
+function populateClaimForm() {
+  const sel = document.getElementById('cf-facility');
+  if (!sel) return;
+  const opts = [...DATA].sort((a, b) => (a.plant || '').localeCompare(b.plant || ''));
+  sel.innerHTML = '<option value="">— pick one —</option>' +
+    opts.map(f => `<option value="${escapeHtml(f.id)}">${escapeHtml(f.plant || f.id)} · ${escapeHtml(f.company || '')}</option>`).join('') +
+    '<option value="__new__">+ Add a new facility not on the bench</option>';
+}
+
+function buildClaimPayload() {
+  const fid = document.getElementById('cf-facility').value;
+  const fac = DATA.find(f => f.id === fid);
+  const ct = document.getElementById('cf-claim-type').value;
+  const scope1 = document.getElementById('cf-scope1').value;
+  const year = document.getElementById('cf-year').value;
+  const src = document.getElementById('cf-source').value;
+  const assur = document.getElementById('cf-assurance').value;
+  const role = document.getElementById('cf-role').value;
+  const notes = document.getElementById('cf-notes').value;
+  if (!fid) { alert('Please pick a facility.'); return null; }
+  if (!src) { alert('Public source URL is required.'); return null; }
+
+  const title = fid === '__new__'
+    ? `Bench addition: new facility`
+    : `Bench ${ct}: ${fac?.plant || fid}`;
+  const body = [
+    `**Facility:** ${fid === '__new__' ? '(new — please describe)' : `${fac?.plant} · ${fac?.company}`}`,
+    `**Claim type:** ${ct}`,
+    scope1 ? `**Scope 1 (tCO₂):** ${Number(scope1).toLocaleString('en-US')}` : '',
+    year ? `**Reporting year:** ${year}` : '',
+    `**Public source URL:** ${src}`,
+    assur ? `**Assurance level:** ${assur}` : '',
+    role ? `**Submitter role:** ${role}` : '',
+    '',
+    '**Notes:**',
+    notes || '(none)',
+    '',
+    '---',
+    `Submitted via iz-b0n.pages.dev/bench/#claim · ${new Date().toISOString().slice(0, 10)}`,
+  ].filter(Boolean).join('\n');
+
+  return { title, body };
+}
+
+document.getElementById('cf-submit')?.addEventListener('click', () => {
+  const p = buildClaimPayload();
+  if (!p) return;
+  const url = `https://github.com/abgnydn/iz/issues/new?title=${encodeURIComponent(p.title)}&body=${encodeURIComponent(p.body)}&labels=bench-correction`;
+  window.open(url, '_blank', 'noopener');
+});
+
+document.getElementById('cf-email')?.addEventListener('click', () => {
+  const p = buildClaimPayload();
+  if (!p) return;
+  const url = `mailto:hi@barisgunaydin.com?subject=${encodeURIComponent(p.title)}&body=${encodeURIComponent(p.body)}`;
+  window.location.href = url;
 });
 
 load();

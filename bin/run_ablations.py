@@ -25,6 +25,9 @@ VARIANTS = [
     ("no_disc",    {"IZ_NO_DISC_CF": "1"},                     "Disclosed-cf feature off (prior still uses CT/sector)"),
     ("no_route",   {"IZ_NO_ROUTE": "1"},                       "Steel route off → all steel uses TR_actual_EF 1.44"),
     ("no_ct",      {"IZ_NO_CT": "1"},                          "CT features off"),
+    ("no_s5p",     {"IZ_NO_S5P": "1"},                         "Sentinel-5P NO₂ features off"),
+    ("no_beirle",  {"IZ_NO_BEIRLE": "1"},                      "Beirle 2023 v2 NOx flux features off"),
+    ("no_sat",     {"IZ_NO_S5P": "1", "IZ_NO_BEIRLE": "1"},    "All satellite features off"),
     ("no_disc_no_route", {"IZ_NO_DISC_CF": "1", "IZ_NO_ROUTE": "1"}, "Both ablated → minimal feature set"),
 ]
 

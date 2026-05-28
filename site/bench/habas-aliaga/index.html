@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aliağa Plant · Habaş · iz · TR-MRV-Bench</title>
+<meta name="description" content="iz · TR-MRV-Bench page for Aliağa Plant, Habaş. Audit-grade Scope 1, iz-1 prediction with conformal CI, EU CBAM default, source citations.">
+<meta name="theme-color" content="#2d5a4c">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="canonical" href="https://iz-b0n.pages.dev/bench/habas-aliaga/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="iz · TR-MRV-Bench">
+<meta property="og:title" content="Aliağa Plant · Habaş">
+<meta property="og:description" content="Audit-grade Scope 1 + iz-1 prediction + EU CBAM default. Source PDFs cited.">
+<meta property="og:url" content="https://iz-b0n.pages.dev/bench/habas-aliaga/">
+<meta property="og:image" content="https://iz-b0n.pages.dev/bench/habas-aliaga/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://iz-b0n.pages.dev/bench/habas-aliaga/og.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Aliağa Plant CO2 emissions (2024)","alternateName":["Aliağa Plant","Habaş","Habaş Aliağa Plant"],"description":"Audit-grade Scope 1, iz-1 prediction with conformal prediction interval, EU CBAM default, and full source citations for Aliağa Plant, Aliağa, Türkiye. Industry: steel.","url":"https://iz-b0n.pages.dev/bench/habas-aliaga/","identifier":"habas-aliaga","license":"https://www.apache.org/licenses/LICENSE-2.0","creator":{"@type":"Person","name":"Ahmet Barış Günaydın","email":"hi@barisgunaydin.com","url":"https://barisgunaydin.com"},"publisher":{"@type":"Organization","name":"TR-MRV-Bench","url":"https://iz-b0n.pages.dev"},"isAccessibleForFree":true,"keywords":["CBAM","Scope 1","CO2 emissions","Turkey","steel","Habaş","Aliağa Plant"],"spatialCoverage":{"@type":"Place","name":"Aliağa Plant, Aliağa, Türkiye","geo":{"@type":"GeoCoordinates","addressCountry":"TR"}},"variableMeasured":[{"@type":"PropertyValue","name":"CO2 emissions (Scope 1, 2024)","value":830338,"unitText":"tCO2 per year","description":"Audit-grade per-facility Scope 1, composite, iso14064. Source: Habas 2024 SR p75 (EAF 636377) + p76 (plate 193961) combined"},{"@type":"PropertyValue","name":"iz-1 LODO prediction","value":939659,"unitText":"tCO2 per year","description":"Leave-one-disclosure-out median prediction from a 2-layer MLP trained on 5 × 3 = 15 seeds."},{"@type":"PropertyValue","name":"EU CBAM default","value":8550000,"unitText":"tCO2 per year","description":"EU CBAM Article 4(3) default value: nameplate capacity × sector default emission factor."}],"citation":"Habas 2024 SR p75 (EAF 636377) + p76 (plate 193961) combined","distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://iz-b0n.pages.dev/bench/facilities.json"},{"@type":"DataDownload","encodingFormat":"text/csv","contentUrl":"https://iz-b0n.pages.dev/bench/tr_bench_v0.csv"}]}</script>
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.metric { font-family: var(--mono); font-size: 17px; margin: 6px 0; }
+.ci-line { font-family: var(--sans); font-size: 14px; color: var(--muted); margin: 8px 0 0; }
+.crumbs { font-family: var(--sans); font-size: 13px; color: var(--muted); margin: 12px 0; }
+.crumbs a { border-bottom: none; }
+.fact-grid { display: grid; grid-template-columns: 180px 1fr; gap: 8px 18px; font-family: var(--sans); font-size: 14px; margin: 16px 0; }
+.fact-grid dt { color: var(--muted); }
+.fact-grid dd { margin: 0; }
+.row-pred { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin: 16px 0; }
+.row-pred .card { background: var(--paper); border: 1px solid var(--rule); padding: 14px 16px; }
+.row-pred .card .label { font-family: var(--sans); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+.row-pred .card .value { font-family: var(--mono); font-size: 20px; font-weight: 600; margin: 4px 0 0; }
+.row-pred .card .delta { font-family: var(--sans); font-size: 13px; margin-top: 4px; }
+.row-pred .card.iz .value { color: var(--iz-deep); }
+.row-pred .card.eu .value { color: var(--eu); }
+.scene-list { font-family: var(--mono); font-size: 12px; padding-left: 18px; }
+.scene-list li { margin: 2px 0; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 3px; font-family: var(--sans); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+.badge.disclosure { background: var(--iz); color: white; }
+.badge.disputed { background: var(--eu); color: white; }
+.small { font-size: 12px; }
+@media (max-width: 720px) {
+  .row-pred { grid-template-columns: 1fr; }
+  .fact-grid { grid-template-columns: 1fr; }
+  .fact-grid dt { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; margin-top: 6px; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap-wide row">
+  <a href="/" class="logo">iz <em>· TR-MRV-Bench</em></a>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/bench/" class="active">Bench</a>
+    <a href="/use/">Use</a>
+    <a href="/about/">About</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+
+<p class="crumbs"><a href="/">iz</a> · <a href="/bench/">Bench</a> · Aliağa Plant</p>
+
+<header class="hero">
+  <p class="kicker">steel · Aliağa  ·  450,000 t/y</p>
+  <h1>Aliağa Plant</h1>
+  <p class="subhead"><strong>Habaş</strong></p>
+</header>
+
+<section>
+  <h2><span class="h2-num">01</span> Snapshot</h2>
+  <div class="row-pred">
+    <div class="card iz">
+      <div class="label">Audit-grade Scope 1 · 2024</div>
+      <div class="value">830,338</div>
+      <div class="delta muted">tCO₂ · <span class="badge composite">composite</span> · ISO 14064-1 verified</div>
+    </div>
+    <div class="card iz">
+      <div class="label">iz-1 prediction (LODO)</div>
+      <div class="value">939,659</div>
+      <div class="delta"><span class="muted">+13% vs. truth</span></div>
+    </div>
+    <div class="card eu">
+      <div class="label">EU CBAM default</div>
+      <div class="value">8,550,000</div>
+      <div class="delta"><span class="muted">+930% vs. truth</span></div>
+    </div>
+  </div>
+  <div class="ci-line">95% conformal prediction interval (global, n=21): <strong>456,612</strong> – <strong>1,933,720</strong> tCO₂ <span class="muted">(truth inside ✓)</span></div><div class="ci-line" style="margin-top:4px;">95% interval restricted to <code>steel-EAF</code> calibration set: <strong>865,258</strong> – <strong>1,020,457</strong> tCO₂ <span class="muted">(truth outside ✗ · undercoverage caveat at small n)</span></div>
+  <p style="margin-top:14px;"><a href="audit-summary/" style="display:inline-block;padding:8px 14px;background:var(--iz);color:white;border:none;border-bottom:none;font-family:var(--sans);font-size:13px;font-weight:600;">Open printable audit summary →</a>
+  <span class="muted" style="font-family:var(--sans);font-size:12px;margin-left:10px;">One-page PDF you can hand to a verifier.</span></p>
+</section>
+
+<section>
+  <h2><span class="h2-num">02</span> Facility data</h2>
+  <dl class="fact-grid">
+    <dt>Company</dt><dd>Habaş</dd>
+    <dt>Plant</dt><dd>Aliağa Plant</dd>
+    <dt>Sector</dt><dd>steel</dd>
+    <dt>City</dt><dd>Aliağa</dd>
+    <dt>Capacity</dt><dd>4,500,000 t/y</dd>
+    <dt>Label source</dt><dd><span class="badge disclosure">disclosure</span></dd>
+    <dt>Provenance</dt><dd></dd>
+    <dt>iz-1 runs</dt><dd>5 LODO outer × 3 inner seeds = 15 total</dd>
+  </dl>
+</section>
+
+<section>
+  <h2><span class="h2-num">03</span> Source citation</h2>
+  <p>Habas 2024 SR p75 (EAF 636377) + p76 (plate 193961) combined</p>
+  
+  <p class="muted small">EAF main line only (Çelikhane + Çubuk Haddehanesi). Habaş also operates a plate mill at the same site with separate Scope 1 = 193,961 (2024). If treating as &#x27;Habaş Aliağa total,&#x27; add 193,961.</p>
+</section>
+
+<section>
+  <h2><span class="h2-num">04</span> Satellite cross-check</h2>
+  <p>The TROPOMI flux-divergence catalog of <a href="https://essd.copernicus.org/articles/15/3051/2023/" target="_blank" rel="noopener">Beirle et al. (2023, ESSD)</a> lists a NOx source within 3.1 km of this plant:</p>
+  <p class="metric"><strong>0.344 ± 0.059 kg NOx/s</strong> (colocated source: Enka İzmir Doğalgaz Santrali;İzdemir Enerji power station)</p>
+  <p class="muted">NOx is an activity proxy independent of operator disclosure. A catalog hit within 15 km
+  means the plant (or its colocated captive power) is bright enough in TROPOMI to register globally.
+  This row is in the <code>data/beirle_match_audit_grade.csv</code> join used by iz-1 v0.1.1+.</p>
+</section>
+
+<section>
+  <h2><span class="h2-num">05</span> Hyperspectral coverage</h2>
+  <p>4 EnMAP L2A scenes index this plant (4 with &lt;1% cloud cover).
+  Source: <a href="https://geoservice.dlr.de/eoc/ogc/stac/v1" target="_blank" rel="noopener">DLR EOC STAC</a>.
+  Following <a href="https://iopscience.iop.org/article/10.1088/1748-9326/adc0b1" target="_blank" rel="noopener">Borger et al. (2025)</a>,
+  these scenes can yield direct CO₂ and NO₂ plume retrievals at ~30 m spatial resolution.</p>
+  <p class="muted">Lowest cloud cover scenes (showing top 5):</p>
+  <ul class="scene-list"><li><code>2023-03-25T09:37:05Z</code> · cloud cover 0% · <code class="muted">ENMAP01-____L2A-DT0000012071_20230325T093705Z_002_…</code></li><li><code>2024-08-15T09:32:54.905235Z</code> · cloud cover 0% · <code class="muted">ENMAP01-____L2A-DT0000087645_20240815T093252Z_018_…</code></li><li><code>2024-08-15T09:32:54.905235Z</code> · cloud cover 0% · <code class="muted">ENMAP01-____L2A-DT0000087645_20240815T093252Z_018_…</code></li><li><code>2025-04-15T09:33:22Z</code> · cloud cover 0% · <code class="muted">ENMAP01-____L2A-DT0000126537_20250415T093322Z_011_…</code></li></ul>
+  <p class="muted small">Downloads require a free DLR EOWEB account
+  (see <a href="https://github.com/abgnydn/iz/blob/master/outreach/enmap_access_howto.md" target="_blank" rel="noopener">enmap_access_howto.md</a>).</p>
+</section>
+
+<section>
+  <h2><span class="h2-num">06</span> Verify / correct</h2>
+  <p>If you're an operator or analyst with a more recent disclosure than what's shown above:</p>
+  <ul>
+    <li>Open a pull request adding a row to <code>data/tr_facility_known_emissions.csv</code>
+        (<a href="https://github.com/abgnydn/iz/blob/master/data/tr_facility_known_emissions.csv" target="_blank" rel="noopener">source</a>).</li>
+    <li>Or email <a href="mailto:hi@barisgunaydin.com?subject=iz%20bench%20correction%3A%20Aliağa Plant">hi@barisgunaydin.com</a> with the source PDF.</li>
+    <li>Or use the <a href="/bench/#claim">claim-your-facility form</a> on the bench page.</li>
+  </ul>
+  <p class="muted small">Corrections that include a verifiable public source land within 24 hours.
+  All data is Apache-2.0 licensed; methodology in <a href="https://github.com/abgnydn/iz/blob/master/paper/iz_v0.md" target="_blank" rel="noopener">paper/iz_v0.md</a>.</p>
+</section>
+
+<footer class="footer">
+  <p>iz · TR-MRV-Bench v0.1 · per-facility page generated by <code>bin/build_facility_pages.py</code> from
+  <code>site/bench/facilities.json</code>. The bench is open source and Apache-2.0 licensed.</p>
+</footer>
+
+</div>
+</body>
+</html>

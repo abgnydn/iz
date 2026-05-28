@@ -341,6 +341,24 @@ Following Singh et al. (2024, Nature Scientific Reports doi:10.1038/s41598-024-6
 
 Operator-readable interpretation: **iz-1 predicts within a factor of ~2 of audited Scope 1 with 90% empirical coverage.** This is the form the prediction interval would take if iz-1 output were embedded in a CBAM filing — far more actionable than "log-MAE reduction by 83%".
 
+### 8.4 Per-facility operator-facing artifacts
+
+The v0.1.2 release ships per-facility detail pages at `/bench/{id}/` and a printable single-page audit summary at `/bench/{id}/audit-summary/`. Each detail page consolidates all evidence pertaining to one plant — audit-grade Scope 1 with source PDF citation, iz-1 LODO prediction with conformal CI, EU CBAM default delta, Beirle 2023 NOx cross-match when applicable, EnMAP scene index for future hyperspectral retrieval — into one URL operators can land on directly via a Google search. The audit summary is a print-stylesheet page designed to fit on A4 and printable to PDF by the operator, suitable for handing to an EU-accredited verifier alongside CBAM Article 4(2) actual-emission declarations. Both artifacts are generated deterministically from `site/bench/facilities.json` by `bin/build_facility_pages.py`.
+
+### 8.5 Beirle NOx as an iz-1 input feature: a negative result
+
+We integrated the Beirle 2023 v2 NOx fluxes (§8.2) as iz-1 input features (`beirle_nox_log`, `beirle_dist`, `beirle_has`) and re-ran the full LODO aggregator (5 outer × 3 inner = 15 seeds, n=21 facilities). With only 6 of 21 facilities having an in-catalog NOx source within 15 km, the feature behaves as a sparse, noisy indicator: log-MAE reduction moved from 83.3% (pre-Beirle baseline) to 81.6% with the three Beirle features included (per-outer reductions: 80.1%, 80.8%, 82.8%, 81.2%, 81.8%). A 1.7-percentage-point regression — the marginal cost of three additional input dimensions outweighs the signal that the sparse hits provide.
+
+To assess whether satellite features in aggregate are a net positive or negative, we ran a 3-variant ablation matrix (2 outer × 3 inner = 6 seeds per facility, n=21; saved to `reports/ablations/satellite_summary_v0.1.2.json`):
+
+| variant | what's off | log-MAE | reduction vs EU |
+| --- | --- | --- | --- |
+| `no_beirle` | Beirle NOx | 0.268 | 81.3% |
+| `no_s5p` | Sentinel-5P NO₂ | 0.245 | 82.9% |
+| `no_sat` | both | **0.223** | **84.5%** |
+
+`no_sat` is the best variant. Both satellite features hurt iz-1 at this label granularity. We therefore set `IZ_NO_BEIRLE=1 IZ_NO_S5P=1` as production rebuild flags; the satellite features remain in the bench export pipeline for opt-in re-enablement, and the Beirle-on baseline is preserved at `reports/lodo_aggregated.with_beirle.json` for replication. This finding is consistent with our prior negative result on Sentinel-5P (§8.1 of the v0.1 draft): at the annual-Scope-1 prediction granularity, satellite activity proxies are noise relative to the operator-disclosed cf and route signals. The granular signal almost certainly exists (monthly or weekly cadence, plume-scale rather than bbox-aggregated) but TR-MRV-Bench currently exposes only annual labels, so we have no calibration target for those granular features. Resolving that is a v0.2 task gated on monthly disclosure-density.
+
 ---
 
 ## Reproducibility
