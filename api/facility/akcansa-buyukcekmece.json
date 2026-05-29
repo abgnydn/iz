@@ -1,0 +1,18 @@
+{
+  "facility_id": "akcansa-buyukcekmece",
+  "operator": "Ak\u00e7ansa",
+  "group": "Sabanc\u0131",
+  "name": "B\u00fcy\u00fck\u00e7ekmece Cement Plant",
+  "sector": "cement",
+  "city": "B\u00fcy\u00fck\u00e7ekmece",
+  "province": "\u0130stanbul",
+  "lat": 41.0397,
+  "lon": 28.5587,
+  "annual_capacity_t": 2500000.0,
+  "cn_codes": "25232100;25232900;25231000",
+  "disclosure_url": "https://www.akcansa.com.tr/en/sustainability/",
+  "scope1_t": 1514000.0,
+  "scope1_year": 2025,
+  "scope1_provenance": "allocated",
+  "scope1_source": "Ak\u00e7ansa 2025 IAR p46 (group Scope 1 gross 5,484,015) \u00d7 B\u00fcy\u00fck\u00e7ekmece clinker share p167 (1,943/7,037 = 27.6%)"
+}

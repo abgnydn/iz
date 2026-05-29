@@ -1,0 +1,14 @@
+{
+  "facility_id": "limak-ergani",
+  "operator": "Limak \u00c7imento",
+  "group": "Limak",
+  "name": "Ergani Cement Plant",
+  "sector": "cement",
+  "city": "Ergani",
+  "province": "Diyarbak\u0131r",
+  "lat": 38.27,
+  "lon": 39.76,
+  "annual_capacity_t": 1200000.0,
+  "cn_codes": "25232900",
+  "disclosure_url": "https://www.limakcimento.com"
+}

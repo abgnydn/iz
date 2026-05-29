@@ -1,0 +1,18 @@
+{
+  "facility_id": "habas-aliaga",
+  "operator": "Haba\u015f",
+  "group": "Haba\u015f",
+  "name": "Alia\u011fa Plant",
+  "sector": "steel",
+  "city": "Alia\u011fa",
+  "province": "\u0130zmir",
+  "lat": 38.79,
+  "lon": 26.97,
+  "annual_capacity_t": 4500000.0,
+  "cn_codes": "7213;7214;7228",
+  "disclosure_url": "https://www.habas.com.tr",
+  "scope1_t": 830338.0,
+  "scope1_year": 2024,
+  "scope1_provenance": "composite",
+  "scope1_source": "Habas 2024 SR p75 (EAF 636377) + p76 (plate 193961) combined"
+}

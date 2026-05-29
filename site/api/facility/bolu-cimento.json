@@ -1,0 +1,14 @@
+{
+  "facility_id": "bolu-cimento",
+  "operator": "Bolu \u00c7imento",
+  "group": "OYAK",
+  "name": "Bolu Cement Plant 2",
+  "sector": "cement",
+  "city": "Bolu",
+  "province": "Bolu",
+  "lat": 40.73,
+  "lon": 31.59,
+  "annual_capacity_t": 2500000.0,
+  "cn_codes": "25232900",
+  "disclosure_url": "https://www.bolucimento.com.tr"
+}

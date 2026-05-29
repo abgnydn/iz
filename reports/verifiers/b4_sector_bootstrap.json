@@ -1,0 +1,102 @@
+{
+  "cement": {
+    "n": 8,
+    "facilities": [
+      "akcansa-buyukcekmece",
+      "akcansa-canakkale",
+      "akcansa-ladik",
+      "nuh-hereke",
+      "afyon-cimento",
+      "batisoke-soke",
+      "goltas-isparta",
+      "bursa-cimento"
+    ],
+    "formula_log_mae": 0.2232963520505853,
+    "eu_log_mae": 1.101629634071301,
+    "reduction_pct": 79.7303608087096,
+    "ci_lo_pct": 61.05210274607521,
+    "ci_hi_pct": 93.56086951506897,
+    "n_bootstrap": 5000
+  },
+  "steel-BF/BOF": {
+    "n": 3,
+    "facilities": [
+      "erdemir-eregli",
+      "isdemir-iskenderun",
+      "kardemir-karabuk"
+    ],
+    "formula_log_mae": 0.05726795741456847,
+    "eu_log_mae": 0.11701573988195275,
+    "reduction_pct": 51.05961174766638,
+    "ci_lo_pct": 12.477325171400045,
+    "ci_hi_pct": 97.62485705717062,
+    "n_bootstrap": 5000
+  },
+  "steel-EAF": {
+    "n": 3,
+    "facilities": [
+      "colakoglu-gebze",
+      "habas-aliaga",
+      "izdemir-aliaga"
+    ],
+    "formula_log_mae": 0.13875475640492674,
+    "eu_log_mae": 2.466177112894249,
+    "reduction_pct": 94.37369053181719,
+    "ci_lo_pct": 93.12074863351107,
+    "ci_hi_pct": 96.08687121085748,
+    "n_bootstrap": 5000
+  },
+  "aluminum-downstream": {
+    "n": 2,
+    "facilities": [
+      "assan-tuzla",
+      "asas-akyazi"
+    ],
+    "formula_log_mae": 0.25165619954339125,
+    "eu_log_mae": 1.6515950507821167,
+    "reduction_pct": 84.76283884332186,
+    "ci_lo_pct": 80.4589589209328,
+    "ci_hi_pct": 89.31761142569017,
+    "n_bootstrap": 5000
+  },
+  "fertilizer-integrated": {
+    "n": 3,
+    "facilities": [
+      "toros-mersin",
+      "toros-samsun",
+      "toros-ceyhan"
+    ],
+    "formula_log_mae": 0.28212796157226805,
+    "eu_log_mae": 0.7618726303881799,
+    "reduction_pct": 62.969143355560405,
+    "ci_lo_pct": 49.6169700555856,
+    "ci_hi_pct": 67.48751346163596,
+    "n_bootstrap": 5000
+  },
+  "fertilizer-N2O": {
+    "n": 1,
+    "facilities": [
+      "bagfas-bandirma"
+    ],
+    "formula_log_mae": 0.5749634235998631,
+    "eu_log_mae": 4.042701329070262,
+    "reduction_pct": 85.7777417424974,
+    "ci_lo_pct": null,
+    "ci_hi_pct": null,
+    "n_bootstrap": 0,
+    "note": "n=1 \u2014 bootstrap not meaningful"
+  },
+  "fertilizer-blender": {
+    "n": 1,
+    "facilities": [
+      "gubretas-izmit"
+    ],
+    "formula_log_mae": 0.12836030140276478,
+    "eu_log_mae": 3.875133733935604,
+    "reduction_pct": 96.68759041065658,
+    "ci_lo_pct": null,
+    "ci_hi_pct": null,
+    "n_bootstrap": 0,
+    "note": "n=1 \u2014 bootstrap not meaningful"
+  }
+}

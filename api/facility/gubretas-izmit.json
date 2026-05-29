@@ -1,0 +1,18 @@
+{
+  "facility_id": "gubretas-izmit",
+  "operator": "G\u00fcbreta\u015f",
+  "group": "G\u00fcbreta\u015f",
+  "name": "Yar\u0131mca Plant",
+  "sector": "fertilizer",
+  "city": "K\u00f6rfez",
+  "province": "Kocaeli",
+  "lat": 40.77,
+  "lon": 29.78,
+  "annual_capacity_t": 800000.0,
+  "cn_codes": "3102;3105",
+  "disclosure_url": "https://www.gubretas.com.tr/en/sustainability",
+  "scope1_t": 13281.0,
+  "scope1_year": 2024,
+  "scope1_provenance": "direct",
+  "scope1_source": "G\u00fcbreta\u015f 2024 TSRS Report p23"
+}

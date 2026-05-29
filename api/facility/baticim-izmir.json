@@ -1,0 +1,14 @@
+{
+  "facility_id": "baticim-izmir",
+  "operator": "Bat\u0131\u00e7im",
+  "group": "Bat\u0131\u00e7im",
+  "name": "\u0130zmir Cement Plant",
+  "sector": "cement",
+  "city": "Alia\u011fa",
+  "province": "\u0130zmir",
+  "lat": 38.55,
+  "lon": 27.05,
+  "annual_capacity_t": 2000000.0,
+  "cn_codes": "25232900",
+  "disclosure_url": "https://www.baticim.com.tr"
+}

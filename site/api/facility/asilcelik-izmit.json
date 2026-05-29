@@ -1,0 +1,14 @@
+{
+  "facility_id": "asilcelik-izmit",
+  "operator": "Asil\u00e7elik",
+  "group": "Y\u0131ld\u0131z Holding",
+  "name": "\u0130zmit Plant",
+  "sector": "steel",
+  "city": "\u0130zmit",
+  "province": "Kocaeli",
+  "lat": 40.72,
+  "lon": 29.94,
+  "annual_capacity_t": 1000000.0,
+  "cn_codes": "7228",
+  "disclosure_url": "https://www.asilcelik.com.tr"
+}

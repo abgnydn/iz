@@ -1,0 +1,18 @@
+{
+  "facility_id": "kardemir-karabuk",
+  "operator": "Kardemir",
+  "group": "Kardemir",
+  "name": "Karab\u00fck Integrated Works",
+  "sector": "steel",
+  "city": "Karab\u00fck",
+  "province": "Karab\u00fck",
+  "lat": 41.2,
+  "lon": 32.62,
+  "annual_capacity_t": 3500000.0,
+  "cn_codes": "7207;7213;7214;7228",
+  "disclosure_url": "https://www.kardemir.com/en/sustainability",
+  "scope1_t": 5650626.0,
+  "scope1_year": 2023,
+  "scope1_provenance": "direct",
+  "scope1_source": "Kardemir 2023 SR p100 (KAP 2024-12-27)"
+}

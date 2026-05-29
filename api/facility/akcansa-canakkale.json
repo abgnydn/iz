@@ -1,0 +1,18 @@
+{
+  "facility_id": "akcansa-canakkale",
+  "operator": "Ak\u00e7ansa",
+  "group": "Sabanc\u0131",
+  "name": "\u00c7anakkale Cement Plant",
+  "sector": "cement",
+  "city": "Lapseki",
+  "province": "\u00c7anakkale",
+  "lat": 40.345,
+  "lon": 26.68,
+  "annual_capacity_t": 5500000.0,
+  "cn_codes": "25232100;25232900;25231000",
+  "disclosure_url": "https://www.akcansa.com.tr/en/sustainability/",
+  "scope1_t": 3466000.0,
+  "scope1_year": 2025,
+  "scope1_provenance": "allocated",
+  "scope1_source": "Ak\u00e7ansa 2025 IAR p46 \u00d7 \u00c7anakkale clinker share p167 (4,450/7,037 = 63.2%)"
+}

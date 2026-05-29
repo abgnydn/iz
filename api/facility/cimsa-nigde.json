@@ -1,0 +1,14 @@
+{
+  "facility_id": "cimsa-nigde",
+  "operator": "\u00c7imsa",
+  "group": "Sabanc\u0131",
+  "name": "Ni\u011fde Cement Plant",
+  "sector": "cement",
+  "city": "Ni\u011fde",
+  "province": "Ni\u011fde",
+  "lat": 37.96,
+  "lon": 34.68,
+  "annual_capacity_t": 1400000.0,
+  "cn_codes": "25232900",
+  "disclosure_url": "https://www.cimsa.com.tr/en/sustainability"
+}

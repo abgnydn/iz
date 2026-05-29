@@ -1,0 +1,559 @@
+{
+  "data_gap_finding": "Province-level respiratory mortality is not publicly published by TÜİK at the granularity needed for facility-attribution regression. Kocak 2024 + Yıldız 2022 PMC both note this explicitly. iz-1's per-facility Beirle/S5P/Scope-1 layer is ready to plug in if/when TÜİK publishes.",
+  "persistent_pollution_provinces_yildiz_2022": [
+    "Bursa",
+    "Düzce",
+    "Gaziantep",
+    "Iğdır",
+    "Kahramanmaraş",
+    "Karabük",
+    "Karaman",
+    "Kocaeli",
+    "Konya",
+    "Manisa",
+    "Sakarya",
+    "Tekirdağ",
+    "Yalova",
+    "Şanlıurfa"
+  ],
+  "facility_pressure_by_province": [
+    {
+      "province": "Hatay",
+      "n_facilities": 4,
+      "total_capacity_t": 11300000.0,
+      "audit_scope1_t": 10663364.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "isdemir-iskenderun",
+        "tosyali-iskenderun",
+        "ekinciler-iskenderun",
+        "yazici-iskenderun"
+      ],
+      "sectors": [
+        "steel"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Zonguldak",
+      "n_facilities": 1,
+      "total_capacity_t": 4000000.0,
+      "audit_scope1_t": 6667232.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "erdemir-eregli"
+      ],
+      "sectors": [
+        "steel"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Karabük",
+      "n_facilities": 1,
+      "total_capacity_t": 3500000.0,
+      "audit_scope1_t": 5650626.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "kardemir-karabuk"
+      ],
+      "sectors": [
+        "steel"
+      ],
+      "persistent_pollution_listed": true
+    },
+    {
+      "province": "Kocaeli",
+      "n_facilities": 5,
+      "total_capacity_t": 13000000.0,
+      "audit_scope1_t": 4164753.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "nuh-hereke",
+        "colakoglu-gebze",
+        "kroman-gebze",
+        "asilcelik-izmit",
+        "gubretas-izmit"
+      ],
+      "sectors": [
+        "cement",
+        "fertilizer",
+        "steel"
+      ],
+      "persistent_pollution_listed": true
+    },
+    {
+      "province": "Çanakkale",
+      "n_facilities": 2,
+      "total_capacity_t": 9000000.0,
+      "audit_scope1_t": 3466000.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "akcansa-canakkale",
+        "icdas-biga"
+      ],
+      "sectors": [
+        "cement",
+        "steel"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Isparta",
+      "n_facilities": 1,
+      "total_capacity_t": 5000000.0,
+      "audit_scope1_t": 1669072.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "goltas-isparta"
+      ],
+      "sectors": [
+        "cement"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "İstanbul",
+      "n_facilities": 2,
+      "total_capacity_t": 2860000.0,
+      "audit_scope1_t": 1622500.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "akcansa-buyukcekmece",
+        "assan-tuzla"
+      ],
+      "sectors": [
+        "aluminum",
+        "cement"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Aydın",
+      "n_facilities": 1,
+      "total_capacity_t": 4000000.0,
+      "audit_scope1_t": 1577926.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "batisoke-soke"
+      ],
+      "sectors": [
+        "cement"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Afyonkarahisar",
+      "n_facilities": 1,
+      "total_capacity_t": 1800000.0,
+      "audit_scope1_t": 1200000.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "afyon-cimento"
+      ],
+      "sectors": [
+        "cement"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Bursa",
+      "n_facilities": 3,
+      "total_capacity_t": 3500000.0,
+      "audit_scope1_t": 1121545.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "bursa-cimento",
+        "borcelik-gemlik",
+        "gemlik-gubre"
+      ],
+      "sectors": [
+        "cement",
+        "fertilizer",
+        "steel"
+      ],
+      "persistent_pollution_listed": true
+    },
+    {
+      "province": "İzmir",
+      "n_facilities": 5,
+      "total_capacity_t": 12500000.0,
+      "audit_scope1_t": 1101461.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "cimentas-izmir",
+        "baticim-izmir",
+        "habas-aliaga",
+        "diler-aliaga",
+        "izdemir-aliaga"
+      ],
+      "sectors": [
+        "cement",
+        "steel"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Samsun",
+      "n_facilities": 2,
+      "total_capacity_t": 1575000.0,
+      "audit_scope1_t": 754180.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "akcansa-ladik",
+        "toros-samsun"
+      ],
+      "sectors": [
+        "cement",
+        "fertilizer"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Mersin",
+      "n_facilities": 2,
+      "total_capacity_t": 3210000.0,
+      "audit_scope1_t": 383150.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "cimsa-mersin",
+        "toros-mersin"
+      ],
+      "sectors": [
+        "cement",
+        "fertilizer"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Adana",
+      "n_facilities": 3,
+      "total_capacity_t": 7821700.0,
+      "audit_scope1_t": 203840.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "oyak-adana",
+        "adana-cimento",
+        "toros-ceyhan"
+      ],
+      "sectors": [
+        "cement",
+        "fertilizer"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Sakarya",
+      "n_facilities": 1,
+      "total_capacity_t": 250000.0,
+      "audit_scope1_t": 68618.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "asas-akyazi"
+      ],
+      "sectors": [
+        "aluminum"
+      ],
+      "persistent_pollution_listed": true
+    },
+    {
+      "province": "Balıkesir",
+      "n_facilities": 1,
+      "total_capacity_t": 700000.0,
+      "audit_scope1_t": 9828.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "bagfas-bandirma"
+      ],
+      "sectors": [
+        "fertilizer"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Eskişehir",
+      "n_facilities": 1,
+      "total_capacity_t": 1500000.0,
+      "audit_scope1_t": 0.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "cimsa-eskisehir"
+      ],
+      "sectors": [
+        "cement"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Kayseri",
+      "n_facilities": 1,
+      "total_capacity_t": 1700000.0,
+      "audit_scope1_t": 0.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "cimsa-kayseri"
+      ],
+      "sectors": [
+        "cement"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Niğde",
+      "n_facilities": 1,
+      "total_capacity_t": 1400000.0,
+      "audit_scope1_t": 0.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "cimsa-nigde"
+      ],
+      "sectors": [
+        "cement"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Bolu",
+      "n_facilities": 3,
+      "total_capacity_t": 8000000.0,
+      "audit_scope1_t": 0.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "oyak-bolu",
+        "oyak-aslan",
+        "bolu-cimento"
+      ],
+      "sectors": [
+        "cement"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Ordu",
+      "n_facilities": 1,
+      "total_capacity_t": 3200000.0,
+      "audit_scope1_t": 0.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "oyak-unye"
+      ],
+      "sectors": [
+        "cement"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Mardin",
+      "n_facilities": 2,
+      "total_capacity_t": 4000000.0,
+      "audit_scope1_t": 0.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "oyak-mardin",
+        "limak-derik"
+      ],
+      "sectors": [
+        "cement"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Ankara",
+      "n_facilities": 1,
+      "total_capacity_t": 2500000.0,
+      "audit_scope1_t": 0.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "limak-ankara"
+      ],
+      "sectors": [
+        "cement"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Şanlıurfa",
+      "n_facilities": 1,
+      "total_capacity_t": 2500000.0,
+      "audit_scope1_t": 0.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "limak-sanliurfa"
+      ],
+      "sectors": [
+        "cement"
+      ],
+      "persistent_pollution_listed": true
+    },
+    {
+      "province": "Siirt",
+      "n_facilities": 1,
+      "total_capacity_t": 1500000.0,
+      "audit_scope1_t": 0.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "limak-kurtalan"
+      ],
+      "sectors": [
+        "cement"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Tekirdağ",
+      "n_facilities": 1,
+      "total_capacity_t": 2500000.0,
+      "audit_scope1_t": 0.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "limak-trakya"
+      ],
+      "sectors": [
+        "cement"
+      ],
+      "persistent_pollution_listed": true
+    },
+    {
+      "province": "Diyarbakır",
+      "n_facilities": 1,
+      "total_capacity_t": 1200000.0,
+      "audit_scope1_t": 0.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "limak-ergani"
+      ],
+      "sectors": [
+        "cement"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Bitlis",
+      "n_facilities": 1,
+      "total_capacity_t": 800000.0,
+      "audit_scope1_t": 0.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "limak-bitlis"
+      ],
+      "sectors": [
+        "cement"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Edirne",
+      "n_facilities": 1,
+      "total_capacity_t": 1500000.0,
+      "audit_scope1_t": 0.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "cimentas-edirne"
+      ],
+      "sectors": [
+        "cement"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Elazığ",
+      "n_facilities": 1,
+      "total_capacity_t": 1000000.0,
+      "audit_scope1_t": 0.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "cimentas-elazig"
+      ],
+      "sectors": [
+        "cement"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Konya",
+      "n_facilities": 2,
+      "total_capacity_t": 3580000.0,
+      "audit_scope1_t": 0.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "konya-cimento",
+        "eti-aluminyum-seydisehir"
+      ],
+      "sectors": [
+        "aluminum",
+        "cement"
+      ],
+      "persistent_pollution_listed": true
+    },
+    {
+      "province": "Erzurum",
+      "n_facilities": 1,
+      "total_capacity_t": 1500000.0,
+      "audit_scope1_t": 0.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "askale-erzurum"
+      ],
+      "sectors": [
+        "cement"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Adıyaman",
+      "n_facilities": 1,
+      "total_capacity_t": 2000000.0,
+      "audit_scope1_t": 0.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "cimko-adiyaman"
+      ],
+      "sectors": [
+        "cement"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Denizli",
+      "n_facilities": 1,
+      "total_capacity_t": 2500000.0,
+      "audit_scope1_t": 0.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "denizli-cimento"
+      ],
+      "sectors": [
+        "cement"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Osmaniye",
+      "n_facilities": 1,
+      "total_capacity_t": 3500000.0,
+      "audit_scope1_t": 0.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "tosyali-osmaniye"
+      ],
+      "sectors": [
+        "steel"
+      ],
+      "persistent_pollution_listed": false
+    },
+    {
+      "province": "Sivas",
+      "n_facilities": 1,
+      "total_capacity_t": 1500000.0,
+      "audit_scope1_t": 0.0,
+      "beirle_nox_kgs_sum": 0.0,
+      "facilities": [
+        "tosyali-sivas"
+      ],
+      "sectors": [
+        "steel"
+      ],
+      "persistent_pollution_listed": false
+    }
+  ]
+}

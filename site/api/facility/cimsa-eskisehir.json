@@ -1,0 +1,14 @@
+{
+  "facility_id": "cimsa-eskisehir",
+  "operator": "\u00c7imsa",
+  "group": "Sabanc\u0131",
+  "name": "Eski\u015fehir Cement Plant",
+  "sector": "cement",
+  "city": "Eski\u015fehir",
+  "province": "Eski\u015fehir",
+  "lat": 39.78,
+  "lon": 30.52,
+  "annual_capacity_t": 1500000.0,
+  "cn_codes": "25232900",
+  "disclosure_url": "https://www.cimsa.com.tr/en/sustainability"
+}

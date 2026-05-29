@@ -1,0 +1,14 @@
+{
+  "facility_id": "oyak-aslan",
+  "operator": "OYAK \u00c7imento",
+  "group": "OYAK",
+  "name": "Aslan Cement Plant",
+  "sector": "cement",
+  "city": "Bolu",
+  "province": "Bolu",
+  "lat": 40.74,
+  "lon": 31.1,
+  "annual_capacity_t": 2000000.0,
+  "cn_codes": "25232900",
+  "disclosure_url": "https://www.oyakcimento.com/en/sustainability"
+}

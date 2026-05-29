@@ -1,0 +1,18 @@
+{
+  "facility_id": "isdemir-iskenderun",
+  "operator": "\u0130sdemir",
+  "group": "OYAK",
+  "name": "\u0130skenderun Integrated Works",
+  "sector": "steel",
+  "city": "\u0130skenderun",
+  "province": "Hatay",
+  "lat": 36.78,
+  "lon": 36.18,
+  "annual_capacity_t": 5300000.0,
+  "cn_codes": "7208;7210;7227;7228",
+  "disclosure_url": "https://www.isdemir.com.tr",
+  "scope1_t": 10663364.0,
+  "scope1_year": 2024,
+  "scope1_provenance": "direct",
+  "scope1_source": "Erdemir 2024 Entegre Faaliyet Raporu p115 (KGK)"
+}

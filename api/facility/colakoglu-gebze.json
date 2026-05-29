@@ -1,0 +1,18 @@
+{
+  "facility_id": "colakoglu-gebze",
+  "operator": "\u00c7olako\u011flu",
+  "group": "\u00c7olako\u011flu Metalurji",
+  "name": "Gebze Dilovas\u0131 Plant",
+  "sector": "steel",
+  "city": "Dilovas\u0131",
+  "province": "Kocaeli",
+  "lat": 40.79,
+  "lon": 29.49,
+  "annual_capacity_t": 4500000.0,
+  "cn_codes": "7208;7210",
+  "disclosure_url": "https://www.colakoglu.com.tr",
+  "scope1_t": 566519.0,
+  "scope1_year": 2024,
+  "scope1_provenance": "direct",
+  "scope1_source": "\u00c7olako\u011flu 2024 SR p82"
+}

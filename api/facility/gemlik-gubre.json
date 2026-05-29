@@ -1,0 +1,14 @@
+{
+  "facility_id": "gemlik-gubre",
+  "operator": "Gemlik G\u00fcbre",
+  "group": "\u2014",
+  "name": "Gemlik Plant",
+  "sector": "fertilizer",
+  "city": "Gemlik",
+  "province": "Bursa",
+  "lat": 40.42,
+  "lon": 29.16,
+  "annual_capacity_t": 500000.0,
+  "cn_codes": "3102;3105",
+  "disclosure_url": "https://www.gemlikgubre.com.tr"
+}

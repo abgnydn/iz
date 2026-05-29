@@ -1,0 +1,18 @@
+{
+  "facility_id": "erdemir-eregli",
+  "operator": "Erdemir",
+  "group": "OYAK",
+  "name": "Karadeniz Ere\u011fli Integrated Works",
+  "sector": "steel",
+  "city": "Karadeniz Ere\u011fli",
+  "province": "Zonguldak",
+  "lat": 41.28,
+  "lon": 31.4,
+  "annual_capacity_t": 4000000.0,
+  "cn_codes": "7208;7210;7225",
+  "disclosure_url": "https://www.erdemir.com.tr/en/sustainability",
+  "scope1_t": 6667232.0,
+  "scope1_year": 2024,
+  "scope1_provenance": "direct",
+  "scope1_source": "Erdemir 2024 IAR p79 (per-plant) \u2014 kgk verified"
+}

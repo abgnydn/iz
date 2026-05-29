@@ -1,0 +1,18 @@
+{
+  "facility_id": "afyon-cimento",
+  "operator": "Afyon \u00c7imento",
+  "group": "\u00c7imsa",
+  "name": "Afyonkarahisar Cement Plant",
+  "sector": "cement",
+  "city": "Afyonkarahisar",
+  "province": "Afyonkarahisar",
+  "lat": 38.756,
+  "lon": 30.543,
+  "annual_capacity_t": 1800000.0,
+  "cn_codes": "25232900",
+  "disclosure_url": "https://www.afyoncimento.com",
+  "scope1_t": 1200000.0,
+  "scope1_year": 2024,
+  "scope1_provenance": "direct",
+  "scope1_source": "Afyon \u00c7imento 2024 TSRS Sustainability Report p23"
+}

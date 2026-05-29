@@ -1,0 +1,14 @@
+{
+  "facility_id": "tosyali-sivas",
+  "operator": "Tosyal\u0131",
+  "group": "Tosyal\u0131 Holding",
+  "name": "Sivas Mill",
+  "sector": "steel",
+  "city": "Sivas",
+  "province": "Sivas",
+  "lat": 39.75,
+  "lon": 36.95,
+  "annual_capacity_t": 1500000.0,
+  "cn_codes": "7213;7214",
+  "disclosure_url": "https://www.tosyali.com.tr/sustainability"
+}

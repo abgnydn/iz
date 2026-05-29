@@ -1,0 +1,18 @@
+{
+  "facility_id": "asas-akyazi",
+  "operator": "Asa\u015f Al\u00fcminyum",
+  "group": "\u2014",
+  "name": "Akyaz\u0131 Plant",
+  "sector": "aluminum",
+  "city": "Akyaz\u0131",
+  "province": "Sakarya",
+  "lat": 40.71,
+  "lon": 30.59,
+  "annual_capacity_t": 250000.0,
+  "cn_codes": "7604;7608",
+  "disclosure_url": "https://www.asastr.com",
+  "scope1_t": 68618.0,
+  "scope1_year": 2024,
+  "scope1_provenance": "direct",
+  "scope1_source": "ASA\u015e 2024 Sustainability Report p84"
+}

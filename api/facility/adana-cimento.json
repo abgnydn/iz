@@ -1,0 +1,14 @@
+{
+  "facility_id": "adana-cimento",
+  "operator": "Adana \u00c7imento",
+  "group": "OYAK",
+  "name": "Adana T.A.\u015e.",
+  "sector": "cement",
+  "city": "Adana",
+  "province": "Adana",
+  "lat": 36.97,
+  "lon": 35.34,
+  "annual_capacity_t": 3500000.0,
+  "cn_codes": "25232900",
+  "disclosure_url": "https://www.adanacimento.com.tr"
+}

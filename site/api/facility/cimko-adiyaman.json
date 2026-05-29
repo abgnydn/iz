@@ -1,0 +1,14 @@
+{
+  "facility_id": "cimko-adiyaman",
+  "operator": "\u00c7imko",
+  "group": "Eren Holding",
+  "name": "Ad\u0131yaman Cement Plant",
+  "sector": "cement",
+  "city": "Ad\u0131yaman",
+  "province": "Ad\u0131yaman",
+  "lat": 37.76,
+  "lon": 38.28,
+  "annual_capacity_t": 2000000.0,
+  "cn_codes": "25232900",
+  "disclosure_url": "https://www.cimko.com.tr"
+}

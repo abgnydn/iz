@@ -1,106 +1,317 @@
 [
   {
+    "facility_id": "afyon-cimento",
+    "truth": 1200000.0,
+    "pred_median": 489293.0,
+    "eu_default": 2851200.0,
+    "n_runs": 5,
+    "preds_all": [
+      482001.0,
+      714704.0,
+      403859.0,
+      654090.0,
+      489293.0
+    ],
+    "ratio_median": 0.4077441666666667
+  },
+  {
     "facility_id": "akcansa-buyukcekmece",
     "truth": 1514000.0,
-    "pred_median": 1458472.0,
-    "eu_default": 7128000.0,
-    "n_runs": 3,
+    "pred_median": 1336355.0,
+    "eu_default": 3960000.0,
+    "n_runs": 5,
     "preds_all": [
-      1458472.0,
-      1467759.0,
-      1450659.0
+      1336355.0,
+      1538887.0,
+      1256616.0,
+      1495186.0,
+      1275782.0
     ],
-    "ratio_median": 0.9633236459709379
+    "ratio_median": 0.8826651254953765
   },
   {
     "facility_id": "akcansa-canakkale",
     "truth": 3466000.0,
-    "pred_median": 1920874.0,
-    "eu_default": 9504000.0,
-    "n_runs": 3,
+    "pred_median": 2054683.0,
+    "eu_default": 8712000.0,
+    "n_runs": 5,
     "preds_all": [
-      1812441.0,
-      1920874.0,
-      1976051.0
+      2119906.0,
+      2180801.0,
+      1979833.0,
+      2054683.0,
+      2052678.0
     ],
-    "ratio_median": 0.5542048470859781
+    "ratio_median": 0.5928110213502596
   },
   {
     "facility_id": "akcansa-ladik",
     "truth": 499000.0,
-    "pred_median": 549533.0,
-    "eu_default": 2376000.0,
-    "n_runs": 3,
+    "pred_median": 520012.0,
+    "eu_default": 1584000.0,
+    "n_runs": 5,
     "preds_all": [
-      588126.0,
-      549533.0,
-      537197.0
+      503275.0,
+      520012.0,
+      618077.0,
+      486483.0,
+      617586.0
     ],
-    "ratio_median": 1.1012685370741484
+    "ratio_median": 1.0421082164328657
+  },
+  {
+    "facility_id": "asas-akyazi",
+    "truth": 68618.0,
+    "pred_median": 69165.0,
+    "eu_default": 375000.0,
+    "n_runs": 5,
+    "preds_all": [
+      42861.0,
+      88550.0,
+      69165.0,
+      67300.0,
+      91988.0
+    ],
+    "ratio_median": 1.007971669241307
+  },
+  {
+    "facility_id": "assan-tuzla",
+    "truth": 108500.0,
+    "pred_median": 116622.0,
+    "eu_default": 540000.0,
+    "n_runs": 5,
+    "preds_all": [
+      116622.0,
+      196453.0,
+      91627.0,
+      74783.0,
+      118690.0
+    ],
+    "ratio_median": 1.074857142857143
+  },
+  {
+    "facility_id": "bagfas-bandirma",
+    "truth": 9828.0,
+    "pred_median": 356831.0,
+    "eu_default": 560000.0,
+    "n_runs": 5,
+    "preds_all": [
+      356831.0,
+      390184.0,
+      393052.0,
+      349076.0,
+      340158.0
+    ],
+    "ratio_median": 36.30759055759056
+  },
+  {
+    "facility_id": "batisoke-soke",
+    "truth": 1577926.0,
+    "pred_median": 968688.0,
+    "eu_default": 6336000.0,
+    "n_runs": 5,
+    "preds_all": [
+      1036717.0,
+      923878.0,
+      968688.0,
+      907115.0,
+      1064936.0
+    ],
+    "ratio_median": 0.6138995111304333
+  },
+  {
+    "facility_id": "bursa-cimento",
+    "truth": 1121545.0,
+    "pred_median": 431830.0,
+    "eu_default": 3168000.0,
+    "n_runs": 5,
+    "preds_all": [
+      431830.0,
+      462156.0,
+      338451.0,
+      440992.0,
+      409948.0
+    ],
+    "ratio_median": 0.3850313629858811
   },
   {
     "facility_id": "colakoglu-gebze",
     "truth": 566519.0,
-    "pred_median": 474135.0,
-    "eu_default": 5700000.0,
-    "n_runs": 3,
+    "pred_median": 604837.0,
+    "eu_default": 8550000.0,
+    "n_runs": 5,
     "preds_all": [
-      448463.0,
-      481719.0,
-      474135.0
+      841080.0,
+      604837.0,
+      562061.0,
+      753387.0,
+      596324.0
     ],
-    "ratio_median": 0.8369269168377407
+    "ratio_median": 1.0676376255694866
   },
   {
     "facility_id": "erdemir-eregli",
     "truth": 6673266.0,
-    "pred_median": 9429300.0,
-    "eu_default": 11400000.0,
-    "n_runs": 3,
+    "pred_median": 5304737.0,
+    "eu_default": 7600000.0,
+    "n_runs": 5,
     "preds_all": [
-      10831881.0,
-      9429300.0,
-      7076026.0
+      4115226.0,
+      5304737.0,
+      6588970.0,
+      4039573.0,
+      6070043.0
     ],
-    "ratio_median": 1.4129962749873899
+    "ratio_median": 0.7949236550738424
+  },
+  {
+    "facility_id": "goltas-isparta",
+    "truth": 1669072.0,
+    "pred_median": 2375358.0,
+    "eu_default": 7920000.0,
+    "n_runs": 5,
+    "preds_all": [
+      2396327.0,
+      2375358.0,
+      1986625.0,
+      2731352.0,
+      2051690.0
+    ],
+    "ratio_median": 1.4231608941974943
+  },
+  {
+    "facility_id": "gubretas-izmit",
+    "truth": 13281.0,
+    "pred_median": 126092.0,
+    "eu_default": 640000.0,
+    "n_runs": 5,
+    "preds_all": [
+      137542.0,
+      133050.0,
+      126092.0,
+      119498.0,
+      102813.0
+    ],
+    "ratio_median": 9.494164596039456
+  },
+  {
+    "facility_id": "habas-aliaga",
+    "truth": 830338.0,
+    "pred_median": 780686.0,
+    "eu_default": 8550000.0,
+    "n_runs": 5,
+    "preds_all": [
+      708051.0,
+      744844.0,
+      1349893.0,
+      801740.0,
+      780686.0
+    ],
+    "ratio_median": 0.9402026644571246
   },
   {
     "facility_id": "isdemir-iskenderun",
     "truth": 10663364.0,
-    "pred_median": 5758548.0,
-    "eu_default": 10450000.0,
-    "n_runs": 3,
+    "pred_median": 7025531.0,
+    "eu_default": 10070000.0,
+    "n_runs": 5,
     "preds_all": [
-      6046705.0,
-      5758548.0,
-      5441445.0
+      8540874.0,
+      6664643.0,
+      5612192.0,
+      7025531.0,
+      8310499.0
     ],
-    "ratio_median": 0.5400310821238026
+    "ratio_median": 0.6588475269155212
+  },
+  {
+    "facility_id": "izdemir-aliaga",
+    "truth": 271123.0,
+    "pred_median": 383052.0,
+    "eu_default": 2850000.0,
+    "n_runs": 5,
+    "preds_all": [
+      361076.0,
+      505175.0,
+      393190.0,
+      383052.0,
+      292980.0
+    ],
+    "ratio_median": 1.4128347650328448
   },
   {
     "facility_id": "kardemir-karabuk",
-    "truth": 5539756.0,
-    "pred_median": 4901420.0,
+    "truth": 5650626.0,
+    "pred_median": 2400390.0,
     "eu_default": 6650000.0,
-    "n_runs": 3,
+    "n_runs": 5,
     "preds_all": [
-      5543199.0,
-      4901420.0,
-      4291826.0
+      2915284.0,
+      2892597.0,
+      1725562.0,
+      2400390.0,
+      2265995.0
     ],
-    "ratio_median": 0.8847718202751168
+    "ratio_median": 0.4248007211944305
   },
   {
     "facility_id": "nuh-hereke",
     "truth": 3573278.0,
-    "pred_median": 2807147.0,
-    "eu_default": 9504000.0,
-    "n_runs": 3,
+    "pred_median": 2444753.0,
+    "eu_default": 9028800.0,
+    "n_runs": 5,
     "preds_all": [
-      2807147.0,
-      2652567.0,
-      2854139.0
+      2036692.0,
+      3102554.0,
+      2360298.0,
+      2444753.0,
+      2519896.0
     ],
-    "ratio_median": 0.7855943478229234
+    "ratio_median": 0.6841765460174103
+  },
+  {
+    "facility_id": "toros-ceyhan",
+    "truth": 203840.0,
+    "pred_median": 113360.0,
+    "eu_default": 657360.0,
+    "n_runs": 5,
+    "preds_all": [
+      122213.0,
+      113360.0,
+      73119.0,
+      71008.0,
+      122332.0
+    ],
+    "ratio_median": 0.5561224489795918
+  },
+  {
+    "facility_id": "toros-mersin",
+    "truth": 383150.0,
+    "pred_median": 78292.0,
+    "eu_default": 648000.0,
+    "n_runs": 5,
+    "preds_all": [
+      133050.0,
+      92161.0,
+      73836.0,
+      71146.0,
+      78292.0
+    ],
+    "ratio_median": 0.20433772673887513
+  },
+  {
+    "facility_id": "toros-samsun",
+    "truth": 255180.0,
+    "pred_median": 89846.0,
+    "eu_default": 460000.0,
+    "n_runs": 5,
+    "preds_all": [
+      89846.0,
+      96203.0,
+      88626.0,
+      87936.0,
+      92970.0
+    ],
+    "ratio_median": 0.35208872168665256
   }
 ]

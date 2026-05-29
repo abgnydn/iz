@@ -1,0 +1,18 @@
+{
+  "facility_id": "goltas-isparta",
+  "operator": "G\u00f6lta\u015f \u00c7imento",
+  "group": "\u2014",
+  "name": "Isparta Cement Plant",
+  "sector": "cement",
+  "city": "Isparta",
+  "province": "Isparta",
+  "lat": 37.76,
+  "lon": 30.55,
+  "annual_capacity_t": 5000000.0,
+  "cn_codes": "25232900",
+  "disclosure_url": "https://www.goltas.com.tr",
+  "scope1_t": 1669072.0,
+  "scope1_year": 2024,
+  "scope1_provenance": "direct",
+  "scope1_source": "G\u00f6lta\u015f 2024 TSRS Sustainability Report p13"
+}

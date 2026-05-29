@@ -1,0 +1,14 @@
+{
+  "facility_id": "oyak-adana",
+  "operator": "OYAK \u00c7imento",
+  "group": "OYAK",
+  "name": "Adana Cement Plant",
+  "sector": "cement",
+  "city": "Adana",
+  "province": "Adana",
+  "lat": 36.99,
+  "lon": 35.32,
+  "annual_capacity_t": 3500000.0,
+  "cn_codes": "25232900",
+  "disclosure_url": "https://www.oyakcimento.com/en/sustainability"
+}

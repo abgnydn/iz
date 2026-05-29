@@ -1,0 +1,228 @@
+{
+  "summary": {
+    "n_facility_year_pairs": 13,
+    "n_yoy_pairs": 9,
+    "avg_log_mae_levels": 0.059428190902923804,
+    "avg_yoy_gap_pp": 2.9195462707828472,
+    "max_yoy_gap_pp": 13.74557179072092
+  },
+  "level_consistency": [
+    {
+      "facility_id": "colakoglu-gebze",
+      "year": 2021,
+      "actual_scope1_t": 517306.0,
+      "production_t": 2069224,
+      "route": "EAF",
+      "ef": 0.25,
+      "formula_scope1_t": 517306.0,
+      "ratio": 1.0,
+      "log_err": 0.0
+    },
+    {
+      "facility_id": "colakoglu-gebze",
+      "year": 2022,
+      "actual_scope1_t": 493054.0,
+      "production_t": 1972216,
+      "route": "EAF",
+      "ef": 0.25,
+      "formula_scope1_t": 493054.0,
+      "ratio": 1.0,
+      "log_err": 0.0
+    },
+    {
+      "facility_id": "colakoglu-gebze",
+      "year": 2023,
+      "actual_scope1_t": 495035.0,
+      "production_t": 1980140,
+      "route": "EAF",
+      "ef": 0.25,
+      "formula_scope1_t": 495035.0,
+      "ratio": 1.0,
+      "log_err": 0.0
+    },
+    {
+      "facility_id": "colakoglu-gebze",
+      "year": 2024,
+      "actual_scope1_t": 566519.0,
+      "production_t": 2266076,
+      "route": "EAF",
+      "ef": 0.25,
+      "formula_scope1_t": 566519.0,
+      "ratio": 1.0,
+      "log_err": 0.0
+    },
+    {
+      "facility_id": "erdemir-eregli",
+      "year": 2022,
+      "actual_scope1_t": 7068563.0,
+      "production_t": 3223000,
+      "route": "BF/BOF",
+      "ef": 2.0,
+      "formula_scope1_t": 6446000.0,
+      "ratio": 0.9119250970812597,
+      "log_err": 0.09219742267404671
+    },
+    {
+      "facility_id": "erdemir-eregli",
+      "year": 2023,
+      "actual_scope1_t": 6559030.0,
+      "production_t": 2897000,
+      "route": "BF/BOF",
+      "ef": 2.0,
+      "formula_scope1_t": 5794000.0,
+      "ratio": 0.8833623264415622,
+      "log_err": 0.1240198268219474
+    },
+    {
+      "facility_id": "erdemir-eregli",
+      "year": 2024,
+      "actual_scope1_t": 6667232.0,
+      "production_t": 3343000,
+      "route": "BF/BOF",
+      "ef": 2.0,
+      "formula_scope1_t": 6686000.0,
+      "ratio": 1.0028149612912824,
+      "log_err": 0.0028110067073422594
+    },
+    {
+      "facility_id": "isdemir-iskenderun",
+      "year": 2022,
+      "actual_scope1_t": 9492257.0,
+      "production_t": 4745000,
+      "route": "BF/BOF",
+      "ef": 2.0,
+      "formula_scope1_t": 9490000.0,
+      "ratio": 0.9997622272553304,
+      "log_err": 0.00023780101709037878
+    },
+    {
+      "facility_id": "isdemir-iskenderun",
+      "year": 2023,
+      "actual_scope1_t": 9018940.0,
+      "production_t": 4435000,
+      "route": "BF/BOF",
+      "ef": 2.0,
+      "formula_scope1_t": 8870000.0,
+      "ratio": 0.9834858641924661,
+      "log_err": 0.016652014217712254
+    },
+    {
+      "facility_id": "isdemir-iskenderun",
+      "year": 2024,
+      "actual_scope1_t": 10663364.0,
+      "production_t": 5400000,
+      "route": "BF/BOF",
+      "ef": 2.0,
+      "formula_scope1_t": 10800000.0,
+      "ratio": 1.0128135924085495,
+      "log_err": 0.012732192942274118
+    },
+    {
+      "facility_id": "kardemir-karabuk",
+      "year": 2021,
+      "actual_scope1_t": 5773509.0,
+      "production_t": 2400000,
+      "route": "BF/BOF",
+      "ef": 2.0,
+      "formula_scope1_t": 4800000.0,
+      "ratio": 0.8313834792671146,
+      "log_err": 0.18466412334116686
+    },
+    {
+      "facility_id": "kardemir-karabuk",
+      "year": 2022,
+      "actual_scope1_t": 5539756.0,
+      "production_t": 2362000,
+      "route": "BF/BOF",
+      "ef": 2.0,
+      "formula_scope1_t": 4724000.0,
+      "ratio": 0.8527451389555786,
+      "log_err": 0.15929455813284135
+    },
+    {
+      "facility_id": "kardemir-karabuk",
+      "year": 2023,
+      "actual_scope1_t": 5650626.0,
+      "production_t": 2360000,
+      "route": "BF/BOF",
+      "ef": 2.0,
+      "formula_scope1_t": 4720000.0,
+      "ratio": 0.8353056811758556,
+      "log_err": 0.1799575358835881
+    }
+  ],
+  "yoy_consistency": [
+    {
+      "facility_id": "colakoglu-gebze",
+      "year_pair": "2021\u21922022",
+      "actual_yoy_pct": -4.688134295755317,
+      "formula_yoy_pct": -4.688134295755317,
+      "yoy_gap_pp": 0.0,
+      "production_yoy_pct": -4.688134295755317
+    },
+    {
+      "facility_id": "colakoglu-gebze",
+      "year_pair": "2022\u21922023",
+      "actual_yoy_pct": 0.4017815492826343,
+      "formula_yoy_pct": 0.4017815492826343,
+      "yoy_gap_pp": 0.0,
+      "production_yoy_pct": 0.4017815492826343
+    },
+    {
+      "facility_id": "colakoglu-gebze",
+      "year_pair": "2023\u21922024",
+      "actual_yoy_pct": 14.44019109759916,
+      "formula_yoy_pct": 14.44019109759916,
+      "yoy_gap_pp": 0.0,
+      "production_yoy_pct": 14.44019109759916
+    },
+    {
+      "facility_id": "erdemir-eregli",
+      "year_pair": "2022\u21922023",
+      "actual_yoy_pct": -7.20843826390173,
+      "formula_yoy_pct": -10.114799875892027,
+      "yoy_gap_pp": -2.906361611990296,
+      "production_yoy_pct": -10.114799875892027
+    },
+    {
+      "facility_id": "erdemir-eregli",
+      "year_pair": "2023\u21922024",
+      "actual_yoy_pct": 1.6496646607806338,
+      "formula_yoy_pct": 15.395236451501553,
+      "yoy_gap_pp": 13.74557179072092,
+      "production_yoy_pct": 15.395236451501553
+    },
+    {
+      "facility_id": "isdemir-iskenderun",
+      "year_pair": "2022\u21922023",
+      "actual_yoy_pct": -4.9863483468684,
+      "formula_yoy_pct": -6.533192834562697,
+      "yoy_gap_pp": -1.5468444876942968,
+      "production_yoy_pct": -6.533192834562697
+    },
+    {
+      "facility_id": "isdemir-iskenderun",
+      "year_pair": "2023\u21922024",
+      "actual_yoy_pct": 18.23300742659337,
+      "formula_yoy_pct": 21.758737316798197,
+      "yoy_gap_pp": 3.5257298902048264,
+      "production_yoy_pct": 21.758737316798197
+    },
+    {
+      "facility_id": "kardemir-karabuk",
+      "year_pair": "2021\u21922022",
+      "actual_yoy_pct": -4.048716300606789,
+      "formula_yoy_pct": -1.5833333333333335,
+      "yoy_gap_pp": 2.4653829672734555,
+      "production_yoy_pct": -1.5833333333333335
+    },
+    {
+      "facility_id": "kardemir-karabuk",
+      "year_pair": "2022\u21922023",
+      "actual_yoy_pct": 2.001351684081393,
+      "formula_yoy_pct": -0.0846740050804403,
+      "yoy_gap_pp": -2.086025689161833,
+      "production_yoy_pct": -0.0846740050804403
+    }
+  ]
+}

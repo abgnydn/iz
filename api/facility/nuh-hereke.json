@@ -1,0 +1,18 @@
+{
+  "facility_id": "nuh-hereke",
+  "operator": "Nuh \u00c7imento",
+  "group": "Nuh",
+  "name": "Hereke Cement Plant",
+  "sector": "cement",
+  "city": "Hereke",
+  "province": "Kocaeli",
+  "lat": 40.78,
+  "lon": 29.65,
+  "annual_capacity_t": 5700000.0,
+  "cn_codes": "25232100;25232900;25231000",
+  "disclosure_url": "https://www.nuhcimento.com.tr/en/sustainability",
+  "scope1_t": 3584953.0,
+  "scope1_year": 2024,
+  "scope1_provenance": "direct",
+  "scope1_source": "Nuh \u00c7imento 2024 TSRS Report p56 (refined)"
+}

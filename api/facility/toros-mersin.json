@@ -1,0 +1,18 @@
+{
+  "facility_id": "toros-mersin",
+  "operator": "Toros Tar\u0131m",
+  "group": "Tekfen Holding",
+  "name": "Mersin Fertilizer Plant",
+  "sector": "fertilizer",
+  "city": "Mersin",
+  "province": "Mersin",
+  "lat": 36.78,
+  "lon": 34.61,
+  "annual_capacity_t": 810000.0,
+  "cn_codes": "3102;3105",
+  "disclosure_url": "https://www.torostarim.com.tr",
+  "scope1_t": 383150.0,
+  "scope1_year": 2024,
+  "scope1_provenance": "allocated",
+  "scope1_source": "Tekfen Holding 2024 TSRS p18 \u00d7 cap 1.5M/3.3M"
+}

@@ -1,0 +1,10 @@
+{
+  "sector": "aluminum",
+  "n_facilities": 3,
+  "total_capacity_t": 690000.0,
+  "facilities": [
+    "eti-aluminyum-seydisehir",
+    "assan-tuzla",
+    "asas-akyazi"
+  ]
+}
