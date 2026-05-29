@@ -22,29 +22,36 @@
 <meta name="twitter:image" content="https://iz-b0n.pages.dev/assets/og.png">
 <style>
   :root { --bg:#f4ede2; --paper:#fbf7ee; --ink:#14181d; --muted:#6e6862; --rule:#d8cfbe; --cost:#b85c3f; --saved:#2d5a4c; }
-  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: Georgia, serif; }
-  .container { max-width: 1080px; margin: 0 auto; padding: 24px; }
-  h1 { font-size: 28pt; letter-spacing: -0.02em; margin: 0 0 4pt; }
+  *,*::before,*::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: Georgia, serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a, button, input, select { -webkit-tap-highlight-color: transparent; }
+  img, svg, canvas { max-width: 100%; height: auto; display: block; }
+  .container { max-width: 1080px; margin: 0 auto; padding: clamp(16px, 4vw, 24px); }
+  h1 { font-size: clamp(20pt, 5.6vw, 28pt); letter-spacing: -0.02em; margin: 0 0 4pt; line-height: 1.12; }
   h1 em { font-style: italic; color: var(--cost); }
-  .sub { color: var(--muted); margin: 0 0 18pt; }
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18pt; }
-  .panel { background: var(--paper); border: 1px solid var(--rule); padding: 14pt; }
-  .panel h2 { font-size: 14pt; margin: 0 0 8pt; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); margin: 0 0 18pt; font-size: clamp(11pt, 1.8vw, 12pt); }
+  .grid { display: grid; grid-template-columns: 1fr; gap: clamp(14pt, 3.5vw, 18pt); }
+  .panel { background: var(--paper); border: 1px solid var(--rule); padding: clamp(12pt, 3vw, 14pt); }
+  .panel h2 { font-size: clamp(12pt, 2.6vw, 14pt); margin: 0 0 8pt; letter-spacing: -0.01em; }
   label { display: block; font-family: Inter, system-ui, sans-serif; font-size: 9pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-top: 8pt; }
-  input, select { width: 100%; padding: 6pt; font-family: inherit; font-size: 11pt; border: 1px solid var(--rule); background: white; }
-  button { font-family: inherit; font-size: 11pt; padding: 8pt 14pt; background: var(--ink); color: var(--paper); border: none; cursor: pointer; margin-top: 10pt; }
+  input, select { width: 100%; padding: 12px; min-height: 44px; font-family: inherit; font-size: 16px; border: 1px solid var(--rule); background: white; -webkit-appearance: none; appearance: none; border-radius: 0; }
+  button { font-family: inherit; font-size: 12pt; padding: 12px 18px; min-height: 44px; background: var(--ink); color: var(--paper); border: none; cursor: pointer; margin-top: 10pt; }
   button:disabled { background: var(--muted); cursor: not-allowed; }
   .status { font-family: Menlo, monospace; font-size: 9pt; color: var(--muted); white-space: pre-wrap; max-height: 180px; overflow-y: auto; line-height: 1.5; }
-  .metric { font-size: 22pt; font-weight: 600; color: var(--saved); margin-top: 4pt; line-height: 1; letter-spacing: -0.02em; }
+  .metric { font-size: clamp(18pt, 4.5vw, 22pt); font-weight: 600; color: var(--saved); margin-top: 4pt; line-height: 1; letter-spacing: -0.02em; }
   .metric small { font-size: 10pt; color: var(--muted); }
-  table { width: 100%; border-collapse: collapse; font-family: Inter, system-ui, sans-serif; font-size: 9pt; }
+  .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { width: 100%; border-collapse: collapse; font-family: Inter, system-ui, sans-serif; font-size: clamp(8.5pt, 1.5vw, 9pt); }
+  .table-wrap > table { min-width: 460px; }
   th, td { padding: 4pt 6pt; text-align: left; border-bottom: 1px solid var(--rule); }
-  th { font-size: 8pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
-  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  th { font-size: 8pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 500; white-space: nowrap; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
   .canvas-wrap { border: 1px solid var(--rule); background: white; }
   canvas { display: block; width: 100%; }
-  .legend { display: flex; gap: 12pt; font-family: Inter, system-ui, sans-serif; font-size: 9pt; color: var(--muted); margin-top: 4pt; }
+  .legend { display: flex; gap: 12pt; flex-wrap: wrap; font-family: Inter, system-ui, sans-serif; font-size: 9pt; color: var(--muted); margin-top: 4pt; }
   .swatch { display: inline-block; width: 10pt; height: 10pt; vertical-align: middle; margin-right: 4pt; }
+  @media (min-width: 700px) { .grid { grid-template-columns: 1fr 1fr; } }
 </style>
 </head>
 <body>
@@ -115,7 +122,7 @@
 
 <div class="panel" style="margin-top:18pt;">
   <h2>Test-set predictions (after training)</h2>
-  <div id="preds-table">
+  <div id="preds-table" class="table-wrap">
     <table>
       <thead>
         <tr><th>Facility</th><th>Scope</th><th>Source</th><th class="num">Truth (tCO₂/yr)</th><th class="num">Predicted</th><th class="num">Ratio</th><th class="num">EU default</th><th class="num">vs EU</th></tr>

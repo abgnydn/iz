@@ -2,41 +2,49 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>TR-MRV-Bench — 5 Fusion Analyses</title>
 <style>
   :root { --bg:#f4ede2; --paper:#fbf7ee; --ink:#14181d; --muted:#6e6862; --rule:#d8cfbe; --iz:#2d5a4c; --eu:#b85c3f; }
-  html,body { margin:0; padding:0; background:var(--bg); color:var(--ink); font-family:Georgia,serif; line-height:1.55; }
-  .wrap { max-width:900px; margin:0 auto; padding:36px 44px; }
-  .langbar { position: sticky; top: 0; z-index: 10; background: rgba(244,237,226,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); padding: 10px 0; }
-  .langbar .inner { max-width: 900px; margin: 0 auto; padding: 0 44px; display: flex; justify-content: space-between; align-items: center; font-family: Inter, system-ui, sans-serif; font-size: 10pt; }
-  .langs button { background: transparent; border: 1px solid var(--rule); padding: 5px 12px; border-radius: 3px; cursor: pointer; color: var(--muted); font-family: inherit; }
+  *,*::before,*::after { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  html,body { margin:0; padding:0; background:var(--bg); color:var(--ink); font-family:Georgia,serif; line-height:1.55; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  a, button { -webkit-tap-highlight-color:transparent; }
+  img, svg { max-width:100%; height:auto; display:block; }
+  p { overflow-wrap:anywhere; }
+  .wrap { max-width:900px; margin:0 auto; padding:clamp(20px, 5vw, 36px) clamp(16px, 4vw, 44px); }
+  .langbar { position: sticky; top: 0; z-index: 10; background: rgba(244,237,226,0.95); -webkit-backdrop-filter:blur(8px); backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); padding: 10px 0; }
+  .langbar .inner { max-width: 900px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 44px); display: flex; justify-content: space-between; align-items: center; gap:10px; flex-wrap:wrap; font-family: Inter, system-ui, sans-serif; font-size: 10pt; }
+  .langs button { background: transparent; border: 1px solid var(--rule); padding: 8px 14px; min-height:36px; border-radius: 3px; cursor: pointer; color: var(--muted); font-family: inherit; font-size:10pt; }
   .langs button.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
   .langs button + button { margin-left: 4px; }
   header { border-bottom:2px solid var(--ink); padding-bottom:18pt; margin-bottom:22pt; }
   .kicker { font-family:Inter,system-ui,sans-serif; font-size:9pt; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin:0; }
-  h1 { font-size:30pt; letter-spacing:-.025em; line-height:1.05; margin:4pt 0 8pt; }
+  h1 { font-size:clamp(22pt, 6.4vw, 30pt); letter-spacing:-.025em; line-height:1.1; margin:4pt 0 8pt; }
   h1 em { font-style:italic; color:var(--iz); }
   nav { display:flex; gap:8pt; flex-wrap:wrap; margin:18pt 0; }
-  nav a { display:inline-block; padding:6pt 12pt; background:var(--paper); border:1px solid var(--rule); color:var(--ink); text-decoration:none; font-family:Inter,sans-serif; font-size:10pt; border-radius:3px; }
+  nav a { display:inline-block; padding:10pt 14pt; min-height:44px; background:var(--paper); border:1px solid var(--rule); color:var(--ink); text-decoration:none; font-family:Inter,sans-serif; font-size:10pt; border-radius:3px; }
   nav a:hover { background:var(--iz); color:var(--paper); border-color:var(--iz); }
-  section { background:var(--paper); border:1px solid var(--rule); padding:20pt 28pt; margin:18pt 0; }
-  section h2 { font-size:18pt; letter-spacing:-.02em; border-bottom:1px solid var(--rule); padding-bottom:8pt; margin-top:0; }
+  section { background:var(--paper); border:1px solid var(--rule); padding:clamp(14pt, 4vw, 20pt) clamp(16pt, 4.5vw, 28pt); margin:18pt 0; }
+  section h2 { font-size:clamp(15pt, 3.6vw, 18pt); letter-spacing:-.02em; border-bottom:1px solid var(--rule); padding-bottom:8pt; margin-top:0; line-height:1.18; }
   section h3 { font-family:Inter,sans-serif; font-size:11pt; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-top:18pt; }
   section .pill { display:inline-block; padding:2pt 8pt; border-radius:9999px; font-family:Inter,sans-serif; font-size:9pt; background:var(--iz); color:var(--paper); }
-  table { width:100%; border-collapse:collapse; font-family:Inter,system-ui,sans-serif; font-size:9.5pt; margin:8pt 0; }
+  /* Tables auto-scroll on narrow screens */
+  table { width:100%; border-collapse:collapse; font-family:Inter,system-ui,sans-serif; font-size:clamp(9pt, 1.6vw, 9.5pt); margin:8pt 0; display:block; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  table thead, table tbody, table tr { display:table; width:100%; table-layout:auto; min-width:520px; }
   th,td { padding:6pt 7pt; text-align:left; border-bottom:1px solid var(--rule); }
-  th { font-size:8.5pt; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:500; }
-  td.num { text-align:right; font-variant-numeric:tabular-nums; }
-  code { font-family:"SF Mono",Menlo,monospace; font-size:9pt; background:var(--bg); padding:1pt 4pt; border:1px solid var(--rule); border-radius:2px; }
-  .summary { background:var(--bg); padding:14pt 18pt; border-left:3px solid var(--iz); margin:10pt 0; font-size:11pt; }
+  th { font-size:8.5pt; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:500; white-space:nowrap; }
+  td.num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  code { font-family:"SF Mono",Menlo,monospace; font-size:9pt; background:var(--bg); padding:1pt 4pt; border:1px solid var(--rule); border-radius:2px; word-break:break-word; }
+  .summary { background:var(--bg); padding:clamp(12pt, 3vw, 14pt) clamp(14pt, 3.5vw, 18pt); border-left:3px solid var(--iz); margin:10pt 0; font-size:clamp(10.5pt, 1.8vw, 11pt); }
   .summary strong { color:var(--iz); }
   ul { padding-left:20pt; } ol { padding-left:20pt; }
   li { margin-bottom:4pt; }
   footer { margin-top:32pt; padding-top:14pt; border-top:1px solid var(--rule); font-size:9pt; color:var(--muted); font-family:Inter,sans-serif; }
-  .markdown { font-size:11pt; }
-  .markdown h2 { font-size:14pt; margin-top:18pt; }
+  .markdown { font-size:clamp(10.5pt, 1.8vw, 11pt); }
+  .markdown h2 { font-size:clamp(13pt, 2.6vw, 14pt); margin-top:18pt; }
   .markdown h3 { font-size:11pt; margin-top:14pt; }
-  .markdown table { font-size:9.5pt; }
+  .markdown table { font-size:clamp(9pt, 1.6vw, 9.5pt); }
   [data-lang] { display: none; }
   html[lang="en"] [data-lang="en"], html[lang="tr"] [data-lang="tr"] { display: block; }
 </style>

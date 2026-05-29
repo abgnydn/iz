@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>TR-MRV-Bench — paper preview v0 — 2026-05-29</title>
 <style>
   :root {
@@ -13,43 +14,53 @@
     --iz: #2d5a4c;
     --eu: #b85c3f;
   }
-  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: Georgia, "Times New Roman", serif; line-height: 1.55; }
-  .container { max-width: 920px; margin: 0 auto; padding: 36px 44px; }
-  .langbar { position: sticky; top: 0; z-index: 10; background: rgba(244,237,226,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); padding: 10px 0; }
-  .langbar .inner { max-width: 920px; margin: 0 auto; padding: 0 44px; display: flex; justify-content: space-between; align-items: center; font-family: Inter, system-ui, sans-serif; font-size: 10pt; }
-  .langs button { background: transparent; border: 1px solid var(--rule); padding: 5px 12px; border-radius: 3px; cursor: pointer; color: var(--muted); font-family: inherit; }
+  *,*::before,*::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: Georgia, "Times New Roman", serif; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { -webkit-tap-highlight-color: transparent; word-wrap: break-word; }
+  img, svg, object { max-width: 100%; height: auto; display: block; }
+  .container { max-width: 920px; margin: 0 auto; padding: clamp(20px, 5vw, 36px) clamp(16px, 4vw, 44px); }
+  .langbar { position: sticky; top: 0; z-index: 10; background: rgba(244,237,226,0.95); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); padding: 10px 0; }
+  .langbar .inner { max-width: 920px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 44px); display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; font-family: Inter, system-ui, sans-serif; font-size: 10pt; }
+  .langs button { background: transparent; border: 1px solid var(--rule); padding: 8px 14px; min-height: 36px; border-radius: 3px; cursor: pointer; color: var(--muted); font-family: inherit; font-size: 10pt; }
   .langs button.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
   .langs button + button { margin-left: 4px; }
   header { border-bottom: 2px solid var(--ink); padding-bottom: 18pt; margin-bottom: 22pt; }
   .kicker { font-family: Inter, system-ui, sans-serif; font-size: 9pt; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin: 0; }
-  h1 { font-size: 32pt; letter-spacing: -0.025em; line-height: 1.05; margin: 4pt 0 8pt; }
+  h1 { font-size: clamp(22pt, 5.6vw, 32pt); letter-spacing: -0.025em; line-height: 1.12; margin: 4pt 0 8pt; }
   h1 em { font-style: italic; color: var(--iz); }
-  .byline { color: var(--muted); font-size: 11pt; margin: 0; }
+  .byline { color: var(--muted); font-size: clamp(10pt, 1.6vw, 11pt); margin: 0; }
   h2 { font-family: Inter, system-ui, sans-serif; font-size: 11pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin: 28pt 0 8pt; font-weight: 500; }
   h2::before { content: "§ "; }
-  .figure { background: var(--paper); border: 1px solid var(--rule); padding: 16pt 20pt; margin: 14pt 0; }
+  .figure { background: var(--paper); border: 1px solid var(--rule); padding: clamp(12pt, 3vw, 16pt) clamp(14pt, 3vw, 20pt); margin: 14pt 0; }
   .figure img, .figure svg { width: 100%; height: auto; display: block; }
   .figure .caption { font-size: 9.5pt; color: var(--muted); margin-top: 8pt; font-style: italic; }
-  table { width: 100%; border-collapse: collapse; font-family: Inter, system-ui, sans-serif; font-size: 10pt; margin: 8pt 0 14pt; }
-  th { text-align: left; font-size: 8.5pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 500; padding: 8pt 6pt; border-bottom: 1.5px solid var(--ink); }
+  .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 8pt 0 14pt; }
+  table { width: 100%; border-collapse: collapse; font-family: Inter, system-ui, sans-serif; font-size: clamp(9pt, 1.5vw, 10pt); margin: 8pt 0 14pt; }
+  .table-wrap > table { margin: 0; min-width: 520px; }
+  th { text-align: left; font-size: 8.5pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 500; padding: 8pt 6pt; border-bottom: 1.5px solid var(--ink); white-space: nowrap; }
   td { padding: 7pt 6pt; border-bottom: 1px solid var(--rule); }
-  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
   td.label { font-style: italic; color: var(--muted); padding-top: 16pt; padding-bottom: 4pt; border-bottom: 0; font-size: 9pt; }
   .ratio-good { color: var(--iz); font-weight: 600; }
   .ratio-bad { color: var(--eu); font-weight: 600; }
   .pill { display: inline-block; padding: 2pt 7pt; border-radius: 9999px; font-family: Inter, sans-serif; font-size: 8.5pt; letter-spacing: 0.06em; background: var(--paper); border: 1px solid var(--rule); color: var(--muted); }
   .pill.iz { background: var(--iz); color: var(--paper); border-color: var(--iz); }
   .pill.eu { background: var(--eu); color: var(--paper); border-color: var(--eu); }
-  blockquote { border-left: 3px solid var(--iz); margin: 12pt 0; padding: 4pt 16pt; color: var(--ink); font-size: 11.5pt; font-style: italic; }
+  blockquote { border-left: 3px solid var(--iz); margin: 12pt 0; padding: 4pt clamp(10pt, 3vw, 16pt); color: var(--ink); font-size: clamp(10.5pt, 1.8vw, 11.5pt); font-style: italic; }
   ol, ul { padding-left: 20pt; }
   ol li, ul li { margin-bottom: 6pt; }
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16pt; }
-  .panel { background: var(--paper); border: 1px solid var(--rule); padding: 12pt 16pt; }
+  .grid-2 { display: grid; grid-template-columns: 1fr; gap: clamp(12pt, 3vw, 16pt); }
+  .panel { background: var(--paper); border: 1px solid var(--rule); padding: clamp(10pt, 2.5vw, 12pt) clamp(12pt, 3vw, 16pt); }
   .panel h3 { font-family: Inter, sans-serif; font-size: 9pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin: 0 0 6pt; font-weight: 500; }
-  .panel .big { font-size: 26pt; font-weight: 600; color: var(--iz); letter-spacing: -0.02em; line-height: 1; }
+  .panel .big { font-size: clamp(20pt, 4.5vw, 26pt); font-weight: 600; color: var(--iz); letter-spacing: -0.02em; line-height: 1; }
   .panel .sub { font-size: 9pt; color: var(--muted); margin-top: 4pt; }
   footer { margin-top: 32pt; padding-top: 14pt; border-top: 1px solid var(--rule); font-size: 9pt; color: var(--muted); font-family: Inter, sans-serif; }
-  code { font-family: "SF Mono", Menlo, monospace; font-size: 9pt; background: var(--paper); padding: 1pt 4pt; border: 1px solid var(--rule); }
+  code { font-family: "SF Mono", Menlo, monospace; font-size: 9pt; background: var(--paper); padding: 1pt 4pt; border: 1px solid var(--rule); word-break: break-word; }
+  p { overflow-wrap: anywhere; }
+  @media (min-width: 600px) {
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+  }
 
   /* Bilingual swap */
   [data-lang] { display: none; }
@@ -110,6 +121,7 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
 
 <h2 data-lang="en">Table 0 — Baseline comparison (the headline result)</h2>
 <h2 data-lang="tr">Tablo 0 — Temel karşılaştırma (ana sonuç)</h2>
+<div class="table-wrap">
 <table>
   <thead>
     <tr>
@@ -146,6 +158,7 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
     </tr>
   </tbody>
 </table>
+</div>
 <p style="font-size:10pt; color:var(--muted); font-style:italic;" data-lang="en">
   Same n=21 LODO test split across all 4 CBAM scopes. The closed-form formula carries ~99% of the signal; the NN adds the last ~1 pp. Ridge regression underperforms both — without the physics prior, it overfits 18 features on ~39 samples.
 </p>
@@ -167,6 +180,7 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
 
 <h2 data-lang="en">Table 1 — Leave-one-disclosure-out predictions</h2>
 <h2 data-lang="tr">Tablo 1 — Birini-dışarıda-bırak tahminleri</h2>
+<div class="table-wrap">
 <table>
   <thead>
     <tr>
@@ -202,6 +216,7 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
     <tr><td>Gübretaş Yarımca</td><td data-lang="en">fertilizer · blender</td><td data-lang="tr">gübre · harmancı</td><td class="num">13,281</td><td class="num">12,996</td><td class="num ratio-good">0.98×</td><td class="num">1,200,000</td><td class="num">−99%</td></tr>
   </tbody>
 </table>
+</div>
 <p style="font-size:10pt; color:var(--muted); font-style:italic;" data-lang="en">
   Big-emitter predictions (Erdemir, İsdemir, Kardemir, Çolakoğlu, Akçansa Çanakkale, Batısöke) land within ±30% of audit. BAGFAŞ (3.46×) is the only N₂O-controlled facility in our disclosure set, so under LODO holdout the model has never seen one in training and reverts to integrated-fertilizer EF — an honest LODO failure, not a bug. Göltaş (0.44×) actually runs at ~95% utilization vs cement-sector default 55%, which the formula prior can't know without disclosed cf.
 </p>
@@ -272,6 +287,7 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
 <p style="font-size:10.5pt;" data-lang="tr">
   n=21 LODO üzerinde 9-varyantlı ablasyon matrisi. Her tasarım seçiminin gerçek katkısı, ana iz-1 sinir ağı azaltımı %82.4'e karşı:
 </p>
+<div class="table-wrap">
 <table>
   <thead>
     <tr>
@@ -294,6 +310,7 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
     <tr><td>no_disc + no_route</td><td class="num">0.561</td><td class="num">+60.9%</td><td class="num ratio-bad">−21.5 pp</td><td data-lang="en">minimum-feature lower bound</td><td data-lang="tr">minimum-özellik alt sınır</td></tr>
   </tbody>
 </table>
+</div>
 <p style="font-size:10pt; color:var(--muted); font-style:italic;" data-lang="en">
   N_OUTER=1 — small effects (≤2pp) are within seed noise; for stable CIs we'd need N_OUTER≥5. The clear conclusions: <strong>prior, route, disclosed-cf are the real signal carriers</strong>; CT and satellite features are net zero (or slightly negative) at this data scale. Same pattern as the CT-features-hurt finding from earlier — at n=21 with 15+ features, noisy auxiliary signals (CT cf computed from biased emissions; S5P NO₂ over individual plants) add variance without information.
 </p>

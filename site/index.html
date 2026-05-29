@@ -15,89 +15,95 @@
     --eu: #b85c3f;
     --gold: #b8924a;
   }
+  /* ---------- MOBILE-FIRST BASE ---------- */
   *,*::before,*::after { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: Georgia, "Times New Roman", serif; line-height: 1.55; }
-  .container { max-width: 880px; margin: 0 auto; padding: 0 28px; }
-  .kicker { font-family: Inter, system-ui, sans-serif; font-size: 9pt; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: Georgia, "Times New Roman", serif; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  a { -webkit-tap-highlight-color: transparent; }
+  img, svg, object { max-width: 100%; height: auto; display: block; }
+  .container { max-width: 880px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 28px); }
+  .kicker { font-family: Inter, system-ui, sans-serif; font-size: 9pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin: 0; }
 
-  /* Top bar */
-  .top { padding: 18px 0; border-bottom: 1px solid var(--rule); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-  .brand { font-weight: 600; letter-spacing: -0.01em; font-size: 14pt; }
+  /* ---------- TOP BAR (mobile: stack brand+langs, hide topnav initially) ---------- */
+  .top { padding: 14px 0; border-bottom: 1px solid var(--rule); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .brand { font-weight: 600; letter-spacing: -0.01em; font-size: 14pt; flex: 0 0 auto; }
   .brand em { color: var(--iz); font-style: italic; }
-  .langs { display: flex; gap: 4px; font-family: Inter, sans-serif; font-size: 10pt; }
-  .langs button { background: transparent; border: 1px solid var(--rule); padding: 5px 12px; border-radius: 3px; cursor: pointer; color: var(--muted); font-family: inherit; }
+  .topnav { display: none; order: 3; flex-basis: 100%; flex-wrap: wrap; gap: 10px 16px; padding-top: 10px; border-top: 1px solid var(--rule); margin-top: 4px; }
+  .topnav a { min-height: 44px; display: flex; align-items: center; }
+  .langs { display: flex; gap: 4px; font-family: Inter, sans-serif; font-size: 10pt; flex: 0 0 auto; }
+  .langs button { background: transparent; border: 1px solid var(--rule); padding: 8px 14px; border-radius: 3px; cursor: pointer; color: var(--muted); font-family: inherit; min-height: 36px; }
   .langs button.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 
-  /* Hero */
-  .hero { padding: 80px 0 60px; }
+  /* ---------- HERO (fluid type via clamp) ---------- */
+  .hero { padding: clamp(40px, 8vw, 80px) 0 clamp(36px, 6vw, 60px); }
   .hero .lede { font-family: Inter, sans-serif; font-size: 10pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; }
-  .hero h1 { font-size: 56pt; line-height: 1.0; letter-spacing: -0.03em; margin: 0 0 24px; font-weight: 600; }
+  .hero h1 { font-size: clamp(30pt, 8.5vw, 56pt); line-height: 1.04; letter-spacing: -0.03em; margin: 0 0 20px; font-weight: 600; }
   .hero h1 em { color: var(--iz); font-style: italic; }
   .hero h1 .euro { color: var(--eu); font-style: italic; }
-  .hero .deck { font-size: 16pt; line-height: 1.45; color: var(--muted); max-width: 620px; margin: 0 0 28px; }
+  .hero .deck { font-size: clamp(13pt, 2.7vw, 16pt); line-height: 1.45; color: var(--muted); max-width: 620px; margin: 0 0 24px; }
   .hero .who { font-family: Inter, sans-serif; font-size: 10pt; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 14px; max-width: 620px; }
 
-  /* Big numbers strip */
-  .numbers { padding: 32px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--paper); }
-  .numbers .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
-  .num .v { font-size: 26pt; font-weight: 600; letter-spacing: -0.02em; color: var(--iz); line-height: 1; }
+  /* ---------- BIG NUMBERS STRIP (mobile: 2x2, then 4x1) ---------- */
+  .numbers { padding: clamp(24px, 5vw, 36px) 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--paper); }
+  .numbers .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(18px, 4vw, 28px); }
+  .num .v { font-size: clamp(20pt, 5vw, 26pt); font-weight: 600; letter-spacing: -0.02em; color: var(--iz); line-height: 1; }
   .num .v.alt { color: var(--eu); }
-  .num .l { font-family: Inter, sans-serif; font-size: 9pt; letter-spacing: 0.10em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
-  .num .sub { font-size: 10pt; color: var(--ink); margin-top: 6px; }
+  .num .l { font-family: Inter, sans-serif; font-size: 9pt; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+  .num .sub { font-size: 10pt; color: var(--ink); margin-top: 6px; line-height: 1.4; }
 
-  /* Section */
-  section.body { padding: 72px 0; border-bottom: 1px solid var(--rule); }
-  section.body h2 { font-size: 28pt; letter-spacing: -0.025em; margin: 0 0 18px; line-height: 1.1; font-weight: 600; }
+  /* ---------- SECTION ---------- */
+  section.body { padding: clamp(40px, 8vw, 72px) 0; border-bottom: 1px solid var(--rule); }
+  section.body h2 { font-size: clamp(22pt, 5.5vw, 28pt); letter-spacing: -0.025em; margin: 0 0 16px; line-height: 1.15; font-weight: 600; }
   section.body h2 em { color: var(--iz); font-style: italic; }
-  section.body .deck { font-size: 14pt; line-height: 1.55; color: var(--muted); max-width: 640px; margin: 0 0 28px; }
-  section.body p { font-size: 13pt; line-height: 1.65; max-width: 640px; }
+  section.body .deck { font-size: clamp(13pt, 2.4vw, 14pt); line-height: 1.55; color: var(--muted); max-width: 640px; margin: 0 0 24px; }
+  section.body p { font-size: clamp(12pt, 2.4vw, 13pt); line-height: 1.65; max-width: 640px; }
   section.body p strong { color: var(--iz); }
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr; gap: clamp(16px, 4vw, 28px); }
 
-  /* Story / 3-step */
-  .step { padding: 22px 26px; background: var(--paper); border: 1px solid var(--rule); }
+  /* ---------- STORY CARDS ---------- */
+  .step { padding: clamp(18px, 4vw, 24px); background: var(--paper); border: 1px solid var(--rule); }
   .step .n { font-family: Inter, sans-serif; font-size: 9pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-  .step h3 { font-size: 16pt; margin: 0 0 8px; letter-spacing: -0.01em; }
-  .step p { font-size: 11.5pt; margin: 0; max-width: none; color: var(--ink); }
+  .step h3 { font-size: clamp(14pt, 3.5vw, 16pt); margin: 0 0 8px; letter-spacing: -0.01em; line-height: 1.3; }
+  .step p { font-size: clamp(11pt, 2.4vw, 12pt); margin: 0; max-width: none; color: var(--ink); }
 
-  /* Findings */
-  .finding { padding: 24px 28px; background: var(--paper); border: 1px solid var(--rule); margin-bottom: 16px; }
-  .finding .head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px; }
+  /* ---------- FINDING CARDS ---------- */
+  .finding { padding: clamp(20px, 4.5vw, 26px); background: var(--paper); border: 1px solid var(--rule); margin-bottom: 14px; }
+  .finding .head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
   .finding .head .badge { font-family: Inter, sans-serif; font-size: 8.5pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); background: var(--bg); border: 1px solid var(--rule); padding: 3px 10px; border-radius: 9999px; }
-  .finding h3 { font-size: 17pt; margin: 0; letter-spacing: -0.01em; }
-  .finding .big { font-size: 30pt; font-weight: 600; color: var(--iz); letter-spacing: -0.02em; line-height: 1; margin: 4px 0 8px; }
-  .finding p { font-size: 12pt; margin: 0; color: var(--ink); max-width: none; }
-  .finding .small { font-size: 10pt; color: var(--muted); font-style: italic; margin-top: 8px; }
+  .finding h3 { font-size: clamp(15pt, 3.8vw, 17pt); margin: 0; letter-spacing: -0.01em; line-height: 1.3; }
+  .finding .big { font-size: clamp(24pt, 6vw, 30pt); font-weight: 600; color: var(--iz); letter-spacing: -0.02em; line-height: 1; margin: 4px 0 10px; word-break: break-word; }
+  .finding p { font-size: clamp(11.5pt, 2.6vw, 12pt); margin: 0; color: var(--ink); max-width: none; }
+  .finding .small { font-size: clamp(10pt, 2.3vw, 10pt); color: var(--muted); font-style: italic; margin-top: 8px; line-height: 1.5; }
 
-  /* Quote */
-  blockquote { border-left: 3px solid var(--iz); margin: 22px 0; padding: 6px 18px; color: var(--ink); font-size: 14pt; font-style: italic; }
+  /* ---------- QUOTE ---------- */
+  blockquote { border-left: 3px solid var(--iz); margin: 22px 0; padding: 6px 14px; color: var(--ink); font-size: clamp(13pt, 3vw, 14pt); font-style: italic; }
 
-  /* Footer / links */
-  footer { padding: 56px 0 80px; background: var(--ink); color: var(--paper); }
+  /* ---------- FOOTER ---------- */
+  footer { padding: clamp(40px, 8vw, 56px) 0 clamp(48px, 10vw, 80px); background: var(--ink); color: var(--paper); }
   footer h3 { font-family: Inter, sans-serif; font-size: 10pt; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(251, 247, 238, 0.6); margin: 0 0 10px; font-weight: 500; }
-  footer a { color: var(--paper); text-decoration: none; border-bottom: 1px solid rgba(251, 247, 238, 0.3); }
+  footer a { color: var(--paper); text-decoration: none; border-bottom: 1px solid rgba(251, 247, 238, 0.3); display: inline-block; padding: 4px 0; min-height: 32px; }
   footer a:hover { border-color: var(--paper); }
-  footer p { font-size: 11pt; line-height: 1.6; }
-  footer .grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 28px; }
-  footer .colophon { font-size: 9pt; color: rgba(251, 247, 238, 0.5); margin-top: 36px; padding-top: 22px; border-top: 1px solid rgba(251, 247, 238, 0.15); }
+  footer p { font-size: 11pt; line-height: 1.7; }
+  footer .grid { display: grid; grid-template-columns: 1fr; gap: 28px; }
+  footer .colophon { font-size: 9pt; color: rgba(251, 247, 238, 0.5); margin-top: 32px; padding-top: 20px; border-top: 1px solid rgba(251, 247, 238, 0.15); line-height: 1.6; }
 
-  /* Hide / show by language */
+  /* ---------- LANGUAGE TOGGLE ---------- */
   [data-lang] { display: none; }
   html[lang="en"] [data-lang="en"] { display: block; }
   html[lang="tr"] [data-lang="tr"] { display: block; }
-  /* For inline elements that need to inline */
-  html[lang="en"] span[data-lang="en"],
-  html[lang="en"] em[data-lang="en"] { display: inline; }
-  html[lang="tr"] span[data-lang="tr"],
-  html[lang="tr"] em[data-lang="tr"] { display: inline; }
+  html[lang="en"] span[data-lang="en"], html[lang="en"] em[data-lang="en"] { display: inline; }
+  html[lang="tr"] span[data-lang="tr"], html[lang="tr"] em[data-lang="tr"] { display: inline; }
 
-  @media (max-width: 720px) {
-    .hero h1 { font-size: 36pt; }
-    .hero .deck { font-size: 14pt; }
-    .numbers .grid { grid-template-columns: repeat(2, 1fr); }
-    .grid-2 { grid-template-columns: 1fr; }
-    footer .grid { grid-template-columns: 1fr; }
-    section.body h2 { font-size: 22pt; }
+  /* ---------- TABLET ≥ 600px ---------- */
+  @media (min-width: 600px) {
+    .topnav { display: flex; }
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ---------- DESKTOP ≥ 900px ---------- */
+  @media (min-width: 900px) {
+    .numbers .grid { grid-template-columns: repeat(4, 1fr); }
+    footer .grid { grid-template-columns: 2fr 1fr 1fr; }
   }
 </style>
 </head>

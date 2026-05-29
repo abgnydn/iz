@@ -6,39 +6,44 @@
 <title>CBAM Cost Calculator — TR-MRV-Bench</title>
 <style>
   :root { --bg:#f4ede2; --paper:#fbf7ee; --ink:#14181d; --muted:#6e6862; --rule:#d8cfbe; --iz:#2d5a4c; --eu:#b85c3f; }
-  html,body { margin:0; padding:0; background:var(--bg); color:var(--ink); font-family:Georgia,serif; line-height:1.5; }
-  .container { max-width:880px; margin:0 auto; padding:36px 28px; }
+  *,*::before,*::after { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  html,body { margin:0; padding:0; background:var(--bg); color:var(--ink); font-family:Georgia,serif; line-height:1.5; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  a, button, select, input { -webkit-tap-highlight-color:transparent; }
+  img, svg { max-width:100%; height:auto; display:block; }
+  .container { max-width:880px; margin:0 auto; padding:clamp(20px, 5vw, 36px) clamp(16px, 4vw, 28px); }
   header { padding-bottom:18px; margin-bottom:24px; border-bottom:1px solid var(--rule); }
   .kicker { font-family:Inter,sans-serif; font-size:9pt; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin:0; }
-  h1 { font-size:32pt; letter-spacing:-.025em; margin:4pt 0 8pt; line-height:1.1; }
+  h1 { font-size:clamp(24pt, 7vw, 32pt); letter-spacing:-.025em; margin:4pt 0 8pt; line-height:1.1; }
   h1 em { color:var(--iz); font-style:italic; }
-  .deck { color:var(--muted); font-size:13pt; max-width:640px; margin:8pt 0 0; }
-  .langbar { position:sticky; top:0; z-index:10; background:rgba(244,237,226,0.95); backdrop-filter:blur(8px); border-bottom:1px solid var(--rule); padding:10px 0; }
-  .langbar .inner { max-width:880px; margin:0 auto; padding:0 28px; display:flex; justify-content:space-between; align-items:center; font-family:Inter,sans-serif; font-size:10pt; }
-  .langs button { background:transparent; border:1px solid var(--rule); padding:5px 12px; border-radius:3px; cursor:pointer; color:var(--muted); font-family:inherit; }
+  .deck { color:var(--muted); font-size:clamp(11pt, 2.2vw, 13pt); max-width:640px; margin:8pt 0 0; }
+  .langbar { position:sticky; top:0; z-index:10; background:rgba(244,237,226,0.95); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border-bottom:1px solid var(--rule); padding:10px 0; }
+  .langbar .inner { max-width:880px; margin:0 auto; padding:0 clamp(16px, 4vw, 28px); display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; font-family:Inter,sans-serif; font-size:10pt; }
+  .langs button { background:transparent; border:1px solid var(--rule); padding:8px 14px; min-height:36px; border-radius:3px; cursor:pointer; color:var(--muted); font-family:inherit; font-size:10pt; }
   .langs button.active { background:var(--ink); color:var(--paper); border-color:var(--ink); }
   .langs button + button { margin-left:4px; }
-  .grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin:24px 0; }
-  .card { background:var(--paper); border:1px solid var(--rule); padding:22px 26px; }
+  .grid { display:grid; grid-template-columns:1fr; gap:clamp(16px, 4vw, 24px); margin:24px 0; }
+  .card { background:var(--paper); border:1px solid var(--rule); padding:clamp(16px, 4vw, 22px) clamp(18px, 4vw, 26px); }
   .card h2 { font-family:Inter,sans-serif; font-size:10pt; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin:0 0 12px; font-weight:500; }
   .field { margin-bottom:14px; }
   .field label { font-family:Inter,sans-serif; font-size:9pt; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:4px; }
-  .field input, .field select { width:100%; padding:8px 10px; border:1px solid var(--rule); background:white; font-family:inherit; font-size:12pt; box-sizing:border-box; }
+  .field input, .field select { width:100%; padding:12px 12px; min-height:44px; border:1px solid var(--rule); background:white; font-family:inherit; font-size:16px; -webkit-appearance:none; appearance:none; border-radius:0; }
+  .field select { background-image:linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position:calc(100% - 18px) center, calc(100% - 12px) center; background-size:6px 6px, 6px 6px; background-repeat:no-repeat; padding-right:34px; }
   .field .hint { font-size:9pt; color:var(--muted); font-style:italic; margin-top:4px; }
-  .num { font-size:30pt; font-weight:600; letter-spacing:-.02em; color:var(--ink); line-height:1; margin:8px 0; }
+  .num { font-size:clamp(22pt, 6vw, 30pt); font-weight:600; letter-spacing:-.02em; color:var(--ink); line-height:1; margin:8px 0; word-break:break-word; }
   .num.eu { color:var(--eu); }
   .num.iz { color:var(--iz); }
   .sub { font-family:Inter,sans-serif; font-size:9pt; color:var(--muted); letter-spacing:.04em; }
-  .savings { background:var(--ink); color:var(--paper); padding:32px 36px; margin:24px 0; }
+  .savings { background:var(--ink); color:var(--paper); padding:clamp(22px, 6vw, 32px) clamp(20px, 6vw, 36px); margin:24px 0; }
   .savings h2 { font-family:Inter,sans-serif; font-size:10pt; letter-spacing:.16em; text-transform:uppercase; color:rgba(251,247,238,0.6); margin:0; font-weight:500; }
-  .savings .num { color:var(--paper); font-size:48pt; margin:10px 0 8px; }
+  .savings .num { color:var(--paper); font-size:clamp(30pt, 9vw, 48pt); margin:10px 0 8px; }
   .savings .sub { color:rgba(251,247,238,0.7); }
   .disclaimer { font-size:10pt; color:var(--muted); font-style:italic; max-width:640px; margin-top:24px; padding:14px 18px; background:var(--paper); border-left:3px solid var(--rule); }
   footer { margin-top:36px; padding-top:18px; border-top:1px solid var(--rule); font-size:9pt; color:var(--muted); font-family:Inter,sans-serif; }
   [data-lang] { display:none; }
   html[lang="en"] [data-lang="en"], html[lang="tr"] [data-lang="tr"] { display:block; }
   html[lang="en"] span[data-lang="en"], html[lang="tr"] span[data-lang="tr"] { display:inline; }
-  @media (max-width:600px) { .grid { grid-template-columns:1fr; } h1 { font-size:24pt; } }
+  @media (min-width: 600px) { .grid { grid-template-columns:1fr 1fr; } }
 </style>
 </head>
 <body>
