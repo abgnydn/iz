@@ -3,261 +3,443 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>iz · CBAM emissions audits for Turkish exporters</title>
-<meta name="description" content="Cut your EU CBAM bill by 60-80% with an audit-grade Scope 1 number defensible against the EU default. Per-facility Turkish industrial emissions, formula reduces log-error by 85.9% vs EU default on 20 audited plants.">
-<meta name="theme-color" content="#2d5a4c">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="apple-touch-icon" href="/favicon.svg">
-<link rel="canonical" href="https://iz-b0n.pages.dev/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="iz · TR-MRV-Bench">
-<meta property="og:title" content="iz · Stop overpaying CBAM. Three numbers from your own report.">
-<meta property="og:description" content="A public per-facility emissions benchmark for Turkish industry. Formula beats the EU CBAM default by 85.9% on 20 audit-grade facilities across all 4 CBAM scopes.">
-<meta property="og:url" content="https://iz-b0n.pages.dev/">
-<meta property="og:image" content="https://iz-b0n.pages.dev/assets/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="iz · TR-MRV-Bench. Formula: tCO₂ = capacity × route-EF × capacity-factor. −85.9% vs EU CBAM default.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="iz · Stop overpaying CBAM.">
-<meta name="twitter:description" content="Public per-facility Turkish emissions benchmark. Formula beats EU CBAM default by 85.9% on 20 audited plants.">
-<meta name="twitter:image" content="https://iz-b0n.pages.dev/assets/og.png">
-<link rel="stylesheet" href="/assets/style.css">
+<title>TR-MRV-Bench — €732M lost every year. We found out where.</title>
+<style>
+  :root {
+    --bg: #f4ede2;
+    --paper: #fbf7ee;
+    --ink: #14181d;
+    --muted: #6e6862;
+    --rule: #d8cfbe;
+    --iz: #2d5a4c;
+    --eu: #b85c3f;
+    --gold: #b8924a;
+  }
+  *,*::before,*::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: Georgia, "Times New Roman", serif; line-height: 1.55; }
+  .container { max-width: 880px; margin: 0 auto; padding: 0 28px; }
+  .kicker { font-family: Inter, system-ui, sans-serif; font-size: 9pt; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin: 0; }
+
+  /* Top bar */
+  .top { padding: 18px 0; border-bottom: 1px solid var(--rule); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .brand { font-weight: 600; letter-spacing: -0.01em; font-size: 14pt; }
+  .brand em { color: var(--iz); font-style: italic; }
+  .langs { display: flex; gap: 4px; font-family: Inter, sans-serif; font-size: 10pt; }
+  .langs button { background: transparent; border: 1px solid var(--rule); padding: 5px 12px; border-radius: 3px; cursor: pointer; color: var(--muted); font-family: inherit; }
+  .langs button.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  /* Hero */
+  .hero { padding: 80px 0 60px; }
+  .hero .lede { font-family: Inter, sans-serif; font-size: 10pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; }
+  .hero h1 { font-size: 56pt; line-height: 1.0; letter-spacing: -0.03em; margin: 0 0 24px; font-weight: 600; }
+  .hero h1 em { color: var(--iz); font-style: italic; }
+  .hero h1 .euro { color: var(--eu); font-style: italic; }
+  .hero .deck { font-size: 16pt; line-height: 1.45; color: var(--muted); max-width: 620px; margin: 0 0 28px; }
+  .hero .who { font-family: Inter, sans-serif; font-size: 10pt; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 14px; max-width: 620px; }
+
+  /* Big numbers strip */
+  .numbers { padding: 32px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--paper); }
+  .numbers .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+  .num .v { font-size: 26pt; font-weight: 600; letter-spacing: -0.02em; color: var(--iz); line-height: 1; }
+  .num .v.alt { color: var(--eu); }
+  .num .l { font-family: Inter, sans-serif; font-size: 9pt; letter-spacing: 0.10em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+  .num .sub { font-size: 10pt; color: var(--ink); margin-top: 6px; }
+
+  /* Section */
+  section.body { padding: 72px 0; border-bottom: 1px solid var(--rule); }
+  section.body h2 { font-size: 28pt; letter-spacing: -0.025em; margin: 0 0 18px; line-height: 1.1; font-weight: 600; }
+  section.body h2 em { color: var(--iz); font-style: italic; }
+  section.body .deck { font-size: 14pt; line-height: 1.55; color: var(--muted); max-width: 640px; margin: 0 0 28px; }
+  section.body p { font-size: 13pt; line-height: 1.65; max-width: 640px; }
+  section.body p strong { color: var(--iz); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+
+  /* Story / 3-step */
+  .step { padding: 22px 26px; background: var(--paper); border: 1px solid var(--rule); }
+  .step .n { font-family: Inter, sans-serif; font-size: 9pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .step h3 { font-size: 16pt; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .step p { font-size: 11.5pt; margin: 0; max-width: none; color: var(--ink); }
+
+  /* Findings */
+  .finding { padding: 24px 28px; background: var(--paper); border: 1px solid var(--rule); margin-bottom: 16px; }
+  .finding .head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px; }
+  .finding .head .badge { font-family: Inter, sans-serif; font-size: 8.5pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); background: var(--bg); border: 1px solid var(--rule); padding: 3px 10px; border-radius: 9999px; }
+  .finding h3 { font-size: 17pt; margin: 0; letter-spacing: -0.01em; }
+  .finding .big { font-size: 30pt; font-weight: 600; color: var(--iz); letter-spacing: -0.02em; line-height: 1; margin: 4px 0 8px; }
+  .finding p { font-size: 12pt; margin: 0; color: var(--ink); max-width: none; }
+  .finding .small { font-size: 10pt; color: var(--muted); font-style: italic; margin-top: 8px; }
+
+  /* Quote */
+  blockquote { border-left: 3px solid var(--iz); margin: 22px 0; padding: 6px 18px; color: var(--ink); font-size: 14pt; font-style: italic; }
+
+  /* Footer / links */
+  footer { padding: 56px 0 80px; background: var(--ink); color: var(--paper); }
+  footer h3 { font-family: Inter, sans-serif; font-size: 10pt; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(251, 247, 238, 0.6); margin: 0 0 10px; font-weight: 500; }
+  footer a { color: var(--paper); text-decoration: none; border-bottom: 1px solid rgba(251, 247, 238, 0.3); }
+  footer a:hover { border-color: var(--paper); }
+  footer p { font-size: 11pt; line-height: 1.6; }
+  footer .grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 28px; }
+  footer .colophon { font-size: 9pt; color: rgba(251, 247, 238, 0.5); margin-top: 36px; padding-top: 22px; border-top: 1px solid rgba(251, 247, 238, 0.15); }
+
+  /* Hide / show by language */
+  [data-lang] { display: none; }
+  html[lang="en"] [data-lang="en"] { display: block; }
+  html[lang="tr"] [data-lang="tr"] { display: block; }
+  /* For inline elements that need to inline */
+  html[lang="en"] span[data-lang="en"],
+  html[lang="en"] em[data-lang="en"] { display: inline; }
+  html[lang="tr"] span[data-lang="tr"],
+  html[lang="tr"] em[data-lang="tr"] { display: inline; }
+
+  @media (max-width: 720px) {
+    .hero h1 { font-size: 36pt; }
+    .hero .deck { font-size: 14pt; }
+    .numbers .grid { grid-template-columns: repeat(2, 1fr); }
+    .grid-2 { grid-template-columns: 1fr; }
+    footer .grid { grid-template-columns: 1fr; }
+    section.body h2 { font-size: 22pt; }
+  }
+</style>
 </head>
 <body>
 
-<div class="topbar"><div class="wrap-wide row">
-  <a href="/" class="logo">iz <em>· TR-MRV-Bench</em></a>
-  <nav>
-    <a href="/" class="active">Home</a>
-    <a href="/bench/">Bench</a>
-    <a href="/use/">Use</a>
-    <a href="/about/">About</a>
+<div class="container top">
+  <a href="/" class="brand" style="color:inherit; text-decoration:none;">TR-MRV-Bench <em>· iz</em></a>
+  <nav class="topnav" style="display:flex; gap:12px; font-family:Inter,sans-serif; font-size:10pt;">
+    <a href="/bench/" style="color:var(--muted); text-decoration:none;" data-lang="en">Bench</a>
+    <a href="/bench/" style="color:var(--muted); text-decoration:none;" data-lang="tr">Veri seti</a>
+    <a href="/calculator/" style="color:var(--muted); text-decoration:none;" data-lang="en">Calculator</a>
+    <a href="/calculator/" style="color:var(--muted); text-decoration:none;" data-lang="tr">Hesaplayıcı</a>
+    <a href="/fusion/" style="color:var(--muted); text-decoration:none;" data-lang="en">Fusions</a>
+    <a href="/fusion/" style="color:var(--muted); text-decoration:none;" data-lang="tr">Füzyonlar</a>
+    <a href="/paper/" style="color:var(--muted); text-decoration:none;" data-lang="en">Paper</a>
+    <a href="/paper/" style="color:var(--muted); text-decoration:none;" data-lang="tr">Makale</a>
+    <a href="/verify/" style="color:var(--muted); text-decoration:none;" data-lang="en">Verify</a>
+    <a href="/verify/" style="color:var(--muted); text-decoration:none;" data-lang="tr">Doğrula</a>
   </nav>
-</div></div>
-
-<div class="wrap">
-
-<header class="hero">
-  <p class="kicker">iz v0 · 2026-05 · open under Apache-2.0</p>
-  <h1>Stop overpaying CBAM. <em>Three numbers from your own report.</em></h1>
-
-  <div class="formula-block">
-    <p class="formula">tCO₂ = <strong>capacity</strong> × <strong>route-EF</strong> × <strong>capacity-factor</strong></p>
-    <p class="formula-note">
-      Three numbers your own annual report already publishes. No machine learning, no satellites,
-      no proprietary data. We've validated this formula against 21 audit-grade Turkish facilities
-      and shown it beats the EU CBAM default by <strong>85.3%</strong> in leave-one-disclosure-out
-      cross-validation across all four CBAM scopes.
-    </p>
+  <div class="langs">
+    <button class="active" data-set="en">English</button>
+    <button data-set="tr">Türkçe</button>
   </div>
+</div>
 
-  <p class="subhead">
-    The EU's CBAM default overcharges most Turkish cement, steel, aluminum, and fertilizer
-    facilities by 2-10×. iz is a public per-facility benchmark with audit-grade Scope 1
-    cited to operator-published source PDFs, plus a one-line formula that recovers it within
-    ±15% for big emitters. <strong>Released as open infrastructure under Apache-2.0 — use it,
-    cite it, contribute back.</strong>
+<!-- HERO -->
+<div class="container hero">
+  <p class="lede" data-lang="en">Public benchmark · Apache-2.0 · 21 audit-grade Turkish facilities</p>
+  <p class="lede" data-lang="tr">Açık veri seti · Apache-2.0 · 21 denetlenmiş Türk tesisi</p>
+
+  <h1 data-lang="en">Turkey loses <span class="euro">€732 million</span> every year. <em>Now we know where.</em></h1>
+  <h1 data-lang="tr">Türkiye her yıl <span class="euro">€732 milyon</span> kaybediyor. <em>Artık nerede kaybedildiğini biliyoruz.</em></h1>
+
+  <p class="deck" data-lang="en">
+    The EU charges a carbon tax on Turkish exports — cement, steel, aluminum, fertilizer. Without proof of actual emissions, exporters pay the EU's worst-case default. We built the proof.
   </p>
-  <p class="byline">
-    Built and maintained by Ahmet Barış Günaydın ·
-    <a href="mailto:hi@barisgunaydin.com">hi@barisgunaydin.com</a> ·
-    <a href="https://barisgunaydin.com" target="_blank" rel="noopener">barisgunaydin.com</a> ·
-    <a href="https://github.com/abgnydn/iz" target="_blank" rel="noopener">github.com/abgnydn/iz</a>
+  <p class="deck" data-lang="tr">
+    AB, Türkiye'den ihraç edilen çimento, çelik, alüminyum ve gübreden karbon vergisi alıyor. Gerçek emisyonunu kanıtlayamayan ihracatçı, AB'nin en kötü-durum varsayım değerinden vergi ödüyor. Biz o kanıtı topladık.
   </p>
 
-  <div id="find-plant" style="background:var(--paper);border:1px solid var(--rule);padding:14px 18px;margin:22px 0 0;">
-    <label for="find-input" style="font-family:var(--sans);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);display:block;margin-bottom:6px;">Find your facility</label>
-    <input id="find-input" type="text" placeholder="Type company or plant name (e.g. Akçansa, Erdemir, İsdemir)…" style="width:100%;padding:10px 14px;font-family:var(--sans);font-size:15px;border:1px solid var(--rule);background:white;">
-    <div id="find-results" style="font-family:var(--sans);font-size:14px;margin-top:8px;max-height:240px;overflow:auto;"></div>
+  <p class="who" data-lang="en">
+    A one-person open-data project by <a href="https://barisgunaydin.com" style="color:inherit;">Ahmet Barış Günaydın</a> — <a href="mailto:hi@barisgunaydin.com" style="color:inherit;">hi@barisgunaydin.com</a>.
+    Released free under Apache-2.0 so exporters, journalists, regulators, and researchers can use it without permission.
+  </p>
+  <p class="who" data-lang="tr">
+    Tek kişilik bir açık-veri projesi: <a href="https://barisgunaydin.com" style="color:inherit;">Ahmet Barış Günaydın</a> — <a href="mailto:hi@barisgunaydin.com" style="color:inherit;">hi@barisgunaydin.com</a>.
+    Apache-2.0 lisansıyla ücretsiz. İhracatçılar, gazeteciler, düzenleyiciler ve araştırmacılar izin almadan kullanabilir.
+  </p>
+</div>
+
+<!-- BIG NUMBERS -->
+<div class="numbers">
+  <div class="container grid">
+    <div class="num">
+      <div class="v alt">€732M</div>
+      <div class="l" data-lang="en">Lost every year</div>
+      <div class="l" data-lang="tr">Yıllık kayıp</div>
+      <div class="sub" data-lang="en">Tax overpayment to the EU</div>
+      <div class="sub" data-lang="tr">AB'ye fazladan ödenen vergi</div>
+    </div>
+    <div class="num">
+      <div class="v">936×</div>
+      <div class="l" data-lang="en">Gap between operators</div>
+      <div class="l" data-lang="tr">Operatörler arası fark</div>
+      <div class="sub" data-lang="en">Revenue per kg CO₂, low vs high</div>
+      <div class="sub" data-lang="tr">Kg CO₂ başına gelir, en düşük ile en yüksek</div>
+    </div>
+    <div class="num">
+      <div class="v">21</div>
+      <div class="l" data-lang="en">Audit-grade facilities</div>
+      <div class="l" data-lang="tr">Denetlenmiş tesis</div>
+      <div class="sub" data-lang="en">Across cement, steel, Al, fertilizer</div>
+      <div class="sub" data-lang="tr">Çimento, çelik, alüminyum, gübre</div>
+    </div>
+    <div class="num">
+      <div class="v">87%</div>
+      <div class="l" data-lang="en">More accurate than EU default</div>
+      <div class="l" data-lang="tr">AB varsayımından daha doğru</div>
+      <div class="sub" data-lang="en">Closed-form formula, no AI</div>
+      <div class="sub" data-lang="tr">Basit formül, yapay zeka gerekmedi</div>
+    </div>
   </div>
-</header>
+</div>
+
+<!-- WHAT'S CBAM -->
+<section class="body">
+<div class="container">
+  <p class="kicker" data-lang="en">The setup</p>
+  <p class="kicker" data-lang="tr">Kurulum</p>
+
+  <h2 data-lang="en">What's CBAM, in plain words.</h2>
+  <h2 data-lang="tr">CBAM nedir, sade dille.</h2>
+
+  <p class="deck" data-lang="en">
+    Starting now, when a European company buys cement, steel, aluminum or fertilizer from Turkey, the EU charges a tax based on how much CO₂ was emitted making it. They call it the Carbon Border Adjustment Mechanism — CBAM.
+  </p>
+  <p class="deck" data-lang="tr">
+    Avrupalı bir şirket Türkiye'den çimento, çelik, alüminyum veya gübre satın aldığında AB, bu ürünün üretiminde salınan CO₂ üzerinden vergi alıyor. Adı: Sınırda Karbon Düzenleme Mekanizması — CBAM.
+  </p>
+
+  <p data-lang="en">
+    Here's the catch. If the Turkish exporter <strong>doesn't prove</strong> the actual emissions, the EU uses its own <strong>default value</strong> — and the default is the worst case for the worst factory in the world. That default is <strong>2-10× higher</strong> than what most Turkish plants actually emit. So the operator overpays. Every shipment. Every year.
+  </p>
+  <p data-lang="tr">
+    Şu püf noktası var. Türk ihracatçı gerçek emisyonunu <strong>kanıtlayamazsa</strong>, AB kendi <strong>varsayım değerini</strong> kullanıyor — bu varsayım dünyanın en kirli fabrikasına göre belirlenmiş. Çoğu Türk tesisinin gerçek emisyonundan <strong>2-10 kat daha yüksek</strong>. Yani operatör her sevkiyatta fazladan vergi ödüyor. Her yıl.
+  </p>
+
+  <blockquote data-lang="en">"We don't sell Turkey's worst factory. So why pay tax as if we did?"</blockquote>
+  <blockquote data-lang="tr">"Biz Türkiye'nin en kötü fabrikasını satmıyoruz. O zaman neden o tarifeden vergi ödüyoruz?"</blockquote>
+
+  <p data-lang="en">
+    Total annual overpayment, summed across all four sectors: <strong style="color:var(--eu);">€732 million per year</strong>. Roughly ₺26 billion at today's rate.
+  </p>
+  <p data-lang="tr">
+    Dört sektör toplamında yıllık fazla ödeme: <strong style="color:var(--eu);">yıllık €732 milyon</strong>. Bugünkü kurla yaklaşık ₺26 milyar.
+  </p>
+</div>
+</section>
+
+<!-- WHAT WE BUILT -->
+<section class="body" style="background: var(--paper);">
+<div class="container">
+  <p class="kicker" data-lang="en">What we built</p>
+  <p class="kicker" data-lang="tr">Ne inşa ettik</p>
+
+  <h2 data-lang="en">A public benchmark <em>that didn't exist yesterday.</em></h2>
+  <h2 data-lang="tr">Dün var olmayan bir <em>kamuya açık veri seti.</em></h2>
+
+  <p class="deck" data-lang="en">
+    TR-MRV-Bench is a record of 59 of Turkey's biggest CBAM-scope factories — where they are, how much they make, and (for 21 of them) the audit-checked CO₂ they actually emit. Open. Free. Cited.
+  </p>
+  <p class="deck" data-lang="tr">
+    TR-MRV-Bench, Türkiye'nin en büyük 59 CBAM-kapsamlı fabrikasının kaydı: konumu, üretim kapasitesi ve (21'i için) denetlenmiş gerçek CO₂ salımı. Açık. Ücretsiz. Kaynağı belli.
+  </p>
+
+  <div class="grid-2">
+    <div class="step">
+      <div class="n">01</div>
+      <h3 data-lang="en">Read the disclosure</h3>
+      <h3 data-lang="tr">Beyanı okuduk</h3>
+      <p data-lang="en">Every BIST-listed cement, steel, aluminum and fertilizer company in Turkey publishes a Sustainability Report. We downloaded them, page by page, and extracted the audited Scope 1 number with citations.</p>
+      <p data-lang="tr">Türkiye'deki BIST'te işlem gören her çimento, çelik, alüminyum ve gübre şirketi yıllık Sürdürülebilirlik Raporu yayınlıyor. Hepsini indirip sayfa sayfa okuduk ve denetlenmiş Kapsam 1 değerini kaynaklarıyla çıkardık.</p>
+    </div>
+    <div class="step">
+      <div class="n">02</div>
+      <h3 data-lang="en">Build the formula</h3>
+      <h3 data-lang="tr">Formülü kurduk</h3>
+      <p data-lang="en">A one-line formula — <strong>capacity × emission factor × capacity-factor</strong> — reproduces the audited number to within ±20% for each plant. No AI. No subscription. Just three public inputs.</p>
+      <p data-lang="tr">Tek satırlık bir formül — <strong>kapasite × emisyon faktörü × kullanım faktörü</strong> — her tesis için denetlenmiş değeri ±%20 doğrulukla bulur. Yapay zekâ yok. Abonelik yok. Sadece üç kamuya açık girdi.</p>
+    </div>
+    <div class="step">
+      <div class="n">03</div>
+      <h3 data-lang="en">Beat the EU default</h3>
+      <h3 data-lang="tr">AB varsayımını yendik</h3>
+      <p data-lang="en">The formula is <strong>87% more accurate</strong> than the EU's CBAM default value, in the strict leave-one-out test against the 21 audited plants. Submit our number, save the difference.</p>
+      <p data-lang="tr">Formül, 21 denetlenmiş tesise karşı uygulanan birini-dışarıda-bırak testinde AB'nin CBAM varsayım değerinden <strong>%87 daha doğru</strong>. Bizim sayımızı beyan eden ihracatçı, farkı cebine koyar.</p>
+    </div>
+    <div class="step">
+      <div class="n">04</div>
+      <h3 data-lang="en">Open it up</h3>
+      <h3 data-lang="tr">Açtık</h3>
+      <p data-lang="en">All of it — every Scope 1 number, every PDF source, every formula coefficient — is in a public repository under Apache-2.0. Anyone can use it. Anyone can fix it. Anyone can contribute back.</p>
+      <p data-lang="tr">Her şey — Kapsam 1 sayıları, PDF kaynakları, formül katsayıları — Apache-2.0 lisansıyla kamuya açık depoda. Herkes kullanabilir. Herkes düzeltebilir. Herkes katkıda bulunabilir.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 5 FINDINGS -->
+<section class="body">
+<div class="container">
+  <p class="kicker" data-lang="en">Five things that fell out</p>
+  <p class="kicker" data-lang="tr">Verinin çıkardığı beş bulgu</p>
+
+  <h2 data-lang="en">When you join the bench to the rest of Turkey's <em>public data</em>, things show up.</h2>
+  <h2 data-lang="tr">Bu veriyi Türkiye'nin diğer <em>kamuya açık verileriyle</em> birleştirince ortaya çıkanlar.</h2>
+
+  <p class="deck" data-lang="en">We cross-joined the bench to five other Turkish datasets: ETS allocations, ESG ratings, KAP financial filings, TÜİK export tonnage, and provincial health data. Here's what came back.</p>
+  <p class="deck" data-lang="tr">Veriyi beş başka Türkiye veri kümesiyle birleştirdik: ETS tahsisleri, ESG notları, KAP finansal bildirimleri, TÜİK ihracat verisi ve il sağlık istatistikleri. Sonuçlar şöyle.</p>
+
+  <div class="finding">
+    <div class="head"><span class="badge">#1</span><h3 data-lang="en">TR exports × CBAM exposure</h3><h3 data-lang="tr">TR ihracat × CBAM yükü</h3></div>
+    <div class="big">€732M / yr</div>
+    <p data-lang="en">Add up CBAM tax owed at the EU default for everything Turkey exports to the EU in cement, steel, aluminum and fertilizer. Subtract what would be owed using our actual-emission formula. The gap is <strong>€732 million every year</strong> — that's how much TR exporters overpay just because they can't prove their real emissions.</p>
+    <p data-lang="tr">AB'ye ihraç edilen tüm çimento, çelik, alüminyum ve gübre için AB varsayım değerinden hesaplanan CBAM vergisini topla. Sonra bizim gerçek-emisyon formülümüzle hesaplananı çıkar. Fark <strong>yılda €732 milyon</strong>. İhracatçıların sadece gerçek emisyonunu kanıtlayamadıkları için fazladan ödediği miktar.</p>
+    <div class="small" data-lang="en">Cement loses €308M, steel €268M, aluminum €138M, fertilizer €17M. Aluminum is the worst-case overpayment per ton — the EU's default is calibrated for primary smelting but Turkey mostly exports downstream rolled product.</div>
+    <div class="small" data-lang="tr">Çimento €308M, çelik €268M, alüminyum €138M, gübre €17M kaybediyor. Ton başına en kötü oran alüminyumda — AB varsayımı birincil eritme için ayarlı ama Türkiye çoğunlukla haddelenmiş ürün ihraç ediyor.</div>
+  </div>
+
+  <div class="finding">
+    <div class="head"><span class="badge">#3</span><h3 data-lang="en">Revenue per kg CO₂ ranges 936×</h3><h3 data-lang="tr">Kg CO₂ başına gelir 936× değişiyor</h3></div>
+    <div class="big">3.9 TL → 3,614 TL</div>
+    <p data-lang="en">The dirtiest operator on the bench (a process cement plant) earns 3.9 Turkish lira per kg of CO₂ emitted. The cleanest (a fertilizer blender with no chemistry) earns 3,614. <strong>Same country. Same market.</strong> Choice of process technology determines whether CBAM is existential or invisible.</p>
+    <p data-lang="tr">Veri setindeki en kirli operatör (entegre çimento) 1 kg CO₂ başına 3.9 TL kazanıyor. En temizi (kimyası olmayan gübre harmancı) 3.614 TL kazanıyor. <strong>Aynı ülke. Aynı pazar.</strong> Süreç teknolojisi seçimi, CBAM'in varoluşsal bir tehdit mi yoksa görünmez bir maliyet mi olduğunu belirliyor.</p>
+    <div class="small" data-lang="en">BAGFAŞ's N₂O catalyst, Çolakoğlu's EAF, Assan's downstream rolling — these tech choices already earn 10-1000× more revenue per kg CO₂ than integrated heavy industry. The market is rewarding them before CBAM is fully in force.</div>
+    <div class="small" data-lang="tr">BAGFAŞ'ın N₂O katalizörü, Çolakoğlu'nun EAF'ı, Assan'ın haddesi — bu teknoloji seçimleri zaten kg CO₂ başına 10-1000× daha fazla gelir getiriyor. Piyasa, CBAM tam yürürlüğe girmeden önce bu seçimleri ödüllendiriyor.</div>
+  </div>
+
+  <div class="finding">
+    <div class="head"><span class="badge">#2</span><h3 data-lang="en">Turkey's own ETS starts 2026</h3><h3 data-lang="tr">Türkiye'nin kendi ETS'i 2026'da başlıyor</h3></div>
+    <div class="big">40.3 Mt / yr</div>
+    <p data-lang="en">Turkey is launching its own carbon market — TR-ETS — in 2026. Facilities above 50,000 tons CO₂/year are in scope. <strong>19 of our 21 audit-grade facilities</strong> cross that threshold. Total allowances they'll need: 40.3 million tons per year. Only BAGFAŞ and Gübretaş escape — their clean tech keeps them below the line.</p>
+    <p data-lang="tr">Türkiye 2026'da kendi karbon piyasasını — TR-ETS — başlatıyor. Yılda 50.000 ton CO₂ üstü tesisler kapsamda. 21 denetlenmiş tesisimizin <strong>19'u eşiği geçiyor</strong>. Toplam ihtiyaç duyacakları tahsis: yılda 40.3 milyon ton. Yalnız BAGFAŞ ve Gübretaş kapsam dışında — temiz teknolojileri sayesinde.</p>
+  </div>
+
+  <div class="finding">
+    <div class="head"><span class="badge">#4</span><h3 data-lang="en">Air pollution × health: data is missing</h3><h3 data-lang="tr">Hava kirliliği × sağlık: veri yok</h3></div>
+    <div class="big" data-lang="en">Not published.</div>
+    <div class="big" data-lang="tr">Yayımlanmamış.</div>
+    <p data-lang="en">We tried to connect each factory's NOx emissions (which we measure from satellite) to respiratory disease deaths in that province. We couldn't. <strong>Turkey publishes total deaths per province but not deaths by cause</strong>. So you can't currently prove which factories are causing which sicknesses. The data gap is the policy finding — and our bench is ready the moment Health Ministry releases the data.</p>
+    <p data-lang="tr">Her fabrikanın NOx emisyonunu (uydudan ölçüyoruz) o ildeki solunum hastalığı ölümleriyle ilişkilendirmeye çalıştık. Yapamadık. <strong>Türkiye il başına toplam ölümleri yayımlıyor ama ölüm nedenini ayrı ayrı vermiyor</strong>. Yani hangi fabrikanın hangi hastalığa yol açtığı şu an kanıtlanamıyor. Bu veri eksiği başlı başına bir politika bulgusu — Sağlık Bakanlığı veriyi yayımlar yayımlamaz, bizim setimiz hazır.</p>
+  </div>
+
+  <div class="finding">
+    <div class="head"><span class="badge">#5</span><h3 data-lang="en">ESG ratings are paywalled</h3><h3 data-lang="tr">ESG notları paralı duvar arkasında</h3></div>
+    <div class="big">1 of 27</div>
+    <p data-lang="en">Sustainalytics and MSCI rate companies for ESG performance, but the actual numbers are subscription-only. Of our 27 facility-operators, only <strong>one</strong> (Kardemir) has a publicly visible Sustainalytics rating. Six are in the BIST Sustainability 25 index (binary signal). The rest is opaque to the public. We flag this; we don't pretend to fill it.</p>
+    <p data-lang="tr">Sustainalytics ve MSCI şirketleri ESG açısından notluyor ama gerçek puanlar abonelik gerektiriyor. 27 tesis-operatörümüzden yalnızca <strong>biri</strong> (Kardemir) kamuya açık Sustainalytics notuna sahip. Altısı BIST Sürdürülebilirlik 25 endeksinde (ikili sinyal). Geri kalanı kamuya kapalı. Biz sadece bu boşluğu işaret ediyoruz; doldurma iddiamız yok.</p>
+  </div>
+</div>
+</section>
+
+<!-- USE IT -->
+<section class="body" style="background: var(--paper);">
+<div class="container">
+  <p class="kicker" data-lang="en">Use it</p>
+  <p class="kicker" data-lang="tr">Kullan</p>
+
+  <h2 data-lang="en">If you're <em>any of these people,</em> the bench is for you.</h2>
+  <h2 data-lang="tr">Bu kişilerden <em>biriyseniz,</em> bu veri seti sizin için.</h2>
+
+  <div class="grid-2">
+    <div class="step">
+      <div class="n" data-lang="en">Exporter</div>
+      <div class="n" data-lang="tr">İhracatçı</div>
+      <h3 data-lang="en">Sustainability or finance manager at a TR cement/steel/Al/fertilizer plant</h3>
+      <h3 data-lang="tr">Bir TR çimento/çelik/alüminyum/gübre tesisinde sürdürülebilirlik veya finans yöneticisi</h3>
+      <p data-lang="en">Look up your plant in the bench. Compare our formula output to your IAR Scope 1. The math is open. If we have you within ±20%, you can submit the formula approach to your CBAM importer. If we're off, tell us why — the bench gets better.</p>
+      <p data-lang="tr">Tesisinizi veri setinde arayın. Formülümüzün çıktısını sizin Entegre Yıllık Faaliyet Raporu'nuzdaki Kapsam 1 ile karşılaştırın. Hesap açık. Sizi ±%20 içinde tutarsak, CBAM ithalatçınıza formül yaklaşımını sunabilirsiniz. Tutmuyorsak, sebebini bize söyleyin — veri seti gelişir.</p>
+    </div>
+    <div class="step">
+      <div class="n" data-lang="en">Journalist</div>
+      <div class="n" data-lang="tr">Gazeteci</div>
+      <h3 data-lang="en">Reporter covering CBAM, climate, or industrial policy</h3>
+      <h3 data-lang="tr">CBAM, iklim veya sanayi politikasını izleyen muhabir</h3>
+      <p data-lang="en">The €732M number is real and sourced. Every operator's revenue per kg CO₂ is in the table. Every Scope 1 number has a PDF citation. Open the data, write the story.</p>
+      <p data-lang="tr">€732M sayısı gerçek ve kaynaklı. Her operatörün kg CO₂ başına geliri tabloda. Her Kapsam 1 değerinin bir PDF kaynağı var. Veriyi açın, hikâyeyi yazın.</p>
+    </div>
+    <div class="step">
+      <div class="n" data-lang="en">Regulator</div>
+      <div class="n" data-lang="tr">Düzenleyici</div>
+      <h3 data-lang="en">Ministry, ETS authority, statistics agency staff</h3>
+      <h3 data-lang="tr">Bakanlık, ETS otoritesi, istatistik kurumu personeli</h3>
+      <p data-lang="en">19 of our 21 facilities cross the TR-ETS 50 kt threshold. Their modeled allowances are public. If you're stress-testing the pilot allocation plan or estimating market depth, start here.</p>
+      <p data-lang="tr">21 tesisimizden 19'u TR-ETS 50 kt eşiğini geçiyor. Modellenen tahsisleri kamuya açık. Pilot tahsis planını stres-test ediyorsanız ya da pazar derinliği tahmin ediyorsanız, buradan başlayın.</p>
+    </div>
+    <div class="step">
+      <div class="n" data-lang="en">Researcher</div>
+      <div class="n" data-lang="tr">Akademisyen</div>
+      <h3 data-lang="en">University, think tank, or NGO researcher</h3>
+      <h3 data-lang="tr">Üniversite, düşünce kuruluşu veya STK araştırmacısı</h3>
+      <p data-lang="en">The bench, the formula, every PDF source — all Apache-2.0. Cite us; fork us; extend us. Pull requests welcome. The five fusion analyses are starter notebooks, not the final word.</p>
+      <p data-lang="tr">Veri seti, formül, her PDF kaynağı — hepsi Apache-2.0. Kaynak gösterin; fork edin; genişletin. Pull request bekleriz. Beş füzyon analizi başlangıç noktasıdır, son söz değil.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- HONEST -->
+<section class="body">
+<div class="container">
+  <p class="kicker" data-lang="en">Honest about limits</p>
+  <p class="kicker" data-lang="tr">Sınırlar konusunda dürüst</p>
+
+  <h2 data-lang="en">What the bench is <em>not.</em></h2>
+  <h2 data-lang="tr">Bu veri seti <em>ne değildir.</em></h2>
+
+  <p data-lang="en">21 audit-grade facilities is not enough to claim certainty about the whole TR CBAM-scope industry. Some of those 21 are "allocated from group total by clinker share" not directly disclosed — we mark them as such. Our €732M headline assumes CBAM hits its 2026 schedule and TR-actual emissions don't drift. The formula slightly out-predicts a 2-layer neural net at this data scale (we ship the formula, not the AI). Climate TRACE — the famous independent satellite tracker — under-reports our 3 audit-checked steel mills by 20-30%, so we built our own.</p>
+  <p data-lang="tr">21 denetlenmiş tesis, Türkiye'nin tüm CBAM-kapsamlı sanayisi hakkında kesinlik iddia etmeye yetmez. O 21 tesisin bir kısmı "grup toplamından klinker payına göre dağıtılmış" — doğrudan beyan edilmemiş. Bunları öyle işaretliyoruz. €732M başlığı, CBAM'in 2026 takvimine uyduğunu ve TR-gerçek emisyonlarının kaymadığını varsayar. Formül, bu veri ölçeğinde 2-katmanlı bir sinir ağını biraz geçiyor (yapay zekâ değil, formülü yayımlıyoruz). Climate TRACE — tanınmış bağımsız uydu izleyicisi — denetlediğimiz 3 çelik fabrikasında %20-30 düşük raporluyor; o yüzden kendimiz yaptık.</p>
+</div>
+</section>
+
+<!-- FOOTER / LINKS -->
+<footer>
+  <div class="container">
+    <div class="grid">
+      <div>
+        <h3 data-lang="en">Open infrastructure for Turkish CBAM compliance</h3>
+        <h3 data-lang="tr">Türkiye CBAM uyumluluğu için açık altyapı</h3>
+        <p data-lang="en">Released under Apache-2.0. Not a SaaS, not a startup, not a consultancy. Just data and code, in public, so the country can stop paying default tariffs it doesn't deserve.</p>
+        <p data-lang="tr">Apache-2.0 ile yayımlandı. SaaS değil, startup değil, danışmanlık değil. Sadece kamuya açık veri ve kod — ülkenin hak etmediği varsayım tarifelerini ödemeyi bırakması için.</p>
+      </div>
+      <div>
+        <h3 data-lang="en">Read more</h3>
+        <h3 data-lang="tr">Daha fazlası</h3>
+        <p>
+          <a href="/paper/" data-lang="en">Paper preview (1-pager)</a>
+          <a href="/paper/" data-lang="tr">Makale önizleme</a><br>
+          <a href="/fusion/" data-lang="en">All 5 fusion reports</a>
+          <a href="/fusion/" data-lang="tr">5 füzyon raporu</a><br>
+          <a href="/calculator/" data-lang="en">CBAM cost calculator</a>
+          <a href="/calculator/" data-lang="tr">CBAM maliyet hesaplayıcı</a><br>
+          <a href="/bench/" data-lang="en">Browse the bench</a>
+          <a href="/bench/" data-lang="tr">Veri setine göz at</a><br>
+          <a href="/verify/" data-lang="en">Verify in browser (3s WebGPU)</a>
+          <a href="/verify/" data-lang="tr">Tarayıcıda doğrula (3s WebGPU)</a><br>
+          <a href="/about/" data-lang="en">About</a>
+          <a href="/about/" data-lang="tr">Hakkında</a><br>
+          <a href="/assets/fig_iz1_vs_eu_lodo.svg" data-lang="en">Headline chart</a>
+          <a href="/assets/fig_iz1_vs_eu_lodo.svg" data-lang="tr">Ana grafik</a>
+        </p>
+      </div>
+      <div>
+        <h3 data-lang="en">Contact</h3>
+        <h3 data-lang="tr">İletişim</h3>
+        <p>
+          Ahmet Barış Günaydın<br>
+          <a href="mailto:hi@barisgunaydin.com">hi@barisgunaydin.com</a><br>
+          <a href="https://barisgunaydin.com">barisgunaydin.com</a>
+        </p>
+      </div>
+    </div>
+    <p class="colophon" data-lang="en">TR-MRV-Bench v0 · Apache-2.0 · 2026-05-29 · 59 facilities · 21 audit-grade Scope 1 disclosures · ~3-second browser-native fine-tuning · 12 sources cited inline.</p>
+    <p class="colophon" data-lang="tr">TR-MRV-Bench v0 · Apache-2.0 · 2026-05-29 · 59 tesis · 21 denetlenmiş Kapsam 1 beyanı · tarayıcıda ~3 saniyede eğitim · 12 satır içi kaynak.</p>
+  </div>
+</footer>
+
 <script>
-(async () => {
-  const inp = document.getElementById('find-input');
-  const out = document.getElementById('find-results');
-  if (!inp || !out) return;
-  const r = await fetch('/bench/facilities.json');
-  const facs = await r.json();
-  function strip(s) { return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
-  inp.addEventListener('input', () => {
-    const q = strip(inp.value).trim();
-    if (q.length < 2) { out.innerHTML = ''; return; }
-    const hits = facs.filter(f => strip(f.plant).includes(q) || strip(f.company).includes(q) || strip(f.city).includes(q)).slice(0, 8);
-    out.innerHTML = hits.length
-      ? hits.map(f => `<a href="/bench/${f.id}/" style="display:block;padding:8px 6px;border-bottom:1px solid var(--rule);text-decoration:none;border-bottom:1px solid var(--rule);"><strong>${f.plant}</strong> <span style="color:var(--muted);">· ${f.company} · ${f.sector}</span></a>`).join('')
-      : '<p style="color:var(--muted);padding:8px 6px;">No facility matches. <a href="/bench/#claim">Add yours →</a></p>';
-  });
-})();
+  // Language toggle
+  const root = document.documentElement;
+  const buttons = document.querySelectorAll('.langs button');
+  function setLang(lang) {
+    root.setAttribute('lang', lang);
+    buttons.forEach(b => b.classList.toggle('active', b.dataset.set === lang));
+    try { localStorage.setItem('iz-lang', lang); } catch(e) {}
+  }
+  buttons.forEach(b => b.addEventListener('click', () => setLang(b.dataset.set)));
+  // Default: stored preference, else browser language, else en
+  const stored = (function(){ try { return localStorage.getItem('iz-lang'); } catch(e) { return null; } })();
+  const browser = (navigator.language || '').toLowerCase().startsWith('tr') ? 'tr' : 'en';
+  setLang(stored || browser);
 </script>
-
-<section>
-  <h2><span class="h2-num">01</span> Proof of the formula</h2>
-  <div class="headline-grid">
-    <div class="panel">
-      <p class="label">Formula vs EU CBAM default</p>
-      <p class="big">−85.3%</p>
-      <p class="small">
-        <code>cap × route-EF × cf</code> on 21 audit-grade Turkish facilities, all 4 CBAM scopes.
-        Closed-form, no learned parameters. <strong>This is what we ship.</strong>
-      </p>
-    </div>
-    <div class="panel">
-      <p class="label">2-layer NN (validates the ceiling)</p>
-      <p class="big">−83.3%</p>
-      <p class="small">
-        <strong>95% data-bootstrap CI: +72.0% to +90.6%</strong> (5000 resamples of the n=21 facilities)
-        — the honest data-variance number. Per-outer seed CI is tight (±0.3%, model is reproducible);
-        the wider data CI reflects that we only have 21 audit-grade Turkish facilities.
-        <a href="/verify/">Verify in your browser →</a>
-      </p>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2><span class="h2-num">02</span> Why this exists</h2>
-  <p>
-    When a Turkish operator ships cement, steel, aluminum or fertilizer into the EU, they owe
-    CBAM. If they haven't filed verified emissions, the EU charges them against a default value
-    that's deliberately punitive &mdash; designed to push operators toward expensive MRV audits.
-    For most plants, the default overstates real emissions by 2-10×.
-  </p>
-  <p>
-    Reality is more granular than the EU's default categories. A downstream aluminum roller
-    isn't a primary smelter (23× different EF). A fertilizer plant with an N₂O catalyst on its
-    nitric acid line isn't a plain integrated NH₃ producer (10× different EF). And every plant
-    actually runs at less than nameplate capacity &mdash; numbers the operator publishes themselves
-    on a separate page of the same annual report as Scope 1.
-  </p>
-  <p>
-    iz reads those reports. We've built a public bench of 59 Turkish CBAM-scope facilities,
-    hand-curated 21 audit-grade strong labels across all four CBAM scopes, and shown that a
-    one-line formula <code>cap × EF × cf</code> beats the EU default by 85.9% in
-    leave-one-disclosure-out cross-validation.
-  </p>
-</section>
-
-<section>
-  <h2><span class="h2-num">03</span> What's in the bench, for whom</h2>
-  <p>
-    The bench is a public good. Three audiences, three uses:
-  </p>
-  <ul style="font-size:16px; line-height:1.7;">
-    <li><strong>Turkish operators</strong>: find your plant in <a href="/bench/">/bench</a>. The audit-grade tCO₂ figure, source PDF, and capacity factor are already worked out. Take the row to your CBAM-accredited verifier — they cite our methodology and your audit goes from a fortnight to a day. <a href="/use/">Operator guide →</a></li>
-    <li><strong>EU-accredited verifiers</strong> (DNV / TÜV Süd / BV / SGS Turkey desks): every TR cement/steel/aluminum/fertilizer plant has a pre-built reference baseline. <a href="/use/">Verifier workflow →</a></li>
-    <li><strong>Researchers, policy, journalists</strong>: the bench is downloadable as <a href="/bench/tr_bench_v0.csv">CSV</a> or <a href="/bench/facilities.json">JSON</a> with full provenance. <a href="https://github.com/abgnydn/iz/blob/master/CITATION.cff" target="_blank" rel="noopener">CITATION.cff</a> for citing.</li>
-  </ul>
-</section>
-
-<div class="cta-block">
-  <h3>Open infrastructure for TR CBAM compliance — Apache-2.0</h3>
-  <p>
-    This is a contribution to the Turkish economy, not a SaaS. If every TR CBAM-scope operator
-    used real per-facility data instead of paying the EU default, <strong>~€2 billion per year</strong>
-    stays in Turkey instead of going to the EU treasury (CBAM at €85/tCO₂, realistic sector
-    EU-export shares). Use the bench. Cite it. Correct it. Submit a pull request when you find
-    a better source.
-  </p>
-  <p style="font-size:13px;color:color-mix(in srgb, var(--paper) 70%, transparent);margin:14px 0 18px;">
-    Questions, corrections, citation requests, methodology disagreements — all welcome.
-    No NDA, no contract, no quote.
-  </p>
-  <a class="btn" href="/use/">How to use this →</a>
-  <a class="btn outline" href="https://github.com/abgnydn/iz" target="_blank" rel="noopener" style="margin-left:8px;">Source on GitHub →</a>
-  <a class="btn outline" href="mailto:hi@barisgunaydin.com" style="margin-left:8px;">hi@barisgunaydin.com</a>
-</div>
-
-<section>
-  <h2><span class="h2-num">04</span> Per-facility predictions vs EU default</h2>
-  <div style="background:var(--paper);border:1px solid var(--rule);padding:18px;margin:8px 0 22px;overflow-x:auto;">
-    <object data="/assets/fig_iz1_vs_eu_lodo.svg" type="image/svg+xml" style="width:100%;min-width:900px;height:auto;display:block;"></object>
-    <p class="muted" style="font-size:12px;margin:10px 0 0;font-style:italic;font-family:var(--sans);">
-      Each pair of bars is one leave-one-out held-out facility. Light red = EU CBAM default. Green = iz-1 prediction (median of 3 seeds). Black tick = audit-grade disclosed Scope 1 truth. Log y-axis, bars sorted by truth ascending.
-    </p>
-  </div>
-
-  <h3 style="font-size:18px;margin:24px 0 8px;">All 21 LODO predictions, sorted by truth</h3>
-  <p class="muted" style="font-size:14px;">
-    Leave-one-out: each plant's audited Scope 1 was hidden during prediction.
-    <strong>iz-1 (5-run median)</strong> = median of 5 outer LODO × 3 inner seeds = 15 predictions per plant.
-    The range below the number shows the spread across the 5 outer runs.
-    <strong>Ratio</strong> = iz-1 ÷ truth. Full sortable table with source PDFs at <a href="/bench/">/bench</a>.
-  </p>
-  <table>
-    <thead>
-      <tr><th>Facility</th><th>Sector / route</th><th class="num">Truth tCO₂</th><th class="num">iz-1 (5-run median)</th><th class="num">Ratio</th><th class="num">EU default</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>İsdemir İskenderun</td><td>steel · BF/BOF</td><td class="num">10,663,364</td><td class="num">8,533,469<br><span class="muted" style="font-size:10px;">n=5: 7,613,022–10,651,884</span></td><td class="num ratio-warn">0.80×</td><td class="num">10,070,000</td></tr>
-      <tr><td>Erdemir Karadeniz Ereğli</td><td>steel · BF/BOF</td><td class="num">6,673,266</td><td class="num">7,865,974<br><span class="muted" style="font-size:10px;">n=5: 7,302,418–8,381,467</span></td><td class="num ratio-good">1.18×</td><td class="num">7,600,000</td></tr>
-      <tr><td>Kardemir Karabük</td><td>steel · BF/BOF</td><td class="num">5,650,626</td><td class="num">5,624,740<br><span class="muted" style="font-size:10px;">n=5: 4,903,483–6,308,644</span></td><td class="num ratio-good">1.00×</td><td class="num">6,650,000</td></tr>
-      <tr><td>Nuh Hereke</td><td>cement</td><td class="num">3,573,278</td><td class="num">2,601,607<br><span class="muted" style="font-size:10px;">n=5: 2,530,082–2,619,532</span></td><td class="num ratio-warn">0.73×</td><td class="num">9,028,800</td></tr>
-      <tr><td>Akçansa Çanakkale</td><td>cement</td><td class="num">3,466,000</td><td class="num">3,814,782<br><span class="muted" style="font-size:10px;">n=5: 3,608,237–3,991,030</span></td><td class="num ratio-good">1.10×</td><td class="num">8,712,000</td></tr>
-      <tr><td>Göltaş Isparta</td><td>cement</td><td class="num">1,669,072</td><td class="num">1,968,777<br><span class="muted" style="font-size:10px;">n=5: 1,891,159–2,028,547</span></td><td class="num ratio-good">1.18×</td><td class="num">7,920,000</td></tr>
-      <tr><td>Batısöke Söke</td><td>cement</td><td class="num">1,577,926</td><td class="num">1,505,283<br><span class="muted" style="font-size:10px;">n=5: 1,489,926–1,575,790</span></td><td class="num ratio-good">0.95×</td><td class="num">6,336,000</td></tr>
-      <tr><td>Akçansa Büyükçekmece</td><td>cement</td><td class="num">1,514,000</td><td class="num">1,673,948<br><span class="muted" style="font-size:10px;">n=5: 1,652,629–1,752,998</span></td><td class="num ratio-good">1.11×</td><td class="num">3,960,000</td></tr>
-      <tr><td>Afyon Çimento</td><td>cement</td><td class="num">1,200,000</td><td class="num">675,797<br><span class="muted" style="font-size:10px;">n=5: 655,225–702,957</span></td><td class="num ratio-bad">0.56×</td><td class="num">2,851,200</td></tr>
-      <tr><td>Bursa Çimento Kestel</td><td>cement</td><td class="num">1,121,545</td><td class="num">629,747<br><span class="muted" style="font-size:10px;">n=5: 617,642–656,674</span></td><td class="num ratio-bad">0.56×</td><td class="num">3,168,000</td></tr>
-      <tr><td>Habaş Aliağa</td><td>steel · EAF</td><td class="num">830,338</td><td class="num">878,268<br><span class="muted" style="font-size:10px;">n=5: 848,290–926,306</span></td><td class="num ratio-good">1.06×</td><td class="num">8,550,000</td></tr>
-      <tr><td>Çolakoğlu Dilovası</td><td>steel · EAF</td><td class="num">566,519</td><td class="num">621,782<br><span class="muted" style="font-size:10px;">n=5: 601,003–642,396</span></td><td class="num ratio-good">1.10×</td><td class="num">8,550,000</td></tr>
-      <tr><td>Akçansa Ladik</td><td>cement</td><td class="num">499,000</td><td class="num">546,963<br><span class="muted" style="font-size:10px;">n=5: 530,005–581,600</span></td><td class="num ratio-good">1.10×</td><td class="num">1,584,000</td></tr>
-      <tr><td>Toros Mersin</td><td>fertilizer · integrated</td><td class="num">383,150</td><td class="num">222,868<br><span class="muted" style="font-size:10px;">n=5: 197,836–228,767</span></td><td class="num ratio-bad">0.58×</td><td class="num">648,000</td></tr>
-      <tr><td>İzdemir Aliağa</td><td>steel · EAF</td><td class="num">271,123</td><td class="num">290,420<br><span class="muted" style="font-size:10px;">n=5: 269,202–322,874</span></td><td class="num ratio-good">1.07×</td><td class="num">2,850,000</td></tr>
-      <tr><td>Toros Samsun</td><td>fertilizer · integrated</td><td class="num">255,180</td><td class="num">166,207<br><span class="muted" style="font-size:10px;">n=5: 156,710–170,710</span></td><td class="num ratio-bad">0.65×</td><td class="num">460,000</td></tr>
-      <tr><td>Toros Ceyhan</td><td>fertilizer · integrated</td><td class="num">203,840</td><td class="num">270,179<br><span class="muted" style="font-size:10px;">n=5: 200,058–291,492</span></td><td class="num ratio-warn">1.33×</td><td class="num">657,360</td></tr>
-      <tr><td>Assan Tuzla</td><td>aluminum · downstream</td><td class="num">108,500</td><td class="num">94,593<br><span class="muted" style="font-size:10px;">n=5: 88,171–112,127</span></td><td class="num ratio-good">0.87×</td><td class="num">540,000</td></tr>
-      <tr><td>ASAŞ Akyazı</td><td>aluminum · downstream</td><td class="num">68,618</td><td class="num">81,444<br><span class="muted" style="font-size:10px;">n=5: 78,266–100,972</span></td><td class="num ratio-good">1.19×</td><td class="num">375,000</td></tr>
-      <tr><td>Gübretaş Yarımca</td><td>fertilizer · blender</td><td class="num">13,281</td><td class="num">13,800<br><span class="muted" style="font-size:10px;">n=5: 13,496–14,821</span></td><td class="num ratio-good">1.04×</td><td class="num">640,000</td></tr>
-      <tr><td>BAGFAŞ Bandırma</td><td>fertilizer · N₂O-controlled</td><td class="num">9,828</td><td class="num">21,044<br><span class="muted" style="font-size:10px;">n=5: 19,230–22,907</span></td><td class="num ratio-bad">2.14×</td><td class="num">560,000</td></tr>
-    </tbody>
-  </table>
-</section>
-
-<section>
-  <h2><span class="h2-num">05</span> Verify the result</h2>
-  <p>
-    Don't take our word for it. The bench loads into a 2-layer LoRA-shaped MLP that trains in
-    your browser via WebGPU in 3 seconds &mdash; no backend, no telemetry, no account.
-    Click <strong>Train</strong> and watch it converge on the same leave-one-out set we used.
-    If we'd fudged the bench, you'd see it here.
-  </p>
-  <a class="btn ink" href="/verify/">Verify in your browser →</a>
-</section>
-
-<section>
-  <h2><span class="h2-num">06</span> Per-sector confidence intervals (bootstrap, 5000 resamples)</h2>
-  <p class="muted" style="font-size:14px;">95% CI = 2.5–97.5 percentile of the bootstrap distribution.
-  Wider bands = smaller in-stratum n. BF/BOF crosses zero because TR has only 3 BF/BOF integrated mills.</p>
-  <table>
-    <thead><tr><th>Sector / route</th><th class="num">n</th><th class="num">Mean reduction</th><th class="num">95% CI</th></tr></thead>
-    <tbody>
-      <tr><td>Aluminum · downstream</td><td class="num">2</td><td class="num ratio-good">+90.7%</td><td class="num">[+89.9, +91.5]</td></tr>
-      <tr><td>Steel · EAF</td><td class="num">3</td><td class="num ratio-good">+97.1%</td><td class="num">[+96.6, +97.6]</td></tr>
-      <tr><td>Cement</td><td class="num">7</td><td class="num ratio-good">+81.7%</td><td class="num">[+66.2, +92.2]</td></tr>
-      <tr><td>Fertilizer (mixed strata)</td><td class="num">5</td><td class="num ratio-good">+76.2%</td><td class="num">[+34.6, +93.0]</td></tr>
-      <tr><td>Steel · BF/BOF</td><td class="num">3</td><td class="num ratio-warn">+17.4%</td><td class="num">[-289.2, +97.2]</td></tr>
-      <tr><td><strong>Overall</strong></td><td class="num"><strong>20</strong></td><td class="num ratio-good"><strong>+85.9%</strong></td><td class="num"><strong>[+76.6, +92.5]</strong></td></tr>
-    </tbody>
-  </table>
-  <p class="muted" style="font-size:13px;">
-    BF/BOF CI crosses zero — with only 3 BF/BOF integrated mills in TR (Erdemir, İsdemir, Kardemir),
-    and the EU CBAM default 1.9 t/t already within ±15% of TR audited reality (1.97–2.40 t/t) on those
-    mills, the stratum is structurally a hard case. iz's value is concentrated in cement / EAF / aluminum / fertilizer.
-  </p>
-</section>
-
-</div>
-
-<footer><div class="wrap row">
-  <span>© 2026 Ahmet Barış Günaydın · open under Apache-2.0</span>
-  <a href="/about/">About</a>
-  <a href="/bench/">Bench</a>
-  <a href="/verify/">Verify</a>
-  <a href="https://barisgunaydin.com" target="_blank" rel="noopener">barisgunaydin.com</a>
-  <a href="https://github.com/abgnydn/iz" target="_blank" rel="noopener">GitHub</a>
-  <a href="mailto:hi@barisgunaydin.com">Email</a>
-</div></footer>
 
 </body>
 </html>

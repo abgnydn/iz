@@ -104,7 +104,19 @@
 <body>
 
 <div class="container top">
-  <div class="brand">TR-MRV-Bench <em>· iz</em></div>
+  <a href="/" class="brand" style="color:inherit; text-decoration:none;">TR-MRV-Bench <em>· iz</em></a>
+  <nav class="topnav" style="display:flex; gap:12px; font-family:Inter,sans-serif; font-size:10pt;">
+    <a href="/bench/" style="color:var(--muted); text-decoration:none;" data-lang="en">Bench</a>
+    <a href="/bench/" style="color:var(--muted); text-decoration:none;" data-lang="tr">Veri seti</a>
+    <a href="/calculator/" style="color:var(--muted); text-decoration:none;" data-lang="en">Calculator</a>
+    <a href="/calculator/" style="color:var(--muted); text-decoration:none;" data-lang="tr">Hesaplayıcı</a>
+    <a href="/fusion/" style="color:var(--muted); text-decoration:none;" data-lang="en">Fusions</a>
+    <a href="/fusion/" style="color:var(--muted); text-decoration:none;" data-lang="tr">Füzyonlar</a>
+    <a href="/paper/" style="color:var(--muted); text-decoration:none;" data-lang="en">Paper</a>
+    <a href="/paper/" style="color:var(--muted); text-decoration:none;" data-lang="tr">Makale</a>
+    <a href="/verify/" style="color:var(--muted); text-decoration:none;" data-lang="en">Verify</a>
+    <a href="/verify/" style="color:var(--muted); text-decoration:none;" data-lang="tr">Doğrula</a>
+  </nav>
   <div class="langs">
     <button class="active" data-set="en">English</button>
     <button data-set="tr">Türkçe</button>
@@ -382,12 +394,20 @@
         <h3 data-lang="en">Read more</h3>
         <h3 data-lang="tr">Daha fazlası</h3>
         <p>
-          <a href="paper_preview_v0.html" data-lang="en">Paper preview (1-pager)</a>
-          <a href="paper_preview_v0.html" data-lang="tr">Makale önizleme</a><br>
-          <a href="../reports/fusion/index.html" data-lang="en">All 5 fusion reports</a>
-          <a href="../reports/fusion/index.html" data-lang="tr">5 füzyon raporu</a><br>
-          <a href="../reports/fig_iz1_vs_eu_lodo.svg" data-lang="en">Headline chart</a>
-          <a href="../reports/fig_iz1_vs_eu_lodo.svg" data-lang="tr">Ana grafik</a>
+          <a href="/paper/" data-lang="en">Paper preview (1-pager)</a>
+          <a href="/paper/" data-lang="tr">Makale önizleme</a><br>
+          <a href="/fusion/" data-lang="en">All 5 fusion reports</a>
+          <a href="/fusion/" data-lang="tr">5 füzyon raporu</a><br>
+          <a href="/calculator/" data-lang="en">CBAM cost calculator</a>
+          <a href="/calculator/" data-lang="tr">CBAM maliyet hesaplayıcı</a><br>
+          <a href="/bench/" data-lang="en">Browse the bench</a>
+          <a href="/bench/" data-lang="tr">Veri setine göz at</a><br>
+          <a href="/verify/" data-lang="en">Verify in browser (3s WebGPU)</a>
+          <a href="/verify/" data-lang="tr">Tarayıcıda doğrula (3s WebGPU)</a><br>
+          <a href="/about/" data-lang="en">About</a>
+          <a href="/about/" data-lang="tr">Hakkında</a><br>
+          <a href="/assets/fig_iz1_vs_eu_lodo.svg" data-lang="en">Headline chart</a>
+          <a href="/assets/fig_iz1_vs_eu_lodo.svg" data-lang="tr">Ana grafik</a>
         </p>
       </div>
       <div>

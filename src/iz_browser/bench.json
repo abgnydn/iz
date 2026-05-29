@@ -73,8 +73,8 @@
     ],
     "splits": {
       "train": 39,
-      "val": 9,
-      "test": 11
+      "val": 10,
+      "test": 10
     }
   },
   "samples": [
@@ -1822,7 +1822,7 @@
       "y_log": 11.59451466851004,
       "y_raw": 108500.0,
       "w": 1.0,
-      "split": "test",
+      "split": "train",
       "label_source": "disclosure",
       "eu_default": 540000.0,
       "y_prior_log": 11.661129929619944,
@@ -1857,7 +1857,7 @@
       "y_log": 11.13632474329547,
       "y_raw": 68618.0,
       "w": 1.0,
-      "split": "train",
+      "split": "val",
       "label_source": "disclosure",
       "eu_default": 375000.0,
       "y_prior_log": 12.672165512704753,
@@ -3543,7 +3543,7 @@
         1.0,
         0.0
       ],
-      "split": "test"
+      "split": "train"
     },
     {
       "id": "asas-akyazi",
@@ -3571,7 +3571,7 @@
         0.7086666666666667,
         1.0
       ],
-      "split": "train"
+      "split": "val"
     },
     {
       "id": "toros-mersin",

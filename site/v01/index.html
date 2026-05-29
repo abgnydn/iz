@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iz · CBAM emissions audits for Turkish exporters</title>
+<meta name="description" content="Cut your EU CBAM bill by 60-80% with an audit-grade Scope 1 number defensible against the EU default. Per-facility Turkish industrial emissions, formula reduces log-error by 85.9% vs EU default on 20 audited plants.">
+<meta name="theme-color" content="#2d5a4c">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<link rel="canonical" href="https://iz-b0n.pages.dev/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="iz · TR-MRV-Bench">
+<meta property="og:title" content="iz · Stop overpaying CBAM. Three numbers from your own report.">
+<meta property="og:description" content="A public per-facility emissions benchmark for Turkish industry. Formula beats the EU CBAM default by 85.9% on 20 audit-grade facilities across all 4 CBAM scopes.">
+<meta property="og:url" content="https://iz-b0n.pages.dev/">
+<meta property="og:image" content="https://iz-b0n.pages.dev/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="iz · TR-MRV-Bench. Formula: tCO₂ = capacity × route-EF × capacity-factor. −85.9% vs EU CBAM default.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="iz · Stop overpaying CBAM.">
+<meta name="twitter:description" content="Public per-facility Turkish emissions benchmark. Formula beats EU CBAM default by 85.9% on 20 audited plants.">
+<meta name="twitter:image" content="https://iz-b0n.pages.dev/assets/og.png">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<div class="topbar"><div class="wrap-wide row">
+  <a href="/" class="logo">iz <em>· TR-MRV-Bench</em></a>
+  <nav>
+    <a href="/" class="active">Home</a>
+    <a href="/bench/">Bench</a>
+    <a href="/use/">Use</a>
+    <a href="/about/">About</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+
+<header class="hero">
+  <p class="kicker">iz v0 · 2026-05 · open under Apache-2.0</p>
+  <h1>Stop overpaying CBAM. <em>Three numbers from your own report.</em></h1>
+
+  <div class="formula-block">
+    <p class="formula">tCO₂ = <strong>capacity</strong> × <strong>route-EF</strong> × <strong>capacity-factor</strong></p>
+    <p class="formula-note">
+      Three numbers your own annual report already publishes. No machine learning, no satellites,
+      no proprietary data. We've validated this formula against 21 audit-grade Turkish facilities
+      and shown it beats the EU CBAM default by <strong>85.3%</strong> in leave-one-disclosure-out
+      cross-validation across all four CBAM scopes.
+    </p>
+  </div>
+
+  <p class="subhead">
+    The EU's CBAM default overcharges most Turkish cement, steel, aluminum, and fertilizer
+    facilities by 2-10×. iz is a public per-facility benchmark with audit-grade Scope 1
+    cited to operator-published source PDFs, plus a one-line formula that recovers it within
+    ±15% for big emitters. <strong>Released as open infrastructure under Apache-2.0 — use it,
+    cite it, contribute back.</strong>
+  </p>
+  <p class="byline">
+    Built and maintained by Ahmet Barış Günaydın ·
+    <a href="mailto:hi@barisgunaydin.com">hi@barisgunaydin.com</a> ·
+    <a href="https://barisgunaydin.com" target="_blank" rel="noopener">barisgunaydin.com</a> ·
+    <a href="https://github.com/abgnydn/iz" target="_blank" rel="noopener">github.com/abgnydn/iz</a>
+  </p>
+
+  <div id="find-plant" style="background:var(--paper);border:1px solid var(--rule);padding:14px 18px;margin:22px 0 0;">
+    <label for="find-input" style="font-family:var(--sans);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);display:block;margin-bottom:6px;">Find your facility</label>
+    <input id="find-input" type="text" placeholder="Type company or plant name (e.g. Akçansa, Erdemir, İsdemir)…" style="width:100%;padding:10px 14px;font-family:var(--sans);font-size:15px;border:1px solid var(--rule);background:white;">
+    <div id="find-results" style="font-family:var(--sans);font-size:14px;margin-top:8px;max-height:240px;overflow:auto;"></div>
+  </div>
+</header>
+<script>
+(async () => {
+  const inp = document.getElementById('find-input');
+  const out = document.getElementById('find-results');
+  if (!inp || !out) return;
+  const r = await fetch('/bench/facilities.json');
+  const facs = await r.json();
+  function strip(s) { return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+  inp.addEventListener('input', () => {
+    const q = strip(inp.value).trim();
+    if (q.length < 2) { out.innerHTML = ''; return; }
+    const hits = facs.filter(f => strip(f.plant).includes(q) || strip(f.company).includes(q) || strip(f.city).includes(q)).slice(0, 8);
+    out.innerHTML = hits.length
+      ? hits.map(f => `<a href="/bench/${f.id}/" style="display:block;padding:8px 6px;border-bottom:1px solid var(--rule);text-decoration:none;border-bottom:1px solid var(--rule);"><strong>${f.plant}</strong> <span style="color:var(--muted);">· ${f.company} · ${f.sector}</span></a>`).join('')
+      : '<p style="color:var(--muted);padding:8px 6px;">No facility matches. <a href="/bench/#claim">Add yours →</a></p>';
+  });
+})();
+</script>
+
+<section>
+  <h2><span class="h2-num">01</span> Proof of the formula</h2>
+  <div class="headline-grid">
+    <div class="panel">
+      <p class="label">Formula vs EU CBAM default</p>
+      <p class="big">−85.3%</p>
+      <p class="small">
+        <code>cap × route-EF × cf</code> on 21 audit-grade Turkish facilities, all 4 CBAM scopes.
+        Closed-form, no learned parameters. <strong>This is what we ship.</strong>
+      </p>
+    </div>
+    <div class="panel">
+      <p class="label">2-layer NN (validates the ceiling)</p>
+      <p class="big">−83.3%</p>
+      <p class="small">
+        <strong>95% data-bootstrap CI: +72.0% to +90.6%</strong> (5000 resamples of the n=21 facilities)
+        — the honest data-variance number. Per-outer seed CI is tight (±0.3%, model is reproducible);
+        the wider data CI reflects that we only have 21 audit-grade Turkish facilities.
+        <a href="/verify/">Verify in your browser →</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="h2-num">02</span> Why this exists</h2>
+  <p>
+    When a Turkish operator ships cement, steel, aluminum or fertilizer into the EU, they owe
+    CBAM. If they haven't filed verified emissions, the EU charges them against a default value
+    that's deliberately punitive &mdash; designed to push operators toward expensive MRV audits.
+    For most plants, the default overstates real emissions by 2-10×.
+  </p>
+  <p>
+    Reality is more granular than the EU's default categories. A downstream aluminum roller
+    isn't a primary smelter (23× different EF). A fertilizer plant with an N₂O catalyst on its
+    nitric acid line isn't a plain integrated NH₃ producer (10× different EF). And every plant
+    actually runs at less than nameplate capacity &mdash; numbers the operator publishes themselves
+    on a separate page of the same annual report as Scope 1.
+  </p>
+  <p>
+    iz reads those reports. We've built a public bench of 59 Turkish CBAM-scope facilities,
+    hand-curated 21 audit-grade strong labels across all four CBAM scopes, and shown that a
+    one-line formula <code>cap × EF × cf</code> beats the EU default by 85.9% in
+    leave-one-disclosure-out cross-validation.
+  </p>
+</section>
+
+<section>
+  <h2><span class="h2-num">03</span> What's in the bench, for whom</h2>
+  <p>
+    The bench is a public good. Three audiences, three uses:
+  </p>
+  <ul style="font-size:16px; line-height:1.7;">
+    <li><strong>Turkish operators</strong>: find your plant in <a href="/bench/">/bench</a>. The audit-grade tCO₂ figure, source PDF, and capacity factor are already worked out. Take the row to your CBAM-accredited verifier — they cite our methodology and your audit goes from a fortnight to a day. <a href="/use/">Operator guide →</a></li>
+    <li><strong>EU-accredited verifiers</strong> (DNV / TÜV Süd / BV / SGS Turkey desks): every TR cement/steel/aluminum/fertilizer plant has a pre-built reference baseline. <a href="/use/">Verifier workflow →</a></li>
+    <li><strong>Researchers, policy, journalists</strong>: the bench is downloadable as <a href="/bench/tr_bench_v0.csv">CSV</a> or <a href="/bench/facilities.json">JSON</a> with full provenance. <a href="https://github.com/abgnydn/iz/blob/master/CITATION.cff" target="_blank" rel="noopener">CITATION.cff</a> for citing.</li>
+  </ul>
+</section>
+
+<div class="cta-block">
+  <h3>Open infrastructure for TR CBAM compliance — Apache-2.0</h3>
+  <p>
+    This is a contribution to the Turkish economy, not a SaaS. If every TR CBAM-scope operator
+    used real per-facility data instead of paying the EU default, <strong>~€2 billion per year</strong>
+    stays in Turkey instead of going to the EU treasury (CBAM at €85/tCO₂, realistic sector
+    EU-export shares). Use the bench. Cite it. Correct it. Submit a pull request when you find
+    a better source.
+  </p>
+  <p style="font-size:13px;color:color-mix(in srgb, var(--paper) 70%, transparent);margin:14px 0 18px;">
+    Questions, corrections, citation requests, methodology disagreements — all welcome.
+    No NDA, no contract, no quote.
+  </p>
+  <a class="btn" href="/use/">How to use this →</a>
+  <a class="btn outline" href="https://github.com/abgnydn/iz" target="_blank" rel="noopener" style="margin-left:8px;">Source on GitHub →</a>
+  <a class="btn outline" href="mailto:hi@barisgunaydin.com" style="margin-left:8px;">hi@barisgunaydin.com</a>
+</div>
+
+<section>
+  <h2><span class="h2-num">04</span> Per-facility predictions vs EU default</h2>
+  <div style="background:var(--paper);border:1px solid var(--rule);padding:18px;margin:8px 0 22px;overflow-x:auto;">
+    <object data="/assets/fig_iz1_vs_eu_lodo.svg" type="image/svg+xml" style="width:100%;min-width:900px;height:auto;display:block;"></object>
+    <p class="muted" style="font-size:12px;margin:10px 0 0;font-style:italic;font-family:var(--sans);">
+      Each pair of bars is one leave-one-out held-out facility. Light red = EU CBAM default. Green = iz-1 prediction (median of 3 seeds). Black tick = audit-grade disclosed Scope 1 truth. Log y-axis, bars sorted by truth ascending.
+    </p>
+  </div>
+
+  <h3 style="font-size:18px;margin:24px 0 8px;">All 21 LODO predictions, sorted by truth</h3>
+  <p class="muted" style="font-size:14px;">
+    Leave-one-out: each plant's audited Scope 1 was hidden during prediction.
+    <strong>iz-1 (5-run median)</strong> = median of 5 outer LODO × 3 inner seeds = 15 predictions per plant.
+    The range below the number shows the spread across the 5 outer runs.
+    <strong>Ratio</strong> = iz-1 ÷ truth. Full sortable table with source PDFs at <a href="/bench/">/bench</a>.
+  </p>
+  <table>
+    <thead>
+      <tr><th>Facility</th><th>Sector / route</th><th class="num">Truth tCO₂</th><th class="num">iz-1 (5-run median)</th><th class="num">Ratio</th><th class="num">EU default</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>İsdemir İskenderun</td><td>steel · BF/BOF</td><td class="num">10,663,364</td><td class="num">8,533,469<br><span class="muted" style="font-size:10px;">n=5: 7,613,022–10,651,884</span></td><td class="num ratio-warn">0.80×</td><td class="num">10,070,000</td></tr>
+      <tr><td>Erdemir Karadeniz Ereğli</td><td>steel · BF/BOF</td><td class="num">6,673,266</td><td class="num">7,865,974<br><span class="muted" style="font-size:10px;">n=5: 7,302,418–8,381,467</span></td><td class="num ratio-good">1.18×</td><td class="num">7,600,000</td></tr>
+      <tr><td>Kardemir Karabük</td><td>steel · BF/BOF</td><td class="num">5,650,626</td><td class="num">5,624,740<br><span class="muted" style="font-size:10px;">n=5: 4,903,483–6,308,644</span></td><td class="num ratio-good">1.00×</td><td class="num">6,650,000</td></tr>
+      <tr><td>Nuh Hereke</td><td>cement</td><td class="num">3,573,278</td><td class="num">2,601,607<br><span class="muted" style="font-size:10px;">n=5: 2,530,082–2,619,532</span></td><td class="num ratio-warn">0.73×</td><td class="num">9,028,800</td></tr>
+      <tr><td>Akçansa Çanakkale</td><td>cement</td><td class="num">3,466,000</td><td class="num">3,814,782<br><span class="muted" style="font-size:10px;">n=5: 3,608,237–3,991,030</span></td><td class="num ratio-good">1.10×</td><td class="num">8,712,000</td></tr>
+      <tr><td>Göltaş Isparta</td><td>cement</td><td class="num">1,669,072</td><td class="num">1,968,777<br><span class="muted" style="font-size:10px;">n=5: 1,891,159–2,028,547</span></td><td class="num ratio-good">1.18×</td><td class="num">7,920,000</td></tr>
+      <tr><td>Batısöke Söke</td><td>cement</td><td class="num">1,577,926</td><td class="num">1,505,283<br><span class="muted" style="font-size:10px;">n=5: 1,489,926–1,575,790</span></td><td class="num ratio-good">0.95×</td><td class="num">6,336,000</td></tr>
+      <tr><td>Akçansa Büyükçekmece</td><td>cement</td><td class="num">1,514,000</td><td class="num">1,673,948<br><span class="muted" style="font-size:10px;">n=5: 1,652,629–1,752,998</span></td><td class="num ratio-good">1.11×</td><td class="num">3,960,000</td></tr>
+      <tr><td>Afyon Çimento</td><td>cement</td><td class="num">1,200,000</td><td class="num">675,797<br><span class="muted" style="font-size:10px;">n=5: 655,225–702,957</span></td><td class="num ratio-bad">0.56×</td><td class="num">2,851,200</td></tr>
+      <tr><td>Bursa Çimento Kestel</td><td>cement</td><td class="num">1,121,545</td><td class="num">629,747<br><span class="muted" style="font-size:10px;">n=5: 617,642–656,674</span></td><td class="num ratio-bad">0.56×</td><td class="num">3,168,000</td></tr>
+      <tr><td>Habaş Aliağa</td><td>steel · EAF</td><td class="num">830,338</td><td class="num">878,268<br><span class="muted" style="font-size:10px;">n=5: 848,290–926,306</span></td><td class="num ratio-good">1.06×</td><td class="num">8,550,000</td></tr>
+      <tr><td>Çolakoğlu Dilovası</td><td>steel · EAF</td><td class="num">566,519</td><td class="num">621,782<br><span class="muted" style="font-size:10px;">n=5: 601,003–642,396</span></td><td class="num ratio-good">1.10×</td><td class="num">8,550,000</td></tr>
+      <tr><td>Akçansa Ladik</td><td>cement</td><td class="num">499,000</td><td class="num">546,963<br><span class="muted" style="font-size:10px;">n=5: 530,005–581,600</span></td><td class="num ratio-good">1.10×</td><td class="num">1,584,000</td></tr>
+      <tr><td>Toros Mersin</td><td>fertilizer · integrated</td><td class="num">383,150</td><td class="num">222,868<br><span class="muted" style="font-size:10px;">n=5: 197,836–228,767</span></td><td class="num ratio-bad">0.58×</td><td class="num">648,000</td></tr>
+      <tr><td>İzdemir Aliağa</td><td>steel · EAF</td><td class="num">271,123</td><td class="num">290,420<br><span class="muted" style="font-size:10px;">n=5: 269,202–322,874</span></td><td class="num ratio-good">1.07×</td><td class="num">2,850,000</td></tr>
+      <tr><td>Toros Samsun</td><td>fertilizer · integrated</td><td class="num">255,180</td><td class="num">166,207<br><span class="muted" style="font-size:10px;">n=5: 156,710–170,710</span></td><td class="num ratio-bad">0.65×</td><td class="num">460,000</td></tr>
+      <tr><td>Toros Ceyhan</td><td>fertilizer · integrated</td><td class="num">203,840</td><td class="num">270,179<br><span class="muted" style="font-size:10px;">n=5: 200,058–291,492</span></td><td class="num ratio-warn">1.33×</td><td class="num">657,360</td></tr>
+      <tr><td>Assan Tuzla</td><td>aluminum · downstream</td><td class="num">108,500</td><td class="num">94,593<br><span class="muted" style="font-size:10px;">n=5: 88,171–112,127</span></td><td class="num ratio-good">0.87×</td><td class="num">540,000</td></tr>
+      <tr><td>ASAŞ Akyazı</td><td>aluminum · downstream</td><td class="num">68,618</td><td class="num">81,444<br><span class="muted" style="font-size:10px;">n=5: 78,266–100,972</span></td><td class="num ratio-good">1.19×</td><td class="num">375,000</td></tr>
+      <tr><td>Gübretaş Yarımca</td><td>fertilizer · blender</td><td class="num">13,281</td><td class="num">13,800<br><span class="muted" style="font-size:10px;">n=5: 13,496–14,821</span></td><td class="num ratio-good">1.04×</td><td class="num">640,000</td></tr>
+      <tr><td>BAGFAŞ Bandırma</td><td>fertilizer · N₂O-controlled</td><td class="num">9,828</td><td class="num">21,044<br><span class="muted" style="font-size:10px;">n=5: 19,230–22,907</span></td><td class="num ratio-bad">2.14×</td><td class="num">560,000</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="h2-num">05</span> Verify the result</h2>
+  <p>
+    Don't take our word for it. The bench loads into a 2-layer LoRA-shaped MLP that trains in
+    your browser via WebGPU in 3 seconds &mdash; no backend, no telemetry, no account.
+    Click <strong>Train</strong> and watch it converge on the same leave-one-out set we used.
+    If we'd fudged the bench, you'd see it here.
+  </p>
+  <a class="btn ink" href="/verify/">Verify in your browser →</a>
+</section>
+
+<section>
+  <h2><span class="h2-num">06</span> Per-sector confidence intervals (bootstrap, 5000 resamples)</h2>
+  <p class="muted" style="font-size:14px;">95% CI = 2.5–97.5 percentile of the bootstrap distribution.
+  Wider bands = smaller in-stratum n. BF/BOF crosses zero because TR has only 3 BF/BOF integrated mills.</p>
+  <table>
+    <thead><tr><th>Sector / route</th><th class="num">n</th><th class="num">Mean reduction</th><th class="num">95% CI</th></tr></thead>
+    <tbody>
+      <tr><td>Aluminum · downstream</td><td class="num">2</td><td class="num ratio-good">+90.7%</td><td class="num">[+89.9, +91.5]</td></tr>
+      <tr><td>Steel · EAF</td><td class="num">3</td><td class="num ratio-good">+97.1%</td><td class="num">[+96.6, +97.6]</td></tr>
+      <tr><td>Cement</td><td class="num">7</td><td class="num ratio-good">+81.7%</td><td class="num">[+66.2, +92.2]</td></tr>
+      <tr><td>Fertilizer (mixed strata)</td><td class="num">5</td><td class="num ratio-good">+76.2%</td><td class="num">[+34.6, +93.0]</td></tr>
+      <tr><td>Steel · BF/BOF</td><td class="num">3</td><td class="num ratio-warn">+17.4%</td><td class="num">[-289.2, +97.2]</td></tr>
+      <tr><td><strong>Overall</strong></td><td class="num"><strong>20</strong></td><td class="num ratio-good"><strong>+85.9%</strong></td><td class="num"><strong>[+76.6, +92.5]</strong></td></tr>
+    </tbody>
+  </table>
+  <p class="muted" style="font-size:13px;">
+    BF/BOF CI crosses zero — with only 3 BF/BOF integrated mills in TR (Erdemir, İsdemir, Kardemir),
+    and the EU CBAM default 1.9 t/t already within ±15% of TR audited reality (1.97–2.40 t/t) on those
+    mills, the stratum is structurally a hard case. iz's value is concentrated in cement / EAF / aluminum / fertilizer.
+  </p>
+</section>
+
+</div>
+
+<footer><div class="wrap row">
+  <span>© 2026 Ahmet Barış Günaydın · open under Apache-2.0</span>
+  <a href="/about/">About</a>
+  <a href="/bench/">Bench</a>
+  <a href="/verify/">Verify</a>
+  <a href="https://barisgunaydin.com" target="_blank" rel="noopener">barisgunaydin.com</a>
+  <a href="https://github.com/abgnydn/iz" target="_blank" rel="noopener">GitHub</a>
+  <a href="mailto:hi@barisgunaydin.com">Email</a>
+</div></footer>
+
+</body>
+</html>
