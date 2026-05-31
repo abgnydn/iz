@@ -1,0 +1,381 @@
+{
+  "method": "Verifier B6 \u2014 EUTL EU cement validation",
+  "n_installations_pulled": 372,
+  "n_verified_facility_years": 5198,
+  "tr_bench_n_for_comparison": 21,
+  "lens_1_time_series": {
+    "median_abs_yoy_pct": 8.381005598955452,
+    "p90_abs_yoy_pct": 35.39006507133097,
+    "share_within_10pct": 0.49576760292420163,
+    "share_within_25pct": 0.7468257021931513
+  },
+  "lens_2_country_coverage": [
+    {
+      "country": "Germany",
+      "plants": 36,
+      "total_mt": 16.100894
+    },
+    {
+      "country": "Spain",
+      "plants": 31,
+      "total_mt": 11.300154
+    },
+    {
+      "country": "Italy",
+      "plants": 33,
+      "total_mt": 10.91094
+    },
+    {
+      "country": "France",
+      "plants": 36,
+      "total_mt": 9.597194
+    },
+    {
+      "country": "Poland",
+      "plants": 9,
+      "total_mt": 9.553807
+    },
+    {
+      "country": "United Kingdom",
+      "plants": 14,
+      "total_mt": 6.349851
+    },
+    {
+      "country": "Romania",
+      "plants": 7,
+      "total_mt": 5.286664
+    },
+    {
+      "country": "Greece",
+      "plants": 6,
+      "total_mt": 4.689229
+    },
+    {
+      "country": "Portugal",
+      "plants": 9,
+      "total_mt": 3.654241
+    },
+    {
+      "country": "Belgium",
+      "plants": 4,
+      "total_mt": 3.152897
+    },
+    {
+      "country": "Ireland",
+      "plants": 4,
+      "total_mt": 2.701938
+    },
+    {
+      "country": "Austria",
+      "plants": 12,
+      "total_mt": 2.26001
+    },
+    {
+      "country": "Czech Republic",
+      "plants": 5,
+      "total_mt": 2.123019
+    },
+    {
+      "country": "Slovakia",
+      "plants": 4,
+      "total_mt": 1.856378
+    },
+    {
+      "country": "Croatia",
+      "plants": 4,
+      "total_mt": 1.788504
+    },
+    {
+      "country": "Denmark",
+      "plants": 1,
+      "total_mt": 1.704342
+    },
+    {
+      "country": "Sweden",
+      "plants": 2,
+      "total_mt": 1.661131
+    },
+    {
+      "country": "Bulgaria",
+      "plants": 3,
+      "total_mt": 1.470203
+    },
+    {
+      "country": "Cyprus",
+      "plants": 1,
+      "total_mt": 1.249178
+    },
+    {
+      "country": "Norway",
+      "plants": 2,
+      "total_mt": 0.892649
+    },
+    {
+      "country": "Hungary",
+      "plants": 3,
+      "total_mt": 0.813703
+    },
+    {
+      "country": "Lithuania",
+      "plants": 1,
+      "total_mt": 0.783849
+    },
+    {
+      "country": "Latvia",
+      "plants": 1,
+      "total_mt": 0.744135
+    },
+    {
+      "country": "Slovenia",
+      "plants": 2,
+      "total_mt": 0.677478
+    },
+    {
+      "country": "Finland",
+      "plants": 2,
+      "total_mt": 0.663883
+    },
+    {
+      "country": "Luxembourg",
+      "plants": 1,
+      "total_mt": 0.381202
+    },
+    {
+      "country": "Estonia",
+      "plants": 1,
+      "total_mt": 0.036815
+    }
+  ],
+  "lens_3_operator_rollup": [
+    {
+      "operator": "Heidelberg",
+      "eu_eutl_sum_mt": 5.225487,
+      "operator_disclosed_group_mt": 50.4,
+      "eu_plants_matched": 15,
+      "ratio_eu_to_global": 0.10368029761904762
+    },
+    {
+      "operator": "Holcim",
+      "eu_eutl_sum_mt": 11.333093,
+      "operator_disclosed_group_mt": 87.6,
+      "eu_plants_matched": 24,
+      "ratio_eu_to_global": 0.1293732077625571
+    },
+    {
+      "operator": "Cemex",
+      "eu_eutl_sum_mt": 3.8451,
+      "operator_disclosed_group_mt": 37.0,
+      "eu_plants_matched": 10,
+      "ratio_eu_to_global": 0.10392162162162162
+    },
+    {
+      "operator": "Buzzi",
+      "eu_eutl_sum_mt": 0.824372,
+      "operator_disclosed_group_mt": 14.8,
+      "eu_plants_matched": 1,
+      "ratio_eu_to_global": 0.05570081081081081
+    },
+    {
+      "operator": "Vicat",
+      "eu_eutl_sum_mt": 1.475769,
+      "operator_disclosed_group_mt": 11.4,
+      "eu_plants_matched": 4,
+      "ratio_eu_to_global": 0.12945342105263158
+    },
+    {
+      "operator": "Titan",
+      "eu_eutl_sum_mt": 4.689229,
+      "operator_disclosed_group_mt": 5.6,
+      "eu_plants_matched": 6,
+      "ratio_eu_to_global": 0.8373623214285715
+    },
+    {
+      "operator": "Cementir",
+      "eu_eutl_sum_mt": 1.704342,
+      "operator_disclosed_group_mt": 5.0,
+      "eu_plants_matched": 1,
+      "ratio_eu_to_global": 0.3408684
+    },
+    {
+      "operator": "CRH",
+      "eu_eutl_sum_mt": 1.70572,
+      "operator_disclosed_group_mt": 22.0,
+      "eu_plants_matched": 2,
+      "ratio_eu_to_global": 0.07753272727272727
+    }
+  ],
+  "lens_4_formula_test": {
+    "n_plants_with_capacity": 14,
+    "log_mae_formula": 0.2139431589675196,
+    "log_mae_eu_default": 0.8307443917850642,
+    "share_within_15pct": 0.42857142857142855,
+    "plants": [
+      {
+        "id_matches": "DE_99",
+        "label": "Heidelberg Schelklingen",
+        "year": 2023,
+        "capacity_mt": 1.4,
+        "verified_t": 459994.0,
+        "predicted_t": 660146.6666666666,
+        "ratio": 1.4351201682340784,
+        "eu_default_pred_t": 1626240.0,
+        "eu_default_ratio": 3.5353504610929707
+      },
+      {
+        "id_matches": "DE_94",
+        "label": "Heidelberg Lengfurt",
+        "year": 2023,
+        "capacity_mt": 1.1,
+        "verified_t": 611954.0,
+        "predicted_t": 518686.6666666666,
+        "ratio": 0.84759094093129,
+        "eu_default_pred_t": 1277760.0,
+        "eu_default_ratio": 2.0880000784372683
+      },
+      {
+        "id_matches": "DE_75",
+        "label": "Heidelberg Hannover (H\u00f6ver)",
+        "year": 2023,
+        "capacity_mt": 1.2,
+        "verified_t": 549833.0,
+        "predicted_t": 565840.0,
+        "ratio": 1.0291124759699763,
+        "eu_default_pred_t": 1393920.0,
+        "eu_default_ratio": 2.5351697697300817
+      },
+      {
+        "id_matches": "DE_79",
+        "label": "Holcim Beckum-Kollenbach",
+        "year": 2023,
+        "capacity_mt": 1.5,
+        "verified_t": 495048.0,
+        "predicted_t": 707300.0,
+        "ratio": 1.428750343401044,
+        "eu_default_pred_t": 1742399.9999999998,
+        "eu_default_ratio": 3.519658699762447
+      },
+      {
+        "id_matches": "DE_81",
+        "label": "Cemex R\u00fcdersdorf",
+        "year": 2023,
+        "capacity_mt": 1.8,
+        "verified_t": 843819.0,
+        "predicted_t": 848759.9999999999,
+        "ratio": 1.0058555211484925,
+        "eu_default_pred_t": 2090879.9999999998,
+        "eu_default_ratio": 2.4778773646955092
+      },
+      {
+        "id_matches": "DE_82",
+        "label": "Schwenk Mergelstetten",
+        "year": 2023,
+        "capacity_mt": 0.95,
+        "verified_t": 392981.0,
+        "predicted_t": 447956.6666666666,
+        "ratio": 1.1398939558570684,
+        "eu_default_pred_t": 1103520.0,
+        "eu_default_ratio": 2.8080746906338985
+      },
+      {
+        "id_matches": "DE_84",
+        "label": "Schwenk Karlstadt",
+        "year": 2023,
+        "capacity_mt": 0.85,
+        "verified_t": 543135.0,
+        "predicted_t": 400803.3333333333,
+        "ratio": 0.7379442189019918,
+        "eu_default_pred_t": 987359.9999999999,
+        "eu_default_ratio": 1.8178905796901321
+      },
+      {
+        "id_matches": "FR_368",
+        "label": "Vicat Montalieu",
+        "year": 2023,
+        "capacity_mt": 1.4,
+        "verified_t": 736209.0,
+        "predicted_t": 660146.6666666666,
+        "ratio": 0.896683776844166,
+        "eu_default_pred_t": 1626240.0,
+        "eu_default_ratio": 2.208937951043793
+      },
+      {
+        "id_matches": "IT_63",
+        "label": "Buzzi Robilante",
+        "year": 2023,
+        "capacity_mt": 1.3,
+        "verified_t": 700973.0,
+        "predicted_t": 612993.3333333333,
+        "ratio": 0.8744892218863398,
+        "eu_default_pred_t": 1510080.0,
+        "eu_default_ratio": 2.1542627176795683
+      },
+      {
+        "id_matches": "RO_134",
+        "label": "Holcim Alesd (RO)",
+        "year": 2023,
+        "capacity_mt": 1.5,
+        "verified_t": 892484.0,
+        "predicted_t": 707300.0,
+        "ratio": 0.792507204610951,
+        "eu_default_pred_t": 1742399.9999999998,
+        "eu_default_ratio": 1.95230390684875
+      },
+      {
+        "id_matches": "CZ_324",
+        "label": "Heidelberg Mokr\u00e1 (CZ)",
+        "year": 2023,
+        "capacity_mt": 1.1,
+        "verified_t": 460795.0,
+        "predicted_t": 518686.6666666666,
+        "ratio": 1.1256343203955481,
+        "eu_default_pred_t": 1277760.0,
+        "eu_default_ratio": 2.7729467550646167
+      },
+      {
+        "id_matches": "CZ_325",
+        "label": "Heidelberg Radot\u00edn (CZ)",
+        "year": 2023,
+        "capacity_mt": 0.65,
+        "verified_t": 390322.0,
+        "predicted_t": 306496.6666666666,
+        "ratio": 0.7852405620658498,
+        "eu_default_pred_t": 755040.0,
+        "eu_default_ratio": 1.9344028776241156
+      },
+      {
+        "id_matches": "IE_34",
+        "label": "CRH Irish Cement Platin",
+        "year": 2023,
+        "capacity_mt": 1.5,
+        "verified_t": 989010.0,
+        "predicted_t": 707300.0,
+        "ratio": 0.715159604048493,
+        "eu_default_pred_t": 1742399.9999999998,
+        "eu_default_ratio": 1.7617617617617616
+      },
+      {
+        "id_matches": "DE_74",
+        "label": "Holcim L\u00e4gerdorf (DE)",
+        "year": 2023,
+        "capacity_mt": 1.3,
+        "verified_t": 982119.0,
+        "predicted_t": 612993.3333333333,
+        "ratio": 0.6241538279305596,
+        "eu_default_pred_t": 1510080.0,
+        "eu_default_ratio": 1.5375733490544425
+      }
+    ]
+  },
+  "lens_5_sector_aggregate": {
+    "eu_nameplate_capacity_mt": 225.0,
+    "eu_production_mt": 165.0,
+    "eu_avg_cf": 0.7333333333333333,
+    "eutl_total_verified_mt": 102.404288,
+    "formula_pred_tr_ef_tr_cf_mt": 79.57125,
+    "formula_pred_tr_ef_eu_cf_mt": 106.095,
+    "eu_default_pred_mt": 261.36,
+    "formula_tr_cf_ratio": 0.7770304501311509,
+    "formula_eu_cf_ratio": 1.0360406001748677,
+    "eu_default_ratio": 2.5522368750808564
+  }
+}

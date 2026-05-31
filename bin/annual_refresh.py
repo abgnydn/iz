@@ -41,6 +41,8 @@ STEPS = [
     ("Fusion A3 — Verifier x", ["uv", "run", "python", "bin/fusion_a3_verifier_crosscheck.py"]),
     ("Verifier B1 — multiyear",["uv", "run", "python", "bin/verifier_b1_multiyear.py"]),
     ("Verifier B4 — bootstrap",["uv", "run", "python", "bin/verifier_b4_sector_bootstrap.py"]),
+    ("EUTL B6 pull",           ["uv", "run", "python", "bin/pull_eutl_cement.py"]),
+    ("EUTL B6 score",          ["uv", "run", "python", "bin/verifier_b6_eutl_score.py"]),
     ("Headline LODO",          ["uv", "run", "python", "bin/e2e_lodo_aggregate.py", "5"]),
     ("Regenerate figure",      ["uv", "run", "python", "bin/figure_lodo.py"]),
 ]
