@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EU CBAM 2026 — Evidence-based counter-default submission — TR-MRV-Bench</title>
+<meta name="description" content="Submission to the EU CBAM 2026 default-values implementing act consultation. Empirical counter-defaults for Turkish cement, steel, aluminum, fertilizer routes derived from 21 audit-grade TR + 789 EUTL-verified EU facility-years.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="canonical" href="https://iz-b0n.pages.dev/policy/">
+<style>
+  :root { --bg:#f4ede2; --paper:#fbf7ee; --ink:#14181d; --muted:#6e6862; --rule:#d8cfbe; --iz:#2d5a4c; --eu:#b85c3f; --warn:#8a5a1f; }
+  *,*::before,*::after { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  html,body { margin:0; padding:0; background:var(--bg); color:var(--ink); font-family:Georgia,"Times New Roman",serif; line-height:1.55; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  a, button { -webkit-tap-highlight-color:transparent; }
+  img,svg { max-width:100%; height:auto; display:block; }
+  .container { max-width:880px; margin:0 auto; padding:clamp(20px,5vw,40px) clamp(16px,4vw,44px); }
+  header { border-bottom:2px solid var(--ink); padding-bottom:18pt; margin-bottom:22pt; }
+  .kicker { font-family:Inter,system-ui,sans-serif; font-size:9pt; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin:0; }
+  h1 { font-size:clamp(22pt,5.6vw,30pt); letter-spacing:-.02em; line-height:1.12; margin:6pt 0 8pt; }
+  h1 em { color:var(--iz); font-style:italic; }
+  h2 { font-family:Inter,system-ui,sans-serif; font-size:11pt; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin:32pt 0 10pt; font-weight:500; }
+  h2::before { content:"§ "; }
+  h3 { font-size:14pt; margin:18pt 0 8pt; line-height:1.25; }
+  .deck { color:var(--muted); font-size:clamp(12pt,2.2vw,14pt); margin:0; max-width:680px; }
+  .byline { color:var(--muted); font-size:10pt; font-family:Inter,sans-serif; margin:14pt 0 0; }
+  .pill { display:inline-block; padding:3pt 10pt; border-radius:9999px; font-family:Inter,sans-serif; font-size:9pt; letter-spacing:.06em; background:var(--paper); border:1px solid var(--rule); color:var(--muted); }
+  .pill.urgent { background:var(--eu); color:var(--paper); border-color:var(--eu); }
+  .pill.iz { background:var(--iz); color:var(--paper); border-color:var(--iz); }
+  .panel { background:var(--paper); border:1px solid var(--rule); border-left:4px solid var(--iz); padding:16pt 22pt; margin:18pt 0; }
+  .panel h3 { margin-top:0; }
+  table { width:100%; border-collapse:collapse; font-family:Inter,sans-serif; font-size:clamp(9.5pt,1.6vw,10.5pt); margin:14pt 0; display:block; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  table thead, table tbody, table tr { display:table; width:100%; min-width:600px; }
+  th, td { padding:9pt 10pt; text-align:left; border-bottom:1px solid var(--rule); vertical-align:top; }
+  th { font-size:8.5pt; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:500; white-space:nowrap; }
+  td.num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .ok { color:var(--iz); font-weight:600; }
+  .bad { color:var(--eu); font-weight:600; }
+  blockquote { border-left:3px solid var(--iz); margin:14pt 0; padding:4pt 18pt; color:var(--ink); font-size:clamp(11pt,2vw,12pt); font-style:italic; }
+  code { font-family:"SF Mono",Menlo,monospace; font-size:9.5pt; background:var(--paper); padding:2pt 6pt; border:1px solid var(--rule); word-break:break-word; }
+  ol, ul { padding-left:22pt; }
+  ol li, ul li { margin-bottom:6pt; }
+  .ref { font-size:9.5pt; color:var(--muted); }
+  .ref a { color:var(--iz); }
+  footer { margin-top:36pt; padding-top:14pt; border-top:1px solid var(--rule); font-size:9.5pt; color:var(--muted); font-family:Inter,sans-serif; }
+  .signoff { background:var(--ink); color:var(--paper); padding:24pt 28pt; margin:24pt 0; }
+  .signoff h2 { color:rgba(251,247,238,0.6); margin-top:0; }
+  .signoff h2::before { content:""; }
+  @media print { body { background:white; } .container { padding:24px; max-width:none; } .pill { border-color:#ccc; } header { page-break-after:avoid; } h2 { page-break-after:avoid; } table { page-break-inside:avoid; display:table; } .panel { page-break-inside:avoid; } }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<header>
+  <p class="kicker">iz · tr-mrv-bench · policy submission</p>
+  <p style="margin:14pt 0 8pt;">
+    <span class="pill urgent">Open for feedback until 10 June 2026</span>
+    <span class="pill iz">Apache-2.0 · replicable</span>
+  </p>
+  <h1>Submission to the EU consultation on the CBAM <em>default-values implementing act</em> (May 2026)</h1>
+  <p class="deck">
+    The EU's 2026 default emission values for Turkish cement, EAF steel, and N₂O-controlled fertilizer overshoot the audit-grade truth by 2–40×. We submit empirical counter-defaults derived from <strong>21 audit-grade Turkish facilities</strong>, <strong>789 EU-verified facilities under the EU ETS</strong> (~11,700 audited plant-years from the EU Transaction Log), and an <strong>independently rediscovered closed-form formula</strong>, asking the Commission to move away from 90th-percentile global anchors toward sector-mean defaults with operator opt-in.
+  </p>
+  <p class="byline">
+    Submitter: Ahmet Barış Günaydın · <a href="mailto:hi@barisgunaydin.com">hi@barisgunaydin.com</a> · <a href="https://barisgunaydin.com">barisgunaydin.com</a><br>
+    Project: TR-MRV-Bench — <a href="https://iz-b0n.pages.dev">iz-b0n.pages.dev</a> · code + data: <a href="https://github.com/abgnydn/iz">github.com/abgnydn/iz</a> · Apache-2.0<br>
+    Generated: 2026-06-01 · Submission targeted at: <em>Implementing Regulation amending Regulation (EU) 2025/2621 — public consultation closes 10 June 2026</em>
+  </p>
+</header>
+
+<h2>1. Summary</h2>
+
+<p>The 2026 CBAM definitive phase applies country- and product-specific default emission values to imports for which operators do not submit verified actual data. The current implementing regulation derives these defaults from the <strong>90th percentile of global emissions intensity per route</strong> and adds a markup escalating to 30% by 2028 — a conservative anchor designed to push operators toward submitting their own data. We do not contest the markup logic. We do contest the empirical anchor.</p>
+
+<p>On the four CBAM scopes relevant to Turkey, the 90th-percentile anchor is wrong in <strong>both directions</strong>:</p>
+
+<ul>
+  <li><strong>Cement (Turkey, Portland clinker):</strong> EU default 1.584 tCO₂/t × 1.10 markup ≈ <strong>1.74 t/t in 2026</strong>. Audit-grade TR sector mean (TÜRKÇİMENTO) is <strong>0.643 t/t</strong>. Verified Turkish operator audits (Akçansa Büyükçekmece 2025, Çimsa Mersin 2024, OYAK Group 2023) cluster within ±15% of that mean. The default is <strong>2.7× too high</strong>.</li>
+  <li><strong>EAF steel:</strong> EU default 1.900 tCO₂/t × 1.10 ≈ <strong>2.09 t/t</strong>. Turkish EAF actual: <strong>0.25 t/t</strong> direct Scope 1 (Çolakoğlu 2024, Habaş 2024, İzdemir 2024). The default is <strong>8.4× too high</strong> for the dominant Turkish steel route.</li>
+  <li><strong>Primary aluminium (Scope 1 only):</strong> EU CBAM Annex VIII Scope-1-only default is <strong>1.471 t/t</strong>. EUTL verified Scope 1 across 31 EU primary smelters averages ≈ <strong>2.14 t/t</strong> (5.77 Mt / 2.7 Mt production). The default <strong>undershoots</strong> by 31% — the only CBAM route where this happens.</li>
+  <li><strong>Fertilizer (N₂O-controlled nitric acid):</strong> EU default 2.351 tCO₂/t × 1.01 (annual fertilizer markup) ≈ <strong>2.37 t/t</strong>. BAGFAŞ Bandırma 2024 (TR's only N₂O-catalyst-equipped operator): <strong>0.05 t/t</strong>. The default is <strong>47× too high</strong>, eliminating the carbon-price incentive for installing N₂O abatement.</li>
+</ul>
+
+<div class="panel">
+<h3>Proposal in one sentence</h3>
+<p>Replace the 90th-percentile global anchor with a route-specific median of audit-grade operator-disclosed Scope 1 from the importing country (where available), retaining the existing markup schedule but applied to the empirically defensible anchor instead of a worst-case stand-in. We provide the empirical anchors for Turkey below and the open data + reproducible methodology to extend them to other importing countries.</p>
+</div>
+
+<h2>2. Empirical basis</h2>
+
+<h3>2.1 TR-MRV-Bench — 21 audit-grade Turkish plants</h3>
+
+<p>The TR-MRV-Bench is an open dataset of 59 CBAM-scope Turkish facilities (32 cement, 16 steel, 3 aluminum, 6 fertilizer, 2 lime-only). Each plant has nameplate capacity (operator-published, cross-referenced with industry registries), CN-code mapping, lat/lon, and disclosure URL. <strong>Of those, 21 plants have audit-grade Scope 1 emissions</strong> sourced from operator Integrated Annual Reports, TSRS-compliant sustainability statements, and ISO 14064-1 audit reports verified by KGK-accredited or TÜRKAK-accredited third parties. Provenance is tagged on every label: <code>direct</code>, <code>allocated</code> (from group total via clinker share), or <code>composite</code> (multi-site total).</p>
+
+<p>In leave-one-disclosure-out (LODO) cross-validation, a closed-form physics formula <code>tCO₂ = capacity × route-EF × capacity-factor</code> achieves <strong>log-MAE 0.211</strong> against audited truth, compared with the EU CBAM default's log-MAE of <strong>1.432</strong> on the same 21 plants — an 85.3% reduction. The formula uses three inputs every Turkish operator already publishes in their annual report: nameplate capacity (KAP filings, industry registry), an industry-standard route-EF (TÜRKÇİMENTO sector mean for cement; route-specific for steel BF/BOF / EAF / DRI-EAF; primary vs downstream for aluminum; integrated vs N₂O-controlled vs blender for fertilizer), and operator-disclosed production tonnage divided by capacity (capacity factor, available in the same IARs).</p>
+
+<h3>2.2 EU-EUTL external validation — 789 plants × ~11,700 audit-grade plant-years</h3>
+
+<p>To answer the obvious "this is just calibrated for Turkey" critique, we extracted verified Scope 1 emissions from the EU Transaction Log for every EU ETS installation in the four CBAM scopes: <strong>372 cement clinker installations, 282 pig-iron-and-steel installations, 71 primary + secondary aluminum installations, 64 ammonia + nitric-acid installations</strong>. Each is third-party verified annually under EU ETS Article 15. Across 2005–latest reported year, this is approximately <strong>11,700 audit-grade Scope 1 facility-years</strong>.</p>
+
+<p>Applying the same TR-derived formula to EU plants with no parameter re-tuning:</p>
+
+<table>
+  <thead>
+    <tr><th>Sector</th><th class="num">EU plants pulled</th><th class="num">EUTL verified total (Mt/yr)</th><th class="num">Formula sector aggregate (Mt/yr)</th><th class="num">Ratio</th><th class="num">EU CBAM default applied (Mt/yr)</th><th class="num">Ratio</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Cement (clinker)</td><td class="num">372</td><td class="num">102.4</td><td class="num">106.1</td><td class="num ok">1.04×</td><td class="num">261.4</td><td class="num bad">2.55×</td></tr>
+    <tr><td>Aluminium primary</td><td class="num">31</td><td class="num">5.77</td><td class="num">5.40</td><td class="num ok">0.94×</td><td class="num">3.97</td><td class="num bad">0.69×</td></tr>
+    <tr><td>Steel (all routes)</td><td class="num">282</td><td class="num">97.4</td><td class="num">230.0*</td><td class="num">2.36×*</td><td class="num">218.5</td><td class="num bad">2.24×</td></tr>
+    <tr><td>Fertilizer (ammonia)</td><td class="num">29</td><td class="num">17.1</td><td class="num">30.0**</td><td class="num">1.76×**</td><td class="num">30.0</td><td class="num bad">1.76×</td></tr>
+  </tbody>
+</table>
+<p class="ref">*Steel aggregate is route-mix-sensitive: EU has wide capacity-utilisation spread across BF/BOF and EAF lines; per-plant log-MAE drops 54% vs EU default on a hand-curated n=12 sample. **Fertilizer needs EU-specific EF: EU SMR-ammonia averages 1.14 t/t (best-in-class) where TR integrated is 2.0 t/t — the formula structure is right; the route-EF needs country-specific tuning.</p>
+
+<p>The conclusion is uncomfortable for both directions: the EU CBAM defaults are systematically wrong against EU's own audit-grade data, in directions that depend on sector. <strong>Cement defaults overshoot EU truth by 2.55×</strong> (the EU's own plants would be over-tariffed by default). <strong>Primary aluminium Scope-1 defaults undershoot truth by 31%.</strong> A consistent methodology for setting defaults would address both.</p>
+
+<h3>2.3 Independent algorithmic rediscovery — PySR symbolic regression</h3>
+
+<p>To answer the "you engineered this multiplicative form to fit your bench" critique, we ran evolutionary symbolic regression (PySR; Cranmer 2023) over the combined TR + EU dataset of 58 audit-grade plants with capacity, route-EF, and capacity-factor as the only inputs. Operators allowed: <code>+ − × ÷ log exp</code>. No prior on the formula structure.</p>
+
+<p>At <strong>complexity 5</strong>, the log-space Pareto front contains:</p>
+
+<blockquote>(log_cap + log_ef) + log_cf</blockquote>
+
+<p>algebraically identical to <code>log(capacity × route-EF × capacity-factor)</code>. PySR independently rediscovers the hand-crafted formula structure at the same loss (0.59) with no human guidance. At higher complexity the algorithm finds a tighter fit with a small EF-CF coupling correction — a potential refinement direction we flag but do not adopt for v0.</p>
+
+<h2>3. Proposed Turkey-specific defaults per CBAM route</h2>
+
+<p>We propose the following replacements for the current Turkey defaults in Annex II of the Implementing Act, derived from the empirical anchors above. Markup schedule (10/20/30% for non-fertilizer, 1% for fertilizer) is retained as-is.</p>
+
+<table>
+  <thead>
+    <tr><th>CBAM route</th><th>CN codes</th><th class="num">Current EU 2026 default (t/t)</th><th class="num">Proposed TR-specific anchor (t/t)</th><th class="num">Empirical basis</th><th class="num">Verifier</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Cement clinker (Portland, integrated)</td><td>2523 21–29</td><td class="num bad">1.584</td><td class="num ok">0.643</td><td class="num">TÜRKÇİMENTO sector mean 2023; 9 audit-grade TR plants</td><td class="num">±15% on 9/9; B6 EU cement: same structure</td></tr>
+    <tr><td>Steel — BF/BOF (integrated long flat)</td><td>7208 / 7210 / 7211</td><td class="num">1.900</td><td class="num ok">2.000</td><td class="num">Erdemir Ereğli 2024, İsdemir 2024, Kardemir 2023 audited</td><td class="num">Within 5% of EU default; no change material</td></tr>
+    <tr><td>Steel — EAF (electric arc, scrap-fed)</td><td>7213 / 7214 / 7227</td><td class="num bad">1.900</td><td class="num ok">0.250</td><td class="num">Çolakoğlu, Habaş, İzdemir 2024 audited Scope 1</td><td class="num">±20% on n=5 TR EAF plants; 7.6× reduction</td></tr>
+    <tr><td>Steel — DRI-EAF (direct-reduced iron)</td><td>7213 / 7214</td><td class="num">1.900</td><td class="num ok">0.400</td><td class="num">Tosyalı Osmaniye 2024 (TR's only DRI-EAF mill)</td><td class="num">Anchor only — small sample (n=1)</td></tr>
+    <tr><td>Aluminium — primary (smelter)</td><td>7601 10 / 7601 20</td><td class="num bad">1.471 (Scope 1 only)</td><td class="num ok">2.140</td><td class="num">EUTL 31 EU primary smelters / production 2024</td><td class="num">Scope-1 default undershoots EU's own truth by 31%</td></tr>
+    <tr><td>Aluminium — downstream (rolling/extrusion)</td><td>7604 / 7605 / 7606</td><td class="num bad">8.600</td><td class="num ok">0.450</td><td class="num">Assan Tuzla 2024, ASAŞ Akyazı 2024 audited</td><td class="num">19× too high; conflates Scope 1+2 onto Scope 1 only goods</td></tr>
+    <tr><td>Fertilizer — integrated (NH₃ + urea + nitric)</td><td>3102 / 3105</td><td class="num">0.800</td><td class="num ok">0.500</td><td class="num">Toros Mersin/Samsun/Ceyhan 2024 audited group</td><td class="num">±10% on 3 TR sites; matches EU SMR best-in-class</td></tr>
+    <tr><td>Fertilizer — N₂O-controlled nitric acid</td><td>2814 / 3105</td><td class="num bad">2.351</td><td class="num ok">0.050</td><td class="num">BAGFAŞ Bandırma 2024 audited (95% N₂O abatement)</td><td class="num">Eliminates incentive for N₂O catalyst at present default</td></tr>
+    <tr><td>Fertilizer — blender only (no NH₃ process)</td><td>3105</td><td class="num bad">0.800</td><td class="num ok">0.025</td><td class="num">Gübretaş Yarımca 2024 audited</td><td class="num">32× too high; treats blender as integrated</td></tr>
+  </tbody>
+</table>
+
+<p class="ref">Methodology, source PDFs, and reproducible scripts at <a href="https://github.com/abgnydn/iz/tree/master/bin">github.com/abgnydn/iz/tree/master/bin</a> (see <code>baselines.py</code>, <code>e2e_lodo_aggregate.py</code>, <code>verifier_b6_eutl_score_sector.py</code>, <code>verifier_b7_symbolic_regression.py</code>).</p>
+
+<h2>4. Critique of the 90th-percentile methodology</h2>
+
+<p>The Commission's choice of a 90th-percentile global anchor was a reasonable starting position when verified per-country data did not exist. As of 2026 it does — for cement, EU ETS Article 15 verified data covers 90%+ of European production; for Turkey, audit-grade IARs cover 70%+ of CBAM-relevant capacity; for ammonia and primary aluminium, EUTL covers the entire EU production. Persisting with the 90th-percentile anchor produces three pathological outcomes:</p>
+
+<ol>
+  <li><strong>Mis-pricing carbon-route decisions.</strong> The 47× over-tariff for N₂O-controlled nitric acid eliminates the financial case for installing N₂O abatement — exactly the technology the EU's ETS has been trying to incentivise since 2013. Operators who already installed the catalyst (BAGFAŞ being the TR example; YARA Sluiskil being the EU peer) are tariffed identically to plants that have not. The default discourages, rather than rewards, the abatement choice.</li>
+  <li><strong>Penalising the dominant clean route.</strong> Turkish steel exports to the EU are 95% EAF (scrap-fed, electricity-intensive, low direct Scope 1). The 8.4× over-tariff on EAF steel exports €X bn/yr of Turkish scrap-steel manufacturing to a tariff calibrated for the integrated BF/BOF route they don't use.</li>
+  <li><strong>Hiding the under-tariff problem.</strong> Primary aluminium Scope-1 default 1.471 t/t undershoots EUTL truth by 31%. The 90th-percentile-of-global anchor for aluminium is dragged down by best-in-class non-EU smelters (Iceland, UAE) on hydropower with modern anodes. EU's own fleet emits more Scope 1 because of older potlines. The default is structurally too low for the EU and structurally too low for Turkey's only primary smelter (Eti Alüminyum Seydişehir).</li>
+</ol>
+
+<p>The fundamental issue is that "90th percentile of global emissions intensity" is calibrated to penalise data-shy operators by making the default unattractive. That goal is preserved by the 10/20/30% markup. The percentile-90 anchor adds a second layer of pessimism that is empirically unsound and stops being needed once verified per-country data exists.</p>
+
+<h2>5. Recommended changes to the implementing act</h2>
+
+<ol>
+  <li><strong>Article 4(3) and Annex II:</strong> replace 90th-percentile-of-global anchor with the median of audit-grade operator-disclosed Scope 1 from the importing country, where ≥ 5 operators with third-party-verified disclosures cover ≥ 50% of CBAM-relevant capacity for that route. Retain the 10/20/30% markup schedule.</li>
+  <li><strong>Annex VIII (aluminium):</strong> replace the 1.471 t/t Scope-1-only default with the median of EUTL primary-aluminium verified Scope 1 (currently ≈ 2.14 t/t across 31 EU smelters). The Commission's own audit-grade data should anchor its own defaults.</li>
+  <li><strong>Sub-route differentiation:</strong> split EAF / BF/BOF / DRI-EAF defaults for steel; split primary / downstream defaults for aluminium; split integrated / N₂O-controlled / blender for fertilizer. The current single-default-per-CN-code structure conflates 30–80× spreads within sector.</li>
+  <li><strong>Verifier accreditation:</strong> third-country MRV-verifier accreditation by TÜRKAK (Turkey), DAkkS (Germany), UKAS (UK) etc. should be recognised as equivalent to EU-accredited verification for the purpose of submitting actual values, provided the verifier follows ISO 14064-1.</li>
+  <li><strong>Open-data anchor publication:</strong> the Commission should publish the underlying anchor data (per-operator, per-year, per-route) as machine-readable CSV with a stable URL, in the same way that EUTL is published, so the empirical basis of every default is independently verifiable.</li>
+</ol>
+
+<h2>6. What we commit to provide</h2>
+
+<p>Should the Commission find this submission useful, we commit to maintain TR-MRV-Bench under Apache-2.0 with annual refresh of audit-grade labels each April (following the Turkish IAR publication cycle), to provide the same per-route audit-grade extraction for any other importing country whose operator IARs we can crawl (we currently have partial coverage of Greece, Romania, Spain via Holcim/Titan/Cementos Argos disclosures), and to keep the formula and the LODO methodology in the public domain. All code, all data, all formula derivations are at <a href="https://github.com/abgnydn/iz">github.com/abgnydn/iz</a> under Apache-2.0.</p>
+
+<div class="signoff">
+  <h2>Signoff</h2>
+  <p style="color:rgba(251,247,238,0.85); margin-bottom:8pt;">Respectfully submitted to the European Commission's consultation on the CBAM Default Values Implementing Act (published 13 May 2026; feedback closes 10 June 2026).</p>
+  <p style="color:var(--paper); margin-bottom:0;">Ahmet Barış Günaydın · TR-MRV-Bench (iz) · <a href="mailto:hi@barisgunaydin.com" style="color:var(--paper); border-bottom:1px solid rgba(251,247,238,0.4);">hi@barisgunaydin.com</a> · <a href="https://iz-b0n.pages.dev" style="color:var(--paper); border-bottom:1px solid rgba(251,247,238,0.4);">iz-b0n.pages.dev</a></p>
+</div>
+
+<h2>References</h2>
+
+<ol class="ref">
+  <li>Commission Implementing Regulation (EU) 2025/2621 of 16 December 2025 — CBAM default values 2026 definitive period.</li>
+  <li>European Commission, "Implementing Act on Default Values" — published 13 May 2026 for public consultation (closes 10 June 2026). <a href="https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism_en">taxation-customs.ec.europa.eu</a>.</li>
+  <li>TR-MRV-Bench v0.2 (2026-05-29). 59 facilities, 21 audit-grade Scope 1 disclosures, formula and LODO methodology. <a href="https://iz-b0n.pages.dev/paper/">iz-b0n.pages.dev/paper</a>. Apache-2.0.</li>
+  <li>Verifier B6 — EUTL external validation: <a href="https://iz-b0n.pages.dev/verifiers/">iz-b0n.pages.dev/verifiers</a>.</li>
+  <li>Verifier B7 — PySR symbolic-regression rediscovery: <a href="https://iz-b0n.pages.dev/verifiers/b7_symbolic_regression.md">iz-b0n.pages.dev/verifiers/b7_symbolic_regression.md</a>.</li>
+  <li>EU Transaction Log via euets.info — public open-access mirror of EUTL verified emissions per installation per year, 2005–latest. Maintained by Jan Abrell, ETH Zürich. <a href="https://www.euets.info">www.euets.info</a>.</li>
+  <li>TÜRKÇİMENTO Industry Statistics 2023 — Turkish cement-sector emission factor 0.643 tCO₂/t.</li>
+  <li>Cembureau Industry Statistics 2023 — EU cement-sector emission factor ≈ 0.60 tCO₂/t.</li>
+  <li>Eurofer Steel Statistics 2023–2024 — EU steel sector route split (BF/BOF 57% / EAF 43%).</li>
+  <li>International Aluminium Institute (IAI) Statistics 2023 — global primary aluminium production and Scope 1 averages.</li>
+  <li>Fertilizers Europe Industry Statistics 2023 — EU ammonia capacity 18 Mt/yr; production ≈ 15 Mt/yr.</li>
+  <li>Cranmer M. (2023). "Interpretable Machine Learning for Science with PySR and SymbolicRegression.jl." <a href="https://arxiv.org/abs/2305.01582">arXiv:2305.01582</a>.</li>
+</ol>
+
+<footer>
+  <p>Document version: 2026-06-01 (final). Source: <a href="https://github.com/abgnydn/iz/blob/master/site/policy/index.html">github.com/abgnydn/iz/blob/master/site/policy/index.html</a>. Print to PDF for upload to the EU "Have Your Say" portal: <a href="https://ec.europa.eu/info/law/better-regulation/have-your-say/initiatives">ec.europa.eu/info/law/better-regulation/have-your-say/initiatives</a> → search "CBAM default values" → submit feedback by 10 June 2026.</p>
+</footer>
+
+</div>
+
+</body>
+</html>
