@@ -4,8 +4,7 @@
   "creators": [
     {
       "name": "Günaydın, Ahmet Barış",
-      "affiliation": "independent",
-      "orcid": ""
+      "affiliation": "independent"
     }
   ],
   "license": "Apache-2.0",
@@ -28,34 +27,12 @@
     "PySR",
     "climate policy"
   ],
-  "communities": [
-    {"identifier": "climate-action"},
-    {"identifier": "open-data"}
-  ],
-  "subjects": [
-    {
-      "term": "Climate change mitigation",
-      "identifier": "https://www.wikidata.org/wiki/Q83267"
-    },
-    {
-      "term": "Carbon emissions",
-      "identifier": "https://www.wikidata.org/wiki/Q1997"
-    },
-    {
-      "term": "Cement industry",
-      "identifier": "https://www.wikidata.org/wiki/Q24201"
-    },
-    {
-      "term": "Steel industry",
-      "identifier": "https://www.wikidata.org/wiki/Q11464"
-    }
-  ],
   "related_identifiers": [
     {
       "scheme": "url",
       "identifier": "https://iz-b0n.pages.dev/",
       "relation": "isSupplementTo",
-      "resource_type": "publication-website"
+      "resource_type": "publication-other"
     },
     {
       "scheme": "url",
