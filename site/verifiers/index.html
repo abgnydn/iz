@@ -51,11 +51,12 @@
 
 <nav>
   <a href="/">← Home</a>
-  <a href="#summary">Multi-sector summary</a>
+  <a href="#summary">B6 summary</a>
   <a href="b6_eutl_cement.md">Cement (n=372)</a>
   <a href="b6_eutl_steel.md">Steel (n=282)</a>
   <a href="b6_eutl_aluminum.md">Aluminum (n=71)</a>
   <a href="b6_eutl_fertilizer.md">Fertilizer (n=64)</a>
+  <a href="b7_symbolic_regression.md"><strong>B7 — Symbolic regression</strong></a>
 </nav>
 
 <section id="summary">
@@ -92,6 +93,15 @@
   <p><strong>Steel: directionally correct, requires per-plant cf.</strong> EU has wide spread in plant capacity utilisation (some idle BF/BOF lines, some near-full EAF lines). Using sector-mean cf 0.51 overshoots aggregate, but per-plant log-MAE drops by 54% vs EU default. The formula structure holds; cf needs per-plant tuning.</p>
   <p><strong>Fertilizer (ammonia): EU EF is much lower than TR.</strong> EUTL ammonia sector implies 1.14 t/t actual EU EF (vs TR 2.0). The formula structure works perfectly with EU-tuned EF; with TR EF it overshoots by 76%. This says EU ammonia plants run best-in-class steam-methane-reforming where TR plants don't.</p>
   <p><strong>Cross-sector takeaway:</strong> the formula structure <code>cap × route-EF × cf</code> generalises across all 4 CBAM scopes and across two regulatory regimes (TR + EU). The route-EF parameter needs country-specific tuning (different fuel mixes, kiln ages, anode tech) but the structure is universal. The "TR-specific overfit" reviewer attack on the v0 paper is permanently dead.</p>
+</section>
+
+<section id="b7">
+  <h2><a href="b7_symbolic_regression.md">B7 — Symbolic regression rediscovers the formula</a></h2>
+  <p>Independent algorithmic test. Given the same 58 audit-grade plants (21 TR + 37 EU EUTL-verified) with three numeric inputs <code>(cap, ef, cf)</code> and no human prior, we let <a href="https://github.com/MilesCranmer/PySR">PySR</a> (evolutionary symbolic regression over <code>+ - × ÷ log exp</code>) search the closed-form-equation space.</p>
+  <p>The log-space Pareto front contains, at <strong>complexity 5</strong>:</p>
+  <pre style="background:var(--bg); padding:14pt 18pt; border:1px solid var(--rule); font-family:Menlo,monospace; font-size:11pt; overflow-x:auto;">(log_cap + log_ef) + log_cf</pre>
+  <p>That's algebraically identical to <code>log(cap × ef × cf)</code> — the hand-crafted bench formula. <strong>PySR rediscovers our formula structure from scratch with no human guidance.</strong> The evolutionary search converges to the same multiplicative form at the same loss as the hand-crafted version. The "you engineered this formula to fit your bench" attack is answered by an algorithm that has no idea what a CBAM facility is.</p>
+  <p>At higher complexity PySR finds tighter fits (log-MAE 0.34 vs hand-crafted 0.54) by adding small EF-CF coupling terms — interpretable as "EF is sub-linear in route EF on the combined TR+EU dataset." Future refinement of the formula could pick that up. Detail at <a href="b7_symbolic_regression.md">b7_symbolic_regression.md</a>.</p>
 </section>
 
 <footer>

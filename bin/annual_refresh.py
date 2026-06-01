@@ -49,6 +49,7 @@ STEPS = [
     ("EUTL B6 aluminum score", ["uv", "run", "python", "bin/verifier_b6_eutl_score_sector.py", "aluminum"]),
     ("EUTL B6 fertilizer pull",["uv", "run", "python", "bin/pull_eutl_sector.py", "fertilizer"]),
     ("EUTL B6 fertilizer score",["uv","run","python","bin/verifier_b6_eutl_score_sector.py","fertilizer"]),
+    ("Symbolic regression B7", ["uv", "run", "python", "bin/verifier_b7_symbolic_regression.py"]),
     ("Headline LODO",          ["uv", "run", "python", "bin/e2e_lodo_aggregate.py", "5"]),
     ("Regenerate figure",      ["uv", "run", "python", "bin/figure_lodo.py"]),
 ]
