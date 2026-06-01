@@ -1,4 +1,4 @@
-# Fusion #A2 — TR Climate Law (No. 7547, July 2025) Alignment
+# Fusion #A2 — TR Climate Law (No. 7552, July 2025) Alignment
 
 *Verified 2026-05-29. Cross-checks our formula methodology against Turkey's binding MRV requirements under the Climate Law adopted 2 July 2025.*
 
@@ -41,6 +41,6 @@ The Climate Law requires operators to submit a monitoring plan **six months befo
 
 ## Implication for v0 release
 
-We can credibly claim the bench is **regulator-aligned** under TR Climate Law 7547 today. Specifically:
+We can credibly claim the bench is **regulator-aligned** under TR Climate Law 7552 today. Specifically:
 
 > *"TR-MRV-Bench computes Scope 1 emissions using the same ISO 14064-1 framework that the Climate Law mandates, sources its strong labels from TÜRKAK-accredited verifier statements, and outputs at the installation level required by the MRV regulation. The cf-corrected formula is a methodologically defensible alternative to operator-submitted Scope 1 for facilities lacking a current verification cycle."*
