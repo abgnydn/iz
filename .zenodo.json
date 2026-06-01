@@ -1,0 +1,92 @@
+{
+  "title": "TR-MRV-Bench: a public per-facility emissions benchmark for Turkish CBAM-scope industry",
+  "description": "<p><strong>TR-MRV-Bench</strong> is a public per-facility CO₂ emissions benchmark for Turkish CBAM-scope industry (cement, steel, aluminum, fertilizer). It comprises 59 facilities (34 cement, 16 steel, 6 fertilizer, 3 aluminum), with <strong>21 audit-grade Scope 1 strong labels</strong> from operator Integrated Annual Reports, sustainability statements (GRI for pre-2024 disclosures; TSRS-compliant for CY 2024 onwards per the KGK mandate effective 1 January 2024), and ISO 14064-1 audit reports issued by TÜRKAK-accredited verifiers.</p><p>The bench is released alongside a closed-form physics baseline — <code>tCO₂ = capacity × route-EF × capacity-factor</code> — that reduces pooled per-plant log-MAE by <strong>85.3% versus the EU CBAM default</strong> in leave-one-disclosure-out cross-validation. The result is triple-corroborated: empirical fit on n=21 TR plants, external validity on <strong>789 EU plants × 10,691 verified facility-years from the EU Transaction Log</strong> (Verifier B6), and independent algorithmic rediscovery by <strong>PySR symbolic regression</strong> (Verifier B7) which converges to <code>(log_cap + log_ef) + log_cf</code> at complexity 5 with bit-identical MSE to the hand-crafted formula.</p><p>The bench was the empirical basis for a formal submission to the European Commission's CBAM default-values implementing act consultation (May/June 2026), proposing audit-anchored Turkey-specific defaults per CBAM route in place of the 90th-percentile-of-global anchor.</p><p>All code, data, and verifier outputs are released under Apache-2.0. Live site: <a href=\"https://iz-b0n.pages.dev\">iz-b0n.pages.dev</a>. Source: <a href=\"https://github.com/abgnydn/iz\">github.com/abgnydn/iz</a>.</p>",
+  "creators": [
+    {
+      "name": "Günaydın, Ahmet Barış",
+      "affiliation": "independent",
+      "orcid": ""
+    }
+  ],
+  "license": "Apache-2.0",
+  "upload_type": "dataset",
+  "access_right": "open",
+  "keywords": [
+    "CBAM",
+    "Turkey",
+    "emissions",
+    "carbon accounting",
+    "MRV",
+    "cement",
+    "steel",
+    "aluminum",
+    "fertilizer",
+    "benchmark",
+    "EU ETS",
+    "EUTL",
+    "symbolic regression",
+    "PySR",
+    "climate policy"
+  ],
+  "communities": [
+    {"identifier": "climate-action"},
+    {"identifier": "open-data"}
+  ],
+  "subjects": [
+    {
+      "term": "Climate change mitigation",
+      "identifier": "https://www.wikidata.org/wiki/Q83267"
+    },
+    {
+      "term": "Carbon emissions",
+      "identifier": "https://www.wikidata.org/wiki/Q1997"
+    },
+    {
+      "term": "Cement industry",
+      "identifier": "https://www.wikidata.org/wiki/Q24201"
+    },
+    {
+      "term": "Steel industry",
+      "identifier": "https://www.wikidata.org/wiki/Q11464"
+    }
+  ],
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://iz-b0n.pages.dev/",
+      "relation": "isSupplementTo",
+      "resource_type": "publication-website"
+    },
+    {
+      "scheme": "url",
+      "identifier": "https://iz-b0n.pages.dev/paper/",
+      "relation": "isDocumentedBy",
+      "resource_type": "publication-article"
+    },
+    {
+      "scheme": "url",
+      "identifier": "https://iz-b0n.pages.dev/policy/",
+      "relation": "isReferencedBy",
+      "resource_type": "publication-other"
+    },
+    {
+      "scheme": "url",
+      "identifier": "https://iz-b0n.pages.dev/verifiers/",
+      "relation": "isPartOf",
+      "resource_type": "publication-other"
+    },
+    {
+      "scheme": "url",
+      "identifier": "https://www.euets.info",
+      "relation": "references",
+      "resource_type": "dataset"
+    },
+    {
+      "scheme": "arxiv",
+      "identifier": "2305.01582",
+      "relation": "references",
+      "resource_type": "publication-article"
+    }
+  ],
+  "notes": "Issued in support of TR-MRV-Bench v0.3 — first Zenodo-DOI release after triple-corroboration verifiers (B6 EU-EUTL external validation; B7 PySR symbolic-regression rediscovery) and the formal EU CBAM consultation submission. Apache-2.0 license; data, code, and paper all bundled."
+}

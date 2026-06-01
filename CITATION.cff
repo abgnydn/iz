@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-title: "TR-MRV-Bench — public per-facility emissions benchmark for Turkish CBAM-scope industry"
-message: "If you use this bench, please cite it."
+title: "TR-MRV-Bench: a public per-facility emissions benchmark for Turkish CBAM-scope industry"
+message: "If you use this bench, the formula, or the verifier outputs, please cite the Zenodo record below."
 type: dataset
 authors:
   - family-names: Günaydın
@@ -12,19 +12,46 @@ url: "https://iz-b0n.pages.dev/"
 abstract: >
   TR-MRV-Bench is a public per-facility CO₂ emissions benchmark for Turkish
   CBAM-scope industry (cement, steel, aluminum, fertilizer). It comprises 59
-  facilities, with 20 audit-grade Scope 1 strong labels from operator
-  Integrated Annual Reports, TSRS-compliant sustainability reports, and
-  ISO 14064-1 third-party verifications, plus 8 Climate TRACE per-asset
-  labels and capacity-factor-corrected default labels for the rest. The
-  bench is released alongside a closed-form physics baseline,
+  facilities (34 cement, 16 steel, 6 fertilizer, 3 aluminum), with 21
+  audit-grade Scope 1 strong labels from operator Integrated Annual Reports,
+  sustainability statements (GRI for pre-2024, TSRS-compliant for CY 2024
+  onwards per the KGK mandate effective 1 January 2024), and ISO 14064-1
+  audit reports issued by TÜRKAK-accredited verifiers. The bench is released
+  alongside a closed-form physics baseline,
   `capacity × emission-factor × capacity-factor`, with route-aware EF
-  priorities (BF/BOF / EAF / DRI-EAF; primary / downstream aluminum;
-  integrated / N₂O-controlled / blender fertilizer) and cf priorities
-  (Climate TRACE > disclosed production / capacity > sector mean) that
-  reduces per-plant log-MAE by 87% vs the EU CBAM default in
-  leave-one-disclosure-out cross-validation. We additionally ship a
-  browser-native 2-layer LoRA-shaped MLP that ties the formula at 86.3%
-  (95% data-bootstrap CI [+76.6%, +92.5%]).
+  priorities (BF/BOF / EAF / DRI-EAF for steel; primary / downstream for
+  aluminum; integrated / N₂O-controlled / blender for fertilizer) and cf
+  priorities (Climate TRACE > operator-disclosed production / capacity >
+  sector mean). On the n=21 audit-grade test set the formula reduces pooled
+  per-plant log-MAE by 85.3% vs the EU CBAM default (B0 log-MAE 1.432 → B1
+  0.211) in leave-one-disclosure-out cross-validation. We additionally ship
+  a browser-native 2-layer LoRA-shaped MLP (iz-1) that ties the formula at
+  +83.3% (95% data-bootstrap CI [+72.0%, +90.6%], 5000 resamples).
+
+  The bench is triple-corroborated.
+
+  (1) Verifier B6 — EUTL external validation: we pulled audit-grade verified
+  Scope 1 emissions from the EU Transaction Log for 789 EU plants across all
+  four CBAM scopes (372 cement clinker installations, 282 pig-iron-and-steel,
+  71 primary + secondary aluminum, 64 ammonia + nitric-acid) totalling 10,691
+  audit-grade facility-years. Applying the TR-derived formula with no
+  re-tuning reproduces EU sector aggregates within 4% for cement and 6% for
+  primary aluminum.
+
+  (2) Verifier B7 — symbolic regression rediscovery: PySR (Cranmer 2023)
+  searches the closed-form-equation space over (+ − × ÷ log exp) on the
+  combined n=58 TR+EU dataset with three numeric inputs (cap, ef, cf) and no
+  prior on formula structure. At complexity 5 the log-space Pareto front
+  contains `(log_cap + log_ef) + log_cf` — algebraically identical to
+  `log(cap × ef × cf)` — with bit-identical MSE (0.5912) to the hand-crafted
+  formula.
+
+  (3) EU policy submission — the bench was the empirical basis for a formal
+  submission to the European Commission's CBAM default-values implementing
+  act consultation (May/June 2026), proposing audit-anchored Turkey-specific
+  defaults per CBAM route in place of the 90th-percentile-of-global anchor.
+
+  All code, data, and verifier outputs are released under Apache-2.0.
 keywords:
   - emissions
   - CBAM
@@ -36,6 +63,10 @@ keywords:
   - aluminum
   - fertilizer
   - benchmark
+  - EU ETS
+  - EUTL
+  - symbolic regression
+  - PySR
 license: Apache-2.0
-version: "0.1.2"
-date-released: "2026-05-28"
+version: "0.3.0"
+date-released: "2026-06-02"
