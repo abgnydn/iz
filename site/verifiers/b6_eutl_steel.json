@@ -1,0 +1,368 @@
+{
+  "sector": "steel",
+  "n_installations_pulled": 282,
+  "n_verified_facility_years": 4040,
+  "lens_1_time_series": {
+    "median_abs_yoy_pct": 9.772606573245731,
+    "p90_abs_yoy_pct": 51.68875036464982,
+    "share_within_10pct": 0.4594059405940594,
+    "share_within_25pct": 0.7103960396039604
+  },
+  "lens_2_country_coverage": [
+    {
+      "country": "Germany",
+      "plants": 44,
+      "total_mt": 26.282716
+    },
+    {
+      "country": "Austria",
+      "plants": 5,
+      "total_mt": 11.593307
+    },
+    {
+      "country": "France",
+      "plants": 21,
+      "total_mt": 11.508929
+    },
+    {
+      "country": "Belgium",
+      "plants": 7,
+      "total_mt": 7.546739
+    },
+    {
+      "country": "Italy",
+      "plants": 33,
+      "total_mt": 7.228175
+    },
+    {
+      "country": "United Kingdom",
+      "plants": 4,
+      "total_mt": 6.216539
+    },
+    {
+      "country": "Spain",
+      "plants": 20,
+      "total_mt": 5.335593
+    },
+    {
+      "country": "Sweden",
+      "plants": 13,
+      "total_mt": 5.260757
+    },
+    {
+      "country": "Netherlands",
+      "plants": 2,
+      "total_mt": 4.618329
+    },
+    {
+      "country": "Finland",
+      "plants": 3,
+      "total_mt": 4.40829
+    },
+    {
+      "country": "Czech Republic",
+      "plants": 4,
+      "total_mt": 2.59922
+    },
+    {
+      "country": "Poland",
+      "plants": 10,
+      "total_mt": 2.037933
+    },
+    {
+      "country": "Romania",
+      "plants": 7,
+      "total_mt": 1.538457
+    },
+    {
+      "country": "Luxembourg",
+      "plants": 2,
+      "total_mt": 0.299937
+    },
+    {
+      "country": "Hungary",
+      "plants": 2,
+      "total_mt": 0.225714
+    },
+    {
+      "country": "Slovenia",
+      "plants": 3,
+      "total_mt": 0.171626
+    },
+    {
+      "country": "Portugal",
+      "plants": 2,
+      "total_mt": 0.139955
+    },
+    {
+      "country": "Greece",
+      "plants": 5,
+      "total_mt": 0.092172
+    },
+    {
+      "country": "Norway",
+      "plants": 1,
+      "total_mt": 0.089171
+    },
+    {
+      "country": "Bulgaria",
+      "plants": 5,
+      "total_mt": 0.087953
+    },
+    {
+      "country": "Slovakia",
+      "plants": 3,
+      "total_mt": 0.06439
+    },
+    {
+      "country": "Croatia",
+      "plants": 4,
+      "total_mt": 0.035693
+    },
+    {
+      "country": "Latvia",
+      "plants": 1,
+      "total_mt": 1e-06
+    },
+    {
+      "country": "Denmark",
+      "plants": 1,
+      "total_mt": 0.0
+    }
+  ],
+  "lens_3_operator_rollup": [
+    {
+      "operator": "ArcelorMittal",
+      "eu_eutl_sum_mt": 24.172236,
+      "operator_disclosed_group_mt": 165.0,
+      "eu_plants_matched": 14,
+      "ratio_eu_to_global": 0.1464984
+    },
+    {
+      "operator": "Tata Steel",
+      "eu_eutl_sum_mt": 4.618329,
+      "operator_disclosed_group_mt": 31.0,
+      "eu_plants_matched": 2,
+      "ratio_eu_to_global": 0.1489783548387097
+    },
+    {
+      "operator": "ThyssenKrupp",
+      "eu_eutl_sum_mt": 0.0,
+      "operator_disclosed_group_mt": 18.5,
+      "eu_plants_matched": 0,
+      "ratio_eu_to_global": 0.0
+    },
+    {
+      "operator": "Salzgitter",
+      "eu_eutl_sum_mt": 3.33732,
+      "operator_disclosed_group_mt": 8.0,
+      "eu_plants_matched": 1,
+      "ratio_eu_to_global": 0.417165
+    },
+    {
+      "operator": "Voestalpine",
+      "eu_eutl_sum_mt": 11.410244,
+      "operator_disclosed_group_mt": 13.5,
+      "eu_plants_matched": 2,
+      "ratio_eu_to_global": 0.8452032592592593
+    },
+    {
+      "operator": "Liberty Steel",
+      "eu_eutl_sum_mt": 1.492922,
+      "operator_disclosed_group_mt": 24.0,
+      "eu_plants_matched": 2,
+      "ratio_eu_to_global": 0.062205083333333334
+    },
+    {
+      "operator": "SSAB",
+      "eu_eutl_sum_mt": 4.742654,
+      "operator_disclosed_group_mt": 8.0,
+      "eu_plants_matched": 2,
+      "ratio_eu_to_global": 0.59283175
+    },
+    {
+      "operator": "Acerinox",
+      "eu_eutl_sum_mt": 0.176117,
+      "operator_disclosed_group_mt": 1.5,
+      "eu_plants_matched": 1,
+      "ratio_eu_to_global": 0.11741133333333333
+    },
+    {
+      "operator": "Outokumpu",
+      "eu_eutl_sum_mt": 0.034362,
+      "operator_disclosed_group_mt": 2.7,
+      "eu_plants_matched": 1,
+      "ratio_eu_to_global": 0.012726666666666664
+    },
+    {
+      "operator": "U.S. Steel Kosice",
+      "eu_eutl_sum_mt": 0.0,
+      "operator_disclosed_group_mt": 5.5,
+      "eu_plants_matched": 0,
+      "ratio_eu_to_global": 0.0
+    }
+  ],
+  "lens_4_formula_test": {
+    "n_plants_with_capacity": 12,
+    "log_mae_formula": 0.4069248080517444,
+    "log_mae_eu_default": 0.8862136569407167,
+    "share_within_15pct": 0.25,
+    "plants": [
+      {
+        "id_matches": "FR_956",
+        "label": "ArcelorMittal Dunkirk (FR)",
+        "route": "BF/BOF",
+        "year": 2023,
+        "capacity_mt": 7.0,
+        "verified_t": 5170805.0,
+        "predicted_t": 7155555.555555555,
+        "ratio": 1.3838378270995628,
+        "eu_default_pred_t": 6797777.777777777,
+        "eu_default_ratio": 1.3146459357445845
+      },
+      {
+        "id_matches": "BE_215060|BE_203913|BE_203912|BE_11",
+        "label": "ArcelorMittal Gent (BE)",
+        "route": "BF/BOF",
+        "year": 2023,
+        "capacity_mt": 5.0,
+        "verified_t": 3690181.0,
+        "predicted_t": 5111111.111111111,
+        "ratio": 1.3850570232492962,
+        "eu_default_pred_t": 4855555.555555555,
+        "eu_default_ratio": 1.3158041720868312
+      },
+      {
+        "id_matches": "DE_60",
+        "label": "ArcelorMittal Bremen (DE)",
+        "route": "BF/BOF",
+        "year": 2023,
+        "capacity_mt": 4.0,
+        "verified_t": 2274086.0,
+        "predicted_t": 4088888.8888888885,
+        "ratio": 1.7980361731653458,
+        "eu_default_pred_t": 3884444.444444444,
+        "eu_default_ratio": 1.7081343645070786
+      },
+      {
+        "id_matches": "AT_16",
+        "label": "Voestalpine Linz (AT)",
+        "route": "BF/BOF",
+        "year": 2023,
+        "capacity_mt": 5.5,
+        "verified_t": 8668217.0,
+        "predicted_t": 5622222.222222222,
+        "ratio": 0.6486019238122698,
+        "eu_default_pred_t": 5341111.111111111,
+        "eu_default_ratio": 0.6161718276216563
+      },
+      {
+        "id_matches": "DE_43|DE_42",
+        "label": "Salzgitter Flachstahl (DE)",
+        "route": "BF/BOF",
+        "year": 2023,
+        "capacity_mt": 4.5,
+        "verified_t": 3337320.0,
+        "predicted_t": 4600000.0,
+        "ratio": 1.3783514916160273,
+        "eu_default_pred_t": 4370000.0,
+        "eu_default_ratio": 1.3094339170352258
+      },
+      {
+        "id_matches": "DE_69|DE_202983|DE_62|DE_53|DE_44",
+        "label": "ThyssenKrupp Duisburg (DE)",
+        "route": "BF/BOF",
+        "year": 2023,
+        "capacity_mt": 11.0,
+        "verified_t": 12307155.0,
+        "predicted_t": 11244444.444444444,
+        "ratio": 0.9136509976874788,
+        "eu_default_pred_t": 10682222.222222222,
+        "eu_default_ratio": 0.8679684478031049
+      },
+      {
+        "id_matches": "NL_204781|NL_144",
+        "label": "Tata Steel IJmuiden (NL)",
+        "route": "BF/BOF",
+        "year": 2023,
+        "capacity_mt": 7.0,
+        "verified_t": 4543687.0,
+        "predicted_t": 7155555.555555555,
+        "ratio": 1.5748346124096038,
+        "eu_default_pred_t": 6797777.777777777,
+        "eu_default_ratio": 1.4960928817891235
+      },
+      {
+        "id_matches": "FI_445",
+        "label": "SSAB Raahe (FI)",
+        "route": "BF/BOF",
+        "year": 2023,
+        "capacity_mt": 2.5,
+        "verified_t": 3740670.0,
+        "predicted_t": 2555555.5555555555,
+        "ratio": 0.6831812363976388,
+        "eu_default_pred_t": 2427777.7777777775,
+        "eu_default_ratio": 0.6490221745777568
+      },
+      {
+        "id_matches": "FI_444",
+        "label": "Outokumpu Tornio (FI)",
+        "route": "EAF",
+        "year": 2023,
+        "capacity_mt": 1.6,
+        "verified_t": 632428.0,
+        "predicted_t": 204444.44444444444,
+        "ratio": 0.3232691222470296,
+        "eu_default_pred_t": 1553777.7777777778,
+        "eu_default_ratio": 2.456845329077425
+      },
+      {
+        "id_matches": "IT_235|IT_964",
+        "label": "Riva Verona (IT)",
+        "route": "EAF",
+        "year": 2023,
+        "capacity_mt": 1.4,
+        "verified_t": 157591.0,
+        "predicted_t": 178888.88888888888,
+        "ratio": 1.135146606651959,
+        "eu_default_pred_t": 1359555.5555555555,
+        "eu_default_ratio": 8.62711421055489
+      },
+      {
+        "id_matches": "IT_867",
+        "label": "Feralpi Lonato (IT)",
+        "route": "EAF",
+        "year": 2023,
+        "capacity_mt": 1.2,
+        "verified_t": 85815.0,
+        "predicted_t": 153333.3333333333,
+        "ratio": 1.7867894113305753,
+        "eu_default_pred_t": 1165333.3333333333,
+        "eu_default_ratio": 13.579599526112373
+      },
+      {
+        "id_matches": "ES_811",
+        "label": "Sidenor Basauri (ES)",
+        "route": "EAF",
+        "year": 2023,
+        "capacity_mt": 1.0,
+        "verified_t": 112193.0,
+        "predicted_t": 127777.77777777777,
+        "ratio": 1.1389104291513532,
+        "eu_default_pred_t": 971111.111111111,
+        "eu_default_ratio": 8.655719261550283
+      }
+    ]
+  },
+  "lens_5_sector_aggregate": {
+    "eu_nameplate_capacity_mt": 225.0,
+    "eu_production_mt": 115.0,
+    "eu_avg_cf": 0.5111111111111111,
+    "eutl_total_verified_mt": 97.381596,
+    "formula_pred_mt_at_route_ef": 229.99999999999997,
+    "formula_route_used": "BF/BOF",
+    "eu_default_pred_mt": 218.49999999999997,
+    "formula_ratio": 2.3618425806042445,
+    "eu_default_ratio": 2.2437504515740323
+  }
+}
