@@ -8,6 +8,7 @@ authors:
     email: hi@barisgunaydin.com
     affiliation: independent
 repository-code: "https://github.com/abgnydn/iz"
+doi: "10.5281/zenodo.20496086"
 url: "https://iz-b0n.pages.dev/"
 abstract: >
   TR-MRV-Bench is a public per-facility CO₂ emissions benchmark for Turkish

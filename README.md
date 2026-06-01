@@ -1,5 +1,9 @@
 # TR-MRV-Bench / iz-1
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20496086.svg)](https://doi.org/10.5281/zenodo.20496086)
+[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://github.com/abgnydn/iz/blob/master/LICENSE)
+[![Live site](https://img.shields.io/badge/live-iz--b0n.pages.dev-2d5a4c.svg)](https://iz-b0n.pages.dev)
+
 **A public per-facility emissions benchmark for Turkish CBAM-scope industry, plus a closed-form physics baseline that beats the EU CBAM default by 85%.**
 
 > 🌐 **Live site:** [iz-b0n.pages.dev](https://iz-b0n.pages.dev)
@@ -7,7 +11,7 @@
 > 🏭 **Per-facility pages** (e.g. [Büyükçekmece Cement](https://iz-b0n.pages.dev/bench/akcansa-buyukcekmece/)): one URL per plant with audit-grade Scope 1, conformal CI, source PDFs, EnMAP scene index, Beirle NOx cross-check — and a printable [audit summary](https://iz-b0n.pages.dev/bench/akcansa-buyukcekmece/audit-summary/) you can hand to your verifier.
 > 🧪 **Verify in your browser (3 sec WebGPU train):** [iz-b0n.pages.dev/verify/](https://iz-b0n.pages.dev/verify/)
 > 📖 **How to use this:** [iz-b0n.pages.dev/use/](https://iz-b0n.pages.dev/use/)
-> 📝 **arXiv preprint draft:** [paper/iz_v0.md](paper/iz_v0.md)
+> 📝 **Cite this:** [Zenodo DOI 10.5281/zenodo.20496086](https://doi.org/10.5281/zenodo.20496086)
 
 ---
 
