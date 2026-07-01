@@ -31,7 +31,7 @@ def main() -> None:
     pp = pp.sort_values("year", ascending=False).drop_duplicates("id")
     prov = dict(zip(pp["id"], pp["provenance"]))
 
-    # Optional iz-1 from aggregated LODO
+    # Optional iz from aggregated LODO
     iz_path = REPO / "reports" / "lodo_aggregated.json"
     iz_by_fid = {}
     if iz_path.exists():
@@ -44,7 +44,7 @@ def main() -> None:
         "allocated only":       lambda p: p == "allocated",
     }
 
-    print(f"{'subset':22s} {'n':>3s}  {'B0 EU':>8s}  {'B1 formula':>10s}  {'B2 ridge':>9s}  {'iz-1 NN':>8s}  {'B1 reduction':>12s}")
+    print(f"{'subset':22s} {'n':>3s}  {'B0 EU':>8s}  {'B1 formula':>10s}  {'B2 ridge':>9s}  {'iz NN':>8s}  {'B1 reduction':>12s}")
     print("-" * 90)
     for name, pred in subsets.items():
         keep = [r for r in rows if pred(prov.get(r["facility_id"], "unknown"))]

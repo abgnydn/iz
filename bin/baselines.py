@@ -1,12 +1,12 @@
 """
-Baselines for iz-1 v0 comparison.
+Baselines for iz v0 comparison.
 
 Three baselines on the same n=8 LODO split:
   B0  EU CBAM default               = capacity × EU_DEFAULT_EF
   B1  cf_corrected formula (no ML)  = capacity × EF × cf   (the physics prior alone)
-  B2  Ridge regression (linear ML)  = same features as iz-1, scikit-learn ridge
+  B2  Ridge regression (linear ML)  = same features as iz, scikit-learn ridge
 
-Outputs per-facility predictions + log-MAE for each. Lets us isolate iz-1's
+Outputs per-facility predictions + log-MAE for each. Lets us isolate iz's
 actual contribution from "the formula already does most of the work" (#15) and
 "any ML model would beat the EU default" (#20).
 """
@@ -23,7 +23,7 @@ import numpy as np
 import pandas as pd
 
 REPO = Path(__file__).resolve().parent.parent
-BENCH = REPO / "src" / "iz_browser" / "bench.json"
+BENCH = REPO / "src" / "iz" / "bench.json"
 LODO = REPO / "reports" / "lodo_aggregated.json"
 OUT = REPO / "reports" / "baselines.json"
 
@@ -74,7 +74,7 @@ def main() -> None:
         # B1: cf_corrected formula alone — exposed as `y_prior` per sample
         b1 = test_sample.get("y_prior", 0.0)
 
-        # B2: Ridge on full feature vector, residual against y_prior_log (same as iz-1 training target)
+        # B2: Ridge on full feature vector, residual against y_prior_log (same as iz training target)
         train = [s for s in samples if s["split"] == "train"]
         X_tr = np.array([s["feat"] for s in train], dtype=np.float64)
         X_tr = (X_tr - feat_mean) / feat_std
@@ -107,25 +107,39 @@ def main() -> None:
         errs = [abs(math.log(r[field]) - math.log(r["truth"])) for r in rows_out if r[field] > 0 and r["truth"] > 0]
         return sum(errs) / len(errs)
 
-    # Pull iz-1 predictions from aggregated LODO
-    iz_rows = json.loads(LODO.read_text())
-    iz_by_fid = {r["facility_id"]: r["pred_median"] for r in iz_rows}
-    iz_errs = [abs(math.log(iz_by_fid[r["facility_id"]]) - math.log(r["truth"])) for r in rows_out if r["facility_id"] in iz_by_fid]
-    iz_mae = sum(iz_errs) / len(iz_errs)
+    # iz (the in-browser NN) is a DEMO, not part of the headline. Only shown if
+    # a fresh LODO artifact exists; the committed one may be stale. The headline is
+    # the formula (B1) — see bin/lopo_ef_eval.py for the honest leave-one-plant-out
+    # number that supersedes any in-sample figure printed here.
+    rows_report = [
+        ("B0  EU CBAM default",    None),
+        ("B1  cf_corrected formula", "B1_cf_formula"),
+        ("B2  Ridge regression",   "B2_ridge"),
+    ]
+    eu_mae = log_mae("B0_eu_default")
+    iz_mae = None
+    if LODO.exists():
+        iz_rows = json.loads(LODO.read_text())
+        iz_by_fid = {r["facility_id"]: r["pred_median"] for r in iz_rows}
+        iz_errs = [abs(math.log(iz_by_fid[r["facility_id"]]) - math.log(r["truth"]))
+                   for r in rows_out if r["facility_id"] in iz_by_fid]
+        if iz_errs:
+            iz_mae = sum(iz_errs) / len(iz_errs)
 
     print()
     print("=" * 90)
-    print(f"  {'baseline':32s} {'log-MAE':>10s} {'reduction vs EU':>17s}")
+    print(f"  {'baseline':34s} {'log-MAE':>10s} {'reduction vs EU':>17s}")
     print("-" * 90)
-    eu_mae = log_mae("B0_eu_default")
-    for name, mae in [
-        ("B0  EU CBAM default",    eu_mae),
-        ("B1  cf_corrected formula", log_mae("B1_cf_formula")),
-        ("B2  Ridge regression",   log_mae("B2_ridge")),
-        ("    iz-1 (15 seeds, no CT)", iz_mae),
-    ]:
+    print(f"  {'B0  EU CBAM default':34s} {eu_mae:>10.3f} {0.0:>15.1f}%")
+    for name, field in rows_report[1:]:
+        mae = log_mae(field)
         red = (1 - mae / eu_mae) * 100 if eu_mae > 0 else 0
-        print(f"  {name:32s} {mae:>10.3f} {red:>15.1f}%")
+        print(f"  {name:34s} {mae:>10.3f} {red:>15.1f}%")
+    if iz_mae is not None:
+        red = (1 - iz_mae / eu_mae) * 100 if eu_mae > 0 else 0
+        print(f"  {'iz NN (DEMO — not the headline)':34s} {iz_mae:>10.3f} {red:>15.1f}%")
+    print("-" * 90)
+    print("  Headline = B1 formula, evaluated leave-one-plant-out: see bin/lopo_ef_eval.py")
     print("=" * 90)
     print(f"\nwrote {OUT.relative_to(REPO)}")
 

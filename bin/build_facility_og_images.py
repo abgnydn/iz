@@ -6,7 +6,7 @@ preview card needs to be specific to that plant, not the generic iz og.png.
 
 Each card shows:
  - company + plant + sector + city (top)
- - three figures: audit-grade Scope 1 · iz-1 prediction · EU CBAM default
+ - three figures: audit-grade Scope 1 · iz prediction · EU CBAM default
  - one-line provenance + delta vs truth
  - iz brand footer
 
@@ -67,7 +67,7 @@ def render_card_html(fac: dict) -> str:
     if pred_median:
         pred_card = f"""
         <div class="card iz2">
-          <div class="lab">iz-1 prediction</div>
+          <div class="lab">iz prediction</div>
           <div class="val">{fmt_int(pred_median)}</div>
           <div class="sub">{fmt_pct(delta_iz) + " vs truth" if delta_iz is not None else "held-out"}</div>
         </div>"""

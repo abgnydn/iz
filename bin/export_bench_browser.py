@@ -1,7 +1,7 @@
 """
 Export TR-MRV-Bench to a single browser-loadable JSON file.
 
-The browser training (src/iz_browser/train-iz1.ts) doesn't read parquet — it
+The browser training demo (github.com/abgnydn/iz-lab) doesn't read parquet — it
 loads this JSON, builds float32 buffers, and trains via WebGPU.
 
 For v0 we don't have full satellite tiles yet, so features are:
@@ -34,7 +34,7 @@ CT_DETAILS = REPO / "reports" / "climate_trace_tr_details.parquet"
 S5P_DIR = REPO / "data" / "s5p"
 S5P_AGG = REPO / "data" / "s5p_no2_aggregated.csv"
 BEIRLE_MATCH = REPO / "data" / "beirle_match_audit_grade.csv"
-OUT_JSON = REPO / "src" / "iz_browser" / "bench.json"
+OUT_JSON = REPO / "src" / "iz" / "bench.json"
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)s | %(message)s")
 log = logging.getLogger("iz.export")
@@ -43,7 +43,7 @@ SCOPES = ["cement", "steel", "aluminum", "fertilizer"]
 
 # Two EF tables:
 #  - EU_DEFAULT_EF: what CBAM importers pay against if no operator data.
-#    These are the labels iz-1 is trying to BEAT by measuring reality.
+#    These are the labels iz is trying to BEAT by measuring reality.
 #  - TR_ACTUAL_EF: best estimates of the actual TR-sector specific emissions,
 #    used as bench labels for facilities lacking strong/CT disclosure.
 EU_DEFAULT_EF = {

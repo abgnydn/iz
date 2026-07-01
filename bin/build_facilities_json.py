@@ -4,7 +4,7 @@ Builds site/bench/facilities.json for the public bench browser.
 Joins:
  - data/tr_facilities.csv          (facility identity + capacity)
  - data/tr_facility_known_emissions.csv  (disclosure rows)
- - src/iz_browser/bench.json       (per-sample features + cf_corrected labels + eu_default)
+ - src/iz/bench.json       (per-sample features + cf_corrected labels + eu_default)
  - reports/lodo_aggregated.json    (per-facility median prediction across N outer runs, when present)
 
 Per-row fields emitted:
@@ -25,8 +25,9 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 FAC = REPO / "data" / "tr_facilities.csv"
 KNOWN = REPO / "data" / "tr_facility_known_emissions.csv"
-BENCH = REPO / "src" / "iz_browser" / "bench.json"
+BENCH = REPO / "src" / "iz" / "bench.json"
 AGG = REPO / "reports" / "lodo_aggregated.json"
+LOPO = REPO / "reports" / "lopo_ef_eval.json"
 OUT = REPO / "site" / "bench" / "facilities.json"
 
 PER_PLANT_METRICS = ("co2_scope1_t", "co2_scope12_total_t")
@@ -112,7 +113,9 @@ def main() -> None:
         ):
             latest[r["id"]] = r
 
-    # Aggregated LODO predictions (per-facility median + range from lodo_aggregated.json)
+    # Aggregated LODO predictions (per-facility median + range from lodo_aggregated.json).
+    # NOTE: this is the in-browser iz DEMO model, kept for the /verify/ demo only —
+    # it is NOT the headline. The headline is the cf-corrected formula below.
     agg_by_id: dict[str, dict] = {}
     if AGG.exists():
         for r in json.loads(AGG.read_text()):
@@ -124,12 +127,30 @@ def main() -> None:
                 "n_runs": r.get("n_runs", len(preds)),
             }
 
+    # Honest headline prediction: cf-corrected formula evaluated LEAVE-ONE-PLANT-OUT
+    # (reports/lopo_ef_eval.json). formula_pred is None for single-plant strata that
+    # cannot be validated (their EF would be their own answer); those carry
+    # formula_validatable=False so the page can say so instead of showing a number.
+    lopo_by_id: dict[str, dict] = {}
+    if LOPO.exists():
+        for r in json.loads(LOPO.read_text()).get("per_plant", []):
+            truth = r.get("truth") or 0
+            rl = r.get("ratio_lopo")
+            ri = r.get("ratio_in")
+            lopo_by_id[r["id"]] = {
+                "formula_pred": (rl * truth if (rl is not None and truth) else None),
+                "formula_ratio": rl,
+                "formula_pred_insample": (ri * truth if (ri is not None and truth) else None),
+                "formula_validatable": rl is not None,
+            }
+
     out_rows = []
     for fac in fac_rows:
         fid = fac["id"]
         bsample = bench_by_id.get(fid, {})
         k = latest.get(fid)
         agg = agg_by_id.get(fid)
+        lopo = lopo_by_id.get(fid, {})
         row = {
             "id": fid,
             "company": fac["company"],
@@ -145,6 +166,12 @@ def main() -> None:
             "notes": FACILITY_OVERRIDE_NOTES.get(fid) or (k["notes"] if k else None),
             "eu_default": bsample.get("eu_default"),
             "label_source": bsample.get("label_source"),
+            # Honest headline: cf-corrected formula, leave-one-plant-out
+            "formula_pred": lopo.get("formula_pred"),
+            "formula_ratio": lopo.get("formula_ratio"),
+            "formula_pred_insample": lopo.get("formula_pred_insample"),
+            "formula_validatable": lopo.get("formula_validatable", None),
+            # iz demo model (NOT the headline) — kept for the /verify/ browser demo
             "pred_median": agg["pred_median"] if agg else None,
             "pred_min": agg["pred_min"] if agg else None,
             "pred_max": agg["pred_max"] if agg else None,

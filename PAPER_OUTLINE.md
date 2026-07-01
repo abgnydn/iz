@@ -14,7 +14,7 @@ CBAM and emerging emissions-trading regimes require per-facility CO₂ accountin
 
 1. **TR-MRV-Bench (§4).** Public per-facility emissions benchmark with three-tier supervision (audit-grade / Climate TRACE / cf-corrected default), provenance-tagged labels (direct / allocated / composite / derived / disputed), and stratified train/val/test split by `(scope × route)` covering steel BF/BOF / EAF / DRI-EAF, aluminum primary / downstream, fertilizer integrated / N₂O-controlled / blender. **21 audit-grade test facilities** across all four CBAM scopes — direct (14), allocated (6), composite (1).
 2. **cf-corrected formula baseline (§3, §5).** Closed-form `cap × EF × cf` with explicit route-aware EF and cf priority rules. **85.3% log-MAE reduction vs EU default on n=21 LODO** (capacities operator-audited) — 15 of 21 predictions land within ±20% of audit truth. NN ties at 83.6%.
-3. **EU CBAM default is route-asymmetric (§5.1).** The default over-estimates cement by 2-5×, EAF steel by 10×, downstream aluminum by 4× (CBAM applies primary-Al EF 8.6 to downstream rolling at actual 0.38), and fertilizer blenders by 90×. It is within 5% of audited reality only for big BF/BOF integrated mills. The mismatch is the gap iz-1 closes.
+3. **EU CBAM default is route-asymmetric (§5.1).** The default over-estimates cement by 2-5×, EAF steel by 10×, downstream aluminum by 4× (CBAM applies primary-Al EF 8.6 to downstream rolling at actual 0.38), and fertilizer blenders by 90×. It is within 5% of audited reality only for big BF/BOF integrated mills. The mismatch is the gap iz closes.
 4. **Climate TRACE under-reports TR industrial emissions (§5.2).** 4 of 5 audit-matched facilities under-reported: Erdemir −29%, İsdemir −22%, Kardemir −23%, Nuh −23%; Göltaş the lone over-report at +11%. Mean bias −17%, median −23%. Adding CT cf as a model feature worsens LODO accuracy by ~4 percentage points; this is why the no_ct ablation is the headline configuration.
 5. **The formula and the model are statistically tied (§6).** A LoRA-shaped MLP achieves +83.3% vs the closed-form formula's 85.3% on n=21 LODO. Ridge regression on the same features lags at 81.4%. **The actionable shipped baseline is the formula**; the NN is a working reference implementation that opens room for future signal extraction (satellite features, multi-year LODO). At this data scale (~39 training samples after LODO holdout), parameter growth offers no meaningful gain over data growth.
 
@@ -67,13 +67,13 @@ CBAM and emerging emissions-trading regimes require per-facility CO₂ accountin
 
 ### 5. Experiments
 #### 5.1 Pass 1: full-precision baseline
-- iz-1-fp vs (Climate TRACE direct) vs (EU CBAM default value)
+- iz-fp vs (Climate TRACE direct) vs (EU CBAM default value)
 - per-plant MAE
 - annual aggregate MAE
 - uncertainty calibration: CRPS, coverage at 90% / 95% intervals
 
 #### 5.2 Pass 2: ternary
-- iz-1-ternary vs iz-1-fp
+- iz-ternary vs iz-fp
 - accuracy gap as a function of layers quantized
 - memory + inference latency
 
@@ -126,9 +126,9 @@ CBAM and emerging emissions-trading regimes require per-facility CO₂ accountin
 ## Code + data release
 
 - Code: github.com/abgnydn/iz (Apache-2.0)
-- Weights: huggingface.co/abgnydn/iz-1 (Apache-2.0)
+- Weights: huggingface.co/abgnydn/iz (Apache-2.0)
 - Dataset: huggingface.co/datasets/abgnydn/tr-mrv-bench (Apache-2.0 + cite-us)
-- Browser demo: huggingface.co/spaces/abgnydn/iz-1 (Zero-GPU)
+- Browser demo: huggingface.co/spaces/abgnydn/iz (Zero-GPU)
 
 ## Distribution plan (post-arXiv)
 

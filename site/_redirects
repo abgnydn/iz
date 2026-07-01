@@ -3,3 +3,12 @@
 /verify    /verify/       301
 /bench     /bench/        301
 /about     /about/        301
+# Simplified 2026-07: legacy/duplicate/marketing pages removed, kept URLs alive
+/landing   /              301
+/landing/  /              301
+/v01       /              301
+/v01/      /              301
+/fusion    /              301
+/fusion/   /              301
+/verifiers /verify/       301
+/verifiers/ /verify/      301

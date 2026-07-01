@@ -23,34 +23,33 @@ abstract: >
   priorities (BF/BOF / EAF / DRI-EAF for steel; primary / downstream for
   aluminum; integrated / N₂O-controlled / blender for fertilizer) and cf
   priorities (Climate TRACE > operator-disclosed production / capacity >
-  sector mean). On the n=21 audit-grade test set the formula reduces pooled
-  per-plant log-MAE by 85.3% vs the EU CBAM default (B0 log-MAE 1.432 → B1
-  0.211) in leave-one-disclosure-out cross-validation. We additionally ship
-  a browser-native 2-layer LoRA-shaped MLP (iz-1) that ties the formula at
-  +83.3% (95% data-bootstrap CI [+72.0%, +90.6%], 5000 resamples).
+  sector mean).
 
-  The bench is triple-corroborated.
+  Evaluation is leave-one-plant-out: each plant's route emission-factor is
+  derived only from the other audit-grade plants in its route, so no plant
+  contributes to its own prediction. On the 19 validatable plants the formula
+  reduces per-plant log-MAE by 82.3% vs the EU CBAM default (EU log-MAE 1.166
+  on the same 19 plants → formula 0.206). Two of the 21 audit-grade plants —
+  BAGFAŞ (sole N₂O-controlled fertilizer plant) and Gübretaş (sole blender) —
+  are each the only plant of their route, cannot be validated leave-one-plant-out,
+  and are excluded from the headline. The in-sample fit (EF fitted on all
+  plants, no hold-out) is 85.7%; the honest no-peeking number is 82.3%. An
+  in-browser WebGPU model (iz) is shipped as an engineering demo only; at this
+  data scale it does not beat the closed-form formula and is not part of the
+  headline result.
 
-  (1) Verifier B6 — EUTL external validation: we pulled audit-grade verified
-  Scope 1 emissions from the EU Transaction Log for 789 EU plants across all
-  four CBAM scopes (372 cement clinker installations, 282 pig-iron-and-steel,
-  71 primary + secondary aluminum, 64 ammonia + nitric-acid) totalling 10,691
-  audit-grade facility-years. Applying the TR-derived formula with no
-  re-tuning reproduces EU sector aggregates within 4% for cement and 6% for
-  primary aluminum.
+  External validity (Verifier B6 — EUTL): applying the TR-derived formula with
+  no re-tuning to EU Transaction Log third-party-verified Scope 1 for 789 EU
+  plants across all four CBAM scopes (372 cement clinker installations, 282
+  pig-iron-and-steel, 71 aluminum, 64 ammonia + nitric-acid; 10,691
+  facility-years) gives a median ratio near 1.0 vs the EU default's ~2.5x on
+  cement, and reproduces EU sector aggregates within single-digit percent for
+  cement and primary aluminum.
 
-  (2) Verifier B7 — symbolic regression rediscovery: PySR (Cranmer 2023)
-  searches the closed-form-equation space over (+ − × ÷ log exp) on the
-  combined n=58 TR+EU dataset with three numeric inputs (cap, ef, cf) and no
-  prior on formula structure. At complexity 5 the log-space Pareto front
-  contains `(log_cap + log_ef) + log_cf` — algebraically identical to
-  `log(cap × ef × cf)` — with bit-identical MSE (0.5912) to the hand-crafted
-  formula.
-
-  (3) EU policy submission — the bench was the empirical basis for a formal
-  submission to the European Commission's CBAM default-values implementing
-  act consultation (May/June 2026), proposing audit-anchored Turkey-specific
-  defaults per CBAM route in place of the 90th-percentile-of-global anchor.
+  The bench was the empirical basis for a formal submission to the European
+  Commission's CBAM default-values implementing-act consultation (May/June
+  2026), proposing audit-anchored Turkey-specific defaults per CBAM route in
+  place of the 90th-percentile-of-global anchor.
 
   All code, data, and verifier outputs are released under Apache-2.0.
 keywords:
@@ -66,8 +65,6 @@ keywords:
   - benchmark
   - EU ETS
   - EUTL
-  - symbolic regression
-  - PySR
 license: Apache-2.0
-version: "0.3.0"
-date-released: "2026-06-02"
+version: "0.4.0"
+date-released: "2026-07-01"

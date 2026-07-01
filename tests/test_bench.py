@@ -55,28 +55,13 @@ def test_route_maps_cover_strata() -> None:
 
 
 def test_bench_json_is_complete() -> None:
-    bench = json.loads((REPO / "src" / "iz_browser" / "bench.json").read_text())
+    bench = json.loads((REPO / "src" / "iz" / "bench.json").read_text())
     samples = bench["samples"]
     assert len(samples) >= 50, "expected ~59 samples"
     by_source = {}
     for s in samples:
         by_source[s["label_source"]] = by_source.get(s["label_source"], 0) + 1
     assert by_source.get("disclosure", 0) >= 18, "expected ≥18 disclosure-labeled rows"
-
-
-def test_lodo_results_when_present() -> None:
-    path = REPO / "reports" / "lodo_results.json"
-    if not path.exists():
-        pytest.skip("no lodo_results.json (run bin/e2e_lodo.py first)")
-    rows = json.loads(path.read_text())
-    assert len(rows) >= 18, f"expected ≥18 LODO holdouts, got {len(rows)}"
-    for r in rows:
-        assert r["truth"] > 0
-        assert r["pred_median"] > 0
-        assert r["eu_default"] > 0
-        # No prediction should be wildly off across orders of magnitude
-        ratio = r["pred_median"] / r["truth"]
-        assert 0.05 < ratio < 20, f"{r['facility_id']} prediction implausible: {ratio:.2f}× truth"
 
 
 def test_facilities_json_for_site() -> None:
@@ -95,7 +80,7 @@ def test_facilities_json_for_site() -> None:
 
 def test_eu_defaults_in_bench() -> None:
     """EU defaults should be capacity × the canonical default EF (no facility-specific tuning)."""
-    bench = json.loads((REPO / "src" / "iz_browser" / "bench.json").read_text())
+    bench = json.loads((REPO / "src" / "iz" / "bench.json").read_text())
     fac = pd.read_csv(REPO / "data" / "tr_facilities.csv").set_index("id")
     EU_DEFAULT_EF = {"cement": 1.584, "steel": 1.900, "aluminum": 1.500, "fertilizer": 0.800}
     for s in bench["samples"]:
@@ -141,13 +126,20 @@ def test_facility_pages_exist() -> None:
 
 
 def test_log_mae_calculation_consistent() -> None:
-    """Verify the headline reduction number is reproducible from the raw rows."""
-    path = REPO / "reports" / "lodo_results.json"
+    """Verify the HEADLINE (cf-corrected formula, leave-one-plant-out) reduction is
+    reproducible and in range. The headline is the formula, not the iz demo net —
+    so this checks reports/lopo_ef_eval.json (deterministic), produced by
+    bin/lopo_ef_eval.py."""
+    path = REPO / "reports" / "lopo_ef_eval.json"
     if not path.exists():
-        pytest.skip("no lodo_results.json")
-    rows = json.loads(path.read_text())
-    ml = sum(abs(math.log(r["pred_median"]) - math.log(r["truth"])) for r in rows) / len(rows)
+        pytest.skip("no lopo_ef_eval.json (run bin/lopo_ef_eval.py first)")
+    d = json.loads(path.read_text())
+    rows = [r for r in d["per_plant"] if r.get("ratio_lopo") is not None]
+    # Exactly the validatable plants; single-plant strata are excluded, not scored.
+    assert d["n_predictable"] == len(rows) >= 15
+    ml = sum(abs(math.log(r["ratio_lopo"] * r["truth"]) - math.log(r["truth"])) for r in rows) / len(rows)
     el = sum(abs(math.log(r["eu_default"]) - math.log(r["truth"])) for r in rows) / len(rows)
     reduction = (1 - ml / el) * 100
+    assert abs(reduction - d["reduction_lopo_predictable"]) < 0.5, "reduction not reproducible from rows"
     # Should be in the +75% to +90% range; well outside this means something is wrong
-    assert 70 < reduction < 95, f"reduction {reduction:.1f}% outside expected range"
+    assert 75 < reduction < 90, f"honest LOPO reduction {reduction:.1f}% outside expected range"

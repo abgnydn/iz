@@ -4,21 +4,21 @@
 <meta charset="utf-8">
 <title>Verify · iz · TR-MRV-Bench</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Verify the TR-MRV-Bench result yourself. A 2-layer LoRA-shaped MLP trains in your browser on WebGPU in 3 seconds. No backend, no telemetry.">
+<meta name="description" content="Reproduce the TR-MRV-Bench result yourself: the closed-form formula gives +82.3% log-MAE reduction vs the EU CBAM default (leave-one-plant-out, n=19), verified on 372 EUTL plants. Pure Python, deterministic.">
 <meta name="theme-color" content="#2d5a4c">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/favicon.svg">
 <link rel="canonical" href="https://iz-b0n.pages.dev/verify/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="iz · TR-MRV-Bench">
-<meta property="og:title" content="iz · Verify the bench in your browser">
-<meta property="og:description" content="A 2-layer LoRA-shaped MLP trains on the bench via WebGPU in your browser in ~3 seconds. No backend. The model ties the formula at ±0.3% in 5-outer LODO.">
+<meta property="og:title" content="iz · Reproduce the result yourself">
+<meta property="og:description" content="Reproduce the +82.3% formula result (leave-one-plant-out, n=19) and the EUTL external check yourself. Pure Python, deterministic, data committed.">
 <meta property="og:url" content="https://iz-b0n.pages.dev/verify/">
 <meta property="og:image" content="https://iz-b0n.pages.dev/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="iz · Verify the bench in your browser">
+<meta name="twitter:title" content="iz · Reproduce the result yourself">
 <meta name="twitter:image" content="https://iz-b0n.pages.dev/assets/og.png">
 <style>
   :root { --bg:#f4ede2; --paper:#fbf7ee; --ink:#14181d; --muted:#6e6862; --rule:#d8cfbe; --cost:#b85c3f; --saved:#2d5a4c; }
@@ -74,62 +74,44 @@
 </div>
 <div class="container">
 
-<h1>Verify the bench <em>— in your own browser.</em></h1>
+<style>
+  pre.cmd { background: var(--ink); color: #f4ede2; font-family: Menlo, monospace; font-size: 10pt; line-height: 1.55; padding: 14px 16px; overflow-x: auto; margin: 8pt 0 0; }
+</style>
+
+<h1>Verify the result <em>— reproduce it yourself.</em></h1>
 <p class="sub">
-  The formula does the work — but if you suspect we fudged the bench, this is where you check.
-  A 2-layer LoRA-shaped MLP (rank-32) trains on TR-MRV-Bench via WebGPU on your GPU in ~3 seconds.
-  No backend, no telemetry, no account. The model ties the formula at ±0.3% in 5-outer LODO;
-  if the bench were rigged, this page would show it.
+  The headline is a closed-form formula, so you can check it in seconds — no GPU, no backend, no account.
+  Clone the repo and re-run the honest evaluation and the external EUTL check. Everything is deterministic
+  and the data is committed.
 </p>
 
-<div class="grid">
-  <div class="panel">
-    <h2>Configure</h2>
-    <label>Hidden rank (R)</label>
-    <input id="rank" type="number" value="32" min="4" max="256" step="4">
-    <label>Learning rate</label>
-    <input id="lr" type="number" value="0.05" min="0.00001" max="1" step="0.001">
-    <label>Epochs</label>
-    <input id="epochs" type="number" value="100" min="10" max="2000" step="10">
-    <label>Batch size</label>
-    <input id="batch" type="number" value="8" min="1" max="32" step="1">
-    <button id="train-btn" disabled>Train</button>
-    <button id="reset-btn">Reset</button>
-  </div>
-
-  <div class="panel">
-    <h2>Live</h2>
-    <label>Train loss (last)</label>
-    <div class="metric" id="train-loss">— <small>MSE on log-CO₂</small></div>
-    <label>Val MAE (last) — log-space</label>
-    <div class="metric" id="val-mae">—</div>
-    <label>Step</label>
-    <div class="metric" id="step">0 / 0</div>
-    <div class="canvas-wrap" style="margin-top:10pt;">
-      <canvas id="loss-canvas" width="540" height="180"></canvas>
-    </div>
-    <div class="legend">
-      <span><span class="swatch" style="background:#b85c3f;"></span>train</span>
-      <span><span class="swatch" style="background:#2d5a4c;"></span>val</span>
-    </div>
-  </div>
+<div class="panel">
+  <h2>1 · Reproduce the headline (+82.3%, n=19)</h2>
+  <p class="sub" style="margin:0;">Pure Python, about ten seconds:</p>
+  <pre class="cmd">git clone https://github.com/abgnydn/iz &amp;&amp; cd iz
+uv sync
+uv run python bin/export_bench_browser.py
+uv run python bin/lopo_ef_eval.py     # leave-one-plant-out: +82.3%, n=19
+uv run python bin/baselines.py        # B0 / B1 / B2 side by side</pre>
+  <p class="sub" style="margin-top:8pt;">You should see the cf-corrected formula reduce per-plant log-MAE by <strong>+82.3%</strong> vs the EU CBAM
+  default, measured leave-one-plant-out (each plant's emission-factor derived only from the other plants in its
+  route). BAGFAŞ and Gübretaş are excluded as single-plant routes — see the output.</p>
 </div>
 
 <div class="panel" style="margin-top:18pt;">
-  <h2>Status</h2>
-  <div class="status" id="status">awaiting WebGPU + bench load…</div>
+  <h2>2 · Check external validity (Verifier B6)</h2>
+  <pre class="cmd">uv run python bin/verifier_b6_eutl_score.py</pre>
+  <p class="sub" style="margin-top:8pt;">Applies the same formula with no re-tuning to <strong>372 EUTL third-party-verified EU cement
+  installations</strong> — median ratio ≈1.0 vs the EU default's ≈2.5×. This is the strongest generalization
+  evidence in the project.</p>
 </div>
 
 <div class="panel" style="margin-top:18pt;">
-  <h2>Test-set predictions (after training)</h2>
-  <div id="preds-table" class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>Facility</th><th>Scope</th><th>Source</th><th class="num">Truth (tCO₂/yr)</th><th class="num">Predicted</th><th class="num">Ratio</th><th class="num">EU default</th><th class="num">vs EU</th></tr>
-      </thead>
-      <tbody id="preds-body"></tbody>
-    </table>
-  </div>
+  <h2>3 · Optional — the in-browser WebGPU demo</h2>
+  <p class="sub" style="margin:0;">A small neural net that retrains in your browser on WebGPU in ~3 seconds lives in a
+  separate repo: <a href="https://github.com/abgnydn/iz-lab" target="_blank" rel="noopener">github.com/abgnydn/iz-lab</a>.
+  It's an engineering demo — at this data scale it does <em>not</em> beat the closed-form formula, so it is not
+  part of the result.</p>
 </div>
 
 </div>
@@ -144,6 +126,5 @@
   <a href="mailto:hi@barisgunaydin.com" style="color:var(--muted);">Email</a>
 </footer>
 
-<script type="module" src="./train.js"></script>
 </body>
 </html>

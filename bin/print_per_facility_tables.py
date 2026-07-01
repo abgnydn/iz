@@ -84,7 +84,7 @@ def main() -> None:
     (OUT_DIR / "per_facility.html.frag").write_text("\n".join(html_lines) + "\n")
 
     # Markdown for README
-    md_lines = ["| Facility | Sector / route | Truth (tCO₂) | iz-1 (5-run median) | Ratio | EU default |",
+    md_lines = ["| Facility | Sector / route | Truth (tCO₂) | iz (5-run median) | Ratio | EU default |",
                 "|----------|----------------|-------------:|--------------------:|------:|-----------:|"]
     for r in ordered:
         fid = r["facility_id"]
@@ -105,7 +105,7 @@ def main() -> None:
     red = (1 - mm / em) * 100
 
     print(f"n = {len(rows)}")
-    print(f"iz-1 NN headline reduction (median across 5 outer runs): {red:.2f}%")
+    print(f"iz NN headline reduction (median across 5 outer runs): {red:.2f}%")
     print(f"per-plant log-MAE (NN): {mm:.3f}  EU default: {em:.3f}")
     print()
     print(f"Wrote {OUT_DIR}/per_facility.html.frag and per_facility.md.frag")

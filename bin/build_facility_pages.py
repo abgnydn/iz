@@ -5,7 +5,7 @@ The page is what an operator sees when they Google their plant name. It pulls
 together:
  - identity (company / plant / city / capacity / sector / route)
  - truth (Scope 1 + provenance + assurance + source PDF)
- - iz-1 prediction with conformal CI (when in the LODO disclosure subset)
+ - iz prediction with conformal CI (when in the LODO disclosure subset)
  - EU CBAM default + delta vs. truth
  - Beirle 2023 v2 TROPOMI NOx flux (when within 15 km of a catalog source)
  - EnMAP scenes available (count + first 3 cloud-free dates)
@@ -125,6 +125,9 @@ def render_page(fac: dict, beirle: dict | None, scenes: list[dict],
     eu_default = fac.get("eu_default")
     pred_median = fac.get("pred_median")
     n_runs = fac.get("n_runs")
+    # Honest headline prediction: cf-corrected formula, leave-one-plant-out
+    formula_pred = fac.get("formula_pred")
+    formula_validatable = fac.get("formula_validatable")
 
     title_h1 = html.escape(f"{plant}") if plant else html.escape(fid)
     company_line = html.escape(company) if company else ""
@@ -132,9 +135,9 @@ def render_page(fac: dict, beirle: dict | None, scenes: list[dict],
     delta_eu = None
     if eu_default and truth:
         delta_eu = (eu_default - truth) / truth * 100
-    delta_iz = None
-    if pred_median and truth:
-        delta_iz = (pred_median - truth) / truth * 100
+    delta_formula = None
+    if formula_pred and truth:
+        delta_formula = (formula_pred - truth) / truth * 100
 
     # Build truth block
     pdf_links = ""
@@ -191,7 +194,7 @@ def render_page(fac: dict, beirle: dict | None, scenes: list[dict],
   <p class="metric"><strong>{nox:.3f} ± {err:.3f} kg NOx/s</strong>{ann_str}</p>
   <p class="muted">NOx is an activity proxy independent of operator disclosure. A catalog hit within 15 km
   means the plant (or its colocated captive power) is bright enough in TROPOMI to register globally.
-  This row is in the <code>data/beirle_match_audit_grade.csv</code> join used by iz-1 v0.1.1+.</p>
+  This row is in the <code>data/beirle_match_audit_grade.csv</code> join shipped with the bench.</p>
 </section>"""
 
     # EnMAP block
@@ -258,13 +261,13 @@ def render_page(fac: dict, beirle: dict | None, scenes: list[dict],
             "unitText": "tCO2 per year",
             "description": f"Audit-grade per-facility Scope 1, {provenance}, {assurance}. Source: {truth_src[:200]}",
         })
-    if pred_median:
+    if formula_pred:
         jsonld_vars.append({
             "@type": "PropertyValue",
-            "name": "iz-1 LODO prediction",
-            "value": int(round(pred_median)),
+            "name": "cf-corrected formula prediction (leave-one-plant-out)",
+            "value": int(round(formula_pred)),
             "unitText": "tCO2 per year",
-            "description": f"Leave-one-disclosure-out median prediction from a 2-layer MLP trained on {n_runs} × 3 = {(n_runs or 0) * 3} seeds.",
+            "description": "Closed-form capacity × route-EF × cf, with the route emission-factor derived only from the other audit-grade plants (leave-one-plant-out). +82.3% log-MAE reduction vs EU default across 19 validatable plants.",
         })
     if eu_default:
         jsonld_vars.append({
@@ -279,7 +282,7 @@ def render_page(fac: dict, beirle: dict | None, scenes: list[dict],
         "@type": "Dataset",
         "name": f"{plant or fid} CO2 emissions ({truth_year or '2024-25'})",
         "alternateName": [plant, company, f"{company} {plant}"],
-        "description": f"Audit-grade Scope 1, iz-1 prediction with conformal prediction interval, EU CBAM default, and full source citations for {plant}, {city}, Türkiye. Industry: {sector}.",
+        "description": f"Audit-grade Scope 1, cf-corrected formula prediction (leave-one-plant-out), EU CBAM default, and full source citations for {plant}, {city}, Türkiye. Industry: {sector}.",
         "url": f"{SITE_URL}/bench/{fid}/",
         "identifier": fid,
         "license": "https://www.apache.org/licenses/LICENSE-2.0",
@@ -312,14 +315,14 @@ def render_page(fac: dict, beirle: dict | None, scenes: list[dict],
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(plant or fid)} · {html.escape(company)} · iz · TR-MRV-Bench</title>
-<meta name="description" content="iz · TR-MRV-Bench page for {html.escape(plant or fid)}{(', ' + html.escape(company)) if company else ''}. Audit-grade Scope 1, iz-1 prediction with conformal CI, EU CBAM default, source citations.">
+<meta name="description" content="iz · TR-MRV-Bench page for {html.escape(plant or fid)}{(', ' + html.escape(company)) if company else ''}. Audit-grade Scope 1, cf-corrected formula prediction (leave-one-plant-out), EU CBAM default, source citations.">
 <meta name="theme-color" content="#2d5a4c">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="canonical" href="{SITE_URL}/bench/{fid}/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="iz · TR-MRV-Bench">
 <meta property="og:title" content="{html.escape(plant or fid)} · {html.escape(company)}">
-<meta property="og:description" content="Audit-grade Scope 1 + iz-1 prediction + EU CBAM default. Source PDFs cited.">
+<meta property="og:description" content="Audit-grade Scope 1 + cf-corrected formula prediction + EU CBAM default. Source PDFs cited.">
 <meta property="og:url" content="{SITE_URL}/bench/{fid}/">
 <meta property="og:image" content="{SITE_URL}/bench/{fid}/og.png">
 <meta property="og:image:width" content="1200">
@@ -387,9 +390,9 @@ def render_page(fac: dict, beirle: dict | None, scenes: list[dict],
       <div class="delta muted">tCO₂ · <span class="badge {provenance}">{html.escape(provenance)}</span>{f' · {html.escape(assur)}' if assur else ''}</div>
     </div>
     <div class="card iz">
-      <div class="label">iz-1 prediction (LODO)</div>
-      <div class="value">{fmt_int(pred_median)}</div>
-      <div class="delta">{('<span class="muted">' + fmt_pct(delta_iz) + ' vs. truth</span>') if delta_iz is not None else '<span class="muted">held out of training</span>'}</div>
+      <div class="label">cf-corrected formula (leave-one-plant-out)</div>
+      <div class="value">{fmt_int(formula_pred) if formula_pred else '—'}</div>
+      <div class="delta">{('<span class="muted">' + fmt_pct(delta_formula) + ' vs. truth</span>') if delta_formula is not None else ('<span class="muted">single-plant route — not independently validatable</span>' if formula_validatable is False else '<span class="muted">not in audit-grade set</span>')}</div>
     </div>
     <div class="card eu">
       <div class="label">EU CBAM default</div>
@@ -412,7 +415,7 @@ def render_page(fac: dict, beirle: dict | None, scenes: list[dict],
     <dt>Capacity</dt><dd>{fmt_int(cap)} t/y</dd>
     <dt>Label source</dt><dd><span class="badge {label_source}">{html.escape(label_source)}</span></dd>
     <dt>Provenance</dt><dd>{html.escape(prov_desc)}</dd>
-    <dt>iz-1 runs</dt><dd>{f'{n_runs} LODO outer × 3 inner seeds = {n_runs * 3} total' if n_runs else 'not yet in LODO disclosure set'}</dd>
+    <dt>Headline method</dt><dd>cf-corrected formula (capacity × route-EF × cf), evaluated leave-one-plant-out. +82.3% log-MAE reduction vs EU default across the 19 validatable plants.</dd>
   </dl>
 </section>
 
@@ -473,8 +476,8 @@ def render_audit_summary(fac: dict, beirle: dict | None,
     assurance = s("assurance")
     label_source = s("label_source")
     eu_default = fac.get("eu_default")
-    pred_median = fac.get("pred_median")
-    n_runs = fac.get("n_runs")
+    formula_pred = fac.get("formula_pred")
+    formula_validatable = fac.get("formula_validatable")
 
     ci_text = ""
     if conformal:
@@ -495,10 +498,10 @@ def render_audit_summary(fac: dict, beirle: dict | None,
         d = (eu_default - truth) / truth * 100
         delta_eu_str = f" (EU default overstates by {d:+.0f}%)"
 
-    delta_iz_str = ""
-    if pred_median and truth:
-        d = (pred_median - truth) / truth * 100
-        delta_iz_str = f" (iz-1 within {d:+.1f}% of audit)"
+    delta_formula_str = ""
+    if formula_pred and truth:
+        d = (formula_pred - truth) / truth * 100
+        delta_formula_str = f" (formula within {d:+.1f}% of audit)"
 
     beirle_text = ""
     if beirle:
@@ -565,9 +568,9 @@ h2 {{ font-size: 11pt; margin: 5mm 0 2mm; text-transform: uppercase; letter-spac
     <div class="delta">{html.escape(label_source)} · {html.escape(provenance)}{f' · {html.escape(assurance)}' if assurance else ''}</div>
   </div>
   <div class="col">
-    <div class="label">iz-1 prediction (LODO)</div>
-    <div class="value">{fmt_int(pred_median)}</div>
-    <div class="delta">{f'{n_runs * 3}-seed median{delta_iz_str}' if n_runs else 'not in LODO set'}</div>
+    <div class="label">cf-corrected formula (leave-one-plant-out)</div>
+    <div class="value">{fmt_int(formula_pred) if formula_pred else '—'}</div>
+    <div class="delta">{('cap × route-EF × cf' + delta_formula_str) if formula_pred else ('single-plant route — not independently validatable' if formula_validatable is False else 'not in audit-grade set')}</div>
   </div>
   <div class="col">
     <div class="label">EU CBAM default value</div>
@@ -581,14 +584,14 @@ h2 {{ font-size: 11pt; margin: 5mm 0 2mm; text-transform: uppercase; letter-spac
 <div class="cite">{html.escape(truth_src)}</div>
 {f'<p style="font-size:9pt;color:#555;margin:1mm 0;">{html.escape(s("notes"))}</p>' if s("notes") else ''}
 
-<h2>4 · Methodology (iz-1)</h2>
-<p style="font-size: 9.5pt;">iz-1 is a 2-layer browser-resident MLP with WebGPU-accelerated LoRA-shaped weights,
-trained on TR-MRV-Bench v0 (59 Turkish CBAM-scope facilities; 21 audit-grade Scope 1 labels with operator-PDF citations).
-Inputs: nameplate capacity, geo-coordinates, sector + steel route one-hot, Climate-TRACE-derived capacity factor and
-activity, operator-disclosed capacity factor (non-leaky in LODO), and Sentinel-5P NO₂ activity proxy.
-Evaluation: stratified leave-one-disclosure-out with 5 outer × 3 inner = 15 seeds per held-out facility.
-Headline: median 87% reduction in log-MAE vs. EU CBAM default; closed-form formula (capacity × route-EF × cf)
-reaches the same headline within statistical noise.
+<h2>4 · Methodology (cf-corrected formula)</h2>
+<p style="font-size: 9.5pt;">The headline method is a closed-form physics baseline: Scope 1 ≈ nameplate capacity × route emission-factor × capacity factor,
+using only operator-published numbers. It is evaluated <strong>leave-one-plant-out</strong>: each plant's route emission-factor
+is derived only from the <em>other</em> audit-grade plants in its route, so no plant contributes to its own prediction.
+Headline: <strong>+82.3% log-MAE reduction vs the EU CBAM default</strong> across the 19 validatable plants (of 21 audit-grade;
+two single-plant routes — N₂O-controlled and blender fertilizer — cannot be independently validated and are excluded).
+External validity: the same formula on 372 EUTL-verified EU cement installations gives a median ratio ≈1.0 vs the EU default's ≈2.5×.
+An optional in-browser WebGPU model (iz) is shipped as a demo only; it does not beat this formula at current data scale.
 {beirle_text}</p>
 
 <h2>5 · Verifier checklist</h2>
@@ -596,8 +599,8 @@ reaches the same headline within statistical noise.
   <li>☐ Confirm Scope 1 line item in the cited source matches the value above (tCO₂ basis; not CO₂-equivalent if different).</li>
   <li>☐ Verify operator's verification statement (ISO 14064-1 / TSRS / financial audit) attached to the source.</li>
   <li>☐ Cross-check capacity against latest published cement / steel / aluminum / fertilizer association registry.</li>
-  <li>☐ If using iz-1 prediction as input to CBAM Article 4(2) actual-emission declaration: the prediction is
-      a model output, not a measurement. Verifier must independently support the underlying activity data.</li>
+  <li>☐ If using the formula prediction as input to a CBAM Article 4(2) actual-emission declaration: it is
+      a model estimate, not a measurement. Verifier must independently support the underlying activity data.</li>
   <li>☐ Confirm the conformal prediction interval covers the operator's claimed Scope 1.</li>
 </ol>
 
@@ -606,7 +609,7 @@ reaches the same headline within statistical noise.
 TR-MRV-Bench v0 is Apache-2.0 licensed. The benchmark, methodology, and per-facility data are public at
 <code>github.com/abgnydn/iz</code> and <code>iz-b0n.pages.dev</code>.
 Cite: Günaydın (2026), "TR-MRV-Bench: a public per-facility emissions benchmark for Turkish CBAM-scope
-industry, with a physics baseline that beats the EU CBAM default by 87%."
+industry, with a physics baseline that beats the EU CBAM default by +82.3% (leave-one-plant-out, n=19)."
 </p>
 
 <div class="footer">iz · TR-MRV-Bench v0.1 · <code>{html.escape(fid)}</code> · audit summary printed from

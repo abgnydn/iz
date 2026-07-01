@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bench · 59 Turkish CBAM facilities · iz · TR-MRV-Bench</title>
-<meta name="description" content="Sortable, filterable browser for 59 Turkish CBAM-scope facilities. 20 audit-grade Scope 1 labels with source-PDF citations. Cement, steel, aluminum, fertilizer.">
+<meta name="description" content="Sortable, filterable browser for 59 Turkish CBAM-scope facilities. 21 audit-grade Scope 1 labels with source-PDF citations. Cement, steel, aluminum, fertilizer.">
 <meta name="theme-color" content="#2d5a4c">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/favicon.svg">
@@ -12,14 +12,14 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="iz · TR-MRV-Bench">
 <meta property="og:title" content="The bench. Every facility, every source.">
-<meta property="og:description" content="59 Turkish CBAM-scope facilities, 20 audit-grade Scope 1 labels with operator-PDF citations. Sortable, filterable, downloadable.">
+<meta property="og:description" content="59 Turkish CBAM-scope facilities, 21 audit-grade Scope 1 labels with operator-PDF citations. Sortable, filterable, downloadable.">
 <meta property="og:url" content="https://iz-b0n.pages.dev/bench/">
 <meta property="og:image" content="https://iz-b0n.pages.dev/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="iz · The bench. Every facility, every source.">
-<meta name="twitter:description" content="59 Turkish CBAM-scope plants, 20 audit-grade Scope 1 labels with source PDFs.">
+<meta name="twitter:description" content="59 Turkish CBAM-scope plants, 21 audit-grade Scope 1 labels with source PDFs.">
 <meta name="twitter:image" content="https://iz-b0n.pages.dev/assets/og.png">
 <link rel="stylesheet" href="/assets/style.css">
 </head>
@@ -100,7 +100,7 @@
         <th class="num" data-sort="truth">Label tCO₂</th>
         <th data-sort="provenance">Provenance</th>
         <th data-sort="assurance">Assurance</th>
-        <th class="num" data-sort="pred_median">iz-1 (LODO median)</th>
+        <th class="num" data-sort="formula_pred">cf-corrected formula (LOPO)</th>
         <th class="num" data-sort="ratio">Ratio</th>
         <th class="num" data-sort="eu_default">EU default</th>
         <th>Source · notes</th>
@@ -123,8 +123,12 @@
     <strong>Assurance</strong>: <code>iso14064</code> = ISO 14064-1 third-party verified;
     <code>tsrs_assured</code> = TSRS-compliant limited assurance (KGK-registered audit firm);
     <code>operator_audited</code> = published in Big4-audited annual report without GHG-specific verification.
-    <strong>iz-1 (LODO median)</strong> = median of N outer leave-one-disclosure-out runs (3 inner seeds each).
-    <strong>Ratio</strong> = iz-1 ÷ truth.
+    <strong>cf-corrected formula (LOPO)</strong> = capacity × route-EF × cf, evaluated leave-one-plant-out
+    (each plant's route emission-factor derived only from the other audit-grade plants). This is the headline
+    result: +82.3% log-MAE reduction vs the EU default across the 19 validatable plants. Two single-plant routes
+    (N₂O-controlled and blender fertilizer) can't be validated this way and show "not validatable."
+    An optional in-browser demo net (iz, at <a href="/verify/">/verify/</a>) does not beat this formula.
+    <strong>Ratio</strong> = formula ÷ truth.
   </p>
 </section>
 
@@ -247,7 +251,7 @@ async function load() {
   const r = await fetch('/bench/facilities.json');
   DATA = await r.json();
   DATA.forEach(d => {
-    d.ratio = (d.pred_median && d.truth) ? (d.pred_median / d.truth) : null;
+    d.ratio = (d.formula_pred && d.truth) ? (d.formula_pred / d.truth) : null;
   });
   render();
   if (typeof populateClaimForm === 'function') populateClaimForm();
@@ -275,9 +279,11 @@ function render() {
   const tb = document.querySelector('#rows');
   tb.innerHTML = rows.map(d => {
     const truthCell = d.truth ? `${fmt(d.truth)} <span class="muted" style="font-size:10px;">(${d.truth_year ?? '—'})</span>` : '—';
-    const predCell = d.pred_median
-      ? `${fmt(d.pred_median)}<br><span class="muted" style="font-size:10px;">n=${d.n_runs} · ${fmt(d.pred_min)}–${fmt(d.pred_max)}</span>`
-      : '<span class="muted">—</span>';
+    const predCell = d.formula_pred
+      ? `${fmt(d.formula_pred)}<br><span class="muted" style="font-size:10px;">leave-one-plant-out</span>`
+      : (d.formula_validatable === false
+          ? '<span class="muted" style="font-size:10px;">single-plant route — not validatable</span>'
+          : '<span class="muted">—</span>');
     const ratioCell = d.ratio
       ? `<span class="${ratioClass(d.ratio)}" style="font-weight:600;">${d.ratio.toFixed(2)}×</span>`
       : '<span class="muted">—</span>';

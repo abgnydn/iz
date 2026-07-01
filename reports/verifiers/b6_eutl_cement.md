@@ -1,6 +1,6 @@
 # Verifier B6 — EUTL EU Cement External Validation
 
-*Generated 2026-05-31 from EUTL (EU Transaction Log) via euets.info. n=372 EU cement installations × ~20 years = 5,198 audit-grade verified Scope 1 facility-years (independent of operator IARs). For comparison, TR-MRV-Bench has 21 audit-grade facility-years.*
+*Generated 2026-07-01 from EUTL (EU Transaction Log) via euets.info. n=372 EU cement installations × ~20 years = 5,198 audit-grade verified Scope 1 facility-years (independent of operator IARs). For comparison, TR-MRV-Bench has 21 audit-grade facility-years.*
 
 ## Why this matters
 
@@ -105,7 +105,7 @@ Using the TR sector-mean EF (0.643) **with the EU-realistic capacity factor (cf 
 
 ## What this does not prove
 
-- We did not run the full LODO pipeline on EU plants. The EUTL test uses fixed parameters, not a learned model. iz-1 NN would need EU-specific feature engineering (different industry registries for capacity).
+- We did not run the full LODO pipeline on EU plants. The EUTL test uses fixed parameters, not a learned model. iz NN would need EU-specific feature engineering (different industry registries for capacity).
 - The capacity numbers in Lens 4 are hand-curated from operator IARs / CemBureau, not a systematic crawl. A full EU-MRV-Bench would need the same per-plant capacity audit we did for TR.
 - Steel, aluminum, fertilizer are not in this verifier yet — only cement (NACE 23.51).
 

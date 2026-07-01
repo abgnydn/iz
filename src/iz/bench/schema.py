@@ -55,7 +55,7 @@ class BenchSplit:
     test: list[str]
 
 
-def split_facilities(facility_ids: list[str], seed: str = "iz-1-2026") -> BenchSplit:
+def split_facilities(facility_ids: list[str], seed: str = "iz-2026") -> BenchSplit:
     """Deterministic facility-level split (70 / 15 / 15) so the same facility
     always lands in the same split across runs. Hash-based so order-independent."""
     train, val, test = [], [], []
@@ -75,7 +75,7 @@ def split_facilities_stratified_loo(
     facility_ids: list[str],
     strata: dict[str, str],
     holdout_id: str,
-    seed: str = "iz-1-2026",
+    seed: str = "iz-2026",
 ) -> BenchSplit:
     """Leave-one-out variant: force `holdout_id` into test, then stratify the rest."""
     others = [f for f in facility_ids if f != holdout_id]
@@ -86,7 +86,7 @@ def split_facilities_stratified_loo(
 def split_facilities_stratified(
     facility_ids: list[str],
     strata: dict[str, str],
-    seed: str = "iz-1-2026",
+    seed: str = "iz-2026",
 ) -> BenchSplit:
     """Deterministic stratified split.
 

@@ -29,7 +29,7 @@
 
 ## The short picks (BIST-listed, high-emission)
 
-1. **EREGL (Erdemir)** — Group Scope 1 17.3 Mt/yr at 12 TL/kg revenue per CO₂. Worst-case TR CBAM exposure: ~€200M/yr at €85/tCO₂ for EU steel exports. EU default emission factor 1.9 t/t happens to be close to actual (2.0), so iz-1's formula gives the operator basically no relief. Direct CBAM hit lands in 2026.
+1. **EREGL (Erdemir)** — Group Scope 1 17.3 Mt/yr at 12 TL/kg revenue per CO₂. Worst-case TR CBAM exposure: ~€200M/yr at €85/tCO₂ for EU steel exports. EU default emission factor 1.9 t/t happens to be close to actual (2.0), so iz's formula gives the operator basically no relief. Direct CBAM hit lands in 2026.
 
 2. **KRDMD (Kardemir)** — same BF/BOF route, 10 TL/kg. Smaller operator but proportionally exposed. Also has negative TR-ETS exposure (above threshold, no clean tech).
 
