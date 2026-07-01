@@ -233,7 +233,7 @@ data/                 ← raw + processed (mostly gitignored)
 data/tr_facilities.csv                 ← 57 TR CBAM-scope facilities
 data/tr_facility_known_emissions.csv   ← 17 hand-curated strong-label rows
 data/disclosures/     ← downloaded IAR / sustainability PDFs (gitignored)
-reports/              ← Generated artifacts: lodo_aggregated.json, fig_iz1_vs_eu_lodo.svg, ablations/
+reports/              ← Generated artifacts: lopo_ef_eval.json, fig_formula_vs_eu.svg
 marketing/            ← paper_preview_v0.html (1-page paper summary)
 PAPER_OUTLINE.md      ← Full paper outline
 CLAUDE.md             ← Development log + resume block

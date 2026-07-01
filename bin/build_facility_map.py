@@ -10,7 +10,7 @@ Geography:
 
 Data:
   - Facility coordinates from data/tr_facilities.csv.
-  - LODO ratio (if available) from reports/lodo_aggregated.json.
+  - leave-one-plant-out ratio (if available) from reports/lopo_ef_eval.json.
 
 Output: site/assets/facility_map.svg
 """
@@ -23,7 +23,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 FAC = REPO / "data" / "tr_facilities.csv"
-AGG = REPO / "reports" / "lodo_aggregated.json"
+LOPO = REPO / "reports" / "lopo_ef_eval.json"
 GEO = REPO / "data" / "geo" / "turkey.geojson"
 NE_URL = ("https://raw.githubusercontent.com/nvkelso/natural-earth-vector/"
           "master/geojson/ne_50m_admin_0_countries.geojson")
@@ -161,10 +161,10 @@ def main() -> None:
     # ----- Facility dots -----
     fac_rows = list(csv.DictReader(open(FAC)))
     ratio_by_id: dict[str, float] = {}
-    if AGG.exists():
-        for r in json.loads(AGG.read_text()):
-            if r["truth"] > 0:
-                ratio_by_id[r["facility_id"]] = r["pred_median"] / r["truth"]
+    if LOPO.exists():
+        for r in json.loads(LOPO.read_text()).get("per_plant", []):
+            if r.get("ratio_lopo") is not None:
+                ratio_by_id[r["id"]] = r["ratio_lopo"]
 
     caps = [int(f["annual_capacity_t"]) for f in fac_rows
             if int(f.get("annual_capacity_t") or 0) > 0]
@@ -190,7 +190,7 @@ def main() -> None:
         stroke_w = 1.6 if has_label else 0
         tip = f"{f['company']} — {f['plant_name']} ({f['cbam_scope']}, cap {cap:,} t/yr)"
         if ratio:
-            tip += f"; LODO ratio {ratio:.2f}× truth"
+            tip += f"; leave-one-plant-out ratio {ratio:.2f}× truth"
         parts.append(
             f'<a href="/bench/{fid}/" target="_top">'
             f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{r:.1f}" fill="{color}" '
@@ -220,7 +220,7 @@ def main() -> None:
     # Caption
     parts.append(
         f'<text x="{W-PAD}" y="{H-PAD-22}" text-anchor="end" font-size="10" fill="{MUTED}">'
-        f'{len(fac_rows)} facilities · {len(ratio_by_id)} LODO-tested (ink outline) · '
+        f'{len(fac_rows)} facilities · {len(ratio_by_id)} leave-one-plant-out-tested (ink outline) · '
         f'dot size ∝ log(capacity)'
         '</text>'
     )
@@ -234,7 +234,7 @@ def main() -> None:
 
     OUT.write_text("\n".join(parts).replace("{n}", str(len(fac_rows))))
     print(f"wrote {OUT.relative_to(REPO)} ({OUT.stat().st_size:,} bytes)")
-    print(f"  {len(fac_rows)} facilities · {len(ratio_by_id)} with LODO ratio")
+    print(f"  {len(fac_rows)} facilities · {len(ratio_by_id)} with leave-one-plant-out ratio")
     print(f"  coastline: {sum(len(r) for r in coastline_rings)} vertices across "
           f"{len(coastline_rings)} rings")
 
