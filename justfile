@@ -30,10 +30,7 @@ repro:
 test:
     uv run --with pytest python -m pytest tests/ -q
 
-# Deploy the site to Cloudflare Pages.
-# NOTE: if the Pages project is Git-connected to github.com/abgnydn/iz (it is —
-# there is no wrangler.toml here), merging to master auto-deploys and you do NOT
-# need this. Use this only for a direct-upload project or a manual preview.
+# Deploy site to Cloudflare Pages (only for direct-upload/preview; Git-connected auto-deploys on merge)
 deploy:
     wrangler pages deploy site --project-name iz-b0n
 
