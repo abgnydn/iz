@@ -221,15 +221,14 @@ Common tasks are in the `justfile`: `just repro` (headline), `just build`,
 ```
 src/iz/               ← Python package (bench schema, scrapers, CT client) + bench.json
                         (the in-browser WebGPU demo moved to github.com/abgnydn/iz-lab)
-bin/                  ← Reproducibility scripts: pull / export / train / eval / figures
-data/                 ← raw + processed (mostly gitignored)
+bin/                  ← Reproducibility scripts: pull / export / eval / verifiers / figures
+data/                 ← raw + processed (mostly gitignored; EUTL + Climate TRACE committed)
 data/tr_facilities.csv                 ← 59 TR CBAM-scope facilities
 data/tr_facility_known_emissions.csv   ← audit-grade + weak strong-label rows (21 audit-grade)
-data/disclosures/     ← downloaded IAR / sustainability PDFs (gitignored)
 reports/              ← Generated artifacts: lopo_ef_eval.json, fig_formula_vs_eu.svg
-marketing/            ← flyer + report drafts (not the current paper; see /paper/)
-PAPER_OUTLINE.md      ← Full paper outline
-CLAUDE.md             ← Development log + resume block
+site/                 ← the public site (deployed to iz-b0n.pages.dev)
+CHANGELOG.md          ← version history (v0.3 → v0.4 correction)
+CLAUDE.md             ← development log
 ```
 
 ## Cite
