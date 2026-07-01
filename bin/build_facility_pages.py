@@ -376,7 +376,7 @@ def render_page(fac: dict, beirle: dict | None, scenes: list[dict],
 <p class="crumbs"><a href="/">iz</a> · <a href="/bench/">Bench</a> · {html.escape(plant or fid)}</p>
 
 <header class="hero">
-  <p class="kicker">{html.escape(sector_label)} · {html.escape(city)}{('  ·  ' + str(int(cap))[:3] + ',000 t/y') if cap else ''}</p>
+  <p class="kicker">{html.escape(sector_label)} · {html.escape(city)}{('  ·  ' + fmt_int(cap) + ' t/y') if cap else ''}</p>
   <h1>{title_h1}</h1>
   {f'<p class="subhead"><strong>{company_line}</strong></p>' if company_line else ''}
 </header>
@@ -438,7 +438,7 @@ def render_page(fac: dict, beirle: dict | None, scenes: list[dict],
     <li>Or use the <a href="/bench/#claim">claim-your-facility form</a> on the bench page.</li>
   </ul>
   <p class="muted small">Corrections that include a verifiable public source land within 24 hours.
-  All data is Apache-2.0 licensed; methodology in <a href="https://github.com/abgnydn/iz/blob/master/paper/iz_v0.md" target="_blank" rel="noopener">paper/iz_v0.md</a>.</p>
+  All data is Apache-2.0 licensed; methodology at <a href="https://iz-b0n.pages.dev/paper/" target="_blank" rel="noopener">iz-b0n.pages.dev/paper</a>.</p>
 </section>
 
 <footer class="footer">

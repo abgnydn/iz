@@ -1,3 +1,7 @@
+> ⚠️ **SUPERSEDED (v0.1 draft).** This early draft contains outdated numbers (in-sample +85.3%, a since-withdrawn PySR/B7 claim, and the neural net as a result). The current, honest paper is at **https://iz-b0n.pages.dev/paper/** — headline **+82.3% leave-one-plant-out, n=19**. Kept only for history.
+
+---
+
 # TR-MRV-Bench: A public per-facility emissions benchmark for Turkish CBAM-scope industry, with a physics baseline that beats the EU CBAM default by 85% across all four CBAM scopes
 
 **Ahmet Barış Günaydın**¹
