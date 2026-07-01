@@ -18,7 +18,7 @@ limak-trakya,Limak Çimento,Trakya Cement Plant,cement,Tekirdağ,2500000,1168750
 limak-ergani,Limak Çimento,Ergani Cement Plant,cement,Ergani,1200000,561000,,,,,,,1900800,70.5,cf_corrected,,
 limak-derik,Limak Çimento,Derik Cement Plant,cement,Derik,1000000,467500,,,,,,,1584000,70.5,cf_corrected,,
 limak-bitlis,Limak Çimento,Bitlis Cement Plant,cement,Bitlis,800000,374000,,,,,,,1267200,70.5,cf_corrected,,
-nuh-hereke,Nuh Çimento,Hereke Cement Plant,cement,Hereke,5700000,3573278,2024,direct,iso14064,2466775,0.688,True,9028800,60.4,disclosure,Nuh 2024 IAR p59 (ISO 14064-1:2018 verified),Single-site (Nuh has only Hereke) — third-party verified Scope 1
+nuh-hereke,Nuh Çimento,Hereke Cement Plant,cement,Hereke,5700000,3584953,2024,direct,tsrs_assured,2466775,0.688,True,9028800,60.3,disclosure,Nuh Çimento 2024 TSRS Report p56 (refined),"Cement-only parent (excludes Nuh Beton 43k + Nuh Yapı 237k); replaces earlier 3,573,278 estimate; cement EF 0.875 t/t clinker"
 cimentas-izmir,Çimentaş,İzmir Cement Plant,cement,Bornova,2500000,884125,,,,,,,3960000,77.7,cf_corrected,,
 cimentas-edirne,Çimentaş,Edirne Cement Plant,cement,Edirne,1500000,1276945,,,,,,,2376000,46.3,climate_trace,,
 cimentas-elazig,Çimentaş,Elazığ Cement Plant,cement,Elazığ,1000000,353650,,,,,,,1584000,77.7,cf_corrected,,
