@@ -1,7 +1,7 @@
 """
 Baselines for iz v0 comparison.
 
-Three baselines on the same n=8 LODO split:
+Three baselines on the same audit-grade leave-one-plant-out split:
   B0  EU CBAM default               = capacity × EU_DEFAULT_EF
   B1  cf_corrected formula (no ML)  = capacity × EF × cf   (the physics prior alone)
   B2  Ridge regression (linear ML)  = same features as iz, scikit-learn ridge
@@ -24,7 +24,7 @@ import pandas as pd
 
 REPO = Path(__file__).resolve().parent.parent
 BENCH = REPO / "src" / "iz" / "bench.json"
-LODO = REPO / "reports" / "lodo_aggregated.json"
+leave-one-plant-out = REPO / "reports" / "lodo_aggregated.json"
 OUT = REPO / "reports" / "baselines.json"
 
 
@@ -56,7 +56,7 @@ def ridge_fit_predict(X_train: np.ndarray, y_train: np.ndarray, w_train: np.ndar
 
 def main() -> None:
     discs = disclosure_facilities()
-    print(f"Computing baselines over {len(discs)} disclosure facilities (LODO)")
+    print(f"Computing baselines over {len(discs)} disclosure facilities (leave-one-plant-out)")
     print("=" * 90)
 
     rows_out = []
@@ -108,7 +108,7 @@ def main() -> None:
         return sum(errs) / len(errs)
 
     # iz (the in-browser NN) is a DEMO, not part of the headline. Only shown if
-    # a fresh LODO artifact exists; the committed one may be stale. The headline is
+    # a fresh leave-one-plant-out artifact exists; the committed one may be stale. The headline is
     # the formula (B1) — see bin/lopo_ef_eval.py for the honest leave-one-plant-out
     # number that supersedes any in-sample figure printed here.
     rows_report = [
@@ -118,8 +118,8 @@ def main() -> None:
     ]
     eu_mae = log_mae("B0_eu_default")
     iz_mae = None
-    if LODO.exists():
-        iz_rows = json.loads(LODO.read_text())
+    if leave-one-plant-out.exists():
+        iz_rows = json.loads(leave-one-plant-out.read_text())
         iz_by_fid = {r["facility_id"]: r["pred_median"] for r in iz_rows}
         iz_errs = [abs(math.log(iz_by_fid[r["facility_id"]]) - math.log(r["truth"]))
                    for r in rows_out if r["facility_id"] in iz_by_fid]

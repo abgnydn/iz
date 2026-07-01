@@ -5,7 +5,6 @@ erdemir-eregli,Erdemir,2023,co2_scope12_total_t,6929202,tCO2e,high,direct,Erdemi
 erdemir-eregli,Erdemir,2024,co2_scope1_group_t,17336630,tCO2e,high,direct,Erdemir 2024 IAR p103 / Tracenable,Consolidated group Scope 1 (Ereğli + İsdemir + subs)
 isdemir-iskenderun,İsdemir,2024,co2_scope1_t,10663364,tCO2e,high,direct,Erdemir 2024 Entegre Faaliyet Raporu p115 (KGK),"Audit-grade per-asset İsdemir Scope 1 (line item: ""Kapsam 1 (ton COeq) 10.663.364"")"
 isdemir-iskenderun,İsdemir,2024,co2_scope12_total_t,11135121,tCO2e,high,direct,Erdemir 2024 IAR p115,Scope 1+2 per İsdemir entity
-erdemir-eregli,Erdemir,2024,co2_scope1_t,6673266,tCO2e,medium,derived,Erdemir 2024 IAR (group 17.34M − İsdemir 10.66M from p115),Subtraction: Ereğli ≈ Group − İsdemir; assumes no other major subsidiary
 isdemir-iskenderun,İsdemir,2023,co2_scope1_t,8400000,tCO2e,medium,derived,Group 17.3M / 1.158 (YoY 2024) − Ereğli 2023 6.56M,YoY-extrapolated
 cimsa-mersin,Çimsa,2023,co2_scope1_group_t,4760000,tCO2e,high,direct,Çimsa 2023 sustainability via DitchCarbon,Group total: 5 kiln lines (Mersin+Eskişehir+Kayseri+Niğde+Afyonkarahisar)
 cimsa-mersin,Çimsa,2023,co2_scope2_t,112800,tCO2e,high,direct,Çimsa 2023 sustainability via DitchCarbon,Group Scope 2

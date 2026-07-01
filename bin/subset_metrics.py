@@ -31,7 +31,7 @@ def main() -> None:
     pp = pp.sort_values("year", ascending=False).drop_duplicates("id")
     prov = dict(zip(pp["id"], pp["provenance"]))
 
-    # Optional iz from aggregated LODO
+    # Optional iz from aggregated leave-one-plant-out
     iz_path = REPO / "reports" / "lodo_aggregated.json"
     iz_by_fid = {}
     if iz_path.exists():
