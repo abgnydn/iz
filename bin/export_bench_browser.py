@@ -65,7 +65,7 @@ STEEL_ROUTE_EF = {
     # BF/BOF: industry-standard 2.0 t/t (was 1.9, but TR integrated mills run higher;
     # Erdemir audited 2.00, İsdemir 1.97). EU CBAM default uses 1.9 — we beat them
     # on accuracy by using the closer-to-TR-reality figure here, *and* this is
-    # leak-safe under LODO because 2.0 is also the global industry average.
+    # leak-safe under leave-one-plant-out because 2.0 is also the global industry average.
     "BF/BOF":  2.000,
     "EAF":     0.250,
     "DRI-EAF": 0.400,
@@ -201,7 +201,7 @@ def main():
             strata[fac["id"]] = scope
     if holdout and holdout in facs["id"].values:
         split = split_facilities_stratified_loo(facs["id"].tolist(), strata, holdout_id=holdout)
-        log.info("LODO mode: holdout=%s forced to test", holdout)
+        log.info("leave-one-plant-out mode: holdout=%s forced to test", holdout)
     else:
         split = split_facilities_stratified(facs["id"].tolist(), strata)
     log.info("strata: %s", {s: sum(1 for v in strata.values() if v == s) for s in sorted(set(strata.values()))})

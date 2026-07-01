@@ -53,8 +53,8 @@ nuh-hereke,Nuh Çimento,2024,co2_scope1_t,3584953,tCO2e,high,direct,Nuh Çimento
 erdemir-eregli,Erdemir,2024,co2_scope1_t,6667232,tCO2e,high,direct,Erdemir 2024 IAR p79 (per-plant) — kgk verified,"Audit-grade per-plant Scope 1; ""2.053 t/t crude steel intensity; replaces earlier derived 6673266"""
 habas-aliaga,Habaş,2024,co2_scope1_t,830338,tCO2e,high,composite,Habas 2024 SR p75 (EAF 636377) + p76 (plate 193961) combined,"Combined site total: EAF main line 636,377 (Celikhane+Cubuk Haddehanesi) + plate mill 193,961 (Sac Haddehanesi) = 830,338. CBAM treats Aliaga as one site for tariff purposes; merging both Scope-1 streams gives the operator-relevant total. ISO 14064-1:2018 verified per individual streams."
 izdemir-aliaga,İzdemir,2024,co2_scope1_t,271123,tCO2e,medium,direct,İzdemir 2024 TSRS-compliant SR p48,EAF; 1.82M t product; calc-based not 3rd-party verified; excludes İzdemir Energy power plant
-kardemir-karabuk,Kardemir,2023,co2_scope1_t,5650626,tCO2e,high,direct,Kardemir 2023 SR p100 (KAP 2024-12-27),Latest year supersedes 2022 as LODO label
-isdemir-iskenderun,İsdemir,2023,co2_scope1_t,9018940,tCO2e,high,direct,Erdemir 2024 IAR p156-157,Audit-grade 2023 supersedes derived 8.4M (informational; 2024 stays LODO label)
+kardemir-karabuk,Kardemir,2023,co2_scope1_t,5650626,tCO2e,high,direct,Kardemir 2023 SR p100 (KAP 2024-12-27),Latest year supersedes 2022 as leave-one-plant-out label
+isdemir-iskenderun,İsdemir,2023,co2_scope1_t,9018940,tCO2e,high,direct,Erdemir 2024 IAR p156-157,Audit-grade 2023 supersedes derived 8.4M (informational; 2024 stays leave-one-plant-out label)
 isdemir-iskenderun,İsdemir,2022,co2_scope1_t,9492257,tCO2e,high,direct,Erdemir 2024 IAR p156-157,Audit-grade 2022 (historical)
 erdemir-eregli,Erdemir,2022,co2_scope1_t,7068563,tCO2e,high,direct,Erdemir 2024 IAR p156-157,Audit-grade 2022 confirms our derived 7069830
 kardemir-karabuk,Kardemir,2021,co2_scope1_t,5773509,tCO2e,high,direct,Kardemir 2023 SR p100,Audit-grade 2021 (historical)

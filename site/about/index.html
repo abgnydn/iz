@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="iz · TR-MRV-Bench">
 <meta property="og:title" content="About iz · methodology, formula, comparisons">
-<meta property="og:description" content="What iz is, what it isn't. The one-line formula, the LODO methodology, and why we don't beat Climate TRACE the way you'd expect.">
+<meta property="og:description" content="What iz is, what it isn't. The one-line formula, the leave-one-plant-out methodology, and why we don't beat Climate TRACE the way you'd expect.">
 <meta property="og:url" content="https://iz-b0n.pages.dev/about/">
 <meta property="og:image" content="https://iz-b0n.pages.dev/assets/og.png">
 <meta property="og:image:width" content="1200">
@@ -66,7 +66,7 @@
     Fertilizer splits into integrated (0.5), N₂O-controlled (0.05), blender (0.025) — a 20×
     spread driven by whether the plant has an N₂O catalyst on its nitric acid line.
     <strong>Capacity-factor</strong> is operator-disclosed production ÷ capacity (non-leaky in
-    LODO because production tonnage is reported independently of Scope 1), with fallback to
+    leave-one-plant-out because production tonnage is reported independently of Scope 1), with fallback to
     sector mean for facilities lacking disclosure.
   </p>
 </section>
@@ -74,14 +74,16 @@
 <section>
   <h2><span class="h2-num">02</span> Evaluation methodology</h2>
   <p>
-    <strong>Leave-one-disclosure-out (LODO).</strong> For each of the 21 audit-grade facilities,
-    we force it into the test set, retrain the bench, and predict its Scope 1 from features
-    alone. Aggregate per-plant log-MAE across the 21 holdouts is the headline metric. We run
-    5 outer LODO passes × 3 inner seeds = 15 seeds per facility, report mean ± 2σ across the
-    5 outer runs (≈95% CI).
+    <strong>Leave-one-plant-out (LOPO).</strong> The headline is the closed-form formula
+    <code>capacity × route-EF × cf</code>, evaluated so that no plant sees its own answer: each
+    plant's route emission-factor is the median implied EF of only the <em>other</em> audit-grade
+    plants in its route. Aggregate per-plant log-MAE across the <strong>19 validatable</strong>
+    plants is the headline metric (+82.3% reduction vs the EU default). Two plants (BAGFAŞ,
+    Gübretaş) are the sole plant of their route, so their EF would be their own answer — they are
+    excluded rather than scored. The in-sample fit (EF fitted on all plants) is +85.7%.
   </p>
   <p>
-    <strong>Why log-MAE not cost-savings.</strong> A cost-savings metric (EU default − iz) /
+    <strong>Why log-MAE not cost-savings.</strong> A cost-savings metric (EU default − prediction) /
     EU default rewards under-prediction. Log-MAE against audited truth penalizes both over-
     and under-prediction. We report log-MAE throughout to align vendor incentives with
     measurement quality.
@@ -114,7 +116,7 @@
   <h2><span class="h2-num">04</span> Everything is open. There's no commercial tier.</h2>
   <p>
     <strong>Released under Apache-2.0:</strong> the bench (CSV + JSON + source-cited
-    disclosures), the formula, the LODO evaluation harness, the browser-native trainer,
+    disclosures), the formula, the leave-one-plant-out evaluation harness, the browser-native trainer,
     the paper preview, the figure-generation scripts, the unit tests, this site.
     Source code at <a href="https://github.com/abgnydn/iz" target="_blank" rel="noopener">github.com/abgnydn/iz</a>.
   </p>
@@ -136,7 +138,7 @@
   <p>
     <strong>Per-facility deliverables (v0.1.2):</strong> every bench row has a
     deep-linkable detail page at <code>/bench/{id}/</code> with audit-grade Scope 1,
-    the formula LODO prediction with conformal CI, EU CBAM default delta, Beirle 2023
+    the formula leave-one-plant-out prediction with conformal CI, EU CBAM default delta, Beirle 2023
     NOx cross-match where available, and the EnMAP scene index. Each page also
     exposes a printable single-page audit summary at
     <code>/bench/{id}/audit-summary/</code> that an operator's sustainability officer
@@ -155,17 +157,17 @@
     <li><strong>Habaş Aliağa is the combined site total.</strong> EAF main line 636,377 + plate mill 193,961 = 830,338 tCO₂. CBAM treats Aliağa as one site for tariff purposes; we use the combined number as the audit truth. (Earlier drafts used only the EAF main line — corrected in v0.1.)</li>
     <li><strong>BAGFAŞ 9,828 is a partial-cap year.</strong> 2024 cf = 0.29, well below typical fertilizer operation. An average year would push Scope 1 ~3× higher and our prediction ratio would change accordingly.</li>
     <li><strong>Erdemir 2024 IAR restated 2023 from 6.56M → 5.95M.</strong> We use the restatement. This raises a real question about the stability of any single year's audit-grade Scope 1 disclosure.</li>
-    <li><strong>LODO is not cold prediction.</strong> When we hold out Erdemir Ereğli, the other 2 BF/BOF mills are still in training. If a new BF/BOF mill came online, the model has no in-stratum training data — the realistic deployment scenario is harder than LODO suggests.</li>
+    <li><strong>leave-one-plant-out is not cold prediction.</strong> When we hold out Erdemir Ereğli, the other 2 BF/BOF mills are still in training. If a new BF/BOF mill came online, the model has no in-stratum training data — the realistic deployment scenario is harder than leave-one-plant-out suggests.</li>
     <li><strong>BF/BOF stratum is structurally hard.</strong> TR has only 3 BF/BOF integrated mills (Erdemir, İsdemir, Kardemir) and the EU CBAM default 1.9 t/t happens to be within ±15% of TR audited reality on these mills. The stratum CI on n=3 is −7.3% ± 71.0% — crosses zero. Our value is concentrated in cement / EAF / aluminum / fertilizer, not BF/BOF.</li>
     <li><strong>The "+82.3% beats EU default" claim is log-MAE reduction.</strong> Not error reduction, not "82.3% of facilities right." It's a log-domain accuracy measure. A naïve reader could misinterpret; we report it because it's the right metric, but want to be explicit about what it means.</li>
-    <li><strong>The cf-corrected facilities are formula-predicted by construction.</strong> The +82.3% headline applies only to the truth-labeled LODO rows (n=19 validatable of 21 audit-grade). The remaining bench rows carry formula-derived labels assigned from the same formula being evaluated — they cannot validate it.</li>
+    <li><strong>The cf-corrected facilities are formula-predicted by construction.</strong> The +82.3% headline applies only to the truth-labeled leave-one-plant-out rows (n=19 validatable of 21 audit-grade). The remaining bench rows carry formula-derived labels assigned from the same formula being evaluated — they cannot validate it.</li>
     <li><strong>Climate TRACE under-reports 4 of 5 audit-matched TR facilities</strong>, mean bias −17.2%, median −22.5% (n=5; widened from the n=3 BF/BOF-only claim by including Nuh and Göltaş cement). Erdemir −29%, İsdemir −22%, Kardemir −23%, Nuh −23%, Göltaş +11% (the lone over-report). The under-reporting extends from steel into cement, suggesting CT's bottom-up methodology has a TR-specific gap (likely missing on-site fuel mixes / captive power). We do <em>not</em> claim CT is wrong globally — only that on the 5 audit-matched TR facilities it consistently underestimates by ~20%.</li>
-    <li><strong>Conformal prediction interval.</strong> Split-conformal on the LODO predictions (jackknife calibration, α=0.05) gives target 95% coverage; empirical 90.5% (19/21). Median log-space half-width 0.722 → typical interval [pred ÷ 2.06, pred × 2.06]. Operator-readable: the shipped formula predicts within a factor of ~2 of audited Scope 1 with 90% empirical coverage. Two non-covered facilities are BAGFAŞ and Bursa — both already-documented structural failures.</li>
+    <li><strong>Conformal prediction interval.</strong> Split-conformal on the leave-one-plant-out predictions (jackknife calibration, α=0.05) gives target 95% coverage; empirical 90.5% (19/21). Median log-space half-width 0.722 → typical interval [pred ÷ 2.06, pred × 2.06]. Operator-readable: the shipped formula predicts within a factor of ~2 of audited Scope 1 with 90% empirical coverage. Two non-covered facilities are BAGFAŞ and Bursa — both already-documented structural failures.</li>
     <li><strong>EnMAP scene coverage confirmed for all 21 audit-grade facilities</strong> (18 with at least one zero-cloud scene; 103 scenes total at ≤25% cloud cover). The DLR EOC Geoservice STAC API is auth-free and queryable; the index is at <code>data/enmap_scenes_index.csv</code>. Full DOAS + RemoTeC CO₂/NO₂ retrieval (Borger 2025 ERL) is the v0.2 upgrade path past S5P's 7 km resolution — out of scope for v0.1.</li>
     <li><strong>Beirle 2023 v2 NOx catalog cross-match.</strong> 6 of 21 audit-grade facilities have a TROPOMI flux-divergence NOx estimate within 15 km (İsdemir 0.572 kg/s, Habaş 0.344, İzdemir 0.344, Toros Ceyhan 0.113, Akçansa Ladik 0.110, ASAŞ 0.146). The Beirle attributions are partially colocated power plants (e.g. İsdemir matches "Atlas Termik Santrali", which is its captive coal CHP and the major Scope 1 contributor). Catalog cross-match in <code>data/beirle_match_audit_grade.csv</code>; not integrated as a model feature in v0.1 to avoid overfit at n=21.</li>
     <li><strong>Sentinel-5P NO₂ tested as a feature; didn't help.</strong> We ran a 30-day June 2024 S5P TROPOMI NO₂ pull over all 59 facilities (11 scenes, 412 observations) and added per-facility plant + background-delta NO₂ as model features. Result: the formula headline is unchanged at +82.3% (it doesn't use S5P); the in-browser neural-net demo moved only within ±0.3% seed noise; a ridge baseline degraded 81.4% → 75.6% (overfitting the noisy NO₂). At annual-label data scale with a 30-day window, satellite NO₂ doesn't add information the formula doesn't already capture via disclosed_cf. The S5P data is in <code>data/s5p_no2_per_facility.parquet</code> and exposed in the bench schema for future work (full-year coverage, year-label alignment, wind-aware background subtraction).</li>
     <li><strong>Zero pilot customers.</strong> The €5-10k pilot price is unvalidated against real operator willingness to pay. The verifier-partnership tier is hypothetical — we have not spoken to DNV / TÜV / BV / SGS yet.</li>
-    <li><strong>The neural net (iz) is an in-browser demo, not the result.</strong> The in-browser WebGPU neural network does not beat the closed-form formula; it is not part of the shipped result. The actionable, shipped baseline is the formula, at <strong>+82.3% leave-one-plant-out reduction on n=19</strong> validatable plants. iz exists as a reference implementation and a placeholder for future signal extraction (satellite features, multi-year LODO).</li>
+    <li><strong>The neural net (iz) is an in-browser demo, not the result.</strong> The in-browser WebGPU neural network does not beat the closed-form formula; it is not part of the shipped result. The actionable, shipped baseline is the formula, at <strong>+82.3% leave-one-plant-out reduction on n=19</strong> validatable plants. iz exists as a reference implementation and a placeholder for future signal extraction (satellite features, multi-year leave-one-plant-out).</li>
   </ul>
 </section>
 
