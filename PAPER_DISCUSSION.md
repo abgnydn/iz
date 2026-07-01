@@ -1,3 +1,7 @@
+> ⚠️ **SUPERSEDED — historical draft.** Numbers here are pre-v0.4 (in-sample +85.3%, the withdrawn PySR/B7 claim, the neural net as a result). Current honest source: **CHANGELOG.md** + https://iz-b0n.pages.dev/paper/ — headline **+82.3% leave-one-plant-out, n=19**.
+
+---
+
 # iz — Section 7: Discussion (draft)
 
 ## 7.1 Why log-MAE reduction is the honest metric (and not cost-savings)
@@ -15,8 +19,8 @@ This distinction has policy implications. A pure cost-savings framing creates th
 
 The conventional narrative is that EU CBAM defaults are punitive overestimates designed to push operators toward verified MRV. Our findings sharpen that:
 
-- **Cement default 1.584 t/t** vs TR cement industry average **0.643 t/t** — EU default is **2.46× reality**. Iz-1 captures most of this gap.
-- **EAF steel default 1.9 t/t** vs realistic EAF ~0.25 t/t — EU default is **7.6× reality**. Iz-1's largest sector win.
+- **Cement default 1.584 t/t** vs TR cement industry average **0.643 t/t** — EU default is **2.46× reality**. iz captures most of this gap.
+- **EAF steel default 1.9 t/t** vs realistic EAF ~0.25 t/t — EU default is **7.6× reality**. iz's largest sector win.
 - **BF/BOF steel default 1.9 t/t** vs TR audited 1.97-2.40 t/t (Erdemir 2.00, İsdemir 1.97, Kardemir 2.40). **The EU default is within ±5-25% of audited truth for big integrated mills**, and tighter than that for the largest one (İsdemir, EU within 2%).
 
 This means the iz value proposition is concentrated in cement and EAF, and there's structurally limited room to improve over the EU default for BF/BOF integrated steel. For a Turkish operator deciding whether to invest in MRV vs. paying the EU default, the calculus is:
@@ -54,7 +58,7 @@ When we use CT-derived features in our model, this systematic bias propagates �
 
 ## 7.5 The model and the formula are essentially tied
 
-A central honest finding of this work: across all our experiments at the bench's current data scale, our learned model and the closed-form `cap × EF × cf` formula sit within each other's seed noise. On the n=21 LODO eval (all four CBAM scopes, no_ct ablation):
+A central honest finding of this work: across all our experiments at the bench's current data scale, our learned model and the closed-form `cap × EF × cf` formula sit within each other's seed noise. On the n=21 leave-one-plant-out eval (all four CBAM scopes, no_ct ablation):
 
 | Baseline | log-MAE | Reduction vs EU |
 |----------|--------:|----------------:|
@@ -63,7 +67,7 @@ A central honest finding of this work: across all our experiments at the bench's
 | **B1 cf-corrected formula** | **0.189** | **+85.3%** |
 | iz NN (5-outer median, no CT) | 0.239 | +83.3% |
 
-The NN beat the formula by 1.8 pp at n=18-20 (before disclosed_cf for fertilizer/aluminum was added) and is statistically tied with it at n=21 once the formula has access to the same disclosed_cf signal. The honest framing: **the deliverable is the formula and the bench**. The NN is a working reference implementation; future data growth (S5P NO₂ features, more disclosures, multi-year LODO) may give it room to extract residual signal the formula cannot.
+The NN beat the formula by 1.8 pp at n=18-20 (before disclosed_cf for fertilizer/aluminum was added) and is statistically tied with it at n=21 once the formula has access to the same disclosed_cf signal. The honest framing: **the deliverable is the formula and the bench**. The NN is a working reference implementation; future data growth (S5P NO₂ features, more disclosures, multi-year leave-one-plant-out) may give it room to extract residual signal the formula cannot.
 
 The formula wins. The 2-layer NN adds ~0.03 to the log-MAE on average. Ridge regression underperforms both. We initially trained the NN to learn residuals against the formula as a physics-informed prior (cf. Karniadakis et al.); the model successfully learns those residuals, but the residuals don't average to better predictions on held-out facilities — they average to slightly worse ones, because residual fits on 40 facilities are noisy.
 
@@ -86,4 +90,4 @@ Three reasons we ported the training loop to WebGPU/WGSL instead of running PyTo
 
 ## 7.7 The paper's actual moat
 
-The contribution isn't a new architecture, a new sensor, or a new loss function. It's the synthesis: a sector-stratified bench tied to audited operator disclosures, a physics-informed prior that makes few-shot supervised learning work, and a browser-native training stack that makes the whole thing reproducible by anyone. The headline 81.5% LODO reduction is the validation; the methodology is the contribution.
+The contribution isn't a new architecture, a new sensor, or a new loss function. It's the synthesis: a sector-stratified bench tied to audited operator disclosures, a physics-informed prior that makes few-shot supervised learning work, and a browser-native training stack that makes the whole thing reproducible by anyone. The headline 81.5% leave-one-plant-out reduction is the validation; the methodology is the contribution.

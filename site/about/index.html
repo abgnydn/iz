@@ -42,8 +42,8 @@
   <p class="subhead">
     iz is a one-person effort to produce a public, source-cited per-facility emissions
     benchmark for Turkish CBAM-scope industry. The deliverable is the bench, the formula,
-    and the disclosure crawl. The neural network is a working reference implementation,
-    not the product.
+    and the disclosure crawl. The in-browser neural net is a demo (in the separate
+    <a href="https://github.com/abgnydn/iz-lab">iz-lab</a> repo), not the product.
   </p>
   <p class="byline">
     Ahmet Barış Günaydın ·
@@ -116,8 +116,9 @@
   <h2><span class="h2-num">04</span> Everything is open. There's no commercial tier.</h2>
   <p>
     <strong>Released under Apache-2.0:</strong> the bench (CSV + JSON + source-cited
-    disclosures), the formula, the leave-one-plant-out evaluation harness, the browser-native trainer,
-    the paper preview, the figure-generation scripts, the unit tests, this site.
+    disclosures), the formula, the leave-one-plant-out evaluation harness,
+    the paper, the figure-generation scripts, the unit tests, this site (the in-browser
+    trainer demo is Apache-2.0 too, in the separate iz-lab repo).
     Source code at <a href="https://github.com/abgnydn/iz" target="_blank" rel="noopener">github.com/abgnydn/iz</a>.
   </p>
   <p>
@@ -161,7 +162,7 @@
     <li><strong>BF/BOF stratum is structurally hard.</strong> TR has only 3 BF/BOF integrated mills (Erdemir, İsdemir, Kardemir) and the EU CBAM default 1.9 t/t happens to be within ±15% of TR audited reality on these mills. With only 3 mills a per-stratum confidence interval is meaningless (it spans from strongly negative to near +100%). Our value is concentrated in cement / EAF / aluminum / fertilizer, not BF/BOF.</li>
     <li><strong>The "+82.3% beats EU default" claim is log-MAE reduction.</strong> Not error reduction, not "82.3% of facilities right." It's a log-domain accuracy measure. A naïve reader could misinterpret; we report it because it's the right metric, but want to be explicit about what it means.</li>
     <li><strong>The cf-corrected facilities are formula-predicted by construction.</strong> The +82.3% headline applies only to the truth-labeled leave-one-plant-out rows (n=19 validatable of 21 audit-grade). The remaining bench rows carry formula-derived labels assigned from the same formula being evaluated — they cannot validate it.</li>
-    <li><strong>Climate TRACE under-reports 4 of 5 audit-matched TR facilities</strong>, mean bias −17.2%, median −22.5% (n=5; widened from the n=3 BF/BOF-only claim by including Nuh and Göltaş cement). Erdemir −29%, İsdemir −22%, Kardemir −23%, Nuh −23%, Göltaş +11% (the lone over-report). The under-reporting extends from steel into cement, suggesting CT's bottom-up methodology has a TR-specific gap (likely missing on-site fuel mixes / captive power). We do <em>not</em> claim CT is wrong globally — only that on the 5 audit-matched TR facilities it consistently underestimates by ~20%.</li>
+    <li><strong>Climate TRACE under-reports 4 of 5 audit-matched TR facilities</strong>, mean bias −17.2%, median −23% (n=5; widened from the n=3 BF/BOF-only claim by including Nuh and Göltaş cement). Erdemir −29%, İsdemir −22%, Kardemir −23%, Nuh −23%, Göltaş +11% (the lone over-report). The under-reporting extends from steel into cement, suggesting CT's bottom-up methodology has a TR-specific gap (likely missing on-site fuel mixes / captive power). We do <em>not</em> claim CT is wrong globally — only that on the 5 audit-matched TR facilities it consistently underestimates by ~20%.</li>
     <li><strong>How far off can it be?</strong> Every one of the 19 validatable plants falls within a factor of ~2 of audited Scope 1 — the leave-one-plant-out ratios span 0.59× (Afyon) to 1.85× (Toros Ceyhan). The widest misses are the three cement under-predictions (Afyon, Bursa, Nuh), whose actual capacity factor runs above the sector default. (An earlier split-conformal interval was computed on the now-retired neural-net run; we report the formula's own empirical spread instead.)</li>
     <li><strong>EnMAP scene coverage confirmed for all 21 audit-grade facilities</strong> (18 with at least one zero-cloud scene; 103 scenes total at ≤25% cloud cover). The DLR EOC Geoservice STAC API is auth-free and queryable; the index is at <code>data/enmap_scenes_index.csv</code>. Full DOAS + RemoTeC CO₂/NO₂ retrieval (Borger 2025 ERL) is the v0.2 upgrade path past S5P's 7 km resolution — out of scope for v0.4.</li>
     <li><strong>Beirle 2023 v2 NOx catalog cross-match.</strong> 6 of 21 audit-grade facilities have a TROPOMI flux-divergence NOx estimate within 15 km (İsdemir 0.572 kg/s, Habaş 0.344, İzdemir 0.344, Toros Ceyhan 0.113, Akçansa Ladik 0.110, ASAŞ 0.146). The Beirle attributions are partially colocated power plants (e.g. İsdemir matches "Atlas Termik Santrali", which is its captive coal CHP and the major Scope 1 contributor). Catalog cross-match in <code>data/beirle_match_audit_grade.csv</code>; not integrated as a model feature in v0.4 to avoid overfit at n=21.</li>
