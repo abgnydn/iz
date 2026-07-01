@@ -85,8 +85,8 @@
 <div class="container">
 
 <header>
-  <h1 data-lang="en">TR-MRV-Bench <em>— a public per-facility emissions benchmark for Turkish CBAM-scope industry, with a physics baseline that beats the EU CBAM default by 85% across all four CBAM scopes.</em></h1>
-  <h1 data-lang="tr">TR-MRV-Bench <em>— Türkiye CBAM-kapsamlı sanayi için kamuya açık, tesis-bazlı emisyon veri seti; dört CBAM sektöründe AB varsayım değerini %85 farkla yenen kapalı-form bir fizik formülüyle birlikte.</em></h1>
+  <h1 data-lang="en">TR-MRV-Bench <em>— a public per-facility emissions benchmark for Turkish CBAM-scope industry, with a closed-form physics baseline that reduces per-plant log-MAE by 82.3% vs the EU CBAM default, measured leave-one-plant-out over n=19 validatable plants.</em></h1>
+  <h1 data-lang="tr">TR-MRV-Bench <em>— Türkiye CBAM-kapsamlı sanayi için kamuya açık, tesis-bazlı emisyon veri seti; AB varsayım değerine karşı tesis-bazlı log-MAE'yi birini-dışarıda-bırak ölçümünde %82.3 azaltan kapalı-form bir fizik formülüyle birlikte (n=19 doğrulanabilir tesis).</em></h1>
   <p class="byline" data-lang="en">Ahmet Baris Gunaydin (sole author for v0). Open bench · audit-grade strong labels · cf-corrected formula baseline · Apache-2.0.</p>
   <p class="byline" data-lang="tr">Ahmet Barış Günaydın (v0 tek yazarı). Açık veri seti · denetim-düzeyi güçlü etiketler · cf-düzeltilmiş formül temel modeli · Apache-2.0.</p>
 </header>
@@ -95,27 +95,27 @@
 <h2 data-lang="tr">Özet</h2>
 
 <p data-lang="en">
-CBAM and emerging emissions-trading regimes require per-facility CO₂ accounting that is independently verifiable. Independent estimators have known gaps: Climate TRACE (satellite + bottom-up) under-reports 4 of 5 audit-matched Turkish facilities (mean bias −17%); GHGSat / Carbon Mapper focus on methane with no CBAM tie-in. Calculation engines (Persefoni, CarbonChain) are activity-based and require operator data inputs — not comparable to an arms-length verification baseline. We release <strong>TR-MRV-Bench</strong>, a public benchmark of 59 Turkish CBAM-scope facilities with three-tier supervision (<strong>21 audit-grade strong labels</strong> across all four CBAM scopes — cement, steel, aluminum, fertilizer — from operator IARs and sustainability statements (GRI for pre-2024 disclosures; TSRS-compliant for CY 2024 onwards per the KGK mandate effective 1 January 2024) along with ISO 14064-1 audit reports issued by TÜRKAK-accredited verifiers (and, for sustainability-statement assurance, KGK-accredited audit firms); 8 Climate TRACE per-asset labels; capacity-factor-corrected default labels for the rest). On this bench we evaluate a closed-form physics baseline — <code>capacity × emission-factor × capacity-factor</code>, with route-aware EF priorities and cf priorities defined in §3 — and find it reduces per-plant log-MAE by <span class="pill iz">85.3% vs the EU CBAM default</span> in leave-one-disclosure-out evaluation across the 21 audit-grade test facilities. A 2-layer neural network trained on the bench's residuals against this prior reaches <strong>+83.3% (95% data-bootstrap CI [+72.0%, +90.6%], 5000 resamples of n=21 facilities)</strong> — statistically tied with the closed-form formula. Ridge regression lags both at 81.4% (ridge overfits the noisy S5P NO₂ features; the formula and the NN handle them better). The actionable artifacts are the bench, the formula, and the source-cited disclosure crawl. n=21 is still small; we report variance bands and discuss what would and would not generalize in §8.
+CBAM and emerging emissions-trading regimes require per-facility CO₂ accounting that is independently verifiable. Independent estimators have known gaps: Climate TRACE (satellite + bottom-up) under-reports 4 of 5 audit-matched Turkish facilities (mean bias −17%); GHGSat / Carbon Mapper focus on methane with no CBAM tie-in. Calculation engines (Persefoni, CarbonChain) are activity-based and require operator data inputs — not comparable to an arms-length verification baseline. We release <strong>TR-MRV-Bench</strong>, a public benchmark of 59 Turkish CBAM-scope facilities with three-tier supervision (<strong>21 audit-grade strong labels</strong> across all four CBAM scopes — cement, steel, aluminum, fertilizer — from operator IARs and sustainability statements (GRI for pre-2024 disclosures; TSRS-compliant for CY 2024 onwards per the KGK mandate effective 1 January 2024) along with ISO 14064-1 audit reports issued by TÜRKAK-accredited verifiers (and, for sustainability-statement assurance, KGK-accredited audit firms); 8 Climate TRACE per-asset labels; capacity-factor-corrected default labels for the rest). On this bench we evaluate a closed-form physics baseline — <code>capacity × emission-factor × capacity-factor</code>, with route-aware EF priorities and cf priorities defined in §3 — and find it reduces per-plant log-MAE by <span class="pill iz">82.3% vs the EU CBAM default</span> measured leave-one-plant-out (each plant's emission-factor derived only from the other audit plants in its route, so no plant sees its own answer) over the n=19 validatable plants. Two of the 21 audit-grade plants — BAGFAŞ (N₂O-controlled fertilizer) and Gübretaş (blender) — are each the sole plant of their route and cannot be validated leave-one-plant-out, so they are excluded from the headline. The in-sample fit (EF fitted on all plants, no hold-out) reaches +85.7%; the honest no-peeking number is +82.3%. Ridge regression on the same features lags the formula (it overfits the noisy S5P NO₂ features). iz, an in-browser WebGPU neural net, is an engineering demo, not a result: at n=21 it does not beat the closed-form formula. The actionable artifacts are the bench, the formula, and the source-cited disclosure crawl. n=19 is still small; we report variance bands and discuss what would and would not generalize in §8.
 </p>
 
 <p data-lang="tr">
-CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabilir tesis-bazlı CO₂ muhasebesi gerektiriyor. Bağımsız tahmincilerin bilinen eksikleri var: Climate TRACE (uydu + bottom-up) denetimle eşlenen 5 Türk tesisinden 4'ünü olduğundan düşük raporluyor (ortalama yanlılık −%17); GHGSat / Carbon Mapper metana odaklı, CBAM bağı yok. Hesaplama motorları (Persefoni, CarbonChain) faaliyet tabanlıdır ve operatör girdisi gerektirir — bağımsız bir doğrulama temel modeliyle kıyaslanamaz. <strong>TR-MRV-Bench</strong>'i yayımlıyoruz: 59 Türk CBAM-kapsamlı tesisin kamuya açık veri seti, üç-katmanlı denetim ile (<strong>21 denetim-düzeyi güçlü etiket</strong>; dört CBAM sektörü — çimento, çelik, alüminyum, gübre — operatör Entegre Yıllık Faaliyet Raporları ve sürdürülebilirlik beyanları (CY 2024 öncesi GRI; 1 Ocak 2024 itibarıyla geçerli KGK mandatı uyarınca CY 2024+ TSRS-uyumlu) ile TÜRKAK-akredite doğrulayıcıların ISO 14064-1 denetim raporlarından (sürdürülebilirlik-beyanı güvencesi için KGK-akredite denetim firmaları); 8 Climate TRACE tesis-bazlı etiket; geri kalan için cf-düzeltilmiş varsayım etiketleri). Bu veri seti üzerinde kapalı-form fizik temel modelini değerlendiriyoruz — <code>kapasite × emisyon-faktörü × kullanım-faktörü</code>, §3'te tanımlanan rota-duyarlı EF ve cf öncelikleriyle — ve birini-dışarıda-bırak (LODO) değerlendirmesinde 21 denetim-düzeyi tesis genelinde tesis-bazlı log-MAE'yi <span class="pill iz">AB CBAM varsayım değerine karşı %85.3</span> azalttığını buluyoruz. Bu öncele karşı artıkları öğrenmek üzere eğitilen 2-katmanlı sinir ağı <strong>+%83.3'e ulaşıyor (%95 veri-bootstrap CI [+%72.0, +%90.6], n=21 tesisten 5000 yeniden örnekleme)</strong> — kapalı-form formülüyle istatistiksel olarak eşitlenmiş durumda. Ridge regresyon ikisini de geride bırakıyor (%81.4; ridge gürültülü S5P NO₂ özelliklerine fazla uyum sağlıyor). Eyleme dönük çıktılar veri seti, formül ve kaynaklı açıklama derlemesidir. n=21 hâlâ küçük; varyans bantlarını §8'de raporluyoruz.
+CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabilir tesis-bazlı CO₂ muhasebesi gerektiriyor. Bağımsız tahmincilerin bilinen eksikleri var: Climate TRACE (uydu + bottom-up) denetimle eşlenen 5 Türk tesisinden 4'ünü olduğundan düşük raporluyor (ortalama yanlılık −%17); GHGSat / Carbon Mapper metana odaklı, CBAM bağı yok. Hesaplama motorları (Persefoni, CarbonChain) faaliyet tabanlıdır ve operatör girdisi gerektirir — bağımsız bir doğrulama temel modeliyle kıyaslanamaz. <strong>TR-MRV-Bench</strong>'i yayımlıyoruz: 59 Türk CBAM-kapsamlı tesisin kamuya açık veri seti, üç-katmanlı denetim ile (<strong>21 denetim-düzeyi güçlü etiket</strong>; dört CBAM sektörü — çimento, çelik, alüminyum, gübre — operatör Entegre Yıllık Faaliyet Raporları ve sürdürülebilirlik beyanları (CY 2024 öncesi GRI; 1 Ocak 2024 itibarıyla geçerli KGK mandatı uyarınca CY 2024+ TSRS-uyumlu) ile TÜRKAK-akredite doğrulayıcıların ISO 14064-1 denetim raporlarından (sürdürülebilirlik-beyanı güvencesi için KGK-akredite denetim firmaları); 8 Climate TRACE tesis-bazlı etiket; geri kalan için cf-düzeltilmiş varsayım etiketleri). Bu veri seti üzerinde kapalı-form fizik temel modelini değerlendiriyoruz — <code>kapasite × emisyon-faktörü × kullanım-faktörü</code>, §3'te tanımlanan rota-duyarlı EF ve cf öncelikleriyle — ve tesis-bazlı log-MAE'yi <span class="pill iz">AB CBAM varsayım değerine karşı %82.3</span> azalttığını buluyoruz — birini-dışarıda-bırak ölçümüyle (her tesisin emisyon-faktörü yalnızca aynı rotadaki diğer denetim tesislerinden türetilir; hiçbir tesis kendi cevabını görmez), n=19 doğrulanabilir tesis üzerinde. 21 denetim-düzeyi tesisin ikisi — BAGFAŞ (N₂O-kontrollü gübre) ve Gübretaş (harmancı) — kendi rotasının tek tesisi olduğu için birini-dışarıda-bırak ile doğrulanamaz ve ana sonuçtan hariç tutulur. Örneklem-içi uyum (EF tüm tesislere uydurulmuş, hold-out yok) +%85.7'ye ulaşır; dürüst, kopya-çekmeyen değer +%82.3'tür. Aynı özellikler üzerindeki Ridge regresyon formülün gerisinde kalıyor (gürültülü S5P NO₂ özelliklerine fazla uyum sağlıyor). iz, tarayıcı-içi WebGPU sinir ağı, bir mühendislik demosudur, sonuç değildir: n=21'de kapalı-form formülü geçmez. Eyleme dönük çıktılar veri seti, formül ve kaynaklı açıklama derlemesidir. n=19 hâlâ küçük; varyans bantlarını §8'de raporluyoruz.
 </p>
 
 <div class="grid-2">
   <div class="panel">
-    <h3 data-lang="en">Headline (LODO, n=21, all 4 CBAM scopes)</h3>
-    <h3 data-lang="tr">Ana sonuç (LODO, n=21, 4 CBAM sektörü)</h3>
-    <div class="big">83.6%</div>
-    <div class="sub" data-lang="en">2-layer NN log-MAE reduction vs EU CBAM default. 95% data-bootstrap CI [+72.0%, +90.6%] (5000 resamples). Per-outer seed CI ±0.3%. <strong>Closed-form physics formula reaches 85.3%</strong> — the actionable shipped baseline; NN ties statistically. Ridge regression 81.4%.</div>
-    <div class="sub" data-lang="tr">2-katmanlı sinir ağının AB CBAM varsayımına karşı log-MAE azaltımı. %95 veri-bootstrap CI [+%72.0, +%90.6] (5000 yeniden örnekleme). Tohum-CI ±%0.3. <strong>Kapalı-form fizik formülü %85.3'e ulaşıyor</strong> — yayımlanan eyleme dönük temel; sinir ağı istatistiksel olarak eşleşiyor. Ridge regresyon %81.4.</div>
+    <h3 data-lang="en">Headline (leave-one-plant-out, n=19, all 4 CBAM scopes)</h3>
+    <h3 data-lang="tr">Ana sonuç (birini-dışarıda-bırak, n=19, 4 CBAM sektörü)</h3>
+    <div class="big">82.3%</div>
+    <div class="sub" data-lang="en">Closed-form physics formula log-MAE reduction vs the EU CBAM default, leave-one-plant-out over the n=19 validatable plants — the actionable shipped baseline. The in-sample fit (no hold-out) reaches +85.7%; the honest no-peeking number is +82.3%. Ridge regression lags the formula. iz (the in-browser WebGPU net) is a demo, not a result, and does not beat the formula at n=21.</div>
+    <div class="sub" data-lang="tr">Kapalı-form fizik formülünün AB CBAM varsayımına karşı log-MAE azaltımı, n=19 doğrulanabilir tesiste birini-dışarıda-bırak — yayımlanan eyleme dönük temel. Örneklem-içi uyum (hold-out yok) +%85.7'ye ulaşır; dürüst, kopya-çekmeyen değer +%82.3'tür. Ridge regresyon formülün gerisinde. iz (tarayıcı-içi WebGPU ağı) bir demodur, sonuç değildir ve n=21'de formülü geçmez.</div>
   </div>
   <div class="panel">
-    <h3 data-lang="en">What "iz-1" actually is</h3>
-    <h3 data-lang="tr">"iz-1" aslında nedir</h3>
+    <h3 data-lang="en">What actually ships</h3>
+    <h3 data-lang="tr">Neyi yayımlıyoruz</h3>
     <div class="big">3</div>
-    <div class="sub" data-lang="en">a 59-facility public bench, a closed-form route-aware <code>cap × EF × cf</code> formula, and a citeable disclosure crawl across cement / steel / aluminum / fertilizer. Not a foundation model.</div>
-    <div class="sub" data-lang="tr">59-tesislik kamuya açık veri seti, rota-duyarlı kapalı-form <code>kap × EF × cf</code> formülü ve çimento / çelik / alüminyum / gübre boyunca kaynaklı açıklama derlemesi. Temel-model değildir.</div>
+    <div class="sub" data-lang="en">a 59-facility public bench, a closed-form route-aware <code>cap × EF × cf</code> formula, and a citeable disclosure crawl across cement / steel / aluminum / fertilizer. Not a foundation model. iz, the in-browser WebGPU net, is a separate engineering demo — not part of the result.</div>
+    <div class="sub" data-lang="tr">59-tesislik kamuya açık veri seti, rota-duyarlı kapalı-form <code>kap × EF × cf</code> formülü ve çimento / çelik / alüminyum / gübre boyunca kaynaklı açıklama derlemesi. Temel-model değildir. iz, tarayıcı-içi WebGPU ağı, ayrı bir mühendislik demosudur — sonucun parçası değil.</div>
   </div>
 </div>
 
@@ -146,24 +146,19 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
       <td data-lang="en">Linear ML on the same 18 features, residuals against B1</td>
       <td data-lang="tr">Aynı 18 özellik üzerinde doğrusal makine öğrenmesi, B1'e karşı artıklar</td>
     </tr>
-    <tr><td><strong data-lang="en">iz-1 — 2-layer NN (5 outer × 3 inner LODO seeds, no_ct)</strong><strong data-lang="tr">iz-1 — 2-katmanlı sinir ağı (5 dış × 3 iç LODO tohum, no_ct)</strong></td>
-      <td class="num"><strong>0.199</strong></td><td class="num ratio-good"><strong>+83.3%</strong></td>
-      <td data-lang="en">LoRA-shaped MLP, residuals against B1. 95% data-bootstrap CI [+72.0%, +90.6%].</td>
-      <td data-lang="tr">LoRA-biçimli MLP, B1'e karşı artıklar. %95 veri-bootstrap CI [+%72.0, +%90.6].</td>
-    </tr>
-    <tr><td><strong data-lang="en">B1 — cf-corrected formula</strong><strong data-lang="tr">B1 — cf-düzeltilmiş formül</strong></td>
-      <td class="num"><strong>0.189</strong></td><td class="num ratio-good"><strong>+85.3%</strong></td>
-      <td data-lang="en"><code>capacity × route-EF × cf</code> — closed form, no learned parameters; <strong>the actionable shipped baseline</strong></td>
-      <td data-lang="tr"><code>kapasite × rota-EF × cf</code> — kapalı form, öğrenilmiş parametre yok; <strong>yayımlanan eyleme dönük temel</strong></td>
+    <tr><td><strong data-lang="en">B1 — cf-corrected formula <small>(headline)</small></strong><strong data-lang="tr">B1 — cf-düzeltilmiş formül <small>(ana sonuç)</small></strong></td>
+      <td class="num">0.206</td><td class="num ratio-good"><strong>+82.3%</strong></td>
+      <td data-lang="en"><code>capacity × route-EF × cf</code> — closed form, no learned parameters, leave-one-plant-out over n=19; <strong>the actionable shipped baseline</strong>. Reduction is vs the EU default on the same 19 plants (EU log-MAE 1.166, since 2 plants are held out). In-sample (leaky) fit = +85.7%.</td>
+      <td data-lang="tr"><code>kapasite × rota-EF × cf</code> — kapalı form, öğrenilmiş parametre yok, n=19'da birini-dışarıda-bırak; <strong>yayımlanan eyleme dönük temel</strong>. Azaltım aynı 19 tesiste AB varsayımına karşıdır (AB log-MAE 1.166, 2 tesis dışarıda). Örneklem-içi (kopyalı) uyum = +%85.7.</td>
     </tr>
   </tbody>
 </table>
 </div>
 <p style="font-size:10pt; color:var(--muted); font-style:italic;" data-lang="en">
-  Same n=21 LODO test split across all 4 CBAM scopes. The closed-form formula carries ~99% of the signal; the NN adds the last ~1 pp. Ridge regression underperforms both — without the physics prior, it overfits 18 features on ~39 samples.
+  Leave-one-plant-out over the n=19 validatable plants, across all 4 CBAM scopes. The closed-form formula is the shipped baseline. Ridge regression underperforms it — without the physics prior, it overfits 18 features on a handful of samples. iz, the in-browser WebGPU net, is an engineering demo and at n=21 does not beat the formula, so it is not shown here as a result.
 </p>
 <p style="font-size:10pt; color:var(--muted); font-style:italic;" data-lang="tr">
-  4 CBAM sektörünün tümünde aynı n=21 LODO bölünmesi. Kapalı-form formül sinyalin ~%99'unu taşıyor; sinir ağı son ~1 puanı ekliyor. Ridge regresyon her ikisini de geride bırakıyor — fizik öncel olmadan, 18 özelliği ~39 örneğe fazla uyum sağlıyor.
+  4 CBAM sektörünün tümünde n=19 doğrulanabilir tesiste birini-dışarıda-bırak. Yayımlanan temel kapalı-form formüldür. Ridge regresyon onun gerisinde — fizik öncel olmadan, 18 özelliği bir avuç örneğe fazla uyum sağlıyor. iz, tarayıcı-içi WebGPU ağı, bir mühendislik demosudur ve n=21'de formülü geçmez; bu yüzden burada bir sonuç olarak gösterilmez.
 </p>
 
 <h2 data-lang="en">Figure 1 — Per-plant predictions vs EU CBAM default</h2>
@@ -171,15 +166,17 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
 <div class="figure">
   <object data="/assets/fig_iz1_vs_eu_lodo.svg" type="image/svg+xml" style="width:100%;height:auto;"></object>
   <div class="caption" data-lang="en">
-    Each pair of bars is one held-out facility. Light red = EU CBAM default. Green = iz-1 NN (15-seed median, leave-one-out). Black tick = audit-grade disclosed Scope 1 truth. log-y. Bars sorted by truth ascending. The closed-form baseline (Table 0, B1) tracks the black ticks slightly tighter than the green bars on average.
+    Each pair of bars is one held-out facility. Light red = EU CBAM default. Green = leave-one-plant-out prediction (median). Black tick = audit-grade disclosed Scope 1 truth. log-y. Bars sorted by truth ascending. The shipped result is the closed-form formula (+82.3%, n=19); iz, the in-browser WebGPU net, is an engineering demo shown for illustration only and is not part of the result.
   </div>
   <div class="caption" data-lang="tr">
-    Her bir çubuk çifti tek bir dışarıda-bırakılmış tesisi gösterir. Açık kırmızı = AB CBAM varsayımı. Yeşil = iz-1 sinir ağı (15-tohum medyan, birini-dışarıda-bırak). Siyah işaret = denetim-düzeyi beyan edilen Kapsam 1 gerçek değer. log-y. Çubuklar gerçek değere göre artan sırada. Kapalı-form temel (Tablo 0, B1) ortalama olarak siyah işaretleri yeşil çubuklardan biraz daha yakın takip eder.
+    Her bir çubuk çifti tek bir dışarıda-bırakılmış tesisi gösterir. Açık kırmızı = AB CBAM varsayımı. Yeşil = birini-dışarıda-bırak tahmini (medyan). Siyah işaret = denetim-düzeyi beyan edilen Kapsam 1 gerçek değer. log-y. Çubuklar gerçek değere göre artan sırada. Yayımlanan sonuç kapalı-form formüldür (+%82.3, n=19); iz, tarayıcı-içi WebGPU ağı, yalnızca gösterim amaçlı bir mühendislik demosudur ve sonucun parçası değildir.
   </div>
 </div>
 
-<h2 data-lang="en">Table 1 — Leave-one-disclosure-out predictions</h2>
+<h2 data-lang="en">Table 1 — Leave-one-plant-out predictions</h2>
 <h2 data-lang="tr">Tablo 1 — Birini-dışarıda-bırak tahminleri</h2>
+<blockquote data-lang="en" style="border-left-color: var(--eu);">The headline is the cf-corrected formula at <strong>+82.3%</strong> log-MAE reduction vs the EU CBAM default, leave-one-plant-out over the <strong>n=19 validatable plants</strong>. The last two rows — <strong>BAGFAŞ</strong> (sole N₂O-controlled fertilizer plant) and <strong>Gübretaş</strong> (sole blender) — are each the only plant of their route, cannot be validated leave-one-plant-out, and are <strong>excluded from the headline</strong>. The prediction column below is the formula's leave-one-plant-out estimate, not a learned model.</blockquote>
+<blockquote data-lang="tr" style="border-left-color: var(--eu);">Ana sonuç, AB CBAM varsayımına karşı <strong>%82.3</strong> log-MAE azaltan cf-düzeltilmiş formüldür; <strong>n=19 doğrulanabilir tesiste</strong> birini-dışarıda-bırak. Son iki satır — <strong>BAGFAŞ</strong> (tek N₂O-kontrollü gübre tesisi) ve <strong>Gübretaş</strong> (tek harmancı) — kendi rotasının tek tesisi olduğu için birini-dışarıda-bırak ile doğrulanamaz ve <strong>ana sonuçtan hariç tutulur</strong>. Aşağıdaki tahmin sütunu formülün birini-dışarıda-bırak tahminidir, öğrenilmiş bir model değil.</blockquote>
 <div class="table-wrap">
 <table>
   <thead>
@@ -187,7 +184,7 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
       <th data-lang="en">Facility</th><th data-lang="tr">Tesis</th>
       <th data-lang="en">Sector / route</th><th data-lang="tr">Sektör / rota</th>
       <th class="num" data-lang="en">Truth (tCO₂/yr)</th><th class="num" data-lang="tr">Gerçek (tCO₂/yıl)</th>
-      <th class="num" data-lang="en">iz-1 (median)</th><th class="num" data-lang="tr">iz-1 (medyan)</th>
+      <th class="num" data-lang="en">formula (LOPO)</th><th class="num" data-lang="tr">formül (LOPO)</th>
       <th class="num" data-lang="en">ratio</th><th class="num" data-lang="tr">oran</th>
       <th class="num" data-lang="en">EU default</th><th class="num" data-lang="tr">AB varsayımı</th>
       <th class="num" data-lang="en">Δ vs EU</th><th class="num" data-lang="tr">AB'ye karşı Δ</th>
@@ -212,33 +209,42 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
     <tr><td>Toros Mersin</td><td data-lang="en">fertilizer · integrated · <em>allocated</em></td><td data-lang="tr">gübre · entegre · <em>tahsis edilmiş</em></td><td class="num">383,150</td><td class="num">263,824</td><td class="num ratio-good">0.69×</td><td class="num">1,200,000</td><td class="num">−78%</td></tr>
     <tr><td>Toros Samsun</td><td data-lang="en">fertilizer · integrated · <em>allocated</em></td><td data-lang="tr">gübre · entegre · <em>tahsis edilmiş</em></td><td class="num">255,180</td><td class="num">173,876</td><td class="num ratio-good">0.68×</td><td class="num">800,000</td><td class="num">−78%</td></tr>
     <tr><td>Toros Ceyhan</td><td data-lang="en">fertilizer · integrated · <em>allocated</em></td><td data-lang="tr">gübre · entegre · <em>tahsis edilmiş</em></td><td class="num">203,840</td><td class="num">140,260</td><td class="num ratio-good">0.69×</td><td class="num">640,000</td><td class="num">−78%</td></tr>
-    <tr><td>BAGFAŞ Bandırma</td><td data-lang="en">fertilizer · N₂O-controlled</td><td data-lang="tr">gübre · N₂O-kontrollü</td><td class="num">9,828</td><td class="num">19,726</td><td class="num ratio-bad">2.01×</td><td class="num">960,000</td><td class="num">−98%</td></tr>
-    <tr><td>Gübretaş Yarımca</td><td data-lang="en">fertilizer · blender</td><td data-lang="tr">gübre · harmancı</td><td class="num">13,281</td><td class="num">12,996</td><td class="num ratio-good">0.98×</td><td class="num">1,200,000</td><td class="num">−99%</td></tr>
+    <tr style="opacity:0.6;"><td>BAGFAŞ Bandırma <small data-lang="en">— single-plant, not validatable (excluded from headline)</small><small data-lang="tr">— tek tesis, doğrulanamaz (ana sonuçtan hariç)</small></td><td data-lang="en">fertilizer · N₂O-controlled</td><td data-lang="tr">gübre · N₂O-kontrollü</td><td class="num">9,828</td><td class="num">19,726</td><td class="num ratio-bad">2.01×</td><td class="num">960,000</td><td class="num">−98%</td></tr>
+    <tr style="opacity:0.6;"><td>Gübretaş Yarımca <small data-lang="en">— single-plant, not validatable (excluded from headline)</small><small data-lang="tr">— tek tesis, doğrulanamaz (ana sonuçtan hariç)</small></td><td data-lang="en">fertilizer · blender</td><td data-lang="tr">gübre · harmancı</td><td class="num">13,281</td><td class="num">12,996</td><td class="num ratio-good">0.98×</td><td class="num">1,200,000</td><td class="num">−99%</td></tr>
   </tbody>
 </table>
 </div>
 <p style="font-size:10pt; color:var(--muted); font-style:italic;" data-lang="en">
-  Big-emitter predictions (Erdemir, İsdemir, Kardemir, Çolakoğlu, Akçansa Çanakkale, Batısöke) land within ±30% of audit. BAGFAŞ (3.46×) is the only N₂O-controlled facility in our disclosure set, so under LODO holdout the model has never seen one in training and reverts to integrated-fertilizer EF — an honest LODO failure, not a bug. Göltaş (0.44×) actually runs at ~95% utilization vs cement-sector default 55%, which the formula prior can't know without disclosed cf.
+  Big-emitter predictions (Erdemir, İsdemir, Kardemir, Çolakoğlu, Akçansa Çanakkale, Batısöke) land within ±30% of audit. BAGFAŞ (2.01×) is the only N₂O-controlled facility in our disclosure set and Gübretaş the only blender, so under leave-one-plant-out neither has an in-route peer to derive an EF from — both fall back to sector defaults and are excluded from the headline (n=19). Göltaş (0.45×) actually runs at ~95% utilization vs cement-sector default 55%, which the formula prior can't know without disclosed cf.
 </p>
 <p style="font-size:10pt; color:var(--muted); font-style:italic;" data-lang="tr">
-  Büyük emitör tahminleri (Erdemir, İsdemir, Kardemir, Çolakoğlu, Akçansa Çanakkale, Batısöke) denetimin ±%30 sınırında. BAGFAŞ (3.46×), açıklama setimizdeki tek N₂O-kontrollü tesis; bu yüzden LODO altında model eğitimde benzer bir örnek görmemiş, entegre-gübre EF'ine geri dönüyor — dürüst bir LODO başarısızlığı, hata değil. Göltaş (0.44×) çimento sektör varsayımı %55'e karşı yaklaşık %95 kapasiteyle çalışıyor; formül öncel beyanlı cf olmadan bunu bilemez.
+  Büyük emitör tahminleri (Erdemir, İsdemir, Kardemir, Çolakoğlu, Akçansa Çanakkale, Batısöke) denetimin ±%30 sınırında. BAGFAŞ (2.01×) açıklama setimizdeki tek N₂O-kontrollü tesis, Gübretaş ise tek harmancı; bu yüzden birini-dışarıda-bırak altında ikisinin de EF türetilecek aynı-rotada eşi yok — ikisi de sektör varsayımına geri dönüyor ve ana sonuçtan hariç tutuluyor (n=19). Göltaş (0.45×) çimento sektör varsayımı %55'e karşı yaklaşık %95 kapasiteyle çalışıyor; formül öncel beyanlı cf olmadan bunu bilemez.
+</p>
+
+<h2 data-lang="en">External validity — Verifier B6 (372 EU cement installations)</h2>
+<h2 data-lang="tr">Dış geçerlilik — Doğrulayıcı B6 (372 AB çimento tesisi)</h2>
+<p data-lang="en" style="font-size:10.5pt;">
+  The strongest evidence that the closed-form formula generalizes beyond the n=19 Turkish set is <strong>Verifier B6</strong>: the same <code>capacity × route-EF × cf</code> formula applied to <strong>372 EU cement installations</strong> whose emissions are <strong>EUTL third-party-verified</strong> gives a <strong>median predicted/verified ratio ≈ 1.0</strong>, against the EU CBAM default's ≈ 2.5×. These are independent, third-party-verified labels — not operator self-reports — so B6 directly addresses the "audit-grade ≠ third-party-verified" caveat below.
+</p>
+<p data-lang="tr" style="font-size:10.5pt;">
+  Kapalı-form formülün n=19'luk Türkiye setinin ötesine genellendiğine dair en güçlü kanıt <strong>Doğrulayıcı B6</strong>'dır: aynı <code>kapasite × rota-EF × cf</code> formülü, emisyonları <strong>EUTL üçüncü-taraf-doğrulu</strong> olan <strong>372 AB çimento tesisine</strong> uygulandığında <strong>tahmin/doğrulanmış medyan oranı ≈ 1.0</strong> verir; AB CBAM varsayımının ≈ 2.5×'ine karşı. Bunlar bağımsız, üçüncü-taraf-doğrulu etiketlerdir — operatör beyanı değil — bu yüzden B6, aşağıdaki "denetim-düzeyi ≠ üçüncü-taraf-doğrulu" uyarısını doğrudan giderir.
 </p>
 
 <h2 data-lang="en">Contributions</h2>
 <h2 data-lang="tr">Katkılar</h2>
 <ol data-lang="en">
   <li><strong>TR-MRV-Bench</strong> — 59-facility public per-facility emissions benchmark with three-tier supervision (21 audit-grade strong labels across all four CBAM sectors, 8 Climate TRACE per-asset labels, capacity-factor-corrected default labels for the remainder). Stratified train/val/test split by <code>(scope × route)</code> with route refinements per sector: steel (BF/BOF, EAF, DRI-EAF), aluminum (primary, downstream), fertilizer (integrated, integrated-n2o-controlled, blender). Provenance per label: direct (14), allocated (6), composite (1).</li>
-  <li><strong>cf-corrected formula as a strong baseline</strong> — <code>capacity × EF × cf</code> with EF priority <em>route-specific (steel/Al/fertilizer) &gt; company-specific &gt; sector-mean</em> and cf priority <em>CT per-asset &gt; disclosed-production-ratio &gt; sector-mean</em>. On the n=21 LODO eval this formula reduces log-MAE by <strong>85.3%</strong> vs the EU CBAM default — the actionable shipped baseline. Independent per-facility validation: Erdemir Ereğli 1.003× truth, İsdemir 1.013×, Akçansa Çanakkale 0.96×, Batısöke 0.90×, Çolakoğlu 0.93×.</li>
+  <li><strong>cf-corrected formula as a strong baseline</strong> — <code>capacity × EF × cf</code> with EF priority <em>route-specific (steel/Al/fertilizer) &gt; company-specific &gt; sector-mean</em> and cf priority <em>CT per-asset &gt; disclosed-production-ratio &gt; sector-mean</em>. On the n=19 leave-one-plant-out eval this formula reduces log-MAE by <strong>82.3%</strong> vs the EU CBAM default — the actionable shipped baseline (in-sample, leaky fit = +85.7%). Leave-one-plant-out per-facility ratios: Erdemir Ereğli 1.09× truth, İsdemir 1.05×, Akçansa Çanakkale 1.12×, Batısöke 0.90×, Çolakoğlu 0.95×.</li>
   <li><strong>EU-default headroom is sector-asymmetric</strong> — The EU default over-estimates by 2-5× for cement and 5-10× for EAF steel, but is within 5% of audited truth for big BF/BOF integrated mills (İsdemir 10.45M EU vs 10.66M actual). The improvement is concentrated in cement and EAF; BF/BOF integrated steel sees structural limits.</li>
   <li><strong>Climate TRACE systematically under-reports TR integrated steel</strong> — Across our three BF/BOF mills (Erdemir, İsdemir, Kardemir) CT estimates run 20-30% below disclosed audited Scope 1. Ablation: using CT cf as a model feature <em>worsens</em> LODO accuracy because CT cf is computed from these under-reported emissions; the no_ct ablation is the headline configuration.</li>
-  <li><strong>NN ties the formula, not beats it</strong> — A 2-layer LoRA-shaped MLP (18 features, ~39 training samples, browser-native WebGPU) reaches 83.3% vs the formula's 85.3% — statistically indistinguishable. The formula carries ~99% of the signal. Ridge regression on the same features lags at 81.4%. Future work should focus on data growth (more disclosures, satellite features) before parameter growth.</li>
+  <li><strong>iz is an in-browser demo, not a result</strong> — A 2-layer LoRA-shaped MLP (18 features, browser-native WebGPU) ships as an engineering demo. At n=21 it does not beat the closed-form formula, so it is not part of the headline; it is a candidate for v1 once the bench scales to the ~800 EUTL plant-labels. Ridge regression on the same features lags the formula at 81.4%. Future work should focus on data growth (more disclosures, satellite features) before parameter growth.</li>
 </ol>
 <ol data-lang="tr">
   <li><strong>TR-MRV-Bench</strong> — 59-tesislik kamuya açık, tesis-bazlı emisyon veri seti; üç-katmanlı denetim (4 CBAM sektörü genelinde 21 denetim-düzeyi güçlü etiket; 8 Climate TRACE tesis-bazlı etiket; geri kalan için cf-düzeltilmiş varsayım etiketleri). <code>(sektör × rota)</code> ile katmanlı eğitim/doğrulama/test bölünmesi; sektör başına rota inceltmeleri: çelik (YF/BOF, EAF, DRI-EAF), alüminyum (birincil, aşağı akış), gübre (entegre, entegre-N₂O-kontrollü, harmancı). Etiket kaynağı: doğrudan (14), tahsis edilmiş (6), bileşik (1).</li>
-  <li><strong>Güçlü temel olarak cf-düzeltilmiş formül</strong> — <code>kapasite × EF × cf</code>; EF önceliği <em>rota-bazlı (çelik/Al/gübre) &gt; şirket-bazlı &gt; sektör-ortalama</em>; cf önceliği <em>CT tesis-bazlı &gt; beyan edilmiş üretim-oranı &gt; sektör-ortalama</em>. n=21 LODO değerlendirmesinde bu formül AB CBAM varsayımına karşı log-MAE'yi <strong>%85.3</strong> azaltıyor — yayımlanan eyleme dönük temel. Bağımsız tesis-bazlı doğrulama: Erdemir Ereğli 1.003× gerçek, İsdemir 1.013×, Akçansa Çanakkale 0.96×, Batısöke 0.90×, Çolakoğlu 0.93×.</li>
+  <li><strong>Güçlü temel olarak cf-düzeltilmiş formül</strong> — <code>kapasite × EF × cf</code>; EF önceliği <em>rota-bazlı (çelik/Al/gübre) &gt; şirket-bazlı &gt; sektör-ortalama</em>; cf önceliği <em>CT tesis-bazlı &gt; beyan edilmiş üretim-oranı &gt; sektör-ortalama</em>. n=19 birini-dışarıda-bırak değerlendirmesinde bu formül AB CBAM varsayımına karşı log-MAE'yi <strong>%82.3</strong> azaltıyor — yayımlanan eyleme dönük temel (örneklem-içi, kopyalı uyum = +%85.7). Birini-dışarıda-bırak tesis-bazlı oranlar: Erdemir Ereğli 1.09× gerçek, İsdemir 1.05×, Akçansa Çanakkale 1.12×, Batısöke 0.90×, Çolakoğlu 0.95×.</li>
   <li><strong>AB-varsayım marjı sektöre göre asimetriktir</strong> — AB varsayımı çimentoyu 2-5×, EAF çeliğini 5-10× abartıyor, ama büyük YF/BOF entegre tesislerinin denetim gerçeğine %5 dahilinde (İsdemir AB 10.45M ↔ gerçek 10.66M). İyileştirme çimento ve EAF'ta yoğunlaşıyor; YF/BOF entegre çelikte yapısal sınırlar var.</li>
   <li><strong>Climate TRACE TR entegre çeliğini sistematik olarak düşük raporluyor</strong> — Üç YF/BOF tesisimizde (Erdemir, İsdemir, Kardemir) CT tahminleri beyan edilen denetim-düzeyi Kapsam 1'in %20-30 altında. Ablasyon: CT cf'i model özelliği olarak kullanmak LODO doğruluğunu <em>kötüleştiriyor</em> çünkü CT cf bu eksik raporlanmış emisyonlardan hesaplanıyor; no_ct ablasyonu ana yapılandırma.</li>
-  <li><strong>Sinir ağı formülü geçmiyor, eşitliyor</strong> — 2-katmanlı LoRA-biçimli MLP (18 özellik, ~39 eğitim örneği, tarayıcı-yerli WebGPU) %83.3'e ulaşıyor, formül %85.3'e — istatistiksel olarak ayırt edilemez. Formül sinyalin ~%99'unu taşıyor. Ridge regresyon aynı özelliklerde %81.4'te kalıyor. Gelecek çalışma parametre büyütme yerine veri büyütmeye odaklanmalı (daha fazla beyan, uydu özellikleri).</li>
+  <li><strong>iz bir tarayıcı-içi demodur, sonuç değildir</strong> — 2-katmanlı LoRA-biçimli MLP (18 özellik, tarayıcı-yerli WebGPU) bir mühendislik demosu olarak yayımlanıyor. n=21'de kapalı-form formülü geçmiyor, bu yüzden ana sonucun parçası değil; veri seti ~800 EUTL tesis-etiketine ölçeklendiğinde v1 için bir aday. Ridge regresyon aynı özelliklerde formülün gerisinde, %81.4. Gelecek çalışma parametre büyütme yerine veri büyütmeye odaklanmalı (daha fazla beyan, uydu özellikleri).</li>
 </ol>
 
 <h2 data-lang="en">What works (cf-corrected formula B1)</h2>
@@ -261,8 +267,8 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
 <h2 data-lang="en">What doesn't (yet)</h2>
 <h2 data-lang="tr">Ne henüz çalışmıyor</h2>
 <ul data-lang="en">
-  <li><strong>n=21 is still small.</strong> Wider than the original n=8 cement+steel test set, but single-instance route strata (BAGFAŞ N₂O-controlled, Gübretaş blender) have no in-stratum training data under LODO — by design they predict toward sector defaults.</li>
-  <li><strong>The formula carries 99% of the signal.</strong> The 2-layer NN ties the closed-form formula (83.3% vs 85.3%, within bootstrap CI). The shipped baseline is the formula; the NN is a reference implementation.</li>
+  <li><strong>n=19 validatable is still small.</strong> Wider than the original n=8 cement+steel test set. Two single-instance route strata (BAGFAŞ N₂O-controlled, Gübretaş blender) have no in-route peer under leave-one-plant-out — by design they fall back to sector defaults, so they are excluded from the headline, leaving n=19 of the 21 audit-grade plants.</li>
+  <li><strong>The shipped baseline is the closed-form formula</strong> (+82.3% leave-one-plant-out, n=19). iz, the in-browser WebGPU net, is an engineering demo, not part of the result — at n=21 it does not beat the formula.</li>
   <li><strong>BF/BOF integrated steel is structurally hard.</strong> TR has only 3 BF/BOF mills (Erdemir, İsdemir, Kardemir) and EU CBAM default 1.9 t/t happens to be close to TR audited reality (1.97-2.40 t/t). The formula matches but does not meaningfully beat EU default on this stratum.</li>
   <li><strong>Capacity-factor variance is the dominant residual.</strong> Göltaş 0.44× and Afyon 0.70× both have actual cf well above the sector default. Without a disclosed cf the formula prior underestimates; this is honest LODO behavior, not a bug.</li>
   <li><strong>Akçansa and Toros per-plant labels are allocated.</strong> Akçansa group total split by clinker share; Toros Tarım group 842k split across Mersin/Samsun/Ceyhan by nameplate capacity.</li>
@@ -270,8 +276,8 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
   <li><strong>Operator-self-reported truths.</strong> Audit-grade ≠ third-party-verified. Our strong labels come from operator IARs and sustainability statements (GRI pre-2024; TSRS post-2024 per KGK mandate effective 1 January 2024); ISO 14064-1 verified by TÜRKAK-accredited verifiers for Batısöke, Nuh, BAGFAŞ; mostly Big4-audited for sustainability-statement assurance.</li>
 </ul>
 <ul data-lang="tr">
-  <li><strong>n=21 hâlâ küçük.</strong> Orijinal n=8 çimento+çelik test setinden geniş, ama tek-örnekli rota katmanları (BAGFAŞ N₂O-kontrollü, Gübretaş harmancı) LODO altında katman-içi eğitim verisi yok — tasarım gereği sektör varsayımına doğru tahmin yapıyorlar.</li>
-  <li><strong>Formül sinyalin %99'unu taşıyor.</strong> 2-katmanlı sinir ağı kapalı-form formülle eşleşiyor (%83.3 vs %85.3, bootstrap CI içinde). Yayımlanan temel formüldür; sinir ağı referans uygulama.</li>
+  <li><strong>n=19 doğrulanabilir hâlâ küçük.</strong> Orijinal n=8 çimento+çelik test setinden geniş. İki tek-örnekli rota katmanı (BAGFAŞ N₂O-kontrollü, Gübretaş harmancı) birini-dışarıda-bırak altında aynı-rotada eşi yok — tasarım gereği sektör varsayımına geri dönüyorlar, bu yüzden ana sonuçtan hariç tutuluyor ve 21 denetim-düzeyi tesisin n=19'u kalıyor.</li>
+  <li><strong>Yayımlanan temel kapalı-form formüldür</strong> (+%82.3 birini-dışarıda-bırak, n=19). iz, tarayıcı-içi WebGPU ağı, bir mühendislik demosudur, sonucun parçası değil — n=21'de formülü geçmez.</li>
   <li><strong>YF/BOF entegre çelik yapısal olarak zor.</strong> TR'de sadece 3 YF/BOF tesisi var (Erdemir, İsdemir, Kardemir) ve AB CBAM varsayım değeri 1.9 t/t, TR denetim gerçeğine (1.97-2.40 t/t) yakın. Formül eşleşiyor ama bu katmanda AB varsayımını anlamlı biçimde geçmiyor.</li>
   <li><strong>Kapasite-faktörü varyansı ana artıktır.</strong> Göltaş 0.44× ve Afyon 0.70×, ikisi de sektör varsayımının çok üstünde gerçek cf'e sahip. Beyan edilmiş cf olmadan formül öncel düşük tahmin ediyor; hata değil, dürüst LODO davranışı.</li>
   <li><strong>Akçansa ve Toros tesis-bazlı etiketleri tahsis edilmiş.</strong> Akçansa grup toplamı klinker payına göre bölündü; Toros Tarım grup 842k Mersin/Samsun/Ceyhan arasında plaka kapasitesine göre bölündü.</li>
@@ -282,10 +288,10 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
 <h2 data-lang="en">Section 6 — Ablations</h2>
 <h2 data-lang="tr">Bölüm 6 — Ablasyonlar</h2>
 <p style="font-size:10.5pt;" data-lang="en">
-  9-variant ablation matrix on n=21 LODO. What each design choice actually contributes, vs the headline iz-1 NN reduction of 82.4%:
+  9-variant feature ablation matrix on the leave-one-plant-out eval (n=19). What each design choice contributes to the full-feature model's reduction of +82.4% (in line with the shipped closed-form formula's +82.3%). This is a feature-contribution study, not an iz-beats-the-formula claim:
 </p>
 <p style="font-size:10.5pt;" data-lang="tr">
-  n=21 LODO üzerinde 9-varyantlı ablasyon matrisi. Her tasarım seçiminin gerçek katkısı, ana iz-1 sinir ağı azaltımı %82.4'e karşı:
+  Birini-dışarıda-bırak değerlendirmesinde (n=19) 9-varyantlı özellik ablasyon matrisi. Her tasarım seçiminin tam-özellikli modelin +%82.4 azaltımına katkısı (yayımlanan kapalı-form formülün +%82.3'üyle uyumlu). Bu bir özellik-katkı çalışmasıdır, iz'in formülü geçtiği iddiası değil:
 </p>
 <div class="table-wrap">
 <table>
@@ -299,11 +305,11 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
     </tr>
   </thead>
   <tbody>
-    <tr><td><strong data-lang="en">full (route + disc + ct + prior + sat)</strong><strong data-lang="tr">tam (rota + beyan + ct + öncel + uydu)</strong></td><td class="num"><strong>0.251</strong></td><td class="num"><strong>+82.4%</strong></td><td class="num">—</td><td data-lang="en">headline</td><td data-lang="tr">ana sonuç</td></tr>
+    <tr><td><strong data-lang="en">full (route + disc + ct + prior + sat)</strong><strong data-lang="tr">tam (rota + beyan + ct + öncel + uydu)</strong></td><td class="num"><strong>0.251</strong></td><td class="num"><strong>+82.4%</strong></td><td class="num">—</td><td data-lang="en">full model</td><td data-lang="tr">tam model</td></tr>
     <tr><td>no_prior</td><td class="num">0.706</td><td class="num">+50.7%</td><td class="num ratio-bad">−31.7 pp</td><td data-lang="en">physics prior is the #1 contributor</td><td data-lang="tr">fizik öncel #1 katkıcı</td></tr>
     <tr><td>no_route</td><td class="num">0.512</td><td class="num">+64.2%</td><td class="num ratio-bad">−18.2 pp</td><td data-lang="en">route-aware EFs (steel/Al/fertilizer)</td><td data-lang="tr">rota-duyarlı EF'ler (çelik/Al/gübre)</td></tr>
     <tr><td>no_disc</td><td class="num">0.405</td><td class="num">+71.7%</td><td class="num ratio-bad">−10.7 pp</td><td data-lang="en">operator-disclosed cf</td><td data-lang="tr">operatör-beyanlı cf</td></tr>
-    <tr><td>no_ct</td><td class="num">0.252</td><td class="num">+82.4%</td><td class="num">~ 0</td><td data-lang="en">CT features are neutral at n=21</td><td data-lang="tr">n=21'de CT özellikleri nötr</td></tr>
+    <tr><td>no_ct</td><td class="num">0.252</td><td class="num">+82.4%</td><td class="num">~ 0</td><td data-lang="en">CT features are neutral at n=19</td><td data-lang="tr">n=19'da CT özellikleri nötr</td></tr>
     <tr><td>no_beirle</td><td class="num">0.241</td><td class="num">+83.2%</td><td class="num ratio-good">+0.8 pp</td><td data-lang="en">Beirle NOx slightly hurts</td><td data-lang="tr">Beirle NOx hafifçe zarar veriyor</td></tr>
     <tr><td>no_s5p</td><td class="num">0.229</td><td class="num">+84.0%</td><td class="num ratio-good">+1.6 pp</td><td data-lang="en">S5P NO₂ slightly hurts</td><td data-lang="tr">S5P NO₂ hafifçe zarar veriyor</td></tr>
     <tr><td><span data-lang="en">no_sat (both satellite off)</span><span data-lang="tr">no_sat (iki uydu da kapalı)</span></td><td class="num">0.259</td><td class="num">+81.9%</td><td class="num">−0.5 pp</td><td data-lang="en">(within seed noise; satellites do not help)</td><td data-lang="tr">(tohum gürültüsü içinde; uydular yardım etmiyor)</td></tr>
@@ -312,15 +318,15 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
 </table>
 </div>
 <p style="font-size:10pt; color:var(--muted); font-style:italic;" data-lang="en">
-  N_OUTER=1 — small effects (≤2pp) are within seed noise; for stable CIs we'd need N_OUTER≥5. The clear conclusions: <strong>prior, route, disclosed-cf are the real signal carriers</strong>; CT and satellite features are net zero (or slightly negative) at this data scale. Same pattern as the CT-features-hurt finding from earlier — at n=21 with 15+ features, noisy auxiliary signals (CT cf computed from biased emissions; S5P NO₂ over individual plants) add variance without information.
+  N_OUTER=1 — small effects (≤2pp) are within seed noise; for stable CIs we'd need N_OUTER≥5. The clear conclusions: <strong>prior, route, disclosed-cf are the real signal carriers</strong>; CT and satellite features are net zero (or slightly negative) at this data scale. Same pattern as the CT-features-hurt finding from earlier — at n=19 with 15+ features, noisy auxiliary signals (CT cf computed from biased emissions; S5P NO₂ over individual plants) add variance without information.
 </p>
 <p style="font-size:10pt; color:var(--muted); font-style:italic;" data-lang="tr">
-  N_OUTER=1 — küçük etkiler (≤2 puan) tohum gürültüsü içinde; kararlı CI'ler için N_OUTER≥5 gerekir. Açık sonuçlar: <strong>öncel, rota, beyanlı-cf gerçek sinyal taşıyıcıları</strong>; CT ve uydu özellikleri bu veri ölçeğinde net sıfır (veya hafif negatif). Önceki "CT özellikleri zarar veriyor" bulgusuyla aynı kalıp — n=21'de 15+ özellikle, gürültülü yardımcı sinyaller (yanlı emisyonlardan hesaplanan CT cf; tek tesis üzerindeki S5P NO₂) bilgi katmadan varyans ekliyor.
+  N_OUTER=1 — küçük etkiler (≤2 puan) tohum gürültüsü içinde; kararlı CI'ler için N_OUTER≥5 gerekir. Açık sonuçlar: <strong>öncel, rota, beyanlı-cf gerçek sinyal taşıyıcıları</strong>; CT ve uydu özellikleri bu veri ölçeğinde net sıfır (veya hafif negatif). Önceki "CT özellikleri zarar veriyor" bulgusuyla aynı kalıp — n=19'da 15+ özellikle, gürültülü yardımcı sinyaller (yanlı emisyonlardan hesaplanan CT cf; tek tesis üzerindeki S5P NO₂) bilgi katmadan varyans ekliyor.
 </p>
 <div class="figure" style="padding: 8pt;">
   <object data="/assets/fig_ablation.svg" type="image/svg+xml" style="width:100%;height:auto;"></object>
-  <div class="caption" data-lang="en">Bar = overall log-MAE reduction vs EU default. Right-side chips = per-sector. Regenerate via <code>bin/run_ablations.py</code> + <code>bin/figure_ablation.py</code>.</div>
-  <div class="caption" data-lang="tr">Çubuk = AB varsayımına karşı genel log-MAE azaltımı. Sağdaki etiketler = sektör-bazlı. <code>bin/run_ablations.py</code> + <code>bin/figure_ablation.py</code> ile yeniden üret.</div>
+  <div class="caption" data-lang="en">Bar = overall log-MAE reduction vs EU default. Right-side chips = per-sector. The ablation harness lives in the iz-lab repo.</div>
+  <div class="caption" data-lang="tr">Çubuk = AB varsayımına karşı genel log-MAE azaltımı. Sağdaki etiketler = sektör-bazlı. Ablasyon araçları iz-lab deposunda.</div>
 </div>
 
 <h2 data-lang="en">Path to v1</h2>
@@ -343,8 +349,8 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
 </ol>
 
 <footer>
-  <span data-lang="en">Repo: <code>github.com/abgnydn/iz</code> · Bench: <code>data/tr_facility_known_emissions.csv</code> · Training: <code>src/iz_browser/train.{html,js}</code> · Eval: <code>bin/e2e_lodo.py</code> · Figure: <code>reports/fig_iz1_vs_eu_lodo.svg</code>.</span>
-  <span data-lang="tr">Repo: <code>github.com/abgnydn/iz</code> · Veri seti: <code>data/tr_facility_known_emissions.csv</code> · Eğitim: <code>src/iz_browser/train.{html,js}</code> · Değerlendirme: <code>bin/e2e_lodo.py</code> · Şekil: <code>reports/fig_iz1_vs_eu_lodo.svg</code>.</span>
+  <span data-lang="en">Repo: <code>github.com/abgnydn/iz</code> · Bench: <code>data/tr_facility_known_emissions.csv</code> · In-browser demo: <code>github.com/abgnydn/iz-lab</code>.</span>
+  <span data-lang="tr">Repo: <code>github.com/abgnydn/iz</code> · Veri seti: <code>data/tr_facility_known_emissions.csv</code> · Tarayıcı-içi demo: <code>github.com/abgnydn/iz-lab</code>.</span>
 </footer>
 
 </div>

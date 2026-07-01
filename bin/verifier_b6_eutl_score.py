@@ -368,7 +368,7 @@ def main() -> None:
         "",
         "## What this does not prove",
         "",
-        "- We did not run the full LODO pipeline on EU plants. The EUTL test uses fixed parameters, not a learned model. iz-1 NN would need EU-specific feature engineering (different industry registries for capacity).",
+        "- We did not run the full LODO pipeline on EU plants. The EUTL test uses fixed parameters, not a learned model. iz NN would need EU-specific feature engineering (different industry registries for capacity).",
         "- The capacity numbers in Lens 4 are hand-curated from operator IARs / CemBureau, not a systematic crawl. A full EU-MRV-Bench would need the same per-plant capacity audit we did for TR.",
         "- Steel, aluminum, fertilizer are not in this verifier yet — only cement (NACE 23.51).",
         "",

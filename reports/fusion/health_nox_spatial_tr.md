@@ -12,7 +12,7 @@ Türkiye **şunları yayımlamıyor**:
 - Tesis atfı için yeterli ayrıntıda neden-bazlı il ölüm istatistikleri (J00-J99 solunum)
 - İlçe-bazlı ölüm istatistikleri
 
-**Politika sonucu**: iz-1, 36 ilde 21 tesis için tesis-çözünürlüklü NOx (Beirle uydu ayrışması) + denetim-düzeyi Kapsam 1'e sahip. TÜİK il × ICD-10 J-bölümü ölümleri yayımladığı anda, bu veri seti Türkiye'deki ilk tesis-bazlı hava-kirliliği-atfı çalışmasına hazır hâle gelir.
+**Politika sonucu**: iz, 36 ilde 21 tesis için tesis-çözünürlüklü NOx (Beirle uydu ayrışması) + denetim-düzeyi Kapsam 1'e sahip. TÜİK il × ICD-10 J-bölümü ölümleri yayımladığı anda, bu veri seti Türkiye'deki ilk tesis-bazlı hava-kirliliği-atfı çalışmasına hazır hâle gelir.
 
 ## Veri setimizdeki sanayi baskısına göre üst iller
 
@@ -36,7 +36,7 @@ Türkiye **şunları yayımlamıyor**:
 
 ## Bu hangi araştırmayı mümkün kılar
 
-TÜİK il × ICD-10-J ölümlerini yayımladığında (ya da Sağlık Bakanlığı'na akademik veri-paylaşım talebiyle), iz-1 tesis-baskı katmanı şuralara doğrudan bağlanır:
+TÜİK il × ICD-10-J ölümlerini yayımladığında (ya da Sağlık Bakanlığı'na akademik veri-paylaşım talebiyle), iz tesis-baskı katmanı şuralara doğrudan bağlanır:
 
 1. **Aşırı solunum-mortalitesi regresyonu** — il başına Beirle NOx akışı (kg/s, bizim veri) → 100k'da solunum mortalitesi (TÜİK)
 2. **Kalıcı-kirlilik atfı** — tesislerimizin bulunduğu VE PM10'un AB sınırını aştığı 8-12 il için fazlalığı Beirle katmanı üzerinden belirli operatörlere tahsis et

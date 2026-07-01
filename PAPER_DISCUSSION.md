@@ -1,8 +1,8 @@
-# iz-1 — Section 7: Discussion (draft)
+# iz — Section 7: Discussion (draft)
 
 ## 7.1 Why log-MAE reduction is the honest metric (and not cost-savings)
 
-There are two natural ways to compare iz-1 against the EU CBAM default per facility, and they sometimes disagree:
+There are two natural ways to compare iz against the EU CBAM default per facility, and they sometimes disagree:
 
 - **log-MAE reduction** = `(1 − iz_log_err / EU_log_err) × 100`. Positive means iz is more accurate than EU.
 - **Cost-savings vs EU** = `(EU_default − iz_pred) / EU_default × 100`. Positive means the operator pays less under iz.
@@ -19,7 +19,7 @@ The conventional narrative is that EU CBAM defaults are punitive overestimates d
 - **EAF steel default 1.9 t/t** vs realistic EAF ~0.25 t/t — EU default is **7.6× reality**. Iz-1's largest sector win.
 - **BF/BOF steel default 1.9 t/t** vs TR audited 1.97-2.40 t/t (Erdemir 2.00, İsdemir 1.97, Kardemir 2.40). **The EU default is within ±5-25% of audited truth for big integrated mills**, and tighter than that for the largest one (İsdemir, EU within 2%).
 
-This means the iz-1 value proposition is concentrated in cement and EAF, and there's structurally limited room to improve over the EU default for BF/BOF integrated steel. For a Turkish operator deciding whether to invest in MRV vs. paying the EU default, the calculus is:
+This means the iz value proposition is concentrated in cement and EAF, and there's structurally limited room to improve over the EU default for BF/BOF integrated steel. For a Turkish operator deciding whether to invest in MRV vs. paying the EU default, the calculus is:
 
 - **Cement / EAF**: pay for verified MRV; saves €40-80 per tonne of CO₂ over default.
 - **BF/BOF integrated steel**: pay the EU default; MRV verification only confirms you owe roughly what the default says anyway.
@@ -61,7 +61,7 @@ A central honest finding of this work: across all our experiments at the bench's
 | B0 EU CBAM default | 1.432 | 0.0% |
 | B2 Ridge regression | 0.350 | +75.6% |
 | **B1 cf-corrected formula** | **0.189** | **+85.3%** |
-| iz-1 NN (5-outer median, no CT) | 0.239 | +83.3% |
+| iz NN (5-outer median, no CT) | 0.239 | +83.3% |
 
 The NN beat the formula by 1.8 pp at n=18-20 (before disclosed_cf for fertilizer/aluminum was added) and is statistically tied with it at n=21 once the formula has access to the same disclosed_cf signal. The honest framing: **the deliverable is the formula and the bench**. The NN is a working reference implementation; future data growth (S5P NO₂ features, more disclosures, multi-year LODO) may give it room to extract residual signal the formula cannot.
 

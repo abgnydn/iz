@@ -18,7 +18,7 @@ Turkey does **not** publish:
 - District-level mortality
 
 
-**Policy implication**: iz-1 has facility-resolution NOx (Beirle satellite divergence) + audit-grade Scope 1 for 21 facilities across 36 provinces. The moment TÜİK publishes province × ICD-10 J-chapter mortality, this dataset becomes ready-to-join for the first per-facility air-pollution-attribution study in Turkey.
+**Policy implication**: iz has facility-resolution NOx (Beirle satellite divergence) + audit-grade Scope 1 for 21 facilities across 36 provinces. The moment TÜİK publishes province × ICD-10 J-chapter mortality, this dataset becomes ready-to-join for the first per-facility air-pollution-attribution study in Turkey.
 
 ## Top provinces by industrial pressure (our bench)
 
@@ -47,7 +47,7 @@ Turkey does **not** publish:
 
 ## What this enables
 
-Once TÜİK publishes province × ICD-10-J mortality (or via an FOI / academic data-sharing request to Ministry of Health), the iz-1 facility-pressure layer plugs directly into:
+Once TÜİK publishes province × ICD-10-J mortality (or via an FOI / academic data-sharing request to Ministry of Health), the iz facility-pressure layer plugs directly into:
 
 1. **Excess respiratory mortality regression** — Beirle NOx flux per province (kg/s, our data) → respiratory mortality / 100k (TÜİK)
 

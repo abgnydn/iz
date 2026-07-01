@@ -1,5 +1,5 @@
 """
-Split-conformal prediction interval on iz-1 LODO predictions.
+Split-conformal prediction interval on iz LODO predictions.
 
 Method: split-conformal (Vovk; Shafer & Vovk 2008). For each LODO test point
 the held-out facility itself is the "test" — but we don't have a true

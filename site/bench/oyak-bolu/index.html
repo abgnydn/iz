@@ -4,21 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bolu Cement Plant · OYAK Çimento · iz · TR-MRV-Bench</title>
-<meta name="description" content="iz · TR-MRV-Bench page for Bolu Cement Plant, OYAK Çimento. Audit-grade Scope 1, iz-1 prediction with conformal CI, EU CBAM default, source citations.">
+<meta name="description" content="iz · TR-MRV-Bench page for Bolu Cement Plant, OYAK Çimento. Audit-grade Scope 1, cf-corrected formula prediction (leave-one-plant-out), EU CBAM default, source citations.">
 <meta name="theme-color" content="#2d5a4c">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="canonical" href="https://iz-b0n.pages.dev/bench/oyak-bolu/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="iz · TR-MRV-Bench">
 <meta property="og:title" content="Bolu Cement Plant · OYAK Çimento">
-<meta property="og:description" content="Audit-grade Scope 1 + iz-1 prediction + EU CBAM default. Source PDFs cited.">
+<meta property="og:description" content="Audit-grade Scope 1 + cf-corrected formula prediction + EU CBAM default. Source PDFs cited.">
 <meta property="og:url" content="https://iz-b0n.pages.dev/bench/oyak-bolu/">
 <meta property="og:image" content="https://iz-b0n.pages.dev/bench/oyak-bolu/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://iz-b0n.pages.dev/bench/oyak-bolu/og.png">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Bolu Cement Plant CO2 emissions (2024-25)","alternateName":["Bolu Cement Plant","OYAK Çimento","OYAK Çimento Bolu Cement Plant"],"description":"Audit-grade Scope 1, iz-1 prediction with conformal prediction interval, EU CBAM default, and full source citations for Bolu Cement Plant, Bolu, Türkiye. Industry: cement.","url":"https://iz-b0n.pages.dev/bench/oyak-bolu/","identifier":"oyak-bolu","license":"https://www.apache.org/licenses/LICENSE-2.0","creator":{"@type":"Person","name":"Ahmet Barış Günaydın","email":"hi@barisgunaydin.com","url":"https://barisgunaydin.com"},"publisher":{"@type":"Organization","name":"TR-MRV-Bench","url":"https://iz-b0n.pages.dev"},"isAccessibleForFree":true,"keywords":["CBAM","Scope 1","CO2 emissions","Turkey","cement","OYAK Çimento","Bolu Cement Plant"],"spatialCoverage":{"@type":"Place","name":"Bolu Cement Plant, Bolu, Türkiye","geo":{"@type":"GeoCoordinates","addressCountry":"TR"}},"variableMeasured":[{"@type":"PropertyValue","name":"CO2 emissions (Scope 1, None)","value":2558138,"unitText":"tCO2 per year","description":"Audit-grade per-facility Scope 1, , . Source: "},{"@type":"PropertyValue","name":"EU CBAM default","value":5544000,"unitText":"tCO2 per year","description":"EU CBAM Article 4(3) default value: nameplate capacity × sector default emission factor."}],"citation":"","distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://iz-b0n.pages.dev/bench/facilities.json"},{"@type":"DataDownload","encodingFormat":"text/csv","contentUrl":"https://iz-b0n.pages.dev/bench/tr_bench_v0.csv"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Bolu Cement Plant CO2 emissions (2024-25)","alternateName":["Bolu Cement Plant","OYAK Çimento","OYAK Çimento Bolu Cement Plant"],"description":"Audit-grade Scope 1, cf-corrected formula prediction (leave-one-plant-out), EU CBAM default, and full source citations for Bolu Cement Plant, Bolu, Türkiye. Industry: cement.","url":"https://iz-b0n.pages.dev/bench/oyak-bolu/","identifier":"oyak-bolu","license":"https://www.apache.org/licenses/LICENSE-2.0","creator":{"@type":"Person","name":"Ahmet Barış Günaydın","email":"hi@barisgunaydin.com","url":"https://barisgunaydin.com"},"publisher":{"@type":"Organization","name":"TR-MRV-Bench","url":"https://iz-b0n.pages.dev"},"isAccessibleForFree":true,"keywords":["CBAM","Scope 1","CO2 emissions","Turkey","cement","OYAK Çimento","Bolu Cement Plant"],"spatialCoverage":{"@type":"Place","name":"Bolu Cement Plant, Bolu, Türkiye","geo":{"@type":"GeoCoordinates","addressCountry":"TR"}},"variableMeasured":[{"@type":"PropertyValue","name":"CO2 emissions (Scope 1, None)","value":2558138,"unitText":"tCO2 per year","description":"Audit-grade per-facility Scope 1, , . Source: "},{"@type":"PropertyValue","name":"EU CBAM default","value":5544000,"unitText":"tCO2 per year","description":"EU CBAM Article 4(3) default value: nameplate capacity × sector default emission factor."}],"citation":"","distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://iz-b0n.pages.dev/bench/facilities.json"},{"@type":"DataDownload","encodingFormat":"text/csv","contentUrl":"https://iz-b0n.pages.dev/bench/tr_bench_v0.csv"}]}</script>
 <link rel="stylesheet" href="/assets/style.css">
 <style>
 .metric { font-family: var(--mono); font-size: 17px; margin: 6px 0; }
@@ -79,9 +79,9 @@
       <div class="delta muted">tCO₂ · <span class="badge "></span></div>
     </div>
     <div class="card iz">
-      <div class="label">iz-1 prediction (LODO)</div>
+      <div class="label">cf-corrected formula (leave-one-plant-out)</div>
       <div class="value">—</div>
-      <div class="delta"><span class="muted">held out of training</span></div>
+      <div class="delta"><span class="muted">not in audit-grade set</span></div>
     </div>
     <div class="card eu">
       <div class="label">EU CBAM default</div>
@@ -104,7 +104,7 @@
     <dt>Capacity</dt><dd>3,500,000 t/y</dd>
     <dt>Label source</dt><dd><span class="badge climate_trace">climate_trace</span></dd>
     <dt>Provenance</dt><dd></dd>
-    <dt>iz-1 runs</dt><dd>not yet in LODO disclosure set</dd>
+    <dt>Headline method</dt><dd>cf-corrected formula (capacity × route-EF × cf), evaluated leave-one-plant-out. +82.3% log-MAE reduction vs EU default across the 19 validatable plants.</dd>
   </dl>
 </section>
 

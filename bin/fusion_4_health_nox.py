@@ -15,7 +15,7 @@ What WE can do:
      Yıldız 2022 (industrial provinces). The overlap is the testable
      hypothesis when mortality data becomes available.
   3. Flag the data gap as a policy finding: TR can't currently attribute
-     respiratory disease burden to specific facilities; iz-1 + TÜİK
+     respiratory disease burden to specific facilities; iz + TÜİK
      publishing province-mortality would unlock that.
 """
 
@@ -88,7 +88,7 @@ def main():
     rows = sorted(by_prov.values(), key=lambda d: -d["audit_scope1_t"])
 
     OUT_JSON.write_text(json.dumps({
-        "data_gap_finding": "Province-level respiratory mortality is not publicly published by TÜİK at the granularity needed for facility-attribution regression. Kocak 2024 + Yıldız 2022 PMC both note this explicitly. iz-1's per-facility Beirle/S5P/Scope-1 layer is ready to plug in if/when TÜİK publishes.",
+        "data_gap_finding": "Province-level respiratory mortality is not publicly published by TÜİK at the granularity needed for facility-attribution regression. Kocak 2024 + Yıldız 2022 PMC both note this explicitly. iz's per-facility Beirle/S5P/Scope-1 layer is ready to plug in if/when TÜİK publishes.",
         "persistent_pollution_provinces_yildiz_2022": sorted(PERSISTENT_POLLUTION_PROVINCES),
         "facility_pressure_by_province": rows,
     }, indent=2, ensure_ascii=False))
@@ -103,7 +103,7 @@ def main():
     md.append("Turkey does **not** publish:\n")
     md.append("- Province-level cause-specific mortality (J00-J99 respiratory) at granularity sufficient for facility attribution\n")
     md.append("- District-level mortality\n\n")
-    md.append("**Policy implication**: iz-1 has facility-resolution NOx (Beirle satellite divergence) + audit-grade Scope 1 for 21 facilities across {n_prov} provinces. The moment TÜİK publishes province × ICD-10 J-chapter mortality, this dataset becomes ready-to-join for the first per-facility air-pollution-attribution study in Turkey.\n".format(n_prov=len(rows)))
+    md.append("**Policy implication**: iz has facility-resolution NOx (Beirle satellite divergence) + audit-grade Scope 1 for 21 facilities across {n_prov} provinces. The moment TÜİK publishes province × ICD-10 J-chapter mortality, this dataset becomes ready-to-join for the first per-facility air-pollution-attribution study in Turkey.\n".format(n_prov=len(rows)))
 
     md.append("## Top provinces by industrial pressure (our bench)\n")
     md.append("| Province | Facilities | Total capacity (t/yr) | Audit Scope 1 (tCO₂) | Beirle NOx Σ (kg/s) | Persistent pollution? | Sectors |")
@@ -119,7 +119,7 @@ def main():
     md.append(f"- Persistent provinces with NO bench facility: **{', '.join(sorted(set(PERSISTENT_POLLUTION_PROVINCES) - set(overlap)))}** — likely driven by non-CBAM industry (power, refineries, heating)")
     md.append("")
     md.append("## What this enables\n")
-    md.append("Once TÜİK publishes province × ICD-10-J mortality (or via an FOI / academic data-sharing request to Ministry of Health), the iz-1 facility-pressure layer plugs directly into:\n")
+    md.append("Once TÜİK publishes province × ICD-10-J mortality (or via an FOI / academic data-sharing request to Ministry of Health), the iz facility-pressure layer plugs directly into:\n")
     md.append("1. **Excess respiratory mortality regression** — Beirle NOx flux per province (kg/s, our data) → respiratory mortality / 100k (TÜİK)\n")
     md.append("2. **Persistent-pollution attribution** — for the 8-12 provinces where our facilities sit AND PM10 exceeds EU limit, allocate the excess to specific operators via the Beirle layer\n")
     md.append("3. **Counterfactual modeling** — at each operator's published 2030 reduction target, compute downstream respiratory-mortality reduction expected in their province\n")

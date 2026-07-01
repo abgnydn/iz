@@ -100,8 +100,8 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
     <div class="sub" data-lang="tr">2-katmanlı sinir ağının AB CBAM varsayımına karşı log-MAE azaltımı. %95 veri-bootstrap CI [+%72.0, +%90.6] (5000 yeniden örnekleme). Tohum-CI ±%0.3. <strong>Kapalı-form fizik formülü %85.3'e ulaşıyor</strong> — yayımlanan eyleme dönük temel; sinir ağı istatistiksel olarak eşleşiyor. Ridge regresyon %81.4.</div>
   </div>
   <div class="panel">
-    <h3 data-lang="en">What "iz-1" actually is</h3>
-    <h3 data-lang="tr">"iz-1" aslında nedir</h3>
+    <h3 data-lang="en">What "iz" actually is</h3>
+    <h3 data-lang="tr">"iz" aslında nedir</h3>
     <div class="big">3</div>
     <div class="sub" data-lang="en">a 59-facility public bench, a closed-form route-aware <code>cap × EF × cf</code> formula, and a citeable disclosure crawl across cement / steel / aluminum / fertilizer. Not a foundation model.</div>
     <div class="sub" data-lang="tr">59-tesislik kamuya açık veri seti, rota-duyarlı kapalı-form <code>kap × EF × cf</code> formülü ve çimento / çelik / alüminyum / gübre boyunca kaynaklı açıklama derlemesi. Temel-model değildir.</div>
@@ -134,7 +134,7 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
       <td data-lang="en">Linear ML on the same 18 features, residuals against B1</td>
       <td data-lang="tr">Aynı 18 özellik üzerinde doğrusal makine öğrenmesi, B1'e karşı artıklar</td>
     </tr>
-    <tr><td><strong data-lang="en">iz-1 — 2-layer NN (5 outer × 3 inner LODO seeds, no_ct)</strong><strong data-lang="tr">iz-1 — 2-katmanlı sinir ağı (5 dış × 3 iç LODO tohum, no_ct)</strong></td>
+    <tr><td><strong data-lang="en">iz — 2-layer NN (5 outer × 3 inner LODO seeds, no_ct)</strong><strong data-lang="tr">iz — 2-katmanlı sinir ağı (5 dış × 3 iç LODO tohum, no_ct)</strong></td>
       <td class="num"><strong>0.199</strong></td><td class="num ratio-good"><strong>+83.3%</strong></td>
       <td data-lang="en">LoRA-shaped MLP, residuals against B1. 95% data-bootstrap CI [+72.0%, +90.6%].</td>
       <td data-lang="tr">LoRA-biçimli MLP, B1'e karşı artıklar. %95 veri-bootstrap CI [+%72.0, +%90.6].</td>
@@ -158,10 +158,10 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
 <div class="figure">
   <object data="../reports/fig_iz1_vs_eu_lodo.svg" type="image/svg+xml" style="width:100%;height:auto;"></object>
   <div class="caption" data-lang="en">
-    Each pair of bars is one held-out facility. Light red = EU CBAM default. Green = iz-1 NN (15-seed median, leave-one-out). Black tick = audit-grade disclosed Scope 1 truth. log-y. Bars sorted by truth ascending. The closed-form baseline (Table 0, B1) tracks the black ticks slightly tighter than the green bars on average.
+    Each pair of bars is one held-out facility. Light red = EU CBAM default. Green = iz NN (15-seed median, leave-one-out). Black tick = audit-grade disclosed Scope 1 truth. log-y. Bars sorted by truth ascending. The closed-form baseline (Table 0, B1) tracks the black ticks slightly tighter than the green bars on average.
   </div>
   <div class="caption" data-lang="tr">
-    Her bir çubuk çifti tek bir dışarıda-bırakılmış tesisi gösterir. Açık kırmızı = AB CBAM varsayımı. Yeşil = iz-1 sinir ağı (15-tohum medyan, birini-dışarıda-bırak). Siyah işaret = denetim-düzeyi beyan edilen Kapsam 1 gerçek değer. log-y. Çubuklar gerçek değere göre artan sırada. Kapalı-form temel (Tablo 0, B1) ortalama olarak siyah işaretleri yeşil çubuklardan biraz daha yakın takip eder.
+    Her bir çubuk çifti tek bir dışarıda-bırakılmış tesisi gösterir. Açık kırmızı = AB CBAM varsayımı. Yeşil = iz sinir ağı (15-tohum medyan, birini-dışarıda-bırak). Siyah işaret = denetim-düzeyi beyan edilen Kapsam 1 gerçek değer. log-y. Çubuklar gerçek değere göre artan sırada. Kapalı-form temel (Tablo 0, B1) ortalama olarak siyah işaretleri yeşil çubuklardan biraz daha yakın takip eder.
   </div>
 </div>
 
@@ -173,7 +173,7 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
       <th data-lang="en">Facility</th><th data-lang="tr">Tesis</th>
       <th data-lang="en">Sector / route</th><th data-lang="tr">Sektör / rota</th>
       <th class="num" data-lang="en">Truth (tCO₂/yr)</th><th class="num" data-lang="tr">Gerçek (tCO₂/yıl)</th>
-      <th class="num" data-lang="en">iz-1 (median)</th><th class="num" data-lang="tr">iz-1 (medyan)</th>
+      <th class="num" data-lang="en">iz (median)</th><th class="num" data-lang="tr">iz (medyan)</th>
       <th class="num" data-lang="en">ratio</th><th class="num" data-lang="tr">oran</th>
       <th class="num" data-lang="en">EU default</th><th class="num" data-lang="tr">AB varsayımı</th>
       <th class="num" data-lang="en">Δ vs EU</th><th class="num" data-lang="tr">AB'ye karşı Δ</th>
@@ -267,10 +267,10 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
 <h2 data-lang="en">Section 6 — Ablations</h2>
 <h2 data-lang="tr">Bölüm 6 — Ablasyonlar</h2>
 <p style="font-size:10.5pt;" data-lang="en">
-  9-variant ablation matrix on n=21 LODO. What each design choice actually contributes, vs the headline iz-1 NN reduction of 82.4%:
+  9-variant ablation matrix on n=21 LODO. What each design choice actually contributes, vs the headline iz NN reduction of 82.4%:
 </p>
 <p style="font-size:10.5pt;" data-lang="tr">
-  n=21 LODO üzerinde 9-varyantlı ablasyon matrisi. Her tasarım seçiminin gerçek katkısı, ana iz-1 sinir ağı azaltımı %82.4'e karşı:
+  n=21 LODO üzerinde 9-varyantlı ablasyon matrisi. Her tasarım seçiminin gerçek katkısı, ana iz sinir ağı azaltımı %82.4'e karşı:
 </p>
 <table>
   <thead>
@@ -302,8 +302,8 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
 </p>
 <div class="figure" style="padding: 8pt;">
   <object data="../reports/fig_ablation.svg" type="image/svg+xml" style="width:100%;height:auto;"></object>
-  <div class="caption" data-lang="en">Bar = overall log-MAE reduction vs EU default. Right-side chips = per-sector. Regenerate via <code>bin/run_ablations.py</code> + <code>bin/figure_ablation.py</code>.</div>
-  <div class="caption" data-lang="tr">Çubuk = AB varsayımına karşı genel log-MAE azaltımı. Sağdaki etiketler = sektör-bazlı. <code>bin/run_ablations.py</code> + <code>bin/figure_ablation.py</code> ile yeniden üret.</div>
+  <div class="caption" data-lang="en">Bar = overall log-MAE reduction vs EU default. Right-side chips = per-sector. The ablation harness lives in the iz-lab repo.</div>
+  <div class="caption" data-lang="tr">Çubuk = AB varsayımına karşı genel log-MAE azaltımı. Sağdaki etiketler = sektör-bazlı. Ablasyon araçları iz-lab deposunda.</div>
 </div>
 
 <h2 data-lang="en">Path to v1</h2>
@@ -326,8 +326,8 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
 </ol>
 
 <footer>
-  <span data-lang="en">Repo: <code>github.com/abgnydn/iz</code> · Bench: <code>data/tr_facility_known_emissions.csv</code> · Training: <code>src/iz_browser/train.{html,js}</code> · Eval: <code>bin/e2e_lodo.py</code> · Figure: <code>reports/fig_iz1_vs_eu_lodo.svg</code>.</span>
-  <span data-lang="tr">Repo: <code>github.com/abgnydn/iz</code> · Veri seti: <code>data/tr_facility_known_emissions.csv</code> · Eğitim: <code>src/iz_browser/train.{html,js}</code> · Değerlendirme: <code>bin/e2e_lodo.py</code> · Şekil: <code>reports/fig_iz1_vs_eu_lodo.svg</code>.</span>
+  <span data-lang="en">Repo: <code>github.com/abgnydn/iz</code> · Bench: <code>data/tr_facility_known_emissions.csv</code> · In-browser demo: <code>github.com/abgnydn/iz-lab</code>.</span>
+  <span data-lang="tr">Repo: <code>github.com/abgnydn/iz</code> · Veri seti: <code>data/tr_facility_known_emissions.csv</code> · Tarayıcı-içi demo: <code>github.com/abgnydn/iz-lab</code>.</span>
 </footer>
 
 </div>

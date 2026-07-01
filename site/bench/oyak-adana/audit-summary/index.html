@@ -57,9 +57,9 @@ h2 { font-size: 11pt; margin: 5mm 0 2mm; text-transform: uppercase; letter-spaci
     <div class="delta">climate_trace · </div>
   </div>
   <div class="col">
-    <div class="label">iz-1 prediction (LODO)</div>
+    <div class="label">cf-corrected formula (leave-one-plant-out)</div>
     <div class="value">—</div>
-    <div class="delta">not in LODO set</div>
+    <div class="delta">not in audit-grade set</div>
   </div>
   <div class="col">
     <div class="label">EU CBAM default value</div>
@@ -73,14 +73,14 @@ h2 { font-size: 11pt; margin: 5mm 0 2mm; text-transform: uppercase; letter-spaci
 <div class="cite"></div>
 
 
-<h2>4 · Methodology (iz-1)</h2>
-<p style="font-size: 9.5pt;">iz-1 is a 2-layer browser-resident MLP with WebGPU-accelerated LoRA-shaped weights,
-trained on TR-MRV-Bench v0 (59 Turkish CBAM-scope facilities; 21 audit-grade Scope 1 labels with operator-PDF citations).
-Inputs: nameplate capacity, geo-coordinates, sector + steel route one-hot, Climate-TRACE-derived capacity factor and
-activity, operator-disclosed capacity factor (non-leaky in LODO), and Sentinel-5P NO₂ activity proxy.
-Evaluation: stratified leave-one-disclosure-out with 5 outer × 3 inner = 15 seeds per held-out facility.
-Headline: median 87% reduction in log-MAE vs. EU CBAM default; closed-form formula (capacity × route-EF × cf)
-reaches the same headline within statistical noise.
+<h2>4 · Methodology (cf-corrected formula)</h2>
+<p style="font-size: 9.5pt;">The headline method is a closed-form physics baseline: Scope 1 ≈ nameplate capacity × route emission-factor × capacity factor,
+using only operator-published numbers. It is evaluated <strong>leave-one-plant-out</strong>: each plant's route emission-factor
+is derived only from the <em>other</em> audit-grade plants in its route, so no plant contributes to its own prediction.
+Headline: <strong>+82.3% log-MAE reduction vs the EU CBAM default</strong> across the 19 validatable plants (of 21 audit-grade;
+two single-plant routes — N₂O-controlled and blender fertilizer — cannot be independently validated and are excluded).
+External validity: the same formula on 372 EUTL-verified EU cement installations gives a median ratio ≈1.0 vs the EU default's ≈2.5×.
+An optional in-browser WebGPU model (iz) is shipped as a demo only; it does not beat this formula at current data scale.
 </p>
 
 <h2>5 · Verifier checklist</h2>
@@ -88,8 +88,8 @@ reaches the same headline within statistical noise.
   <li>☐ Confirm Scope 1 line item in the cited source matches the value above (tCO₂ basis; not CO₂-equivalent if different).</li>
   <li>☐ Verify operator's verification statement (ISO 14064-1 / TSRS / financial audit) attached to the source.</li>
   <li>☐ Cross-check capacity against latest published cement / steel / aluminum / fertilizer association registry.</li>
-  <li>☐ If using iz-1 prediction as input to CBAM Article 4(2) actual-emission declaration: the prediction is
-      a model output, not a measurement. Verifier must independently support the underlying activity data.</li>
+  <li>☐ If using the formula prediction as input to a CBAM Article 4(2) actual-emission declaration: it is
+      a model estimate, not a measurement. Verifier must independently support the underlying activity data.</li>
   <li>☐ Confirm the conformal prediction interval covers the operator's claimed Scope 1.</li>
 </ol>
 
@@ -98,7 +98,7 @@ reaches the same headline within statistical noise.
 TR-MRV-Bench v0 is Apache-2.0 licensed. The benchmark, methodology, and per-facility data are public at
 <code>github.com/abgnydn/iz</code> and <code>iz-b0n.pages.dev</code>.
 Cite: Günaydın (2026), "TR-MRV-Bench: a public per-facility emissions benchmark for Turkish CBAM-scope
-industry, with a physics baseline that beats the EU CBAM default by 87%."
+industry, with a physics baseline that beats the EU CBAM default by +82.3% (leave-one-plant-out, n=19)."
 </p>
 
 <div class="footer">iz · TR-MRV-Bench v0.1 · <code>oyak-adana</code> · audit summary printed from
