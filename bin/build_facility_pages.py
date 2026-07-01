@@ -5,7 +5,7 @@ The page is what an operator sees when they Google their plant name. It pulls
 together:
  - identity (company / plant / city / capacity / sector / route)
  - truth (Scope 1 + provenance + assurance + source PDF)
- - iz prediction with conformal CI (when in the LODO disclosure subset)
+ - iz prediction with conformal CI (when in the leave-one-plant-out disclosure subset)
  - EU CBAM default + delta vs. truth
  - Beirle 2023 v2 TROPOMI NOx flux (when within 15 km of a catalog source)
  - EnMAP scenes available (count + first 3 cloud-free dates)

@@ -19,7 +19,7 @@ On this bench we evaluate a closed-form physics baseline:
 tCO₂ = capacity × route-EF × capacity-factor
 ```
 
-with route-aware emission factors (steel BF/BOF / EAF / DRI-EAF, aluminum primary / downstream, fertilizer integrated / N₂O-controlled / blender) and a capacity-factor priority (Climate-TRACE per-asset > operator-disclosed production-÷-capacity > sector mean). The formula reduces per-plant log-MAE by **+85.3%** vs the EU CBAM default in leave-one-disclosure-out (LODO) evaluation across the 21 audit-grade test facilities (capacities operator-audited). A 2-layer LoRA-shaped neural network trained on the bench's residuals against this prior reaches **+83.3%** with 95% data-bootstrap CI [+72.0%, +90.6%] — statistically tied with the closed-form formula. Ridge regression on the same features lags both at +81.4%.
+with route-aware emission factors (steel BF/BOF / EAF / DRI-EAF, aluminum primary / downstream, fertilizer integrated / N₂O-controlled / blender) and a capacity-factor priority (Climate-TRACE per-asset > operator-disclosed production-÷-capacity > sector mean). The formula reduces per-plant log-MAE by **+85.3%** vs the EU CBAM default in leave-one-plant-out (leave-one-plant-out) evaluation across the 21 audit-grade test facilities (capacities operator-audited). A 2-layer LoRA-shaped neural network trained on the bench's residuals against this prior reaches **+83.3%** with 95% data-bootstrap CI [+72.0%, +90.6%] — statistically tied with the closed-form formula. Ridge regression on the same features lags both at +81.4%.
 
 Per-sector bootstrap 95% CIs: aluminum downstream [+89.9%, +91.5%], EAF steel [+96.6%, +97.6%], cement [+66.2%, +92.2%], fertilizer [+34.6%, +93.0%], BF/BOF steel [−289%, +97%] (n=3 stratum, structurally wide).
 
@@ -41,17 +41,17 @@ This paper presents the bench, methodology, and result as **open infrastructure*
 
 1. **TR-MRV-Bench (§4).** Public per-facility emissions benchmark with three-tier supervision (audit-grade / Climate TRACE / cf-corrected default), provenance-tagged labels (direct / allocated / derived / disputed / composite), and stratified train/val/test split by `(scope × route)` covering steel BF/BOF / EAF / DRI-EAF, aluminum primary / downstream, fertilizer integrated / N₂O-controlled / blender. 21 audit-grade test facilities across all four CBAM scopes.
 
-2. **cf-corrected formula baseline (§3, §5).** Closed-form `cap × EF × cf` with explicit route-aware EF and cf priority rules. **+85.3% log-MAE reduction vs EU default on n=21 LODO** (capacities operator-audited). 15 of 21 predictions land within ±20% of audit truth.
+2. **cf-corrected formula baseline (§3, §5).** Closed-form `cap × EF × cf` with explicit route-aware EF and cf priority rules. **+85.3% log-MAE reduction vs EU default on n=21 leave-one-plant-out** (capacities operator-audited). 15 of 21 predictions land within ±20% of audit truth.
 
 3. **EU CBAM default is route-asymmetric (§5.1).** The default over-estimates cement by 2-5×, EAF steel by 10×, downstream aluminum by 4×, and fertilizer blenders by 90×. It is within 5% of audited reality only for big BF/BOF integrated mills.
 
 4. **Climate TRACE under-reports TR industrial emissions (§5.2).** 4 of 5 audit-matched facilities under-reported: Erdemir −29%, İsdemir −22%, Kardemir −23%, Nuh −23%; Göltaş the lone over-report at +11%. Mean bias −17.2%, median −22.5%.
 
-5. **The formula and the model are statistically tied (§6).** A LoRA-shaped MLP achieves +83.3% vs the formula's +85.3% on n=21 LODO. Ridge regression lags at +81.4%. **The shipped baseline is the formula.** The NN is a working reference implementation that future work on satellite features or multi-year LODO can build on.
+5. **The formula and the model are statistically tied (§6).** A LoRA-shaped MLP achieves +83.3% vs the formula's +85.3% on n=21 leave-one-plant-out. Ridge regression lags at +81.4%. **The shipped baseline is the formula.** The NN is a working reference implementation that future work on satellite features or multi-year leave-one-plant-out can build on.
 
 ### 1.2 What's not in this work
 
-We do not use satellite signal — the Sentinel-5P NO₂ pipeline runs but did not make it into the model in v0. We are not a "foundation model" — earlier framing along those lines is dropped; iz is a 2-layer MLP at 500 parameters trained on ~40 samples after LODO holdout. We do not claim per-quarter or per-month accuracy — all labels are annual.
+We do not use satellite signal — the Sentinel-5P NO₂ pipeline runs but did not make it into the model in v0. We are not a "foundation model" — earlier framing along those lines is dropped; iz is a 2-layer MLP at 500 parameters trained on ~40 samples after leave-one-plant-out holdout. We do not claim per-quarter or per-month accuracy — all labels are annual.
 
 ---
 
@@ -65,7 +65,7 @@ We do not use satellite signal — the Sentinel-5P NO₂ pipeline runs but did n
 
 **Earth-observation foundation models.** Prithvi-EO-2.0 (Jakubik et al., 2023; 2024), Clay, SatMAE, ScaleMAE, SpectralGPT provide pre-trained backbones for downstream Earth-observation tasks. These are promising directions for satellite-feature work but at iz's current data scale (~40 training samples) they are infeasible to fine-tune productively.
 
-**Industrial emissions benchmarks.** Most existing emissions benchmarks (CDP, GRESB, TPI) operate at the corporate level, not per-facility. The CDP Cement and Steel sector reports aggregate to operator group level. To our knowledge, TR-MRV-Bench is the first public per-facility emissions benchmark for any country's CBAM-scope industry with explicit source-PDF citations and a reproducible LODO evaluation harness.
+**Industrial emissions benchmarks.** Most existing emissions benchmarks (CDP, GRESB, TPI) operate at the corporate level, not per-facility. The CDP Cement and Steel sector reports aggregate to operator group level. To our knowledge, TR-MRV-Bench is the first public per-facility emissions benchmark for any country's CBAM-scope industry with explicit source-PDF citations and a reproducible leave-one-plant-out evaluation harness.
 
 ---
 
@@ -90,7 +90,7 @@ Three operator-published quantities. The selection rules:
 **Capacity factor (cf)** is operator-disclosed annual production divided by nameplate capacity. Selection priority:
 
 1. Climate TRACE per-asset measurement (independent of operator self-reporting).
-2. Operator-disclosed production ÷ capacity. This is **non-leaky** with respect to Scope 1 emissions because production tonnage is reported on a separate page of the same annual report — when a facility's Scope 1 is held out for LODO, its production tonnage remains available.
+2. Operator-disclosed production ÷ capacity. This is **non-leaky** with respect to Scope 1 emissions because production tonnage is reported on a separate page of the same annual report — when a facility's Scope 1 is held out for leave-one-plant-out, its production tonnage remains available.
 3. Sector-mean default: cement 0.55, steel 0.70, aluminum 0.85, fertilizer 0.65.
 
 The route maps and EF tables are hardcoded in `bin/export_bench_browser.py` and open-source.
@@ -131,9 +131,9 @@ We flag allocated rows with `provenance=allocated` in the CSV and surface the ca
 
 Hash-based 70/15/15 splits put 1 of 3 TR BF/BOF integrated mills in train and 2 in test under naive randomization — the model couldn't extrapolate the cap-vs-emission relationship from `n = 1`. We replaced this with a deterministic stratified split keyed on `(scope × route)` so every fold contains at least one facility from each stratum (cement; steel-BF/BOF, steel-EAF, steel-DRI-EAF; aluminum-primary, aluminum-downstream; fertilizer-integrated, fertilizer-N₂O-controlled, fertilizer-blender).
 
-### 3.6 Evaluation: Leave-one-disclosure-out (LODO)
+### 3.6 Evaluation: Leave-one-disclosure-out (leave-one-plant-out)
 
-For each of the n=21 audit-grade facilities, we force it into the test set, stratify the remaining 58 facilities normally, train the model, and read the prediction for the held-out facility. This gives 21 test points without resampling. We run **5 outer LODO passes × 3 inner seeds = 15 predictions per facility**, report the per-facility median, and additionally bootstrap-resample the n=21 facilities 5000 times to compute the data-variance confidence interval. The 5-outer variance gives the seed CI (model reproducibility); the bootstrap gives the data CI (sensitivity to which facilities are in the test set).
+For each of the n=21 audit-grade facilities, we force it into the test set, stratify the remaining 58 facilities normally, train the model, and read the prediction for the held-out facility. This gives 21 test points without resampling. We run **5 outer leave-one-plant-out passes × 3 inner seeds = 15 predictions per facility**, report the per-facility median, and additionally bootstrap-resample the n=21 facilities 5000 times to compute the data-variance confidence interval. The 5-outer variance gives the seed CI (model reproducibility); the bootstrap gives the data CI (sensitivity to which facilities are in the test set).
 
 ### 3.7 Why log-MAE, not cost-savings
 
@@ -146,7 +146,7 @@ For cement and EAF, both metrics agree — iz is more accurate AND the operator 
 
 ### 3.8 The model
 
-A 2-layer LoRA-shaped MLP with rank-32 hidden dimension, trained on the bench's residuals against the formula prior `y_prior_log = log(cap × EF × cf)`. 18 features per facility (log capacity, normalized lat/lon, scope one-hot, route one-hots, disclosed cf, has-disclosed-cf, CT features when not ablated). Trained in the browser via WebGPU in ~3 seconds. Best-val checkpoint restored. We run with `IZ_NO_CT=1` (no Climate TRACE features) as the headline configuration — including CT features worsens LODO by ~3-4 pp because CT systematically under-reports the TR mills.
+A 2-layer LoRA-shaped MLP with rank-32 hidden dimension, trained on the bench's residuals against the formula prior `y_prior_log = log(cap × EF × cf)`. 18 features per facility (log capacity, normalized lat/lon, scope one-hot, route one-hots, disclosed cf, has-disclosed-cf, CT features when not ablated). Trained in the browser via WebGPU in ~3 seconds. Best-val checkpoint restored. We run with `IZ_NO_CT=1` (no Climate TRACE features) as the headline configuration — including CT features worsens leave-one-plant-out by ~3-4 pp because CT systematically under-reports the TR mills.
 
 ---
 
@@ -196,7 +196,7 @@ BF/BOF crosses zero because TR has only 3 BF/BOF mills (Erdemir, İsdemir, Karde
 
 Remaining outliers (acknowledged in limitations):
 
-- BAGFAŞ Bandırma (fertilizer N₂O-controlled): 21.0k vs 9.8k (2.14×). Only N₂O-controlled facility in TR's disclosure set; LODO holdout has no in-stratum training data, so the model reverts to integrated-fertilizer EF.
+- BAGFAŞ Bandırma (fertilizer N₂O-controlled): 21.0k vs 9.8k (2.14×). Only N₂O-controlled facility in TR's disclosure set; leave-one-plant-out holdout has no in-stratum training data, so the model reverts to integrated-fertilizer EF.
 - Bursa Çimento Kestel (cement): 630k vs 1.12M (0.56×). High actual cf, no operator-disclosed production tonnage.
 - Afyon Çimento (cement): 676k vs 1.2M (0.56×). Same pattern.
 - Toros Mersin (fertilizer integrated, allocated): 0.22M vs 0.38M (0.57×). Capacity-share allocation underestimates the NH₃+urea-heavy Mersin plant.
@@ -217,7 +217,7 @@ CT under-reports 4 of 5; mean bias −17.2%, median −22.5%. Earlier drafts of 
 
 Plausible mechanism: CT's bottom-up inventory underestimates on-site captive power plants and alternative-fuel share in TR — both common in TR integrated mills, both feeding directly into operators' Scope 1 audits, both potentially missed by global methodology. We do not claim CT is wrong globally; we observe that on our 5-facility TR sample it consistently underestimates by ~20%.
 
-When we use CT-derived features in our model, this systematic bias propagates — which is why our headline configuration is the `no_ct` ablation. Adding CT features makes per-plant LODO predictions ~3-4 pp worse.
+When we use CT-derived features in our model, this systematic bias propagates — which is why our headline configuration is the `no_ct` ablation. Adding CT features makes per-plant leave-one-plant-out predictions ~3-4 pp worse.
 
 ---
 
@@ -243,7 +243,7 @@ This suggests a **shadow CBAM default** — a published EF×CF table that the EU
 
 ### 5.3 The model and the formula are statistically tied
 
-The 2-layer NN reaches +83.3% vs the formula's +85.3% on n=21 LODO. Ridge regression on the same features lags at +81.4%. **The actionable shipped baseline is the formula.** The NN exists as a reference implementation that future researchers can build on once the bench has hundreds or thousands of disclosure-labeled facilities or year-time-series satellite features. At today's data scale (~40 training samples post-LODO), parameter growth offers no meaningful gain over data growth.
+The 2-layer NN reaches +83.3% vs the formula's +85.3% on n=21 leave-one-plant-out. Ridge regression on the same features lags at +81.4%. **The actionable shipped baseline is the formula.** The NN exists as a reference implementation that future researchers can build on once the bench has hundreds or thousands of disclosure-labeled facilities or year-time-series satellite features. At today's data scale (~40 training samples post-leave-one-plant-out), parameter growth offers no meaningful gain over data growth.
 
 Implications for the field:
 - Small-data ML in emissions verification is hard for the same reason small-data ML is hard everywhere: you can't beat strong baselines without much more data than the baseline needs.
@@ -251,7 +251,7 @@ Implications for the field:
 
 ### 5.4 What about other countries
 
-This work is TR-specific because we hand-curated TR disclosures. The methodology generalizes: replace `data/tr_facilities.csv` with the equivalent for any other country, replace the route maps if domestic process mix differs, hunt for the country's TSRS-equivalent reporting (Turkey was relatively early to TSRS; most of Europe is now CSRD/ESRS). The closed-form formula and the LODO evaluation harness are country-agnostic.
+This work is TR-specific because we hand-curated TR disclosures. The methodology generalizes: replace `data/tr_facilities.csv` with the equivalent for any other country, replace the route maps if domestic process mix differs, hunt for the country's TSRS-equivalent reporting (Turkey was relatively early to TSRS; most of Europe is now CSRD/ESRS). The closed-form formula and the leave-one-plant-out evaluation harness are country-agnostic.
 
 For other CBAM-exporting countries (Russia, India, China, Brazil, Egypt, Morocco) the analogous benchmark would require ~2-3 months of one-person disclosure-mining work. We release the code structure as a template.
 
@@ -259,7 +259,7 @@ For other CBAM-exporting countries (Russia, India, China, Brazil, Egypt, Morocco
 
 ## 6. Limitations
 
-1. **n=21 is small.** Single-instance disclosure-route strata (BAGFAŞ N₂O-controlled, Gübretaş blender) have no in-stratum LODO training counterpart. Our 95% data-bootstrap CI [+72.0%, +90.6%] reflects this.
+1. **n=21 is small.** Single-instance disclosure-route strata (BAGFAŞ N₂O-controlled, Gübretaş blender) have no in-stratum leave-one-plant-out training counterpart. Our 95% data-bootstrap CI [+72.0%, +90.6%] reflects this.
 
 2. **"Audit-grade" is three tiers.** ISO 14064-1 verified (n=5) > TSRS limited assurance (n=6) > operator IAR (n=10). The headline does not weight by tier — a v0 simplification.
 
@@ -273,13 +273,13 @@ For other CBAM-exporting countries (Russia, India, China, Brazil, Egypt, Morocco
 
 7. **Erdemir 2024 IAR restated 2023 from 6.56M → 5.95M.** We use the restatement. This raises a question about the stability of any single year's audit-grade disclosure.
 
-8. **LODO is not cold prediction.** When we hold out Erdemir, the other 2 BF/BOF mills remain in training. A genuinely new BF/BOF mill would have no in-stratum data.
+8. **leave-one-plant-out is not cold prediction.** When we hold out Erdemir, the other 2 BF/BOF mills remain in training. A genuinely new BF/BOF mill would have no in-stratum data.
 
 9. **BF/BOF stratum has only 3 mills in TR.** Bootstrap CI on this stratum is [−289%, +97%] — uninformative. The EU CBAM default for BF/BOF is also already within ±15% of TR reality, so the stratum is structurally hard regardless of method.
 
 10. **"85.3% beats EU default" is log-MAE reduction**, not error reduction. A non-technical reader may misinterpret.
 
-11. **39 cf-corrected facilities are formula-predicted by construction.** The +85.3% headline applies only to the 21 truth-labeled LODO rows. The other 39 have labels assigned from the same formula being evaluated.
+11. **39 cf-corrected facilities are formula-predicted by construction.** The +85.3% headline applies only to the 21 truth-labeled leave-one-plant-out rows. The other 39 have labels assigned from the same formula being evaluated.
 
 12. **Climate TRACE under-reporting claim is n=5 audit-matched.** We do not claim CT is wrong globally — only that in our 5-facility TR sample it consistently underestimates.
 
@@ -332,7 +332,7 @@ The Beirle 2023 ESSD catalog (doi:10.5194/essd-15-3051-2023, with supplementary 
 
 ### 8.3 Conformal prediction interval
 
-Following Singh et al. (2024, Nature Scientific Reports doi:10.1038/s41598-024-65954-w) and Chen et al. (2025, arXiv:2512.04566), we compute a jackknife split-conformal prediction interval on the LODO predictions. For each held-out facility i, we calibrate the conformity score |log(pred) − log(truth)| on the other 20 LODO predictions, take the 95th percentile, and form a multiplicative interval [pred ÷ exp(q), pred × exp(q)]:
+Following Singh et al. (2024, Nature Scientific Reports doi:10.1038/s41598-024-65954-w) and Chen et al. (2025, arXiv:2512.04566), we compute a jackknife split-conformal prediction interval on the leave-one-plant-out predictions. For each held-out facility i, we calibrate the conformity score |log(pred) − log(truth)| on the other 20 leave-one-plant-out predictions, take the 95th percentile, and form a multiplicative interval [pred ÷ exp(q), pred × exp(q)]:
 
 - Target coverage 95% (α = 0.05).
 - **Empirical coverage: 90.5% (19/21 covered).**
@@ -343,11 +343,11 @@ Operator-readable interpretation: **iz predicts within a factor of ~2 of audited
 
 ### 8.4 Per-facility operator-facing artifacts
 
-The v0.1.2 release ships per-facility detail pages at `/bench/{id}/` and a printable single-page audit summary at `/bench/{id}/audit-summary/`. Each detail page consolidates all evidence pertaining to one plant — audit-grade Scope 1 with source PDF citation, iz LODO prediction with conformal CI, EU CBAM default delta, Beirle 2023 NOx cross-match when applicable, EnMAP scene index for future hyperspectral retrieval — into one URL operators can land on directly via a Google search. The audit summary is a print-stylesheet page designed to fit on A4 and printable to PDF by the operator, suitable for handing to an EU-accredited verifier alongside CBAM Article 4(2) actual-emission declarations. Both artifacts are generated deterministically from `site/bench/facilities.json` by `bin/build_facility_pages.py`.
+The v0.1.2 release ships per-facility detail pages at `/bench/{id}/` and a printable single-page audit summary at `/bench/{id}/audit-summary/`. Each detail page consolidates all evidence pertaining to one plant — audit-grade Scope 1 with source PDF citation, iz leave-one-plant-out prediction with conformal CI, EU CBAM default delta, Beirle 2023 NOx cross-match when applicable, EnMAP scene index for future hyperspectral retrieval — into one URL operators can land on directly via a Google search. The audit summary is a print-stylesheet page designed to fit on A4 and printable to PDF by the operator, suitable for handing to an EU-accredited verifier alongside CBAM Article 4(2) actual-emission declarations. Both artifacts are generated deterministically from `site/bench/facilities.json` by `bin/build_facility_pages.py`.
 
 ### 8.5 Beirle NOx as an iz input feature: a negative result
 
-We integrated the Beirle 2023 v2 NOx fluxes (§8.2) as iz input features (`beirle_nox_log`, `beirle_dist`, `beirle_has`) and re-ran the full LODO aggregator (5 outer × 3 inner = 15 seeds, n=21 facilities). With only 6 of 21 facilities having an in-catalog NOx source within 15 km, the feature behaves as a sparse, noisy indicator: log-MAE reduction moved from 83.3% (pre-Beirle baseline) to 81.6% with the three Beirle features included (per-outer reductions: 80.1%, 80.8%, 82.8%, 81.2%, 81.8%). A 1.7-percentage-point regression — the marginal cost of three additional input dimensions outweighs the signal that the sparse hits provide.
+We integrated the Beirle 2023 v2 NOx fluxes (§8.2) as iz input features (`beirle_nox_log`, `beirle_dist`, `beirle_has`) and re-ran the full leave-one-plant-out aggregator (5 outer × 3 inner = 15 seeds, n=21 facilities). With only 6 of 21 facilities having an in-catalog NOx source within 15 km, the feature behaves as a sparse, noisy indicator: log-MAE reduction moved from 83.3% (pre-Beirle baseline) to 81.6% with the three Beirle features included (per-outer reductions: 80.1%, 80.8%, 82.8%, 81.2%, 81.8%). A 1.7-percentage-point regression — the marginal cost of three additional input dimensions outweighs the signal that the sparse hits provide.
 
 To assess whether satellite features in aggregate are a net positive or negative, we ran a 3-variant ablation matrix (2 outer × 3 inner = 6 seeds per facility, n=21; saved to `reports/ablations/satellite_summary_v0.1.2.json`):
 
@@ -376,7 +376,7 @@ playwright install chromium
 # (2) Start the HTTP server (for browser-side trainer)
 # in-browser demo moved to github.com/abgnydn/iz-lab
 
-# (3) Run the headline LODO + bootstrap
+# (3) Run the headline leave-one-plant-out + bootstrap
 # in-browser model demo + its eval harness live in github.com/abgnydn/iz-lab
 .venv/bin/python bin/baselines.py
 ```

@@ -13,7 +13,7 @@ Per-row fields emitted:
  - assurance (one of: iso14064 / tsrs_assured / operator_audited / derived / disputed / "")
  - notes (operator-side caveats e.g. Habaş plate mill split)
  - eu_default
- - pred_median, pred_range (from lodo_aggregated.json if facility is in disclosure LODO set)
+ - pred_median, pred_range (from lodo_aggregated.json if facility is in disclosure leave-one-plant-out set)
 
 The bench browser uses these fields directly.
 """
@@ -65,7 +65,7 @@ FACILITY_OVERRIDE_NOTES: dict[str, str] = {
     "tosyali-osmaniye": (
         "Disputed: Tosyalı Holding 2022 = 424,901 tCO₂ for ~5M t/yr capacity is implausibly low. "
         "Likely a scope-narrowing (Turkey-only vs Türkiye+Africa) — see Tosyalı 2021/22 SRs. "
-        "Excluded from LODO test set."
+        "Excluded from the leave-one-plant-out test set."
     ),
     "assan-tuzla": (
         "Combined Tuzla + Dilovası sites. Downstream rolling/foil only — no Hall-Héroult smelting. "
@@ -113,7 +113,7 @@ def main() -> None:
         ):
             latest[r["id"]] = r
 
-    # Aggregated LODO predictions (per-facility median + range from lodo_aggregated.json).
+    # Aggregated leave-one-plant-out predictions (per-facility median + range from lodo_aggregated.json).
     # NOTE: this is the in-browser iz DEMO model, kept for the /verify/ demo only —
     # it is NOT the headline. The headline is the cf-corrected formula below.
     agg_by_id: dict[str, dict] = {}
@@ -181,7 +181,7 @@ def main() -> None:
 
     OUT.write_text(json.dumps(out_rows, indent=1, default=str))
     print(f"wrote {OUT.relative_to(REPO)}  ({len(out_rows)} facilities)")
-    print(f"  with LODO predictions: {sum(1 for r in out_rows if r['pred_median'])}")
+    print(f"  with leave-one-plant-out predictions: {sum(1 for r in out_rows if r['pred_median'])}")
     print(f"  with disclosure label: {sum(1 for r in out_rows if r['truth_src'])}")
     print(f"  assurance tiers:")
     from collections import Counter

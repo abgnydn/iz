@@ -142,8 +142,8 @@ Per-facility, honest (LOPO) ratios. The last two rows are the **only** plant of 
 5. **The neural net is a demo, not a result.** iz (in-browser WebGPU, ~500-param MLP on ~40 samples) does not beat the closed-form formula at this data scale. It is kept out of the headline and the reproducibility path on purpose. Revisit once the bench scales (the EUTL pull adds ~800 plant-labels).
 6. **Operator-self-reported truths.** Strong labels come from operator IARs / sustainability reports / TSRS-compliant disclosures (mostly Big4-audited, several ISO 14064-1 verified). Not third-party-verified. This is the same trust problem Climate TRACE tries to bypass.
 7. **Climate TRACE under-reporting claim is sample-size 3.** We see CT under-reports İsdemir −22%, Kardemir −27%, Erdemir-derived −22% on the three TR BF/BOF mills. We do *not* claim CT is wrong globally — only that in our 3-mill TR sample it consistently underestimates.
-8. **BF/BOF stratum (n=3) is trivially partitioned under LODO.** With only 3 BF/BOF mills in TR (Erdemir, İsdemir, Kardemir), leave-one-out is "predict from the other 2". Not a real generalization test on this stratum.
-9. **Capacity-factor variance is the dominant residual.** Göltaş (0.44× truth) and Afyon (0.70×) both have actual cf well above the cement-sector default 0.55 used in the formula prior when they are held out. This is honest LODO behavior: cf is plant-specific and not predictable from capacity alone.
+8. **BF/BOF stratum (n=3) is trivially partitioned under leave-one-plant-out.** With only 3 BF/BOF mills in TR (Erdemir, İsdemir, Kardemir), leave-one-out is "predict from the other 2". Not a real generalization test on this stratum.
+9. **Capacity-factor variance is the dominant residual.** Göltaş (0.44× truth) and Afyon (0.70×) both have actual cf well above the cement-sector default 0.55 used in the formula prior when they are held out. This is honest leave-one-plant-out behavior: cf is plant-specific and not predictable from capacity alone.
 10. **Allocated labels.** Akçansa per-plant labels are allocated from group total by clinker-production share. Toros Tarım Mersin/Samsun/Ceyhan are allocated from group total 842,174 tCO₂ by nameplate capacity. Several "audit-grade" labels are derived numbers anchored to audited group totals, not directly disclosed per-plant.
 11. **Some capacities in `tr_facilities.csv` were corrected mid-session** (Çanakkale 4.5M → 6M; Erdemir Ereğli 6M → 4M crude steel). Other facilities may have similar nameplate errors we haven't audited.
 
@@ -207,10 +207,10 @@ All raw disclosure PDFs live under `data/disclosures/` (gitignored by default fo
 
 ## Limitations (paper Section 8)
 
-- **N=8 disclosure facilities is small.** Bigger benchmarks would let us run real cross-validation rather than LODO.
+- **N=8 disclosure facilities is small.** Bigger benchmarks would let us run real cross-validation rather than leave-one-plant-out.
 - **BF/BOF integrated steel is structurally hard for any model.** TR has only 3 BF/BOF mills (Erdemir, İsdemir, Kardemir) and EU CBAM's 1.9 t/t is already close to the audited 1.97-2.40 range. iz matches but does not meaningfully beat EU default on this stratum.
 - **No satellite signal yet.** S5P NO₂ feature pipeline is rate-limited by Microsoft Planetary Computer; full 57-facility pull blocked.
-- **İsdemir 0.64×** is the largest outlier. The cf_corrected formula gets it within 6% of truth (10.24M vs 10.66M) but the trained model under-predicts. Root cause: only 2 other BF/BOF mills in train under LODO, and one of them (Erdemir) has very different cf.
+- **İsdemir 0.64×** is the largest outlier. The cf_corrected formula gets it within 6% of truth (10.24M vs 10.66M) but the trained model under-predicts. Root cause: only 2 other BF/BOF mills in train under leave-one-plant-out, and one of them (Erdemir) has very different cf.
 
 ## Deploy
 

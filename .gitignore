@@ -46,3 +46,6 @@ data/geo/ne_50m_admin_0_countries.geojson
 !data/eutl/
 !data/eutl/*.parquet
 outputs/
+
+# wrangler cache (from local deploy)
+.wrangler/
