@@ -1,5 +1,23 @@
 # Changelog
 
+## v0.4.1 — audit corrections (patch)
+
+A multi-round comprehensive audit of v0.4.0 caught and fixed real errors that had
+survived into the v0.4.0 release:
+
+- **Paper Table 1** was a stale neural-net table mislabeled "formula (LOPO)" — wrong
+  per-facility ratios, a missing plant (Bursa), and flipped Δ-vs-EU signs. Regenerated
+  from the honest data.
+- **Erdemir** (6,673,266 derived → 6,667,232 audit-grade) and **Nuh** (duplicate rows
+  reconciled to 3,584,953) truth values corrected at source.
+- **Conformal intervals** on facility pages were computed from the removed neural net;
+  recomputed from the formula's leave-one-plant-out predictions (n=19, 94.7% coverage).
+- Fixed a facility-page capacity-formatting bug, the CSV column names, the OG social
+  image (−85.9% → −82.3%), the assurance-tier counts, and the Climate-TRACE label count.
+- **Conciseness pass:** deleted ~191 dead/duplicate/superseded files (the unlinked
+  drifting JSON API, the fusion scripts + reports, superseded drafts, orphaned
+  marketing) — fewer surfaces, fewer places for errors.
+
 ## v0.4.0 — honest leave-one-plant-out headline (correction release)
 
 This is a **correction release**. Earlier versions (v0.3.x) overstated the headline
