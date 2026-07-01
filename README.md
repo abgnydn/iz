@@ -212,6 +212,17 @@ All raw disclosure PDFs live under `data/disclosures/` (gitignored by default fo
 - **No satellite signal yet.** S5P NO₂ feature pipeline is rate-limited by Microsoft Planetary Computer; full 57-facility pull blocked.
 - **İsdemir 0.64×** is the largest outlier. The cf_corrected formula gets it within 6% of truth (10.24M vs 10.66M) but the trained model under-predicts. Root cause: only 2 other BF/BOF mills in train under LODO, and one of them (Erdemir) has very different cf.
 
+## Deploy
+
+The site (`site/`) is served on [Cloudflare Pages](https://iz-b0n.pages.dev) via the
+GitHub integration — there is no `wrangler.toml` in the repo, so **merging to `master`
+auto-builds and deploys** (the `site/_redirects` rules apply automatically). No manual
+step. For a direct-upload project or a manual preview: `just deploy` (=
+`wrangler pages deploy site --project-name iz-b0n`).
+
+Common tasks are in the `justfile`: `just repro` (headline), `just build`,
+`just test`, `just fetch-data`, `just all`.
+
 ## Layout
 
 ```
