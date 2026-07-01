@@ -79,7 +79,7 @@ Tests: `.venv/bin/python -m pytest tests/` (sanity checks).
 >
 > Coverage: all four CBAM scopes (cement, steel, aluminum, fertilizer) including primary vs downstream aluminum and N₂O-controlled vs integrated fertilizer. n is small (21 audit-grade, 19 validatable). We are honest about variance and confidence in Limitations. No satellite signal in v0. The in-browser neural net (iz) is a demo, not part of the result.
 
-[**Paper preview (1-pager)**](./marketing/paper_preview_v0.html) · [**Reproduce it**](https://iz-b0n.pages.dev/verify/) · [**Brain notes**](https://github.com/abgnydn/brain)
+[**Paper preview (1-pager)**](https://iz-b0n.pages.dev/paper/) · [**Reproduce it**](https://iz-b0n.pages.dev/verify/) · [**Brain notes**](https://github.com/abgnydn/brain)
 
 ---
 
@@ -141,7 +141,7 @@ Per-facility, honest (LOPO) ratios. The last two rows are the **only** plant of 
 4. **No satellite signal in v0.** The S5P NO₂ pipeline runs but didn't make it into the formula. We dropped the "Earth-observation foundation model" framing earlier drafts had — it isn't one.
 5. **The neural net is a demo, not a result.** iz (in-browser WebGPU, ~500-param MLP on ~40 samples) does not beat the closed-form formula at this data scale. It is kept out of the headline and the reproducibility path on purpose. Revisit once the bench scales (the EUTL pull adds ~800 plant-labels).
 6. **Operator-self-reported truths.** Strong labels come from operator IARs / sustainability reports / TSRS-compliant disclosures (mostly Big4-audited, several ISO 14064-1 verified). Not third-party-verified. This is the same trust problem Climate TRACE tries to bypass.
-7. **Climate TRACE under-reporting claim is sample-size 3.** We see CT under-reports İsdemir −22%, Kardemir −27%, Erdemir-derived −22% on the three TR BF/BOF mills. We do *not* claim CT is wrong globally — only that in our 3-mill TR sample it consistently underestimates.
+7. **Climate TRACE under-reporting claim is sample-size 5.** CT under-reports 4 of 5 audit-matched TR facilities (Erdemir −29%, İsdemir −22%, Kardemir −23%, Nuh −23%; Göltaş +11%), mean bias −17.2%. We do *not* claim CT is wrong globally — only that on these 5 audit-matched TR facilities it consistently underestimates.
 8. **BF/BOF stratum (n=3) is trivially partitioned under leave-one-plant-out.** With only 3 BF/BOF mills in TR (Erdemir, İsdemir, Kardemir), leave-one-out is "predict from the other 2". Not a real generalization test on this stratum.
 9. **Capacity-factor variance is the dominant residual.** The cement under-predictions — Afyon 0.59×, Bursa 0.63×, Nuh 0.69× — run at actual capacity factors above the cement-sector default 0.55 used in the formula prior when they are held out. This is honest leave-one-plant-out behavior: cf is plant-specific and not predictable from capacity alone.
 10. **Allocated labels.** Akçansa per-plant labels are allocated from group total by clinker-production share. Toros Tarım Mersin/Samsun/Ceyhan are allocated from group total 842,174 tCO₂ by nameplate capacity. Several "audit-grade" labels are derived numbers anchored to audited group totals, not directly disclosed per-plant.
@@ -182,7 +182,7 @@ uv run python bin/verifier_b6_eutl_score.py
 - **Leave-one-plant-out EF** (`bin/lopo_ef_eval.py`) — the honest evaluation. Each plant's emission-factor is the median implied EF (`truth / (cap × cf)`) of the *other* plants in its route, so no plant contributes to its own prediction. Routes with a single plant are reported as unvalidatable rather than scored.
 - **Route-aware EF** (`is_bfbof / is_eaf / is_dri_eaf`, aluminum primary/downstream, fertilizer integrated/N₂O/blender) — EAF mills emit 5-10× less Scope 1 per tonne than BF/BOF; steel EF alone would massively over-predict EAF.
 - **Disclosed-cf table** — capacity factor = production/capacity derived from IAR text. Non-leaky w.r.t. Scope 1 because production tonnage is disclosed independently of emissions; only the EF was ever fitted, which is what LOPO corrects for.
-- **Capacity-factor-corrected labels** — replace raw `capacity × EU_default_EF` with `capacity × TR_actual_EF × cf`. The formula matches Akçansa Büyükçekmece audited Scope 1 within 1% (1.502M vs 1.514M disclosed).
+- **Capacity-factor-corrected labels** — replace raw `capacity × EU_default_EF` with `capacity × TR_actual_EF × cf`. The formula matches Habaş Aliağa audited Scope 1 within 2% (843k vs 830k, leave-one-plant-out).
 - _Demo only:_ the WebGPU model trains against the residual `y_log − log(cap × EF × cf)` — it lives in the separate [iz-lab](https://github.com/abgnydn/iz-lab) repo and is not used in this headline.
 
 ## Data sources
@@ -199,7 +199,7 @@ All raw disclosure PDFs live under `data/disclosures/` (gitignored by default fo
 | Erdemir Ereğli | 2024 | 6,667,232 | Direct: 2024 IAR p79 (kgk-verified) |
 | Erdemir Ereğli | 2023 | 6,559,030 | [Tracenable](https://tracenable.com/company/erdemir/ghg-emissions) |
 | Kardemir Karabük | 2022 | 5,539,756 | [2022 SR p61 (KGK)](https://www.kgk.gov.tr/Portalv2Uploads/files/Duyurular/v2/Surdurulebilirlik/Raporlar/Kardemir%202022%20y%C4%B1l%C4%B1%20S%C3%BCrd%C3%BCr%C3%BClebilirlik%20Raporu.pdf) |
-| Nuh Hereke | 2024 | 3,573,278 (ISO 14064 verified) | [2024 IAR p59](https://www.nuhcimento.com.tr/wp-content/uploads/Nuh-Cimento-2024-Integrated-Annual-Report-1.pdf) |
+| Nuh Hereke | 2024 | 3,584,953 (TSRS refined, cement-only parent) | [2024 IAR p59](https://www.nuhcimento.com.tr/wp-content/uploads/Nuh-Cimento-2024-Integrated-Annual-Report-1.pdf) |
 | OYAK Çimento group | 2023 | 7,712,391 | [2023 Integrated Report p30](https://assets.oyakcimento.com/contents/pdf/2024255/85591726125090012652.pdf) |
 | Limak Çimento group | 2023 | 7,138,623 | [2023 SR p89](https://www.limakcimento.com/assets/images/dosya/sustainability-report-2023_1751267090.pdf) |
 | Climate TRACE per-asset | 2024 | 13 TR facilities | api.climatetrace.org `/v6/assets/{id}` |
@@ -227,7 +227,7 @@ data/tr_facilities.csv                 ← 59 TR CBAM-scope facilities
 data/tr_facility_known_emissions.csv   ← audit-grade + weak strong-label rows (21 audit-grade)
 data/disclosures/     ← downloaded IAR / sustainability PDFs (gitignored)
 reports/              ← Generated artifacts: lopo_ef_eval.json, fig_formula_vs_eu.svg
-marketing/            ← paper_preview_v0.html (1-page paper summary)
+marketing/            ← flyer + report drafts (not the current paper; see /paper/)
 PAPER_OUTLINE.md      ← Full paper outline
 CLAUDE.md             ← Development log + resume block
 ```
