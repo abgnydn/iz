@@ -164,7 +164,7 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
 <h2 data-lang="en">Figure 1 — Per-plant predictions vs EU CBAM default</h2>
 <h2 data-lang="tr">Şekil 1 — Tesis-bazlı tahminler ve AB CBAM varsayımı</h2>
 <div class="figure">
-  <object data="/assets/fig_iz1_vs_eu_lodo.svg" type="image/svg+xml" style="width:100%;height:auto;"></object>
+  <object data="/assets/fig_formula_vs_eu.svg" type="image/svg+xml" style="width:100%;height:auto;"></object>
   <div class="caption" data-lang="en">
     Each pair of bars is one held-out facility. Light red = EU CBAM default. Green = leave-one-plant-out prediction (median). Black tick = audit-grade disclosed Scope 1 truth. log-y. Bars sorted by truth ascending. The shipped result is the closed-form formula (+82.3%, n=19); iz, the in-browser WebGPU net, is an engineering demo shown for illustration only and is not part of the result.
   </div>
@@ -323,11 +323,8 @@ CBAM ve gelişmekte olan emisyon-ticaret rejimleri, bağımsızca doğrulanabili
 <p style="font-size:10pt; color:var(--muted); font-style:italic;" data-lang="tr">
   N_OUTER=1 — küçük etkiler (≤2 puan) tohum gürültüsü içinde; kararlı CI'ler için N_OUTER≥5 gerekir. Açık sonuçlar: <strong>öncel, rota, beyanlı-cf gerçek sinyal taşıyıcıları</strong>; CT ve uydu özellikleri bu veri ölçeğinde net sıfır (veya hafif negatif). Önceki "CT özellikleri zarar veriyor" bulgusuyla aynı kalıp — n=19'da 15+ özellikle, gürültülü yardımcı sinyaller (yanlı emisyonlardan hesaplanan CT cf; tek tesis üzerindeki S5P NO₂) bilgi katmadan varyans ekliyor.
 </p>
-<div class="figure" style="padding: 8pt;">
-  <object data="/assets/fig_ablation.svg" type="image/svg+xml" style="width:100%;height:auto;"></object>
-  <div class="caption" data-lang="en">Bar = overall log-MAE reduction vs EU default. Right-side chips = per-sector. The ablation harness lives in the iz-lab repo.</div>
-  <div class="caption" data-lang="tr">Çubuk = AB varsayımına karşı genel log-MAE azaltımı. Sağdaki etiketler = sektör-bazlı. Ablasyon araçları iz-lab deposunda.</div>
-</div>
+<p class="caption" style="font-size:9.5pt; color:var(--muted); font-style:italic;" data-lang="en">The full feature-ablation harness (the neural-net variant that produced these deltas) lives in the <a href="https://github.com/abgnydn/iz-lab">iz-lab</a> repo; the table above is the honest summary.</p>
+<p class="caption" style="font-size:9.5pt; color:var(--muted); font-style:italic;" data-lang="tr">Tam özellik-ablasyon aracı (bu farkları üreten sinir-ağı varyantı) <a href="https://github.com/abgnydn/iz-lab">iz-lab</a> deposunda; yukarıdaki tablo dürüst özettir.</p>
 
 <h2 data-lang="en">Path to v1</h2>
 <h2 data-lang="tr">v1'e giden yol</h2>
