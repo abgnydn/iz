@@ -18,7 +18,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://iz-b0n.pages.dev/bench/nuh-hereke/og.png">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Hereke Cement Plant CO2 emissions (2024)","alternateName":["Hereke Cement Plant","Nuh Çimento","Nuh Çimento Hereke Cement Plant"],"description":"Audit-grade Scope 1, cf-corrected formula prediction (leave-one-plant-out), EU CBAM default, and full source citations for Hereke Cement Plant, Hereke, Türkiye. Industry: cement.","url":"https://iz-b0n.pages.dev/bench/nuh-hereke/","identifier":"nuh-hereke","license":"https://www.apache.org/licenses/LICENSE-2.0","creator":{"@type":"Person","name":"Ahmet Barış Günaydın","email":"hi@barisgunaydin.com","url":"https://barisgunaydin.com"},"publisher":{"@type":"Organization","name":"TR-MRV-Bench","url":"https://iz-b0n.pages.dev"},"isAccessibleForFree":true,"keywords":["CBAM","Scope 1","CO2 emissions","Turkey","cement","Nuh Çimento","Hereke Cement Plant"],"spatialCoverage":{"@type":"Place","name":"Hereke Cement Plant, Hereke, Türkiye","geo":{"@type":"GeoCoordinates","addressCountry":"TR"}},"variableMeasured":[{"@type":"PropertyValue","name":"CO2 emissions (Scope 1, 2024)","value":3573278,"unitText":"tCO2 per year","description":"Audit-grade per-facility Scope 1, direct, iso14064. Source: Nuh 2024 IAR p59 (ISO 14064-1:2018 verified)"},{"@type":"PropertyValue","name":"cf-corrected formula prediction (leave-one-plant-out)","value":2466776,"unitText":"tCO2 per year","description":"Closed-form capacity × route-EF × cf, with the route emission-factor derived only from the other audit-grade plants (leave-one-plant-out). +82.3% log-MAE reduction vs EU default across 19 validatable plants."},{"@type":"PropertyValue","name":"EU CBAM default","value":9028800,"unitText":"tCO2 per year","description":"EU CBAM Article 4(3) default value: nameplate capacity × sector default emission factor."}],"citation":"Nuh 2024 IAR p59 (ISO 14064-1:2018 verified)","distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://iz-b0n.pages.dev/bench/facilities.json"},{"@type":"DataDownload","encodingFormat":"text/csv","contentUrl":"https://iz-b0n.pages.dev/bench/tr_bench_v0.csv"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Hereke Cement Plant CO2 emissions (2024)","alternateName":["Hereke Cement Plant","Nuh Çimento","Nuh Çimento Hereke Cement Plant"],"description":"Audit-grade Scope 1, cf-corrected formula prediction (leave-one-plant-out), EU CBAM default, and full source citations for Hereke Cement Plant, Hereke, Türkiye. Industry: cement.","url":"https://iz-b0n.pages.dev/bench/nuh-hereke/","identifier":"nuh-hereke","license":"https://www.apache.org/licenses/LICENSE-2.0","creator":{"@type":"Person","name":"Ahmet Barış Günaydın","email":"hi@barisgunaydin.com","url":"https://barisgunaydin.com"},"publisher":{"@type":"Organization","name":"TR-MRV-Bench","url":"https://iz-b0n.pages.dev"},"isAccessibleForFree":true,"keywords":["CBAM","Scope 1","CO2 emissions","Turkey","cement","Nuh Çimento","Hereke Cement Plant"],"spatialCoverage":{"@type":"Place","name":"Hereke Cement Plant, Hereke, Türkiye","geo":{"@type":"GeoCoordinates","addressCountry":"TR"}},"variableMeasured":[{"@type":"PropertyValue","name":"CO2 emissions (Scope 1, 2024)","value":3584953,"unitText":"tCO2 per year","description":"Audit-grade per-facility Scope 1, direct, tsrs_assured. Source: Nuh Çimento 2024 TSRS Report p56 (refined)"},{"@type":"PropertyValue","name":"cf-corrected formula prediction (leave-one-plant-out)","value":2466776,"unitText":"tCO2 per year","description":"Closed-form capacity × route-EF × cf, with the route emission-factor derived only from the other audit-grade plants (leave-one-plant-out). +82.3% log-MAE reduction vs EU default across 19 validatable plants."},{"@type":"PropertyValue","name":"EU CBAM default","value":9028800,"unitText":"tCO2 per year","description":"EU CBAM Article 4(3) default value: nameplate capacity × sector default emission factor."}],"citation":"Nuh Çimento 2024 TSRS Report p56 (refined)","distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://iz-b0n.pages.dev/bench/facilities.json"},{"@type":"DataDownload","encodingFormat":"text/csv","contentUrl":"https://iz-b0n.pages.dev/bench/tr_bench_v0.csv"}]}</script>
 <link rel="stylesheet" href="/assets/style.css">
 <style>
 .metric { font-family: var(--mono); font-size: 17px; margin: 6px 0; }
@@ -75,8 +75,8 @@
   <div class="row-pred">
     <div class="card iz">
       <div class="label">Audit-grade Scope 1 · 2024</div>
-      <div class="value">3,573,278</div>
-      <div class="delta muted">tCO₂ · <span class="badge direct">direct</span> · ISO 14064-1 verified</div>
+      <div class="value">3,584,953</div>
+      <div class="delta muted">tCO₂ · <span class="badge direct">direct</span> · TSRS independent assurance</div>
     </div>
     <div class="card iz">
       <div class="label">cf-corrected formula (leave-one-plant-out)</div>
@@ -86,10 +86,10 @@
     <div class="card eu">
       <div class="label">EU CBAM default</div>
       <div class="value">9,028,800</div>
-      <div class="delta"><span class="muted">+153% vs. truth</span></div>
+      <div class="delta"><span class="muted">+152% vs. truth</span></div>
     </div>
   </div>
-  <div class="ci-line">95% conformal prediction interval (global, n=21): <strong>1,205,409</strong> – <strong>5,104,829</strong> tCO₂ <span class="muted">(truth inside ✓)</span></div>
+  <div class="ci-line">95% conformal prediction interval (formula, leave-one-plant-out, n=19): <strong>1,334,915</strong> – <strong>4,558,330</strong> tCO₂ <span class="muted">(truth inside ✓)</span></div><div class="ci-line" style="margin-top:4px;">95% interval restricted to <code>cement</code> calibration set: <strong>1,453,791</strong> – <strong>4,185,597</strong> tCO₂ <span class="muted">(truth inside ✓ · undercoverage caveat at small n)</span></div>
   <p style="margin-top:14px;"><a href="audit-summary/" style="display:inline-block;padding:8px 14px;background:var(--iz);color:white;border:none;border-bottom:none;font-family:var(--sans);font-size:13px;font-weight:600;">Open printable audit summary →</a>
   <span class="muted" style="font-family:var(--sans);font-size:12px;margin-left:10px;">One-page PDF you can hand to a verifier.</span></p>
 </section>
@@ -110,9 +110,9 @@
 
 <section>
   <h2><span class="h2-num">03</span> Source citation</h2>
-  <p>Nuh 2024 IAR p59 (ISO 14064-1:2018 verified)</p>
+  <p>Nuh Çimento 2024 TSRS Report p56 (refined)</p>
   
-  <p class="muted small">Single-site (Nuh has only Hereke) — third-party verified Scope 1</p>
+  <p class="muted small">Cement-only parent (excludes Nuh Beton 43k + Nuh Yapı 237k); replaces earlier 3,573,278 estimate; cement EF 0.875 t/t clinker</p>
 </section>
 
 
@@ -142,7 +142,7 @@
 </section>
 
 <footer class="footer">
-  <p>iz · TR-MRV-Bench v0.1 · per-facility page generated by <code>bin/build_facility_pages.py</code> from
+  <p>iz · TR-MRV-Bench v0.4 · per-facility page generated by <code>bin/build_facility_pages.py</code> from
   <code>site/bench/facilities.json</code>. The bench is open source and Apache-2.0 licensed.</p>
 </footer>
 

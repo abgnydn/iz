@@ -1,11 +1,11 @@
 """
-Split-conformal prediction interval on iz LODO predictions.
+Split-conformal prediction interval on the cf-corrected formula's leave-one-plant-out predictions.
 
-Method: split-conformal (Vovk; Shafer & Vovk 2008). For each LODO test point
+Method: split-conformal (Vovk; Shafer & Vovk 2008). For each leave-one-plant-out test point
 the held-out facility itself is the "test" — but we don't have a true
 calibration set since every facility is held out in turn. We adapt:
 
-For each held-out facility i, treat the other 20 LODO-test predictions as
+For each held-out facility i, treat the other n-1 leave-one-plant-out predictions as
 the calibration set. Conformity score is |log(pred) - log(truth)|. The
 conformal prediction interval at confidence (1-α) for facility i is:
 
@@ -14,7 +14,7 @@ conformal prediction interval at confidence (1-α) for facility i is:
 where q_{1-α} is the (1-α)(n+1)/n quantile of the calibration scores.
 
 This is a leave-one-out / jackknife+ style conformal — gives a
-distribution-free coverage guarantee asymptotically. With n=21 the
+distribution-free coverage guarantee asymptotically. With n=19 the
 guarantee is approximate; Chen et al. (arXiv:2512.04566) addresses
 small-calibration-set corrections.
 
@@ -27,11 +27,11 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
-LODO = REPO / "reports" / "lodo_aggregated.json"
+LOPO = REPO / "reports" / "lopo_ef_eval.json"   # cf-corrected formula, leave-one-plant-out
 OUT = REPO / "reports" / "conformal_ci.json"
 FAC = REPO / "site" / "bench" / "facilities.json"
 
-# Stratum assignment matches the LODO stratified split.
+# Stratum assignment matches the leave-one-plant-out stratified split.
 STEEL_ROUTE_MAP = {
     "erdemir-eregli": "BF/BOF", "isdemir-iskenderun": "BF/BOF", "kardemir-karabuk": "BF/BOF",
     "colakoglu-gebze": "EAF", "izdemir-aliaga": "EAF", "habas-aliaga": "EAF",
@@ -54,9 +54,11 @@ def stratum_of(fid: str, sector: str) -> str:
 
 
 def main(alpha: float = 0.05) -> int:
-    rows = json.loads(LODO.read_text())
+    # Use the cf-corrected formula's leave-one-plant-out predictions — only the
+    # validatable plants (single-plant strata have no LOPO prediction).
+    rows = [r for r in json.loads(LOPO.read_text())["per_plant"] if r.get("ratio_lopo") is not None]
     if len(rows) < 5:
-        print("not enough LODO rows", file=sys.stderr)
+        print("not enough leave-one-plant-out rows", file=sys.stderr)
         return 1
 
     # Join with facilities.json to get sector
@@ -65,22 +67,24 @@ def main(alpha: float = 0.05) -> int:
         for f in json.loads(FAC.read_text()):
             fac_sector[f["id"]] = f.get("sector", "")
 
-    # Log-space conformity scores
+    # Log-space conformity scores on the formula's leave-one-plant-out predictions
     scores = []
     for r in rows:
-        if r["pred_median"] > 0 and r["truth"] > 0:
-            fid = r["facility_id"]
+        truth = r["truth"]
+        pred = r["ratio_lopo"] * truth
+        if pred > 0 and truth > 0:
+            fid = r["id"]
             sector = fac_sector.get(fid, "")
             scores.append({
                 "facility_id": fid,
                 "stratum": stratum_of(fid, sector),
-                "truth": r["truth"],
-                "pred_median": r["pred_median"],
-                "log_err": abs(math.log(r["pred_median"]) - math.log(r["truth"])),
+                "truth": truth,
+                "formula_pred": pred,
+                "log_err": abs(math.log(pred) - math.log(truth)),
             })
 
     n = len(scores)
-    print(f"conformal calibration on n={n} LODO predictions, α={alpha}")
+    print(f"conformal calibration on n={n} leave-one-plant-out predictions, α={alpha}")
     print()
 
     # ---- Global jackknife conformal: per facility, calibrate on the other n-1 ----
@@ -91,8 +95,8 @@ def main(alpha: float = 0.05) -> int:
         k = math.ceil((1 - alpha) * len(others))
         k = min(k, len(others)) - 1
         q_global = others[k]
-        lo_g = math.exp(math.log(s["pred_median"]) - q_global)
-        hi_g = math.exp(math.log(s["pred_median"]) + q_global)
+        lo_g = math.exp(math.log(s["formula_pred"]) - q_global)
+        hi_g = math.exp(math.log(s["formula_pred"]) + q_global)
         covered_g = lo_g <= s["truth"] <= hi_g
 
         # ---- Per-stratum: calibrate only on same-stratum facilities ----
@@ -102,8 +106,8 @@ def main(alpha: float = 0.05) -> int:
             k2 = math.ceil((1 - alpha) * len(same))
             k2 = min(k2, len(same)) - 1
             q_strat = same[k2]
-            lo_s = math.exp(math.log(s["pred_median"]) - q_strat)
-            hi_s = math.exp(math.log(s["pred_median"]) + q_strat)
+            lo_s = math.exp(math.log(s["formula_pred"]) - q_strat)
+            hi_s = math.exp(math.log(s["formula_pred"]) + q_strat)
             covered_s = lo_s <= s["truth"] <= hi_s
         else:
             # Fall back to global when stratum has <3 facilities (e.g. BAGFAŞ N2O singleton)
@@ -114,7 +118,7 @@ def main(alpha: float = 0.05) -> int:
             "facility_id": s["facility_id"],
             "stratum": s["stratum"],
             "truth": s["truth"],
-            "pred_median": s["pred_median"],
+            "formula_pred": s["formula_pred"],
             "ci_lo": lo_g,
             "ci_hi": hi_g,
             "covered": covered_g,
@@ -141,7 +145,7 @@ def main(alpha: float = 0.05) -> int:
     print(f"{'facility':32s} {'truth':>12s} {'pred (med)':>12s} {'CI lo':>12s} {'CI hi':>12s} {'covered':>8s}")
     print("-" * 95)
     for r in per_facility:
-        print(f"  {r['facility_id']:30s} {int(r['truth']):>12,d} {int(r['pred_median']):>12,d} "
+        print(f"  {r['facility_id']:30s} {int(r['truth']):>12,d} {int(r["formula_pred"]):>12,d} "
               f"{int(r['ci_lo']):>12,d} {int(r['ci_hi']):>12,d} {'✓' if r['covered'] else '✗':>7s}")
 
     # Per-stratum coverage summary
