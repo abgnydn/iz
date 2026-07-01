@@ -41,5 +41,8 @@ data/beirle/catalog_ESSD.zip
 !data/geo/
 !data/geo/turkey.geojson
 data/geo/ne_50m_admin_0_countries.geojson
-data/eutl/
+# EUTL verified emissions (B6/B7 external validity): commit the pinned snapshot
+# so a clean clone reproduces without network. Refresh with `bin/fetch_all_data.sh`.
+!data/eutl/
+!data/eutl/*.parquet
 outputs/
