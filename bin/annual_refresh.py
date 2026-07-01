@@ -5,7 +5,6 @@ When operators publish their previous-year IARs (typically March-April), this
 script:
   1. Re-pulls Climate TRACE per-asset details
   2. Re-runs disclosure URL freshness check
-  3. Re-runs all 5 fusion analyses
   4. Re-runs all verifiers
   5. Re-builds the static JSON API
   6. Re-runs the headline leave-one-plant-out with refreshed bench
@@ -29,16 +28,7 @@ STEPS = [
     # (label, command)
     ("Climate TRACE refresh", ["uv", "run", "python", "bin/pull_climate_trace_details.py"]),
     ("Build bench JSON",       ["uv", "run", "python", "bin/export_bench_browser.py"]),
-    ("Build API",              ["uv", "run", "python", "bin/build_api.py"]),
     ("Run baselines",          ["uv", "run", "python", "bin/baselines.py"]),
-    ("Subset metrics",         ["uv", "run", "python", "bin/subset_metrics.py"]),
-    ("Fusion #1 — CBAM",       ["uv", "run", "python", "bin/fusion_1_cbam_exposure.py"]),
-    ("Fusion #2 — TR-ETS",     ["uv", "run", "python", "bin/fusion_2_trets.py"]),
-    ("Fusion #3 — KAP",        ["uv", "run", "python", "bin/fusion_3_kap_financials.py"]),
-    ("Fusion #4 — Health",     ["uv", "run", "python", "bin/fusion_4_health_nox.py"]),
-    ("Fusion #5 — ESG",        ["uv", "run", "python", "bin/fusion_5_esg.py"]),
-    ("Fusion A1 — Scope 2",    ["uv", "run", "python", "bin/fusion_a1_scope2.py"]),
-    ("Fusion A3 — Verifier x", ["uv", "run", "python", "bin/fusion_a3_verifier_crosscheck.py"]),
     ("Verifier B1 — multiyear",["uv", "run", "python", "bin/verifier_b1_multiyear.py"]),
     ("Verifier B4 — bootstrap",["uv", "run", "python", "bin/verifier_b4_sector_bootstrap.py"]),
     ("EUTL B6 cement pull",    ["uv", "run", "python", "bin/pull_eutl_cement.py"]),
