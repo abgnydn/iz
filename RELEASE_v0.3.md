@@ -1,6 +1,10 @@
+> ⚠️ **SUPERSEDED — historical draft.** Numbers here are pre-v0.4 (in-sample +85.3%, the withdrawn PySR/B7 claim, the neural net as a result). Current honest source: **CHANGELOG.md** + https://iz-b0n.pages.dev/paper/ — headline **+82.3% leave-one-plant-out, n=19**.
+
+---
+
 # TR-MRV-Bench v0.3 — first Zenodo-DOI release
 
-**Triple-corroborated public per-facility emissions benchmark for Turkish CBAM-scope industry, plus a closed-form physics formula that beats the EU CBAM default by 85.3% in leave-one-disclosure-out cross-validation — now externally validated on 789 EU plants × 10,691 EUTL-verified facility-years and independently rediscovered by symbolic regression.**
+**Triple-corroborated public per-facility emissions benchmark for Turkish CBAM-scope industry, plus a closed-form physics formula that beats the EU CBAM default by 85.3% in leave-one-plant-out cross-validation — now externally validated on 789 EU plants × 10,691 EUTL-verified facility-years and independently rediscovered by symbolic regression.**
 
 Live site: <https://iz-b0n.pages.dev>
 Source: <https://github.com/abgnydn/iz>
@@ -60,7 +64,7 @@ Bilingual home / paper / calculator / fusion / verifiers pages. Mobile-first res
 
 - `data/tr_facilities.csv` — 59-facility seed list (cement / steel / aluminum / fertilizer) with capacity, lat/lon, CN codes, disclosure URLs
 - `data/tr_facility_known_emissions.csv` — 21 audit-grade Scope 1 strong labels with full provenance tagging
-- `reports/baselines.json` — n=21 LODO baselines (B0 EU default / B1 cf-formula / B2 ridge)
+- `reports/baselines.json` — n=21 leave-one-plant-out baselines (B0 EU default / B1 cf-formula / B2 ridge)
 - `reports/verifiers/b6_eutl_*.{md,json}` — EUTL external-validation outputs for all 4 CBAM sectors
 - `reports/verifiers/b7_symbolic_regression.{md,json}` + `b7_combined_dataset.csv` — PySR rediscovery
 - `bin/` — reproducible Python scripts (pulls, scoring, verifiers, symbolic regression)

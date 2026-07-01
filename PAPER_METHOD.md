@@ -1,6 +1,10 @@
+> ⚠️ **SUPERSEDED — historical draft.** Numbers here are pre-v0.4 (in-sample +85.3%, the withdrawn PySR/B7 claim, the neural net as a result). Current honest source: **CHANGELOG.md** + https://iz-b0n.pages.dev/paper/ — headline **+82.3% leave-one-plant-out, n=19**.
+
+---
+
 # iz — Section 3: Method (draft)
 
-> Draft of paper Section 3. Captures the design decisions that took the model from a sector-averaged baseline to per-facility predictions within ±30% of audited Scope 1 truth across **21** leave-one-disclosure-out test points covering all four CBAM scopes.
+> Draft of paper Section 3. Captures the design decisions that took the model from a sector-averaged baseline to per-facility predictions within ±30% of audited Scope 1 truth across **21** leave-one-plant-out test points covering all four CBAM scopes.
 
 ## 3.1 Bench construction (TR-MRV-Bench v0)
 
@@ -14,9 +18,9 @@ We assemble three tiers of supervision:
 
 3. **Capacity-factor-corrected default labels (weight = 0.4)** — for facilities with no direct disclosure and no CT match, we compute `y_default = capacity × EF × cf`. The two terms are:
    - **EF** — sector-specific, with three refinements applied in priority order: (i) a steel-route lookup (`BF/BOF = 2.0`, `EAF = 0.25`, `DRI-EAF = 0.4` t/t crude steel); (ii) an aluminum-route lookup (`primary = 8.6`, `downstream = 0.45` t/t Al) — the EU CBAM default 8.6 is calibrated for Hall-Héroult and overstates downstream rolling by ~23×; (iii) a fertilizer-route lookup (`integrated = 0.5`, `integrated-n2o-controlled = 0.05`, `blender = 0.025`) — BAGFAŞ's N₂O catalyst on nitric acid cuts process N₂O by ~95%, putting it 10× below ordinary integrated fertilizer; (iv) a company-level override when the company published a specific factor (OYAK 0.685 t/t cement Scope 1; Akçansa 0.607; Limak 0.55; Toros 0.525; BAGFAŞ 0.028; Assan 0.379; Gübretaş 0.022). Fallbacks: `TR_actual` table (cement 0.643 per TÜRKÇİMENTO 2023; steel 1.44 per Erdemir 2023 Scope 1+2; fertilizer 0.8; aluminum 1.5).
-   - **cf** — priority is per-asset Climate TRACE measurement > disclosed (production / capacity from IAR text — non-leaky in LODO because production tonnes are reported independently of Scope 1; e.g. OYAK group 0.695 from 2023 IAR p15 clinker 7.23M / 10.4M capacity) > sector-mean default (cement 0.55, steel 0.70, aluminum 0.85, fertilizer 0.65).
+   - **cf** — priority is per-asset Climate TRACE measurement > disclosed (production / capacity from IAR text — non-leaky in leave-one-plant-out because production tonnes are reported independently of Scope 1; e.g. OYAK group 0.695 from 2023 IAR p15 clinker 7.23M / 10.4M capacity) > sector-mean default (cement 0.55, steel 0.70, aluminum 0.85, fertilizer 0.65).
 
-**Why three tiers?** Tier 1 alone would give us 18 training samples — still too few for serious ML, but adequate as a LODO test set. Tier 2 adds 8 more independent labels with known ±50% accuracy. Tier 3 fills the rest of the bench with a deterministic route-aware formula whose error is bounded by the EF and cf inputs. Each sample carries its label source and a confidence weight; the loss is weighted MSE on `log1p(Scope 1)` per Section 3.4.
+**Why three tiers?** Tier 1 alone would give us 18 training samples — still too few for serious ML, but adequate as a leave-one-plant-out test set. Tier 2 adds 8 more independent labels with known ±50% accuracy. Tier 3 fills the rest of the bench with a deterministic route-aware formula whose error is bounded by the EF and cf inputs. Each sample carries its label source and a confidence weight; the loss is weighted MSE on `log1p(Scope 1)` per Section 3.4.
 
 ### Stratified split
 
@@ -33,7 +37,7 @@ aluminum             3     1     1     1
 fertilizer           6     4     1     1
 ```
 
-The DRI-EAF stratum has `n = 1` (Tosyalı Osmaniye) so it stays in train; the others are split with floor minimums per fold. **Single-instance disclosure-route strata** (BAGFAŞ N₂O-controlled fertilizer; Gübretaş blender) remain a known LODO limitation — when held out, the model has never seen another facility in their route and reverts to integrated-fertilizer EF, producing predicted/truth ratios of 3.46× and 1.27× respectively. Both ratios are honest LODO failures the bench reports openly.
+The DRI-EAF stratum has `n = 1` (Tosyalı Osmaniye) so it stays in train; the others are split with floor minimums per fold. **Single-instance disclosure-route strata** (BAGFAŞ N₂O-controlled fertilizer; Gübretaş blender) remain a known leave-one-plant-out limitation — when held out, the model has never seen another facility in their route and reverts to integrated-fertilizer EF, producing predicted/truth ratios of 3.46× and 1.27× respectively. Both ratios are honest leave-one-plant-out failures the bench reports openly.
 
 ## 3.2 Features
 
@@ -47,7 +51,7 @@ The DRI-EAF stratum has `n = 1` (Tosyalı Osmaniye) so it stays in train; the ot
 | Steel route | `is_bfbof`, `is_eaf`, `is_dri_eaf` | hand-coded from operator notes |
 | Disclosed cf | `disc_cf`, `disc_has` | production / capacity from IAR text |
 
-Normalization is per-feature `(x - μ) / σ` over the training set. The disclosed-cf feature is **non-leaky in LODO** because production tonnes are reported in IAR text independently of Scope 1 — when a facility's Scope 1 is held out, its production tonnage and therefore its `disc_cf` are still available.
+Normalization is per-feature `(x - μ) / σ` over the training set. The disclosed-cf feature is **non-leaky in leave-one-plant-out** because production tonnes are reported in IAR text independently of Scope 1 — when a facility's Scope 1 is held out, its production tonnage and therefore its `disc_cf` are still available.
 
 ## 3.3 Model
 
@@ -78,20 +82,20 @@ The prior `y_prior` is the cf-corrected formula `cap × EF × cf` computed with 
 
 The effect of the prior is dramatic. Without it, the model has to learn the full magnitude of log-Scope-1 (~14-17) from `~40` training samples — slow, unstable, and prone to over-fitting whichever sector dominates the train set. With the prior, the model only has to learn residuals (typically `|r| < 0.5` in log-space), which generalizes from very few examples. The prior also bakes in known physics: emissions scale with capacity, change linearly with the route-specific EF, and modulate with cf — relationships that would otherwise need to be re-learned per training run.
 
-The prior is **leak-safe under LODO** because:
+The prior is **leak-safe under leave-one-plant-out** because:
 - `cap` comes from operator nameplate (public, not Scope 1).
 - `EF` is per-route or per-company average — the route value (e.g. BF/BOF 2.0) is the industry standard and matches the global average, so it isn't derived from the held-out facility's disclosure.
 - `cf` comes from CT measurement OR from disclosed production tonnage — neither is the Scope 1 label.
 
-Section 6 ablations show that removing the prior drops overall LODO log-MAE reduction by ~8 percentage points.
+Section 6 ablations show that removing the prior drops overall leave-one-plant-out log-MAE reduction by ~8 percentage points.
 
-## 3.5 Evaluation: Leave-one-disclosure-out (LODO)
+## 3.5 Evaluation: Leave-one-disclosure-out (leave-one-plant-out)
 
-Standard random or stratified test splits put too few disclosure-labeled facilities in test for a meaningful per-source metric. We instead evaluate each of the **n=21 audit-grade facilities** by forcing it into the test set, stratifying the remaining 58 facilities normally, training the model, and reading the prediction for the held-out facility. This gives n=21 test points without resampling. We run 5 outer LODO passes × 3 inner seeds (15 predictions per facility), report the per-facility median, and additionally bootstrap-resample the n=21 facilities 5000 times to compute the data-variance confidence interval.
+Standard random or stratified test splits put too few disclosure-labeled facilities in test for a meaningful per-source metric. We instead evaluate each of the **n=21 audit-grade facilities** by forcing it into the test set, stratifying the remaining 58 facilities normally, training the model, and reading the prediction for the held-out facility. This gives n=21 test points without resampling. We run 5 outer leave-one-plant-out passes × 3 inner seeds (15 predictions per facility), report the per-facility median, and additionally bootstrap-resample the n=21 facilities 5000 times to compute the data-variance confidence interval.
 
 **Headline result: iz NN +83.3% log-MAE reduction vs EU CBAM default; closed-form formula +85.3%; ridge regression +81.4%; 95% data-bootstrap CI [+72.0%, +90.6%].** The formula and the NN are statistically tied at this data scale; the deliverable is the formula and the bench.
 
-Each LODO iteration is run for 3 seeds (random model init + shuffle order). We then wrap the whole LODO evaluation in an **outer aggregator** that repeats it 5 times, taking the per-facility median across all 5 × 3 = 15 seeds. The outer aggregation reduces variance on the headline metric from ~7 percentage points (single LODO run) to ~1-2 percentage points (15-seed median).
+Each leave-one-plant-out iteration is run for 3 seeds (random model init + shuffle order). We then wrap the whole leave-one-plant-out evaluation in an **outer aggregator** that repeats it 5 times, taking the per-facility median across all 5 × 3 = 15 seeds. The outer aggregation reduces variance on the headline metric from ~7 percentage points (single leave-one-plant-out run) to ~1-2 percentage points (15-seed median).
 
 ## 3.6 Two metrics, two stories
 
