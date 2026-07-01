@@ -15,7 +15,7 @@
 
 The EU Carbon Border Adjustment Mechanism (CBAM) and analogous emissions-trading regimes require per-facility CO₂ accounting that is independently verifiable. Existing per-facility data sources have known gaps: Climate TRACE under-reports 4 of 5 audit-matched Turkish facilities (mean bias −17%, median −23%; under-reporting concentrated in steel and cement); operator self-reports trust the operator; satellite tools (GHGSat, Carbon Mapper) focus on methane with no CBAM tie-in.
 
-We release **TR-MRV-Bench v0**, a public benchmark of 59 Turkish CBAM-scope facilities with three-tier supervision: **21 audit-grade strong labels** across all four CBAM scopes — cement, steel, aluminum, fertilizer — from operator Integrated Annual Reports, TSRS-compliant sustainability reports, and ISO 14064-1 third-party verifications; 8 Climate TRACE per-asset labels; capacity-factor-corrected default labels for the rest. The bench includes operator-published source URLs and page numbers for every audit-grade row.
+We release **TR-MRV-Bench v0**, a public benchmark of 59 Turkish CBAM-scope facilities with three-tier supervision: **21 audit-grade strong labels** across all four CBAM scopes — cement, steel, aluminum, fertilizer — from operator Integrated Annual Reports, TSRS-compliant sustainability reports, and ISO 14064-1 third-party verifications; 7 Climate TRACE per-asset labels; capacity-factor-corrected default labels for the rest. The bench includes operator-published source URLs and page numbers for every audit-grade row.
 
 On this bench we evaluate a closed-form physics baseline:
 

@@ -24,7 +24,7 @@ import pandas as pd
 
 REPO = Path(__file__).resolve().parent.parent
 BENCH = REPO / "src" / "iz" / "bench.json"
-leave-one-plant-out = REPO / "reports" / "lodo_aggregated.json"
+LODO_JSON = REPO / "reports" / "lodo_aggregated.json"
 OUT = REPO / "reports" / "baselines.json"
 
 
@@ -118,8 +118,8 @@ def main() -> None:
     ]
     eu_mae = log_mae("B0_eu_default")
     iz_mae = None
-    if leave-one-plant-out.exists():
-        iz_rows = json.loads(leave-one-plant-out.read_text())
+    if LODO_JSON.exists():
+        iz_rows = json.loads(LODO_JSON.read_text())
         iz_by_fid = {r["facility_id"]: r["pred_median"] for r in iz_rows}
         iz_errs = [abs(math.log(iz_by_fid[r["facility_id"]]) - math.log(r["truth"]))
                    for r in rows_out if r["facility_id"] in iz_by_fid]

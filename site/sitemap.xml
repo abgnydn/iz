@@ -5,6 +5,9 @@
   <url><loc>https://iz-b0n.pages.dev/use/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://iz-b0n.pages.dev/use/tr/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://iz-b0n.pages.dev/about/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://iz-b0n.pages.dev/paper/</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://iz-b0n.pages.dev/policy/</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://iz-b0n.pages.dev/calculator/</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://iz-b0n.pages.dev/verify/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://iz-b0n.pages.dev/bench/akcansa-buyukcekmece/</loc><changefreq>weekly</changefreq></url>
   <url><loc>https://iz-b0n.pages.dev/bench/akcansa-canakkale/</loc><changefreq>weekly</changefreq></url>
