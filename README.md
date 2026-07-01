@@ -143,7 +143,7 @@ Per-facility, honest (LOPO) ratios. The last two rows are the **only** plant of 
 6. **Operator-self-reported truths.** Strong labels come from operator IARs / sustainability reports / TSRS-compliant disclosures (mostly Big4-audited, several ISO 14064-1 verified). Not third-party-verified. This is the same trust problem Climate TRACE tries to bypass.
 7. **Climate TRACE under-reporting claim is sample-size 3.** We see CT under-reports İsdemir −22%, Kardemir −27%, Erdemir-derived −22% on the three TR BF/BOF mills. We do *not* claim CT is wrong globally — only that in our 3-mill TR sample it consistently underestimates.
 8. **BF/BOF stratum (n=3) is trivially partitioned under leave-one-plant-out.** With only 3 BF/BOF mills in TR (Erdemir, İsdemir, Kardemir), leave-one-out is "predict from the other 2". Not a real generalization test on this stratum.
-9. **Capacity-factor variance is the dominant residual.** Göltaş (0.44× truth) and Afyon (0.70×) both have actual cf well above the cement-sector default 0.55 used in the formula prior when they are held out. This is honest leave-one-plant-out behavior: cf is plant-specific and not predictable from capacity alone.
+9. **Capacity-factor variance is the dominant residual.** The cement under-predictions — Afyon 0.59×, Bursa 0.63×, Nuh 0.69× — run at actual capacity factors above the cement-sector default 0.55 used in the formula prior when they are held out. This is honest leave-one-plant-out behavior: cf is plant-specific and not predictable from capacity alone.
 10. **Allocated labels.** Akçansa per-plant labels are allocated from group total by clinker-production share. Toros Tarım Mersin/Samsun/Ceyhan are allocated from group total 842,174 tCO₂ by nameplate capacity. Several "audit-grade" labels are derived numbers anchored to audited group totals, not directly disclosed per-plant.
 11. **Some capacities in `tr_facilities.csv` were corrected mid-session** (Çanakkale 4.5M → 6M; Erdemir Ereğli 6M → 4M crude steel). Other facilities may have similar nameplate errors we haven't audited.
 
@@ -196,7 +196,7 @@ All raw disclosure PDFs live under `data/disclosures/` (gitignored by default fo
 | Çolakoğlu Dilovası | 2021–2023 | 517 / 493 / 495 kt | 2024 SR p82 time-series |
 | Erdemir Group | 2024 | 17,336,630 | [2024 Entegre IAR p103 (KGK)](https://www.kgk.gov.tr/Portalv2Uploads/files/Duyurular/v2/Surdurulebilirlik/Raporlar/ERDEMIR2024EntegreFaaliyetRaporu.pdf) |
 | İsdemir | 2024 | 10,663,364 | Erdemir 2024 IAR p115 |
-| Erdemir Ereğli | 2024 | 6,673,266 | Derived: Group − İsdemir |
+| Erdemir Ereğli | 2024 | 6,667,232 | Direct: 2024 IAR p79 (kgk-verified) |
 | Erdemir Ereğli | 2023 | 6,559,030 | [Tracenable](https://tracenable.com/company/erdemir/ghg-emissions) |
 | Kardemir Karabük | 2022 | 5,539,756 | [2022 SR p61 (KGK)](https://www.kgk.gov.tr/Portalv2Uploads/files/Duyurular/v2/Surdurulebilirlik/Raporlar/Kardemir%202022%20y%C4%B1l%C4%B1%20S%C3%BCrd%C3%BCr%C3%BClebilirlik%20Raporu.pdf) |
 | Nuh Hereke | 2024 | 3,573,278 (ISO 14064 verified) | [2024 IAR p59](https://www.nuhcimento.com.tr/wp-content/uploads/Nuh-Cimento-2024-Integrated-Annual-Report-1.pdf) |
@@ -204,13 +204,6 @@ All raw disclosure PDFs live under `data/disclosures/` (gitignored by default fo
 | Limak Çimento group | 2023 | 7,138,623 | [2023 SR p89](https://www.limakcimento.com/assets/images/dosya/sustainability-report-2023_1751267090.pdf) |
 | Climate TRACE per-asset | 2024 | 13 TR facilities | api.climatetrace.org `/v6/assets/{id}` |
 | TR Cement industry avg EF | 2023 | 0.643 t/t cement | TÜRKÇİMENTO 2023 Sürdürülebilirlik Raporu |
-
-## Limitations (paper Section 8)
-
-- **N=8 disclosure facilities is small.** Bigger benchmarks would let us run real cross-validation rather than leave-one-plant-out.
-- **BF/BOF integrated steel is structurally hard for any model.** TR has only 3 BF/BOF mills (Erdemir, İsdemir, Kardemir) and EU CBAM's 1.9 t/t is already close to the audited 1.97-2.40 range. iz matches but does not meaningfully beat EU default on this stratum.
-- **No satellite signal yet.** S5P NO₂ feature pipeline is rate-limited by Microsoft Planetary Computer; full 57-facility pull blocked.
-- **İsdemir 0.64×** is the largest outlier. The cf_corrected formula gets it within 6% of truth (10.24M vs 10.66M) but the trained model under-predicts. Root cause: only 2 other BF/BOF mills in train under leave-one-plant-out, and one of them (Erdemir) has very different cf.
 
 ## Deploy
 
@@ -230,8 +223,8 @@ src/iz/               ← Python package (bench schema, scrapers, CT client) + b
                         (the in-browser WebGPU demo moved to github.com/abgnydn/iz-lab)
 bin/                  ← Reproducibility scripts: pull / export / train / eval / figures
 data/                 ← raw + processed (mostly gitignored)
-data/tr_facilities.csv                 ← 57 TR CBAM-scope facilities
-data/tr_facility_known_emissions.csv   ← 17 hand-curated strong-label rows
+data/tr_facilities.csv                 ← 59 TR CBAM-scope facilities
+data/tr_facility_known_emissions.csv   ← audit-grade + weak strong-label rows (21 audit-grade)
 data/disclosures/     ← downloaded IAR / sustainability PDFs (gitignored)
 reports/              ← Generated artifacts: lopo_ef_eval.json, fig_formula_vs_eu.svg
 marketing/            ← paper_preview_v0.html (1-page paper summary)

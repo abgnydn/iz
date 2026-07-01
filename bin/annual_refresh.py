@@ -8,7 +8,7 @@ script:
   3. Re-runs all 5 fusion analyses
   4. Re-runs all verifiers
   5. Re-builds the static JSON API
-  6. Re-runs the headline LODO with refreshed bench
+  6. Re-runs the headline leave-one-plant-out with refreshed bench
 
 Designed to be invoked by cron:
     0 2 1 4 *    cd ~/iz && uv run python bin/annual_refresh.py

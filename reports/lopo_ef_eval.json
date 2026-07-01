@@ -234,20 +234,6 @@
       "ratio_lopo": 0.63068975277453
     },
     {
-      "id": "toros-samsun",
-      "scope": "fertilizer",
-      "cap": 575000.0,
-      "cf": 0.726,
-      "group": "fertilizer:integrated",
-      "truth": 255180.0,
-      "eu_default": 460000.0,
-      "implied_ef": 0.6112827883578872,
-      "in_sample_ef": 0.5,
-      "ef_lopo": 0.49662242667044243,
-      "ratio_in": 0.8179520338584528,
-      "ratio_lopo": 0.8124266479096174
-    },
-    {
       "id": "colakoglu-gebze",
       "scope": "steel",
       "cap": 4500000.0,
@@ -260,6 +246,20 @@
       "ef_lopo": 0.21410285932441514,
       "ratio_in": 1.1120544942005477,
       "ratio_lopo": 0.9523761877316139
+    },
+    {
+      "id": "toros-samsun",
+      "scope": "fertilizer",
+      "cap": 575000.0,
+      "cf": 0.726,
+      "group": "fertilizer:integrated",
+      "truth": 255180.0,
+      "eu_default": 460000.0,
+      "implied_ef": 0.6112827883578872,
+      "in_sample_ef": 0.5,
+      "ef_lopo": 0.49662242667044243,
+      "ratio_in": 0.8179520338584528,
+      "ratio_lopo": 0.8124266479096174
     },
     {
       "id": "toros-mersin",

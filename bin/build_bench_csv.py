@@ -21,7 +21,7 @@ def main() -> None:
         "id", "company", "plant", "sector", "city",
         "capacity_t_per_yr",
         "audit_grade_truth_tCO2", "truth_year", "provenance", "assurance",
-        "iz1_lodo_median_tCO2", "iz1_lodo_min_tCO2", "iz1_lodo_max_tCO2", "iz1_ratio_vs_truth",
+        "formula_lopo_tCO2", "formula_lopo_ratio_vs_truth", "formula_validatable",
         "eu_cbam_default_tCO2",
         "saving_vs_eu_default_pct",
         "label_source", "truth_source_pdf", "notes",
@@ -32,9 +32,9 @@ def main() -> None:
         w.writeheader()
         for r in rows:
             truth = r.get("truth")
-            pred = r.get("pred_median")
+            pred = r.get("formula_pred")  # cf-corrected formula, leave-one-plant-out
             eu = r.get("eu_default")
-            ratio = (pred / truth) if (pred and truth) else None
+            ratio = r.get("formula_ratio")
             saving_pct = (((eu - (truth or pred or 0)) / eu) * 100) if eu else None
             w.writerow({
                 "id": r["id"],
@@ -47,10 +47,9 @@ def main() -> None:
                 "truth_year": r.get("truth_year") or "",
                 "provenance": r.get("provenance") or "",
                 "assurance": r.get("assurance") or "",
-                "iz1_lodo_median_tCO2": int(pred) if pred else "",
-                "iz1_lodo_min_tCO2": int(r["pred_min"]) if r.get("pred_min") else "",
-                "iz1_lodo_max_tCO2": int(r["pred_max"]) if r.get("pred_max") else "",
-                "iz1_ratio_vs_truth": f"{ratio:.3f}" if ratio else "",
+                "formula_lopo_tCO2": int(pred) if pred else "",
+                "formula_lopo_ratio_vs_truth": f"{ratio:.3f}" if ratio else "",
+                "formula_validatable": r.get("formula_validatable"),
                 "eu_cbam_default_tCO2": int(eu) if eu else "",
                 "saving_vs_eu_default_pct": f"{saving_pct:.1f}" if saving_pct is not None else "",
                 "label_source": r.get("label_source") or "",
