@@ -91,13 +91,13 @@ Contact: hi@barisgunaydin.com.
 
 All Apache-2.0, free to reproduce with attribution.
 
-- **OG share card** ([assets/og.png](https://iz-b0n.pages.dev/assets/og.png), 1200×630 PNG):
+- **OG share card** ([assets/og.png](https://iz-mrv.pages.dev/assets/og.png), 1200×630 PNG):
   the formula + −85.3% callout + brand mark
-- **Headline figure** ([reports/fig_iz1_vs_eu_lodo.svg](https://iz-b0n.pages.dev/assets/fig_iz1_vs_eu_lodo.svg)):
+- **Headline figure** ([reports/fig_iz1_vs_eu_lodo.svg](https://iz-mrv.pages.dev/assets/fig_iz1_vs_eu_lodo.svg)):
   per-plant bars showing iz vs EU default vs audited truth across all 21 LODO test facilities
-- **TR facility map** ([assets/facility_map.svg](https://iz-b0n.pages.dev/assets/facility_map.svg)):
+- **TR facility map** ([assets/facility_map.svg](https://iz-mrv.pages.dev/assets/facility_map.svg)):
   all 59 facilities sized by capacity, colored by sector, ink-outlined for the 21 audit-grade ones
-- **Per-facility CSV** ([bench/tr_bench_v0.csv](https://iz-b0n.pages.dev/bench/tr_bench_v0.csv)):
+- **Per-facility CSV** ([bench/tr_bench_v0.csv](https://iz-mrv.pages.dev/bench/tr_bench_v0.csv)):
   flat data for any chart you want to build
 
 ## Methodology notes for fact-checkers
@@ -128,7 +128,7 @@ If a critic argues...
 
 ## Repository / live site
 
-- **Live site:** [iz-b0n.pages.dev](https://iz-b0n.pages.dev)
+- **Live site:** [iz-mrv.pages.dev](https://iz-mrv.pages.dev)
 - **GitHub:** [github.com/abgnydn/iz](https://github.com/abgnydn/iz)
 - **Citation file:** [CITATION.cff](https://github.com/abgnydn/iz/blob/master/CITATION.cff)
 - **arXiv preprint draft:** [paper/iz_v0.md](https://github.com/abgnydn/iz/blob/master/paper/iz_v0.md)

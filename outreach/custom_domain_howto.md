@@ -1,6 +1,6 @@
 # Custom domain how-to
 
-Replace `iz-b0n.pages.dev` with `iz.barisgunaydin.com` (or any other custom domain). All
+Replace `iz-mrv.pages.dev` with `iz.barisgunaydin.com` (or any other custom domain). All
 on Cloudflare Pages; takes ~5 minutes.
 
 ## Option A — `iz.barisgunaydin.com` subdomain (recommended)
@@ -27,7 +27,7 @@ You already own `barisgunaydin.com`. Add a subdomain pointing at the Pages proje
 3. **SSL/TLS cert:** Cloudflare auto-provisions a Let's Encrypt cert within a few minutes.
 
 4. **After verification (~5-15 min for DNS to propagate globally):**
-   `iz.barisgunaydin.com` will serve the same content as `iz-b0n.pages.dev`. The `.pages.dev`
+   `iz.barisgunaydin.com` will serve the same content as `iz-mrv.pages.dev`. The `.pages.dev`
    URL keeps working in parallel.
 
 ## Option B — root `barisgunaydin.com` (only if you want iz to be your whole site)
@@ -50,10 +50,10 @@ Update all places that reference the URL:
 
 ```bash
 # in repo root:
-grep -rln 'iz-b0n.pages.dev' site/ README.md PAPER_OUTLINE.md PAPER_METHOD.md PAPER_DISCUSSION.md paper/ outreach/ CITATION.cff bin/render_og.py 2>/dev/null
+grep -rln 'iz-mrv.pages.dev' site/ README.md PAPER_OUTLINE.md PAPER_METHOD.md PAPER_DISCUSSION.md paper/ outreach/ CITATION.cff bin/render_og.py 2>/dev/null
 ```
 
-Then sed-replace `iz-b0n.pages.dev` → your new domain in each file. The OG meta tags
+Then sed-replace `iz-mrv.pages.dev` → your new domain in each file. The OG meta tags
 in each HTML file have `og:url` and `og:image` URLs that need absolute domains too.
 
 Re-render the OG image to point at the new domain:
@@ -67,9 +67,9 @@ Then redeploy:
 npx wrangler pages deploy site --project-name=iz --branch=main --commit-dirty=true
 ```
 
-The `iz-b0n.pages.dev` URL keeps working forever as a backup (Cloudflare doesn't remove it).
+The `iz-mrv.pages.dev` URL keeps working forever as a backup (Cloudflare doesn't remove it).
 Both URLs will serve identical content. Eventually you can set up a 301 redirect from
-`iz-b0n.pages.dev` → your custom domain via Page Rules if you want.
+`iz-mrv.pages.dev` → your custom domain via Page Rules if you want.
 
 ---
 

@@ -36,7 +36,7 @@ CONFORMAL = REPO / "reports" / "conformal_ci.json"
 OUT_DIR = REPO / "site" / "bench"
 SITEMAP = REPO / "site" / "sitemap.xml"
 
-SITE_URL = "https://iz-b0n.pages.dev"
+SITE_URL = "https://iz-mrv.pages.dev"
 
 
 def load_beirle() -> dict[str, dict]:
@@ -438,7 +438,7 @@ def render_page(fac: dict, beirle: dict | None, scenes: list[dict],
     <li>Or use the <a href="/bench/#claim">claim-your-facility form</a> on the bench page.</li>
   </ul>
   <p class="muted small">Corrections that include a verifiable public source land within 24 hours.
-  All data is Apache-2.0 licensed; methodology at <a href="https://iz-b0n.pages.dev/paper/" target="_blank" rel="noopener">iz-b0n.pages.dev/paper</a>.</p>
+  All data is Apache-2.0 licensed; methodology at <a href="https://iz-mrv.pages.dev/paper/" target="_blank" rel="noopener">iz-mrv.pages.dev/paper</a>.</p>
 </section>
 
 <footer class="footer">
@@ -607,13 +607,13 @@ An optional in-browser WebGPU model (iz) is shipped as a demo only; it does not 
 <h2>6 · License and citation</h2>
 <p style="font-size:8.5pt;">
 TR-MRV-Bench v0 is Apache-2.0 licensed. The benchmark, methodology, and per-facility data are public at
-<code>github.com/abgnydn/iz</code> and <code>iz-b0n.pages.dev</code>.
+<code>github.com/abgnydn/iz</code> and <code>iz-mrv.pages.dev</code>.
 Cite: Günaydın (2026), "TR-MRV-Bench: a public per-facility emissions benchmark for Turkish CBAM-scope
 industry, with a physics baseline that beats the EU CBAM default by +82.3% (leave-one-plant-out, n=19)."
 </p>
 
 <div class="footer">iz · TR-MRV-Bench v0.4 · <code>{html.escape(fid)}</code> · audit summary printed from
-iz-b0n.pages.dev/bench/{html.escape(fid)}/audit-summary/ · Apache-2.0 · hi@barisgunaydin.com</div>
+iz-mrv.pages.dev/bench/{html.escape(fid)}/audit-summary/ · Apache-2.0 · hi@barisgunaydin.com</div>
 
 </body>
 </html>

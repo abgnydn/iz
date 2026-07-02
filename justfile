@@ -32,7 +32,7 @@ test:
 
 # Deploy site to Cloudflare Pages (only for direct-upload/preview; Git-connected auto-deploys on merge)
 deploy:
-    wrangler pages deploy site --project-name iz-b0n
+    wrangler pages deploy site --project-name iz-mrv
 
 # Everything a clean clone needs to reproduce the headline
 all: sync build repro test

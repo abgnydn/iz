@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://iz-b0n.pages.dev/sitemap.xml
+Sitemap: https://iz-mrv.pages.dev/sitemap.xml

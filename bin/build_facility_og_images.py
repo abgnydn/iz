@@ -111,7 +111,7 @@ body {{ width: 1200px; height: 630px; background: #f4ede2; color: #14181d;
   <div class="cards">{truth_card}{pred_card}{eu_card}</div>
   <div class="foot">
     <div class="brand">iz <em>· TR-MRV-Bench · open under Apache-2.0</em></div>
-    <div>iz-b0n.pages.dev/bench/{fac['id']}/</div>
+    <div>iz-mrv.pages.dev/bench/{fac['id']}/</div>
   </div>
 </body></html>"""
 

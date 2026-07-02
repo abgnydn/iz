@@ -2,15 +2,15 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20496086.svg)](https://doi.org/10.5281/zenodo.20496086)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://github.com/abgnydn/iz/blob/master/LICENSE)
-[![Live site](https://img.shields.io/badge/live-iz--b0n.pages.dev-2d5a4c.svg)](https://iz-b0n.pages.dev)
+[![Live site](https://img.shields.io/badge/live-iz--b0n.pages.dev-2d5a4c.svg)](https://iz-mrv.pages.dev)
 
 **A public per-facility emissions benchmark for Turkish CBAM-scope industry, plus a closed-form physics baseline that beats the EU CBAM default by +82.3% (honest, leave-one-plant-out, n=19).**
 
-> 🌐 **Live site:** [iz-b0n.pages.dev](https://iz-b0n.pages.dev)
-> 📊 **Browse the bench:** [iz-b0n.pages.dev/bench/](https://iz-b0n.pages.dev/bench/)
-> 🏭 **Per-facility pages** (e.g. [Büyükçekmece Cement](https://iz-b0n.pages.dev/bench/akcansa-buyukcekmece/)): one URL per plant with audit-grade Scope 1, conformal CI, source PDFs, EnMAP scene index, Beirle NOx cross-check — and a printable [audit summary](https://iz-b0n.pages.dev/bench/akcansa-buyukcekmece/audit-summary/) you can hand to your verifier.
-> 🧪 **Reproduce the result yourself (pure Python):** [iz-b0n.pages.dev/verify/](https://iz-b0n.pages.dev/verify/)
-> 📖 **How to use this:** [iz-b0n.pages.dev/use/](https://iz-b0n.pages.dev/use/)
+> 🌐 **Live site:** [iz-mrv.pages.dev](https://iz-mrv.pages.dev)
+> 📊 **Browse the bench:** [iz-mrv.pages.dev/bench/](https://iz-mrv.pages.dev/bench/)
+> 🏭 **Per-facility pages** (e.g. [Büyükçekmece Cement](https://iz-mrv.pages.dev/bench/akcansa-buyukcekmece/)): one URL per plant with audit-grade Scope 1, conformal CI, source PDFs, EnMAP scene index, Beirle NOx cross-check — and a printable [audit summary](https://iz-mrv.pages.dev/bench/akcansa-buyukcekmece/audit-summary/) you can hand to your verifier.
+> 🧪 **Reproduce the result yourself (pure Python):** [iz-mrv.pages.dev/verify/](https://iz-mrv.pages.dev/verify/)
+> 📖 **How to use this:** [iz-mrv.pages.dev/use/](https://iz-mrv.pages.dev/use/)
 > 📝 **Cite this:** [Zenodo DOI 10.5281/zenodo.20496086](https://doi.org/10.5281/zenodo.20496086)
 
 ---
@@ -79,7 +79,7 @@ Tests: `.venv/bin/python -m pytest tests/` (sanity checks).
 >
 > Coverage: all four CBAM scopes (cement, steel, aluminum, fertilizer) including primary vs downstream aluminum and N₂O-controlled vs integrated fertilizer. n is small (21 audit-grade, 19 validatable). We are honest about variance and confidence in Limitations. No satellite signal in v0. The in-browser neural net (iz) is a demo, not part of the result.
 
-[**Paper preview (1-pager)**](https://iz-b0n.pages.dev/paper/) · [**Reproduce it**](https://iz-b0n.pages.dev/verify/) · [**Brain notes**](https://github.com/abgnydn/brain)
+[**Paper preview (1-pager)**](https://iz-mrv.pages.dev/paper/) · [**Reproduce it**](https://iz-mrv.pages.dev/verify/) · [**Brain notes**](https://github.com/abgnydn/brain)
 
 ---
 
@@ -207,11 +207,11 @@ All raw disclosure PDFs live under `data/disclosures/` (gitignored by default fo
 
 ## Deploy
 
-The site (`site/`) is served on [Cloudflare Pages](https://iz-b0n.pages.dev) via the
+The site (`site/`) is served on [Cloudflare Pages](https://iz-mrv.pages.dev) via the
 GitHub integration — there is no `wrangler.toml` in the repo, so **merging to `master`
 auto-builds and deploys** (the `site/_redirects` rules apply automatically). No manual
 step. For a direct-upload project or a manual preview: `just deploy` (=
-`wrangler pages deploy site --project-name iz-b0n`).
+`wrangler pages deploy site --project-name iz-mrv`).
 
 Common tasks are in the `justfile`: `just repro` (headline), `just build`,
 `just test`, `just fetch-data`, `just all`.
@@ -226,7 +226,7 @@ data/                 ← raw + processed (mostly gitignored; EUTL + Climate TRA
 data/tr_facilities.csv                 ← 59 TR CBAM-scope facilities
 data/tr_facility_known_emissions.csv   ← audit-grade + weak strong-label rows (21 audit-grade)
 reports/              ← Generated artifacts: lopo_ef_eval.json, fig_formula_vs_eu.svg
-site/                 ← the public site (deployed to iz-b0n.pages.dev)
+site/                 ← the public site (deployed to iz-mrv.pages.dev)
 CHANGELOG.md          ← version history (v0.3 → v0.4 correction)
 CLAUDE.md             ← development log
 ```
