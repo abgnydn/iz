@@ -9,7 +9,7 @@ authors:
     affiliation: independent
 repository-code: "https://github.com/abgnydn/iz"
 doi: "10.5281/zenodo.20496086"
-url: "https://iz-b0n.pages.dev/"
+url: "https://iz-mrv.pages.dev/"
 abstract: >
   TR-MRV-Bench is a public per-facility CO₂ emissions benchmark for Turkish
   CBAM-scope industry (cement, steel, aluminum, fertilizer). It comprises 59
@@ -66,5 +66,5 @@ keywords:
   - EU ETS
   - EUTL
 license: Apache-2.0
-version: "0.4.1"
-date-released: "2026-07-01"
+version: "0.4.2"
+date-released: "2026-07-02"

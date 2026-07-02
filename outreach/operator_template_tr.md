@@ -14,7 +14,7 @@ CFO'ları veya çevre uyum yöneticileri için.
 > [TESİS ADI] için CBAM uyum süreciniz hakkında yazıyorum.
 >
 > Türkiye'nin CBAM kapsamındaki sanayi kuruluşları için tesis bazlı emisyon verilerini
-> derleyen açık kaynaklı bir benchmark yayınladım: [iz-b0n.pages.dev](https://iz-b0n.pages.dev).
+> derleyen açık kaynaklı bir benchmark yayınladım: [iz-mrv.pages.dev](https://iz-mrv.pages.dev).
 > Apache-2.0 lisanslı, kamuya açık bir veri seti. 59 Türk tesisi için operatör-yayınlı PDF'lere
 > kaynak gösterilmiş audit-grade Scope 1 değerleri, artı dört CBAM sektörü genelinde 21 tesiste
 > ±%20 dahilinde gerçek değerleri yeniden üreten basit bir formül (`kapasite × emisyon faktörü
@@ -28,7 +28,7 @@ CFO'ları veya çevre uyum yöneticileri için.
 > doğrulayıcı denetimine getireceği gerçek tesis verisi olması — cezalandırıcı default
 > değerini ödemek zorunda kalması değil.
 >
-> Bench tarayıcı: [iz-b0n.pages.dev/bench/?q=TESİS](https://iz-b0n.pages.dev/bench/?q=TESIS)
+> Bench tarayıcı: [iz-mrv.pages.dev/bench/?q=TESİS](https://iz-mrv.pages.dev/bench/?q=TESIS)
 > Kaynak kod: [github.com/abgnydn/iz](https://github.com/abgnydn/iz)
 >
 > 15 dakikalık bir görüşmeye veya birkaç e-posta alışverişine açığım.

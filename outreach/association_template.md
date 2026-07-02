@@ -16,7 +16,7 @@ and TÜSİAD's CBAM working group.
 > Turkish CBAM-scope industry, with the aim of seeking your association's review and (if
 > appropriate) endorsement.
 >
-> **TR-MRV-Bench v0** ([iz-b0n.pages.dev](https://iz-b0n.pages.dev)) is a one-person
+> **TR-MRV-Bench v0** ([iz-mrv.pages.dev](https://iz-mrv.pages.dev)) is a one-person
 > contribution: 59 Turkish CBAM-scope facilities with 21 audit-grade Scope 1 numbers cited to
 > operator-published TSRS / IAR / ISO 14064-1 reports. A closed-form formula
 > (`capacity × emission-factor × capacity-factor`) reproduces audited Scope 1 within ±20% on

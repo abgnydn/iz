@@ -14,7 +14,7 @@ in cement / steel / aluminum / fertilizer. **Sent BCC, never blast — personali
 > I'm writing about CBAM compliance for [PLANT NAME].
 >
 > I've built and released an open-source per-facility emissions benchmark for Turkish CBAM-scope
-> industry — [iz-b0n.pages.dev](https://iz-b0n.pages.dev). It's a public, Apache-2.0 dataset of 59
+> industry — [iz-mrv.pages.dev](https://iz-mrv.pages.dev). It's a public, Apache-2.0 dataset of 59
 > Turkish facilities with audit-grade Scope 1 numbers cited to operator-published PDFs, plus a
 > simple formula (`capacity × emission-factor × capacity-factor`) that reproduces audited Scope 1
 > within ±20% on 21 plants across all four CBAM scopes.
@@ -27,7 +27,7 @@ in cement / steel / aluminum / fertilizer. **Sent BCC, never blast — personali
 > operator has accurate per-facility data to bring to their EU verifier audit, not pay the
 > punitive default.
 >
-> Bench browser: [iz-b0n.pages.dev/bench/?q=PLANT](https://iz-b0n.pages.dev/bench/?q=PLANT)
+> Bench browser: [iz-mrv.pages.dev/bench/?q=PLANT](https://iz-mrv.pages.dev/bench/?q=PLANT)
 > Source code: [github.com/abgnydn/iz](https://github.com/abgnydn/iz)
 >
 > Happy to take a 15-min call or just trade a few emails.

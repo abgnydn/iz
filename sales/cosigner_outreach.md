@@ -1,7 +1,7 @@
 # Co-signer outreach — TR-MRV-Bench position paper
 
 **Goal:** get industry associations + operators to co-sign the CBAM position paper
-(https://iz-b0n.pages.dev/policy/ · DOI 10.5281/zenodo.20496086) as a permanent,
+(https://iz-mrv.pages.dev/policy/ · DOI 10.5281/zenodo.20496086) as a permanent,
 citable artifact for the December 2027 default-values revision and the upcoming
 Draft Act feedback phase of EU Initiative 14828.
 
@@ -57,7 +57,7 @@ TÜRKAK-akredite doğrulama). İçinde:
   ▸ Sembolik regresyonun formülü bağımsızca yeniden keşfi
   ▸ Apache-2.0 · Zenodo DOI 10.5281/zenodo.20496086
 
-Sunum: https://iz-b0n.pages.dev/policy/
+Sunum: https://iz-mrv.pages.dev/policy/
 
 Bu, [ASSOCIATION]'ın zaten savunduğu pozisyonun teknik ekidir — rota-bazlı,
 CN-kodu-bazlı, denetlenmiş sayılarla. Avrupa Komisyonu'nun Aralık 2027'de
@@ -90,8 +90,8 @@ TR-MRV-Bench adında 59 Türk CBAM-kapsamlı tesisi içeren açık emisyon veri
 setini yayımladım. [PLANT]'ın denetim-düzeyi Kapsam 1 verisi, operatör
 kaynaklarına atıfla, veri setinde yer alıyor.
 
-  ▸ Sunum:  https://iz-b0n.pages.dev/policy/
-  ▸ Tesis:  https://iz-b0n.pages.dev/bench/[FACILITY-SLUG]/
+  ▸ Sunum:  https://iz-mrv.pages.dev/policy/
+  ▸ Tesis:  https://iz-mrv.pages.dev/bench/[FACILITY-SLUG]/
   ▸ DOI:    10.5281/zenodo.20496086 · Apache-2.0
 
 Çalışma, AB CBAM varsayım-değerlerinin rota-bazlı düzeltilmesi için bir
@@ -119,7 +119,7 @@ BAGFAŞ Bandırma hem Gübretaş Yarımca için denetim-düzeyi Kapsam 1 veriler
 ve operatör kaynakları var.
 
 Çalışma, AB CBAM varsayım-değerleri için bir pozisyon belgesine dönüştü:
-https://iz-b0n.pages.dev/policy/ — BAGFAŞ'ın N₂O katalizör yatırımının ve
+https://iz-mrv.pages.dev/policy/ — BAGFAŞ'ın N₂O katalizör yatırımının ve
 Gübretaş'ın harmancı rotasının mevcut "diğer ülkeler" varsayımı altında
 40-50× yanlış fiyatlandırıldığını gösteren empirik temele dayanıyor.
 
@@ -138,7 +138,7 @@ Ahmet Barış Günaydın
 ```
 Sayın Özgür Fırat Bey, TR-MRV-Bench açık veri setimizde BAGFAŞ ve Gübretaş
 için denetim-düzeyi Kapsam 1 verileri var. AB CBAM pozisyon belgemize ortak
-imzacı arıyoruz (kalıcı, DOI'li). Detay: iz-b0n.pages.dev/policy/. Saygılar.
+imzacı arıyoruz (kalıcı, DOI'li). Detay: iz-mrv.pages.dev/policy/. Saygılar.
 ```
 
 ---
@@ -158,7 +158,7 @@ imzacı arıyoruz (kalıcı, DOI'li). Detay: iz-b0n.pages.dev/policy/. Saygılar
 
 ## Attachments / links to include in every send
 
-1. Position-paper URL: https://iz-b0n.pages.dev/policy/
+1. Position-paper URL: https://iz-mrv.pages.dev/policy/
 2. Zenodo DOI: https://doi.org/10.5281/zenodo.20496086
 3. (optional) PDF: print /policy/ to PDF from browser
 
