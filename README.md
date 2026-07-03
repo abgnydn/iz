@@ -207,11 +207,11 @@ All raw disclosure PDFs live under `data/disclosures/` (gitignored by default fo
 
 ## Deploy
 
-The site (`site/`) is served on [Cloudflare Pages](https://iz-mrv.pages.dev) via the
-GitHub integration — there is no `wrangler.toml` in the repo, so **merging to `master`
-auto-builds and deploys** (the `site/_redirects` rules apply automatically). No manual
-step. For a direct-upload project or a manual preview: `just deploy` (=
-`wrangler pages deploy site --project-name iz-mrv`).
+The site (`site/`) is served on [Cloudflare Pages](https://iz-mrv.pages.dev) as a
+**direct-upload** project — merging to `master` does **not** auto-deploy. After a
+merge that touches `site/`, deploy manually: `just deploy` (=
+`wrangler pages deploy site --project-name iz-mrv`). The `site/_redirects` rules
+apply automatically.
 
 Common tasks are in the `justfile`: `just repro` (headline), `just build`,
 `just test`, `just fetch-data`, `just all`.
@@ -230,6 +230,34 @@ site/                 ← the public site (deployed to iz-mrv.pages.dev)
 CHANGELOG.md          ← version history (v0.3 → v0.4 correction)
 CLAUDE.md             ← development log
 ```
+
+## Katkıda bulunun (Contributing)
+
+Bu tek kişilik bir proje ve en zayıf üç noktası aynı zamanda en değerli katkı
+alanları:
+
+1. **Veri çıkarma — n'i büyütün.** TSRS zorunluluğuyla her raporlama döneminde
+   yeni denetimli emisyon rakamları yayımlanıyor. Bir şirketin raporundan Scope 1
+   rakamını, yılını ve sayfa numarasını çıkarıp
+   `data/tr_facility_known_emissions.csv` formatında PR açmanız yeterli —
+   kaynak PDF linki şart.
+2. **Bağımsız doğrulama.** Mevcut 21 denetimli etiketi ve
+   `data/tr_facilities.csv`'deki rota atamalarını kaynak raporlarla karşılaştırın.
+   Bulunan her hata düzeltilir ve CHANGELOG'da isminizle anılır — bu projede
+   hata bulmak ayıp değil, katkının ta kendisi.
+3. **Kapı açın.** Sektör dernekleri (TÜRKÇİMENTO, TÇÜD, TİM) veya Çevre, Şehircilik
+   ve İklim Değişikliği Bakanlığı ile temasınız varsa yazın: Türkiye'nin MRV
+   mevzuatı gereği bu verinin doğrulanmış tam hâli zaten mevcut; yalnızca açık
+   değil. Akademik ortak yazarlık için de kapı açık.
+
+*In English:* contributions that matter most are (1) extracting new audit-grade
+Scope 1 figures from TSRS-era reports into
+`data/tr_facility_known_emissions.csv` (source PDF link required), (2)
+independently re-checking the existing 21 labels and route assignments — found
+errors get fixed and credited, and (3) introductions to Turkish sector
+associations or the Ministry, whose MRV registry already holds the verified
+version of this dataset. Academic co-authorship welcome. Start with
+`just repro`; open an issue or a PR, or write to hi@barisgunaydin.com.
 
 ## Cite
 
